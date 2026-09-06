@@ -1,0 +1,61 @@
+import { standardSource } from "./product.js";
+
+const source = `${standardSource} · Slide 8`;
+
+export const standardDevelopment = [
+  {
+    id: "simulation",
+    category: "SIMULATION",
+    title: "仿真开发",
+    tools: ["Isaac Sim", "Genesis"],
+    description: "使用 Isaac Sim 与 Genesis 进行仿真训练与任务验证。",
+    source,
+    contentStatus: "VERIFIED",
+    publicApproved: true,
+    visibility: "PUBLIC",
+  },
+  {
+    id: "interface",
+    category: "INTERFACE",
+    title: "机器人接口",
+    tools: ["ROS 2", "MoveIt 2", "BlueWorm SDK"],
+    description: "通过 ROS 2、MoveIt 2 与 BlueWorm SDK 连接机器人开发流程。",
+    source,
+    contentStatus: "VERIFIED",
+    publicApproved: true,
+    visibility: "PUBLIC",
+  },
+  {
+    id: "data-model",
+    category: "DATA & MODEL",
+    title: "数据与模型",
+    tools: ["LeRobot", "π0.5", "ACT", "SmolVLA"],
+    description: "围绕数据采集、模型微调与任务验证组织具身智能开发流程。",
+    source,
+    contentStatus: "VERIFIED",
+    publicApproved: true,
+    visibility: "PUBLIC",
+  },
+  {
+    id: "operation-deployment",
+    category: "OPERATION",
+    title: "操作与部署",
+    tools: ["VR Teleoperation", "VLA", "Edge-cloud inference"],
+    description: "以 VR 遥操作连接数据采集，并面向端云推理与真实任务验证。",
+    source,
+    contentStatus: "VERIFIED",
+    publicApproved: true,
+    visibility: "PUBLIC",
+  },
+  {
+    id: "agent",
+    category: "AGENT",
+    title: "Agent 调用",
+    tools: ["Agent", "MCP", "BlueWorm SDK"],
+    description: "通过 Agent 与 MCP 组织任务调用流程。",
+    source,
+    contentStatus: "VERIFIED",
+    publicApproved: true,
+    visibility: "PUBLIC",
+  },
+].map((item) => ({ ...item, approval: { copy: true, media: false, claim: true } }));

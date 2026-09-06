@@ -1,0 +1,35 @@
+{
+  "name": "blue-worm-website-v0",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/generate-sitemap.mjs && node scripts/prepare-sites-build.mjs",
+    "build:cloudflare": "pnpm run build && node scripts/prepare-cloudflare-pages.mjs",
+    "manifest:upload": "node scripts/verify-upload-integrity.mjs --write",
+    "audit:upload": "node scripts/verify-upload-integrity.mjs",
+    "verify:upload": "pnpm run build:cloudflare && pnpm run test:v0 && pnpm run test:sites && pnpm run audit:launch:static && pnpm run audit:upload",
+    "audit:launch:static": "node scripts/task017-static-audit.cjs",
+    "audit:launch:metadata": "node scripts/task017-metadata-audit.cjs",
+    "preview": "vite preview",
+    "test:hero": "node --test tests/product-hero-config.test.mjs",
+    "test:ia": "node --test tests/information-architecture.test.mjs",
+    "test:v0": "node --test tests/*.test.mjs",
+    "test:standard": "node --test tests/standard-content-framework.test.mjs",
+    "test:company": "node --test tests/company-content-framework.test.mjs",
+    "test:sites": "node --test tests/sites-worker.test.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "5.0.4",
+    "gsap": "^3.15.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-router-dom": "^7.18.3",
+    "vite": "6.4.2"
+  }
+}
