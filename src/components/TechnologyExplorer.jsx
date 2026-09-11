@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { EditorialHeading } from "./EditorialHeading.jsx";
 
 export function TechnologyExplorer({ platforms }) {
   const [activeId, setActiveId] = useState(platforms[0]?.id);
@@ -22,11 +23,14 @@ export function TechnologyExplorer({ platforms }) {
 
   return (
     <section className="technology-explorer page-shell" data-motion-section aria-labelledby="technology-explorer-title">
-      <header className="technology-explorer__intro">
-        <p data-motion-copy>产品与技术 / SYSTEM</p>
-        <h2 id="technology-explorer-title" data-motion-heading><span>本体、平台与工具，</span><span>围绕同一个任务。</span></h2>
-        <p data-motion-copy>从 Mantis 本体出发，依次查看架构、遥操作、具身模型与云端工作流。</p>
-      </header>
+      <EditorialHeading
+        className="technology-explorer__intro"
+        meta="产品与技术 / SYSTEM"
+        title={<><span>从机器人本体，</span><span>到完整工作流。</span></>}
+        intro="依次查看 Mantis 的系统架构、遥操作、具身模型与云端工作流。"
+        titleId="technology-explorer-title"
+        motion
+      />
 
       <div className="technology-explorer__stage" data-motion-item>
         <div className="technology-explorer__core" aria-label="Mantis Robot Body">

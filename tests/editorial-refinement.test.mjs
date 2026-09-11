@@ -17,8 +17,8 @@ test("Task 015.7 replaces generic oversized slogans with task-specific copy", as
 
   assert.match(inquiry, /把现场、动作/);
   assert.match(inquiry, /和目标写具体/);
-  assert.match(explorer, /本体、平台与工具/);
-  assert.match(explorer, /围绕同一个任务/);
+  assert.match(explorer, /从机器人本体/);
+  assert.match(explorer, /到完整工作流/);
   assert.match(technology, /从任务条件开始/);
   assert.match(technology, /讨论技术方案/);
   assert.match(applications, /应用方向/);

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../components/Footer.jsx";
+import { EditorialHeading } from "../components/EditorialHeading.jsx";
 import { InternalStatus } from "../components/InternalStatus.jsx";
 import { Navbar } from "../components/Navbar.jsx";
 import { SubpageMotion } from "../components/SubpageMotion.jsx";
@@ -43,21 +44,28 @@ export function AboutPage() {
         </section>
 
         <section className="about-belief" data-motion-section aria-labelledby="about-belief-title">
-          <div className="about-belief__copy page-shell">
-            <p data-motion-copy>研发方向 / RESEARCH IN MOTION</p>
-            <h2 id="about-belief-title" data-motion-heading><span>从机器人本体，</span><span>到人的任务。</span></h2>
-            <p className="about-belief__lead" data-motion-copy>蓝虫具身围绕机器人本体、工程系统与智能模型，持续推进研发与任务实践。</p>
-          </div>
+          <EditorialHeading
+            as="div"
+            className="about-belief__copy page-shell"
+            meta="研发方向 / RESEARCH IN MOTION"
+            title={<><span>从机器人本体，</span><span>到人的任务。</span></>}
+            detail={<p className="about-belief__lead">蓝虫具身围绕机器人本体、工程系统与智能模型，持续推进研发与任务实践。</p>}
+            titleId="about-belief-title"
+            motion
+          />
           <figure className="about-belief__media" data-motion-media>
             <img src="/assets/hero-standard-series-a01644.webp" alt="Mantis Standard 产品系列" width="2400" height="1350" loading="lazy" decoding="async" data-parallax />
           </figure>
         </section>
 
         <section className="about-practice page-shell" data-motion-section aria-labelledby="about-practice-title">
-          <header>
-            <p data-motion-copy>People and practice</p>
-            <h2 id="about-practice-title" data-motion-heading>团队、研发与长期积累。</h2>
-          </header>
+          <EditorialHeading
+            meta="People and practice"
+            title="团队、研发与持续积累。"
+            titleId="about-practice-title"
+            tone="dark"
+            motion
+          />
           <div className="about-practice__rows">
             <article data-motion-item>
               <span>核心团队</span>

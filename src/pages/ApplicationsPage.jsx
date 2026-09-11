@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../components/Footer.jsx";
+import { EditorialHeading } from "../components/EditorialHeading.jsx";
 import { Navbar } from "../components/Navbar.jsx";
 import { StandardMediaPlayer } from "../components/StandardMediaPlayer.jsx";
 import { SubpageMotion } from "../components/SubpageMotion.jsx";
@@ -61,10 +62,14 @@ export function ApplicationsPage() {
 
         {sceneMedia.length ? (
           <section className="application-scenes" data-motion-section aria-labelledby="application-scenes-title">
-            <header className="page-shell">
-              <p data-motion-copy>Scene records</p>
-              <h2 id="application-scenes-title" data-motion-heading>任务现场，连续发生。</h2>
-            </header>
+            <EditorialHeading
+              className="page-shell"
+              meta="Scene records"
+              title="任务记录，来自真实现场。"
+              titleId="application-scenes-title"
+              tone="dark"
+              motion
+            />
             <div className="application-scenes__list">
               {sceneMedia.map((media) => (
                 <article key={media.id} className="application-scene" data-motion-item>

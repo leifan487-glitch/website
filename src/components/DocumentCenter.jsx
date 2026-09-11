@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { Footer } from "./Footer.jsx";
+import { EditorialHeading } from "./EditorialHeading.jsx";
 import { Navbar } from "./Navbar.jsx";
 import { isPublicResource } from "../data/resources/visibility.js";
 
@@ -35,13 +36,14 @@ export function DocumentCenter({ resources }) {
         <Navbar theme="light" homeHref="/" />
 
         <section className="document-center page-shell" aria-labelledby="document-center-title">
-          <header className="document-center__heading">
-            <div>
-              <p>支持 / 文档</p>
-              <h1 id="document-center-title">文档中心</h1>
-            </div>
-            <p>集中查找 Mantis Standard 的使用、开发与交付资料。正式内容将在审核后持续补充。</p>
-          </header>
+          <EditorialHeading
+            className="document-center__heading"
+            meta="支持 / 文档"
+            title="文档中心"
+            intro="集中查找 Mantis Standard 的使用、开发与交付资料。正式内容将在审核后持续补充。"
+            titleId="document-center-title"
+            titleTag="h1"
+          />
 
           <div className="document-center__workspace">
             <aside className="document-center__controls" aria-label="文档筛选">

@@ -97,7 +97,7 @@ export function HomeApplications() {
           <p className="home-section-name">Applications / Mantis Standard</p>
           <h2 id="home-applications-title">任务现场</h2>
         </div>
-        <p>{companyPublicMode ? "从真实任务记录出发，探索机器人在不同场景中的应用方向。" : "匿名项目文字记录；未批准媒体不进入公开页面。"}</p>
+        <p>{companyPublicMode ? "以已公开的任务影像，呈现机器人在不同现场中的操作过程。" : "匿名项目文字记录；未批准媒体不进入公开页面。"}</p>
       </header>
 
       <div className="home-applications__gallery page-shell">

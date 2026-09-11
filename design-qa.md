@@ -1,3 +1,37 @@
+# Design QA — Task 018 Editorial Type System & Final CTA Fit
+
+Date: 2026-09-11
+
+## Scope
+
+- User evidence: 22 annotated screenshots plus the read-only reference set under `经验素材取地/逐际动力参考字体和ui/`.
+- Updated surfaces: homepage section masthead and Final CTA, Mantis Standard modular / capability / real-task headings, Technology, Applications, Document Center, Video Center and About section typography.
+- Locked: homepage second screen, Home Hero media and motion, public facts, approved media, Standard-only policy, navigation behavior, inquiry availability and original source assets.
+
+## Design system changes
+
+- Added one reusable `EditorialHeading` component with stable meta, title and explanation roles.
+- Standardized desktop headings to a three-column editorial grid, tablet to two columns and mobile to a single reading order.
+- Reduced inconsistent display extremes to a 48–76px fluid range, 42–44px on mobile, with 600 weight, 1.06–1.08 line height and restrained negative tracking.
+- Rewrote only non-factual positioning copy to be shorter and more concrete; no parameter, client, deployment or performance claim was added.
+- Final CTA now height-contains the full A01644 product family on wide desktops, so robot heads remain visible after the section was shortened.
+
+## Visual evidence
+
+- First batched pass exposed legacy cascade conflicts in the Standard capability heading, Document Center columns and mobile metadata.
+- One confirmation pass covered 1440×900, 2559×932 and 390×844. All three reported `scrollWidth === clientWidth`, with zero console or page errors.
+- Representative captures: `output/task018/home-final-2559.png`, `standard-system-1440.png`, `technology-intro-1440.png`, `documents-heading-1440.png`, `home-final-390.png`.
+- The reference folder was read only; no reference or original media file was copied, renamed, edited or overwritten.
+
+## Mechanical review
+
+- Impeccable detector was run once after the UI pass. It reported only historical Arial declarations and pre-existing layout-property transitions outside this change; the shared heading component and Task 018 rules added no new detector category.
+- Production build, route tests, upload integrity and live deployment evidence are recorded in the current handoff.
+
+final result: passed
+
+---
+
 # Design QA — Ultra-wide Hero Shadow Edge Correction
 
 Date: 2026-09-11

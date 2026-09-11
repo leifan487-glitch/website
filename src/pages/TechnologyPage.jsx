@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Footer } from "../components/Footer.jsx";
+import { EditorialHeading } from "../components/EditorialHeading.jsx";
 import { InternalStatus } from "../components/InternalStatus.jsx";
 import { Navbar } from "../components/Navbar.jsx";
 import { SubpageMotion } from "../components/SubpageMotion.jsx";
@@ -39,14 +40,19 @@ export function TechnologyPage() {
           <div className="technology-field__media" data-motion-media>
             <img src="/assets/detail-standard-a01792.webp" alt="Mantis Standard 机器人本体细节" width="2200" height="1238" loading="lazy" decoding="async" data-parallax />
           </div>
-          <div className="technology-field__copy page-shell">
-            <p data-motion-copy>Robot body / system / workflow</p>
-            <h2 id="technology-field-title" data-motion-heading>围绕任务，组织完整技术链路。</h2>
-            <div data-motion-copy>
+          <EditorialHeading
+            as="div"
+            className="technology-field__copy page-shell"
+            meta="Robot body / system / workflow"
+            title="本体承载动作，系统连接任务。"
+            titleId="technology-field-title"
+            tone="dark"
+            motion
+            detail={<div>
               <p>机器人本体承载动作，平台系统连接控制、感知、模型与数据工作流。</p>
               <Link className="subpage-line-link" to="/products/mantis-standard"><span>了解 Mantis Standard</span><span aria-hidden="true">↗</span></Link>
-            </div>
-          </div>
+            </div>}
+          />
         </section>
 
         <section className="subpage-contact subpage-contact--blue page-shell" data-motion-section>

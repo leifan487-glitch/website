@@ -1,6 +1,7 @@
 import { useId, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { EmptyState } from "./EmptyState.jsx";
+import { EditorialHeading } from "./EditorialHeading.jsx";
 import { InternalStatus } from "./InternalStatus.jsx";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
 import {
@@ -20,11 +21,14 @@ import {
 
 function SectionHeading({ index, label, title, intro, titleId, light = false }) {
   return (
-    <header className="standard-section__heading page-shell">
-      <p className={`section-index${light ? " section-index--light" : ""}`}>{index} · {label}</p>
-      <h2 id={titleId}>{title}</h2>
-      <p>{intro}</p>
-    </header>
+    <EditorialHeading
+      className="standard-section__heading page-shell"
+      meta={`${index} · ${label}`}
+      title={title}
+      intro={intro}
+      titleId={titleId}
+      tone={light ? "dark" : "light"}
+    />
   );
 }
 
@@ -42,14 +46,14 @@ export function ModularArchitectureSection() {
   return (
     <section className="standard-section standard-modular" id="modular" aria-labelledby="standard-modular-title">
       <div className="standard-modular__stage page-shell">
-        <header className="standard-modular__heading">
-          <p>{standardProduct.slogan}</p>
-          <h2 id="standard-modular-title">
-            <span>一套核心，</span>
-            <span>按任务组合形态。</span>
-          </h2>
-          <p>机器人主体、双臂、移动、升降、快换与工具，围绕同一套产品架构协同工作。</p>
-        </header>
+        <EditorialHeading
+          className="standard-modular__heading"
+          meta={standardProduct.slogan}
+          title={<><span>一套本体，</span><span>按任务组合形态。</span></>}
+          intro="机器人主体、双臂、移动、升降、快换与工具，在同一套产品架构中协同工作。"
+          titleId="standard-modular-title"
+          tone="dark"
+        />
 
         {items.length ? (
           <div className="standard-modular__assembly">
@@ -113,16 +117,13 @@ export function CapabilitySystemSection() {
 
   return (
     <section className="standard-section standard-system" id="capability-system" aria-labelledby="standard-system-title">
-      <header className="standard-system__header page-shell">
-        <div>
-          <p>Body / Development / Task</p>
-          <h2 id="standard-system-title">
-            <span>让能力、开发与任务</span>
-            <span>连成一条路径。</span>
-          </h2>
-        </div>
-        <p>同一套产品架构连接机器人能力、开放开发流程与六类应用方向。</p>
-      </header>
+      <EditorialHeading
+        className="standard-system__header page-shell"
+        meta="Body / Development / Task"
+        title={<><span>从本体能力，</span><span>到任务执行。</span></>}
+        intro="同一套产品架构连接机器人能力、开放开发流程与六类应用方向。"
+        titleId="standard-system-title"
+      />
 
       <div className="standard-system__body page-shell">
         <div className="standard-system__tabs" role="tablist" aria-label="产品能力系统">
@@ -205,7 +206,7 @@ export function RealTasksSection() {
   if (standardPublicMode && !media.length) return null;
   return (
     <section className="standard-section standard-real-tasks" id="real-tasks" aria-labelledby="standard-real-tasks-title">
-      <SectionHeading index="06" label="REAL TASKS" title="真实任务" intro="只接入身份、任务内容与公开权限均已确认的 Standard 媒体。" titleId="standard-real-tasks-title" />
+      <SectionHeading index="06" label="REAL TASKS" title="任务记录" intro="只展示机器人身份、任务内容与公开权限均已确认的 Standard 媒体。" titleId="standard-real-tasks-title" />
       {media.length ? (
         <div className="standard-real-tasks__media page-shell">
           {media.map((item) => (

@@ -4166,6 +4166,451 @@ main section[id] {
   }
 }
 
+/* Task 018: shared editorial typography and responsive section rhythm. */
+:root {
+  --type-editorial-title: clamp(48px, 4.8vw, 76px);
+  --type-editorial-title-compact: clamp(44px, 4.2vw, 68px);
+  --type-editorial-copy: clamp(15px, 1.08vw, 17px);
+  --editorial-section-block: clamp(84px, 8vw, 132px);
+}
+
+.editorial-heading {
+  display: grid;
+  grid-template-columns: minmax(140px, .36fr) minmax(420px, 1.14fr) minmax(260px, .5fr);
+  gap: clamp(32px, 5vw, 84px);
+  align-items: end;
+}
+
+.editorial-heading__meta {
+  margin: 0 0 6px;
+  color: rgb(8 9 10 / 50%);
+  font-family: "Bahnschrift", "Arial Narrow", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.editorial-heading .editorial-heading__title {
+  max-width: 15ch;
+  margin: 0;
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  font-size: var(--type-editorial-title);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -.026em;
+  text-wrap: balance;
+}
+
+.editorial-heading__title > span {
+  display: block;
+}
+
+.editorial-heading__detail {
+  align-self: end;
+  max-width: 34ch;
+  margin: 0 0 5px;
+  color: rgb(8 9 10 / 64%);
+  font-size: var(--type-editorial-copy);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.editorial-heading__detail > p {
+  margin: 0;
+}
+
+.editorial-heading--dark .editorial-heading__meta,
+.editorial-heading--dark .editorial-heading__detail {
+  color: rgb(247 247 245 / 66%);
+}
+
+.editorial-heading--dark .editorial-heading__title {
+  color: #f7f7f5;
+}
+
+/* Keep the home structure, but bring its section typography onto the same scale. */
+.home-technology__masthead,
+.home-applications__masthead,
+.home-latest__masthead {
+  grid-template-columns: minmax(420px, 1.5fr) minmax(280px, .5fr);
+  min-height: clamp(320px, 38svh, 420px);
+  padding-top: var(--editorial-section-block);
+  padding-bottom: clamp(58px, 6vw, 88px);
+}
+
+.home-technology__masthead h2,
+.home-applications__masthead h2,
+.home-latest__masthead h2 {
+  font-size: var(--type-editorial-title);
+  line-height: 1.04;
+  letter-spacing: -.026em;
+}
+
+.home-technology__masthead > p,
+.home-applications__masthead > p,
+.home-latest__masthead > p {
+  max-width: 36ch;
+  font-size: var(--type-editorial-copy);
+  line-height: 1.72;
+}
+
+/* Product sections use one repeatable left / title / explanation module. */
+.standard-modular__heading,
+.standard-system__header,
+.standard-section__heading {
+  grid-template-columns: minmax(140px, .36fr) minmax(420px, 1.14fr) minmax(260px, .5fr);
+  gap: clamp(32px, 5vw, 84px);
+}
+
+.standard-modular__heading {
+  align-items: end;
+}
+
+.standard-modular__heading .editorial-heading__meta,
+.standard-system__header .editorial-heading__meta,
+.standard-section__heading .editorial-heading__meta {
+  margin: 0 0 6px;
+}
+
+.standard-modular__heading .editorial-heading__title,
+.standard-system__header .editorial-heading__title,
+.standard-section__heading .editorial-heading__title {
+  max-width: 14ch;
+  font-size: var(--type-editorial-title-compact);
+  line-height: 1.08;
+  letter-spacing: -.024em;
+}
+
+.standard-modular__heading .editorial-heading__detail,
+.standard-system__header .editorial-heading__detail,
+.standard-section__heading .editorial-heading__detail {
+  margin: 0 0 4px;
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.standard-system__header {
+  min-height: clamp(340px, 40svh, 440px);
+  padding-top: var(--editorial-section-block);
+  padding-bottom: clamp(58px, 6vw, 88px);
+}
+
+/* Product, technology, application and company pages share the same editorial grid. */
+.technology-explorer__intro,
+.technology-field__copy,
+.about-belief__copy,
+.about-practice > .editorial-heading,
+.application-scenes > .editorial-heading {
+  grid-template-columns: minmax(140px, .36fr) minmax(420px, 1.14fr) minmax(260px, .5fr);
+  gap: clamp(32px, 5vw, 84px);
+}
+
+.technology-explorer__intro .editorial-heading__title,
+.technology-field__copy .editorial-heading__title,
+.about-belief__copy .editorial-heading__title,
+.about-practice > .editorial-heading .editorial-heading__title,
+.application-scenes > .editorial-heading .editorial-heading__title {
+  max-width: 15ch;
+  font-size: var(--type-editorial-title);
+  line-height: 1.06;
+}
+
+.technology-explorer__intro {
+  margin-bottom: clamp(58px, 6vw, 90px);
+}
+
+.technology-field__copy .editorial-heading__detail > div > p {
+  margin: 0 0 40px;
+  color: inherit;
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.application-scenes > .editorial-heading {
+  padding-bottom: clamp(58px, 6vw, 88px);
+}
+
+.about-belief__copy {
+  padding-top: var(--editorial-section-block);
+  padding-bottom: clamp(64px, 6vw, 94px);
+}
+
+.about-practice > .editorial-heading {
+  margin-bottom: clamp(64px, 7vw, 104px);
+}
+
+.about-story h2,
+.subpage-contact h2 {
+  font-size: var(--type-editorial-title-compact);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.024em;
+}
+
+.about-story__copy > p:first-child {
+  max-width: 30ch;
+  font-size: clamp(22px, 2.1vw, 32px);
+  line-height: 1.46;
+}
+
+.subpage-contact.page-shell {
+  min-height: clamp(390px, 46svh, 500px);
+}
+
+/* Support surfaces: quieter heroes, stronger reading hierarchy. */
+.page-hero,
+.page-hero__inner {
+  min-height: clamp(470px, 56svh, 580px);
+}
+
+.page-hero__inner {
+  grid-template-columns: minmax(140px, .36fr) minmax(420px, 1.14fr) minmax(260px, .5fr);
+  gap: clamp(32px, 5vw, 84px);
+  padding-top: calc(var(--nav-height) + 60px);
+  padding-bottom: clamp(58px, 6vw, 82px);
+}
+
+.page-hero__inner > .eyebrow {
+  grid-column: 1;
+  margin: 0 0 7px;
+  letter-spacing: .08em;
+}
+
+.page-hero[data-title-script="zh"] h1,
+.page-hero--video[data-title-script="zh"] h1 {
+  grid-column: 2;
+  max-width: 14ch;
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  font-size: var(--type-editorial-title);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -.026em;
+}
+
+.page-hero__intro,
+.page-hero--video .page-hero__intro {
+  grid-column: 3;
+  max-width: 34ch;
+  padding-bottom: 1px;
+  font-size: var(--type-editorial-copy);
+  line-height: 1.72;
+}
+
+.page-hero--video,
+.page-hero--video .page-hero__inner {
+  min-height: clamp(430px, 50svh, 520px);
+}
+
+.document-center {
+  padding-top: calc(var(--nav-height) + clamp(70px, 7vw, 112px));
+}
+
+.document-center__heading {
+  margin-bottom: clamp(50px, 6vw, 84px);
+}
+
+.document-center__heading .editorial-heading__title {
+  font-size: var(--type-editorial-title);
+}
+
+.video-featured > .editorial-heading,
+.video-library > .editorial-heading {
+  margin-bottom: clamp(42px, 5vw, 68px);
+}
+
+.video-featured > .editorial-heading .editorial-heading__title,
+.video-library > .editorial-heading .editorial-heading__title {
+  font-size: var(--type-editorial-title-compact);
+}
+
+.video-library__header .editorial-heading__detail {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 28px;
+  align-items: end;
+  max-width: none;
+}
+
+.video-library__header .editorial-heading__detail > strong {
+  color: var(--brand-blue);
+  font-family: "Bahnschrift", "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(34px, 3.2vw, 48px);
+  font-weight: 500;
+  line-height: .9;
+}
+
+/* The final product family must remain fully visible at every desktop aspect ratio. */
+.final-cta__media {
+  inset: 0 0 0 39%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.final-cta__media img {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  width: auto;
+  max-width: 108%;
+  height: auto;
+  max-height: calc(100% - 34px);
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+@media (min-width: 1800px) {
+  .final-cta__inner {
+    min-height: clamp(520px, 27vw, 650px);
+  }
+
+  .final-cta__media {
+    left: 41%;
+    padding-right: 1.5vw;
+  }
+
+  .final-cta__media img {
+    max-height: calc(100% - 46px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .editorial-heading,
+  .standard-modular__heading,
+  .standard-system__header,
+  .standard-section__heading,
+  .technology-explorer__intro,
+  .technology-field__copy,
+  .about-belief__copy,
+  .about-practice > .editorial-heading,
+  .application-scenes > .editorial-heading,
+  .page-hero__inner {
+    grid-template-columns: minmax(120px, .34fr) minmax(320px, 1.12fr) minmax(220px, .54fr);
+    gap: 38px;
+  }
+
+  .final-cta__media {
+    inset: 36% -14% 92px 18%;
+  }
+
+  .final-cta__media img {
+    width: 118%;
+    max-width: none;
+    max-height: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .editorial-heading,
+  .standard-modular__heading,
+  .standard-system__header,
+  .standard-section__heading,
+  .technology-explorer__intro,
+  .technology-field__copy,
+  .about-belief__copy,
+  .about-practice > .editorial-heading,
+  .application-scenes > .editorial-heading,
+  .page-hero__inner {
+    grid-template-columns: minmax(130px, .36fr) minmax(0, 1.64fr);
+    gap: 28px 42px;
+  }
+
+  .editorial-heading__meta,
+  .page-hero__inner > .eyebrow {
+    grid-column: 1;
+  }
+
+  .editorial-heading .editorial-heading__title,
+  .page-hero[data-title-script="zh"] h1,
+  .page-hero--video[data-title-script="zh"] h1 {
+    grid-column: 2;
+  }
+
+  .editorial-heading__detail,
+  .page-hero__intro,
+  .page-hero--video .page-hero__intro {
+    grid-column: 2;
+  }
+
+  .standard-modular__heading .editorial-heading__meta {
+    grid-column: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --type-editorial-title: 44px;
+    --type-editorial-title-compact: 42px;
+    --type-editorial-copy: 15px;
+  }
+
+  .editorial-heading,
+  .standard-modular__heading,
+  .standard-system__header,
+  .standard-section__heading,
+  .technology-explorer__intro,
+  .technology-field__copy,
+  .about-belief__copy,
+  .about-practice > .editorial-heading,
+  .application-scenes > .editorial-heading,
+  .page-hero__inner {
+    display: block;
+  }
+
+  .editorial-heading__meta,
+  .page-hero__inner > .eyebrow {
+    margin-bottom: 24px;
+  }
+
+  .editorial-heading__detail,
+  .page-hero__intro,
+  .page-hero--video .page-hero__intro {
+    max-width: 36ch;
+    margin-top: 28px;
+  }
+
+  .home-technology__masthead,
+  .home-applications__masthead,
+  .home-latest__masthead {
+    display: block;
+    min-height: 0;
+    padding-top: 74px;
+    padding-bottom: 54px;
+  }
+
+  .home-technology__masthead > p,
+  .home-applications__masthead > p,
+  .home-latest__masthead > p {
+    margin-top: 28px;
+  }
+
+  .page-hero,
+  .page-hero__inner,
+  .page-hero--video,
+  .page-hero--video .page-hero__inner {
+    min-height: 470px;
+  }
+
+  .page-hero__inner {
+    padding-top: calc(var(--nav-height) + 72px);
+    padding-bottom: 52px;
+  }
+
+  .document-center {
+    padding-top: calc(var(--nav-height) + 64px);
+  }
+
+  .final-cta__media {
+    inset: 440px -46% 0 -10%;
+  }
+
+  .final-cta__media img {
+    width: 148%;
+    max-width: none;
+    max-height: none;
+  }
+}
+
 /* Post-deploy navigation, document center and hero edge refinement. */
 @media (min-width: 1280px) and (min-aspect-ratio: 8 / 5) {
   .product-hero[data-media-mode="series-array"] .product-hero__media img {
@@ -13619,5 +14064,377 @@ a.document-card:focus-visible {
 
   .standard-system__panels > [role="tabpanel"] {
     animation: none;
+  }
+}
+
+/* Task 018 cascade bridge: these rules intentionally follow all legacy page layers. */
+.editorial-heading,
+.standard-modular__heading,
+.standard-system__header,
+.standard-section__heading,
+.technology-explorer__intro,
+.technology-field__copy,
+.about-belief__copy,
+.about-practice > .editorial-heading,
+.application-scenes > .editorial-heading,
+.document-center__heading,
+.video-featured > .editorial-heading,
+.video-library > .editorial-heading {
+  display: grid;
+  grid-template-columns: minmax(140px, .36fr) minmax(420px, 1.14fr) minmax(260px, .5fr);
+  gap: clamp(32px, 5vw, 84px);
+  align-items: end;
+}
+
+.editorial-heading > .editorial-heading__meta,
+.standard-system__header > .editorial-heading__meta,
+.document-center__heading > .editorial-heading__meta,
+.application-scenes > .editorial-heading > .editorial-heading__meta,
+.about-belief__copy > .editorial-heading__meta,
+.about-practice > .editorial-heading > .editorial-heading__meta {
+  grid-column: 1;
+  margin: 0 0 6px;
+  color: rgb(8 9 10 / 50%);
+  font-family: "Bahnschrift", "Arial Narrow", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.editorial-heading--dark > .editorial-heading__meta,
+.standard-modular__heading > .editorial-heading__meta,
+.technology-field__copy > .editorial-heading__meta,
+.application-scenes > .editorial-heading > .editorial-heading__meta,
+.about-practice > .editorial-heading > .editorial-heading__meta {
+  color: rgb(247 247 245 / 58%);
+}
+
+.editorial-heading > .editorial-heading__title,
+.standard-modular__heading > .editorial-heading__title,
+.standard-system__header > .editorial-heading__title,
+.standard-section__heading > .editorial-heading__title,
+.technology-explorer__intro > .editorial-heading__title,
+.technology-field__copy > .editorial-heading__title,
+.about-belief__copy > .editorial-heading__title,
+.about-practice > .editorial-heading > .editorial-heading__title,
+.application-scenes > .editorial-heading > .editorial-heading__title,
+.document-center__heading > .editorial-heading__title,
+.video-featured > .editorial-heading > .editorial-heading__title,
+.video-library > .editorial-heading > .editorial-heading__title {
+  grid-column: 2;
+  max-width: 15ch;
+  margin: 0;
+  font-family: "Microsoft YaHei UI", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+  font-size: var(--type-editorial-title);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -.026em;
+  text-wrap: balance;
+}
+
+.standard-modular__heading > .editorial-heading__title,
+.standard-system__header > .editorial-heading__title,
+.standard-section__heading > .editorial-heading__title,
+.video-featured > .editorial-heading > .editorial-heading__title,
+.video-library > .editorial-heading > .editorial-heading__title {
+  font-size: var(--type-editorial-title-compact);
+  line-height: 1.08;
+  letter-spacing: -.024em;
+}
+
+.editorial-heading > .editorial-heading__detail,
+.standard-modular__heading > .editorial-heading__detail,
+.standard-system__header > .editorial-heading__detail,
+.standard-section__heading > .editorial-heading__detail,
+.technology-explorer__intro > .editorial-heading__detail,
+.technology-field__copy > .editorial-heading__detail,
+.about-belief__copy > .editorial-heading__detail,
+.document-center__heading > .editorial-heading__detail,
+.video-featured > .editorial-heading > .editorial-heading__detail,
+.video-library > .editorial-heading > .editorial-heading__detail {
+  grid-column: 3;
+  align-self: end;
+  max-width: 34ch;
+  margin: 0 0 5px;
+  color: rgb(8 9 10 / 64%);
+  font-size: var(--type-editorial-copy);
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.editorial-heading--dark > .editorial-heading__detail,
+.standard-modular__heading > .editorial-heading__detail,
+.technology-field__copy > .editorial-heading__detail,
+.application-scenes > .editorial-heading > .editorial-heading__detail,
+.about-practice > .editorial-heading > .editorial-heading__detail {
+  color: rgb(247 247 245 / 66%);
+}
+
+.standard-modular__heading,
+.standard-system__header {
+  min-height: 0;
+}
+
+.standard-modular__heading {
+  padding-bottom: clamp(54px, 6vw, 88px);
+}
+
+.standard-system__header {
+  padding-top: var(--editorial-section-block);
+  padding-bottom: clamp(58px, 6vw, 88px);
+}
+
+.technology-explorer__intro {
+  margin-bottom: clamp(58px, 6vw, 90px);
+}
+
+.technology-field__copy .editorial-heading__detail > div > p {
+  margin: 0 0 40px;
+  color: inherit;
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.application-scenes > .editorial-heading {
+  padding-bottom: clamp(58px, 6vw, 88px);
+}
+
+.about-belief__copy {
+  padding-top: var(--editorial-section-block);
+  padding-bottom: clamp(64px, 6vw, 94px);
+}
+
+.about-practice > .editorial-heading {
+  margin-bottom: clamp(64px, 7vw, 104px);
+}
+
+.about-story h2,
+.subpage-contact h2 {
+  font-size: var(--type-editorial-title-compact);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -.024em;
+}
+
+.about-story__copy > p:first-child {
+  max-width: 30ch;
+  font-size: clamp(22px, 2.1vw, 32px);
+  line-height: 1.46;
+}
+
+.home-technology__masthead,
+.home-applications__masthead,
+.home-latest__masthead {
+  grid-template-columns: minmax(420px, 1.5fr) minmax(280px, .5fr);
+  min-height: clamp(320px, 38svh, 420px);
+  padding-top: var(--editorial-section-block);
+  padding-bottom: clamp(58px, 6vw, 88px);
+}
+
+.home-technology__masthead h2,
+.home-applications__masthead h2,
+.home-latest__masthead h2 {
+  font-size: var(--type-editorial-title);
+  line-height: 1.04;
+  letter-spacing: -.026em;
+}
+
+.home-technology__masthead > p,
+.home-applications__masthead > p,
+.home-latest__masthead > p {
+  max-width: 36ch;
+  font-size: var(--type-editorial-copy);
+  line-height: 1.72;
+}
+
+.document-center__heading {
+  margin-bottom: clamp(50px, 6vw, 84px);
+}
+
+.video-library__header .editorial-heading__detail {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 28px;
+  align-items: end;
+  max-width: none;
+}
+
+.video-library__header .editorial-heading__detail > strong {
+  color: var(--brand-blue);
+  font-family: "Bahnschrift", "Arial Narrow", Arial, sans-serif;
+  font-size: clamp(34px, 3.2vw, 48px);
+  font-weight: 500;
+  line-height: .9;
+}
+
+.final-cta__media {
+  inset: 0 0 0 39%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.final-cta__media img {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  width: auto;
+  max-width: 108%;
+  height: auto;
+  max-height: calc(100% - 28px);
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+@media (min-width: 1800px) {
+  .final-cta__inner {
+    min-height: clamp(560px, 26vw, 650px);
+  }
+
+  .final-cta__media {
+    left: 41%;
+    padding-right: 1.5vw;
+  }
+
+  .final-cta__media img {
+    max-height: calc(100% - 42px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .editorial-heading,
+  .standard-modular__heading,
+  .standard-system__header,
+  .standard-section__heading,
+  .technology-explorer__intro,
+  .technology-field__copy,
+  .about-belief__copy,
+  .about-practice > .editorial-heading,
+  .application-scenes > .editorial-heading,
+  .document-center__heading,
+  .video-featured > .editorial-heading,
+  .video-library > .editorial-heading {
+    grid-template-columns: minmax(120px, .34fr) minmax(320px, 1.12fr) minmax(220px, .54fr);
+    gap: 38px;
+  }
+
+  .final-cta__media {
+    inset: 36% -14% 92px 18%;
+  }
+
+  .final-cta__media img {
+    width: 118%;
+    max-width: none;
+    max-height: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .editorial-heading,
+  .standard-modular__heading,
+  .standard-system__header,
+  .standard-section__heading,
+  .technology-explorer__intro,
+  .technology-field__copy,
+  .about-belief__copy,
+  .about-practice > .editorial-heading,
+  .application-scenes > .editorial-heading,
+  .document-center__heading,
+  .video-featured > .editorial-heading,
+  .video-library > .editorial-heading {
+    grid-template-columns: minmax(130px, .36fr) minmax(0, 1.64fr);
+    gap: 28px 42px;
+  }
+
+  .editorial-heading > .editorial-heading__title,
+  .standard-modular__heading > .editorial-heading__title,
+  .standard-system__header > .editorial-heading__title,
+  .standard-section__heading > .editorial-heading__title,
+  .technology-explorer__intro > .editorial-heading__title,
+  .technology-field__copy > .editorial-heading__title,
+  .about-belief__copy > .editorial-heading__title,
+  .about-practice > .editorial-heading > .editorial-heading__title,
+  .application-scenes > .editorial-heading > .editorial-heading__title,
+  .document-center__heading > .editorial-heading__title,
+  .video-featured > .editorial-heading > .editorial-heading__title,
+  .video-library > .editorial-heading > .editorial-heading__title,
+  .editorial-heading > .editorial-heading__detail,
+  .standard-modular__heading > .editorial-heading__detail,
+  .standard-system__header > .editorial-heading__detail,
+  .standard-section__heading > .editorial-heading__detail,
+  .technology-explorer__intro > .editorial-heading__detail,
+  .technology-field__copy > .editorial-heading__detail,
+  .about-belief__copy > .editorial-heading__detail,
+  .document-center__heading > .editorial-heading__detail,
+  .video-featured > .editorial-heading > .editorial-heading__detail,
+  .video-library > .editorial-heading > .editorial-heading__detail {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .editorial-heading,
+  .standard-modular__heading,
+  .standard-system__header,
+  .standard-section__heading,
+  .technology-explorer__intro,
+  .technology-field__copy,
+  .about-belief__copy,
+  .about-practice > .editorial-heading,
+  .application-scenes > .editorial-heading,
+  .document-center__heading,
+  .video-featured > .editorial-heading,
+  .video-library > .editorial-heading {
+    display: block;
+  }
+
+  .editorial-heading > .editorial-heading__meta,
+  .standard-system__header > .editorial-heading__meta,
+  .document-center__heading > .editorial-heading__meta,
+  .application-scenes > .editorial-heading > .editorial-heading__meta,
+  .about-belief__copy > .editorial-heading__meta,
+  .about-practice > .editorial-heading > .editorial-heading__meta {
+    margin-bottom: 24px;
+  }
+
+  .editorial-heading > .editorial-heading__detail,
+  .standard-modular__heading > .editorial-heading__detail,
+  .standard-system__header > .editorial-heading__detail,
+  .standard-section__heading > .editorial-heading__detail,
+  .technology-explorer__intro > .editorial-heading__detail,
+  .technology-field__copy > .editorial-heading__detail,
+  .about-belief__copy > .editorial-heading__detail,
+  .document-center__heading > .editorial-heading__detail,
+  .video-featured > .editorial-heading > .editorial-heading__detail,
+  .video-library > .editorial-heading > .editorial-heading__detail {
+    max-width: 36ch;
+    margin-top: 28px;
+  }
+
+  .home-technology__masthead,
+  .home-applications__masthead,
+  .home-latest__masthead {
+    display: block;
+    min-height: 0;
+    padding-top: 74px;
+    padding-bottom: 54px;
+  }
+
+  .home-technology__masthead > p,
+  .home-applications__masthead > p,
+  .home-latest__masthead > p {
+    margin-top: 28px;
+  }
+
+  .final-cta__media {
+    inset: 454px -42% 0 -8%;
+  }
+
+  .final-cta__media img {
+    width: 142%;
+    max-width: none;
+    max-height: none;
   }
 }

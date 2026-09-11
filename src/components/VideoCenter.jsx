@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
+import { EditorialHeading } from "./EditorialHeading.jsx";
 import { isPublicStandardMedia, standardTaskMedia } from "../data/standard/index.js";
 
 const publicVideos = standardTaskMedia.filter(isPublicStandardMedia);
@@ -51,11 +52,12 @@ export function VideoCenter() {
     <>
       {featured ? (
         <section className="video-featured page-shell" aria-labelledby="video-featured-title">
-          <header>
-            <p className="section-index">01 · FEATURED</p>
-            <h2 id="video-featured-title">真实任务影像</h2>
-            <p>通过连续、未经加速的任务片段，查看 Mantis Standard 的实际操作过程。</p>
-          </header>
+          <EditorialHeading
+            meta="01 · FEATURED"
+            title="连续任务记录"
+            intro="通过连续、未经加速的任务片段，查看 Mantis Standard 的实际操作过程。"
+            titleId="video-featured-title"
+          />
           <article>
             <StandardMediaPlayer media={featured} />
             <div><p>{featured.category} · {featured.durationLabel}</p><h3>{featured.titleZh}</h3><small>{featured.titleEn}</small><p>{featured.descriptionZh}</p></div>
@@ -65,14 +67,13 @@ export function VideoCenter() {
 
       {libraryVideos.length ? (
         <section className="video-library page-shell" aria-labelledby="video-library-title">
-          <header className="video-library__header">
-            <p className="section-index">02 · LIBRARY</p>
-            <div>
-              <h2 id="video-library-title">全部视频</h2>
-              <p>公开影像集中排列，可按任务类型查看。</p>
-            </div>
-            <strong aria-live="polite">{String(visibleVideos.length).padStart(2, "0")}</strong>
-          </header>
+          <EditorialHeading
+            className="video-library__header"
+            meta="02 · LIBRARY"
+            title="公开视频"
+            titleId="video-library-title"
+            detail={<><p>公开影像集中排列，可按任务类型查看。</p><strong aria-live="polite">{String(visibleVideos.length).padStart(2, "0")}</strong></>}
+          />
           <nav className="video-library__filters" aria-label="视频分类">
             {filters.map((filter) => (
               <button
