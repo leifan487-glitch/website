@@ -7,7 +7,7 @@ import { getStandardMediaByUsage, hasPublicStandardTaskMedia, standardDerivedMed
 
 const source = async (path) => readFile(new URL(path, import.meta.url), "utf8");
 
-test("Home public flow uses one approved Standard media record", async () => {
+test("Home public flow keeps the approved reel while Applications owns its exclusive hero media", async () => {
   const [home, sections, realWorld, styles] = await Promise.all([
     source("../src/pages/HomePage.jsx"),
     source("../src/components/HomeSections.jsx"),
@@ -17,11 +17,12 @@ test("Home public flow uses one approved Standard media record", async () => {
   assert.doesNotMatch(home, /HomeTechnology|HomeLatest/);
   assert.match(realWorld, /hasPublicStandardTaskMedia/);
   assert.equal(hasPublicStandardTaskMedia, true);
-  assert.equal(standardTaskMedia.length, 8);
+  assert.equal(standardTaskMedia.length, 9);
   assert.equal(standardDerivedMedia.length, 1);
-  assert.equal(standardMedia.length, 9);
+  assert.equal(standardMedia.length, 10);
   assert.equal(standardTaskMedia.filter((item) => item.usages.includes("homeRealWorld")).length, 0);
   assert.equal(getStandardMediaByUsage("homeRealWorld", { publicMode: true })[0].derivativeType, "HOMEPAGE_REEL");
+  assert.equal(getStandardMediaByUsage("applicationsHero", { publicMode: true })[0].sourceId, "SV019");
   assert.ok(standardTaskMedia.every((item) => item.audioRemoved === true));
   assert.doesNotMatch(sections, /technologyMedia|applicationStories|company\.image/);
   assert.match(sections, /home-technology__diagram/);

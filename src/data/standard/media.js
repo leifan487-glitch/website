@@ -78,6 +78,18 @@ export const standardTaskMedia = [
     notes: "Task 014.2B web derivative; selected source segment 00:06–00:22.",
   },
   {
+    id: "standard-video-sv019", sourceId: "SV019",
+    titleZh: "纸袋取放", titleEn: "Bag handling",
+    descriptionZh: "机械臂接近、抓取并提起纸袋的连续记录。", descriptionEn: "A continuous record of approaching, grasping, and lifting a paper bag.",
+    category: "MANIPULATION", taskGroup: "TG10", identity: "STANDARD_CONFIRMED", productIdentity: "STANDARD",
+    contentStatus: "VERIFIED", visibility: "PUBLIC", batchPublicPermission: true, mediaApproved: true, privacyRisk: "LOW", audioRemoved: true,
+    poster: "/assets/videos/standard/applications-hero/poster.webp", video: "/assets/videos/standard/applications-hero/video.mp4",
+    duration: 18.2, durationLabel: "00:18", width: 1920, height: 1080, usages: ["applicationsHero"], publicApproved: true,
+    derivedFrom: "SV019 source master", clipRanges: [{ sourceMediaId: "SV019", start: 6.6, end: 24.8, duration: 18.2 }],
+    generatedAt: "2026-09-11", derivativeType: "APPLICATIONS_HERO",
+    notes: "Task 019 owner-directed Applications hero replacement; exclusive to the Applications hero, original audio removed.",
+  },
+  {
     id: "standard-video-sv035", sourceId: "SV035",
     titleZh: "织物处理", titleEn: "Textile handling",
     descriptionZh: "抓取、移动与放置织物的连续记录。", descriptionEn: "A continuous record of grasping, moving, and placing a textile item.",

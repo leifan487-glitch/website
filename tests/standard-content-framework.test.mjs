@@ -75,13 +75,15 @@ test("task media is one approval-driven usage source", () => {
     assert.ok(standardTaskMediaFields.includes(field));
   }
   assert.deepEqual(standardMediaProvenanceFields, ["sourceId", "sourceFile", "status"]);
-  assert.equal(standardTaskMedia.length, 8);
+  assert.equal(standardTaskMedia.length, 9);
   assert.equal(standardDerivedMedia.length, 1);
-  assert.equal(standardMedia.length, 9);
+  assert.equal(standardMedia.length, 10);
   assert.equal(getStandardMediaByUsage("homeRealWorld", { publicMode: true }).length, 1);
   assert.equal(getStandardMediaByUsage("homeRealWorld", { publicMode: true })[0].derivativeType, "HOMEPAGE_REEL");
   assert.equal(getStandardMediaByUsage("productRealTasks", { publicMode: true }).length, 4);
   assert.equal(getStandardMediaByUsage("applications", { publicMode: true }).length, 3);
+  assert.equal(getStandardMediaByUsage("applicationsHero", { publicMode: true }).length, 1);
+  assert.equal(getStandardMediaByUsage("applicationsHero", { publicMode: true })[0].sourceId, "SV019");
   assert.equal(getStandardMediaByUsage("videoCenter", { publicMode: true }).length, 8);
   assert.equal(videoResources.length, 8);
   assert.ok(standardTaskMedia.every((item) => item.audioRemoved && item.batchPublicPermission && item.mediaApproved && item.publicApproved));

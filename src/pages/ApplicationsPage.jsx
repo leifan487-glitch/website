@@ -12,9 +12,8 @@ import { getStandardMediaByUsage } from "../data/standard/index.js";
 export function ApplicationsPage() {
   const mainRef = useRef(null);
   const directions = selectCompanyContent(potentialApplications, { publicMode: true });
-  const mediaStories = getStandardMediaByUsage("applications", { publicMode: true });
-  const heroMedia = mediaStories[0];
-  const sceneMedia = mediaStories.slice(1);
+  const heroMedia = getStandardMediaByUsage("applicationsHero", { publicMode: true })[0];
+  const sceneMedia = getStandardMediaByUsage("applications", { publicMode: true });
 
   return (
     <>

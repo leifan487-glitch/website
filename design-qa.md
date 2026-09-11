@@ -1,3 +1,29 @@
+# Design QA — Task 019 Applications Hero Video Replacement
+
+Date: 2026-09-11
+
+## Scope
+
+- User-directed replacement of the `/applications` hero video only; page structure, typography, interaction and the three existing scene records remain unchanged.
+- Candidate source folder `E:\标准版视频网页` was read only. Existing website media and provenance were checked first to exclude every already-published source.
+
+## Selection and derivative
+
+- Selected unused `SV019 / C0176.MP4`: a stable, low-privacy-risk paper-bag grasp and lift sequence with a clear approach → grasp → lift action arc.
+- Rejected the stronger industrial-box candidates because visible third-party box branding creates avoidable publication risk; rejected corridor mobility because a person enters frame and the robot body is largely obscured.
+- Web derivative uses source `00:06.6–00:24.8`, 18.2 seconds, 1920×1080, H.264, yuv420p, 30fps, no audio and fast-start metadata. Output is 4,575,417 bytes; the poster is 68,350 bytes.
+- The new `applicationsHero` usage is exclusive to this hero. It is not added to Home, Standard Real Tasks, the Applications scene list or Video Center.
+
+## Visual evidence
+
+- One batched pass covered 1440×900 and 390×844. Both loaded the new source to readyState 4, autoplayed unpaused and reported `scrollWidth === clientWidth`.
+- No Console or page errors were observed. Captures: `output/task019-selection/applications-hero-desktop.png` and `applications-hero-mobile.png`.
+- The Impeccable detector returned no findings for the changed application-page, media-data and test files.
+
+final result: passed
+
+---
+
 # Design QA — Task 018 Editorial Type System & Final CTA Fit
 
 Date: 2026-09-11
