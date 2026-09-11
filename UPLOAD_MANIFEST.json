@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
   "fileCount": 229,
-  "totalBytes": 47918008,
+  "totalBytes": 47917938,
   "files": [
     {
       "path": ".env.example",
@@ -1121,8 +1121,8 @@
     },
     {
       "path": "tests/sites-worker.test.mjs",
-      "bytes": 8517,
-      "sha256": "5ca1941ef1be462058f8519c5220f9116cb890aadaa7470f022c37d20206092f"
+      "bytes": 8467,
+      "sha256": "9d851f797e7b4aee3ef7a0412e9d036401f0f73de48ff7942db6de2cb04c6ba1"
     },
     {
       "path": "tests/standard-content-framework.test.mjs",
@@ -1146,8 +1146,8 @@
     },
     {
       "path": "worker/index.js",
-      "bytes": 10072,
-      "sha256": "4b244d34e34457719d7593df1b98e2695f5f6f7b74404617fc42b4e98015ec38"
+      "bytes": 10052,
+      "sha256": "b669a39a275ea926815353a4e39cdafefcd04bcb08007a8145b0c3a2a6448e63"
     }
   ]
 }

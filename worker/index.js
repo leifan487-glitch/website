@@ -264,10 +264,10 @@ export default {
     const isDocumentNavigation = acceptsHtml && ["GET", "HEAD"].includes(request.method);
 
     if (isDocumentNavigation && !url.pathname.split("/").pop()?.includes(".")) {
-      const indexUrl = new URL(request.url);
-      indexUrl.pathname = "/index.html";
-      indexUrl.search = "";
-      const indexResponse = await env.ASSETS.fetch(new Request(indexUrl, request));
+      const shellUrl = new URL(request.url);
+      shellUrl.pathname = "/";
+      shellUrl.search = "";
+      const indexResponse = await env.ASSETS.fetch(new Request(shellUrl, request));
 
       if (PUBLIC_ROUTES.has(url.pathname)) return publicResponse(indexResponse, request);
 
@@ -284,10 +284,10 @@ export default {
       return publicResponse(response, request);
     }
 
-    const indexUrl = new URL(request.url);
-    indexUrl.pathname = "/index.html";
-    indexUrl.search = "";
-    const indexResponse = await env.ASSETS.fetch(new Request(indexUrl, request));
+    const shellUrl = new URL(request.url);
+    shellUrl.pathname = "/";
+    shellUrl.search = "";
+    const indexResponse = await env.ASSETS.fetch(new Request(shellUrl, request));
     if (PUBLIC_ROUTES.has(url.pathname)) return publicResponse(indexResponse, request);
 
     const notFoundResponse = new Response(request.method === "HEAD" ? null : indexResponse.body, {

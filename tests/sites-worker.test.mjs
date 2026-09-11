@@ -29,8 +29,8 @@ test("serves the app shell with a 404 status for an unknown route", async () => 
         fetch: async (request) => {
           const url = new URL(request.url);
           calls.push(url.pathname + url.search);
-          return new Response(url.pathname === "/index.html" ? "app" : "missing", {
-            status: url.pathname === "/index.html" ? 200 : 404,
+          return new Response(url.pathname === "/" ? "app" : "missing", {
+            status: url.pathname === "/" ? 200 : 404,
           });
         },
       },
@@ -39,7 +39,7 @@ test("serves the app shell with a 404 status for an unknown route", async () => 
 
   assert.equal(response.status, 404);
   assert.equal(await response.text(), "app");
-  assert.deepEqual(calls, ["/index.html"]);
+  assert.deepEqual(calls, ["/"]);
 });
 
 test("serves known browser routes directly even when the asset binding redirects missing paths", async () => {
@@ -53,7 +53,7 @@ test("serves known browser routes directly even when the asset binding redirects
         fetch: async (request) => {
           const pathname = new URL(request.url).pathname;
           calls.push(pathname);
-          if (pathname === "/index.html") {
+          if (pathname === "/") {
             return new Response("app", {
               status: 200,
               headers: { "Content-Type": "text/html; charset=utf-8" },
@@ -67,7 +67,7 @@ test("serves known browser routes directly even when the asset binding redirects
 
   assert.equal(response.status, 200);
   assert.equal(await response.text(), "app");
-  assert.deepEqual(calls, ["/index.html"]);
+  assert.deepEqual(calls, ["/"]);
 });
 
 test("redirects legacy public routes before asset lookup", async () => {
