@@ -194,8 +194,7 @@ export function HomeAbout() {
           <p>我们的使命</p>
           <h2 id="home-about-title">
             <span>创造一个</span>
-            <span>人机共融</span>
-            <span>新世界</span>
+            <span>人机共融新世界</span>
           </h2>
           <p className="home-about__legal-name">{companyIdentity.legalNameZh}<br />{companyIdentity.legalNameEn}</p>
           <InternalStatus as="p" status={companyMission.contentStatus}>MISSION / VERIFIED COPY</InternalStatus>

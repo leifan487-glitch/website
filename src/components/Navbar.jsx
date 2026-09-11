@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { GlobeSimple } from "@phosphor-icons/react";
 import { supportModules } from "../data/supportModules.js";
 
 const navItems = [
@@ -17,12 +18,15 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
+  const [languageOpen, setLanguageOpen] = useState(false);
   const [productView, setProductView] = useState("standard");
   const [scrolled, setScrolled] = useState(false);
   const productNavRef = useRef(null);
   const productTriggerRef = useRef(null);
   const supportNavRef = useRef(null);
   const supportTriggerRef = useRef(null);
+  const languageNavRef = useRef(null);
+  const languageTriggerRef = useRef(null);
   const pointerIntentRef = useRef(false);
   const supportPointerIntentRef = useRef(false);
   const openedByHoverRef = useRef(false);
@@ -32,7 +36,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
   const hoverCloseTimerRef = useRef(null);
   const supportHoverCloseTimerRef = useRef(null);
   const location = useLocation();
-  const solidSurface = scrolled || menuOpen || productOpen || supportOpen;
+  const solidSurface = scrolled || menuOpen || productOpen || supportOpen || languageOpen;
   const usePositiveLogo = theme === "light" || solidSurface;
   const productActive = location.pathname.startsWith("/products");
   const supportActive = location.pathname.startsWith("/support");
@@ -61,14 +65,16 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
     setMenuOpen(false);
     setProductOpen(false);
     setSupportOpen(false);
+    setLanguageOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!productOpen && !supportOpen) return undefined;
+    if (!productOpen && !supportOpen && !languageOpen) return undefined;
 
     function closeOnOutsidePointer(event) {
       if (productOpen && !productNavRef.current?.contains(event.target)) setProductOpen(false);
       if (supportOpen && !supportNavRef.current?.contains(event.target)) setSupportOpen(false);
+      if (languageOpen && !languageNavRef.current?.contains(event.target)) setLanguageOpen(false);
     }
 
     function closeOnEscape(event) {
@@ -87,6 +93,9 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
         if (document.activeElement === productTriggerRef.current) {
           suppressFocusOpenRef.current = false;
         }
+      } else if (languageOpen) {
+        setLanguageOpen(false);
+        languageTriggerRef.current?.focus();
       }
     }
 
@@ -96,7 +105,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
       document.removeEventListener("pointerdown", closeOnOutsidePointer);
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [productOpen, supportOpen]);
+  }, [productOpen, supportOpen, languageOpen]);
 
   useEffect(() => () => {
     if (hoverCloseTimerRef.current) window.clearTimeout(hoverCloseTimerRef.current);
@@ -140,6 +149,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
     cancelSupportHoverClose();
     setProductOpen(false);
     setSupportOpen(false);
+    setLanguageOpen(false);
     setMenuOpen(false);
     setProductView("standard");
   }
@@ -193,6 +203,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
             cancelHoverClose();
             openedByHoverRef.current = true;
             setSupportOpen(false);
+            setLanguageOpen(false);
             setProductOpen(true);
           }}
           onMouseLeave={() => {
@@ -222,6 +233,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               }
               if (!pointerIntentRef.current) {
                 setSupportOpen(false);
+                setLanguageOpen(false);
                 setProductOpen(true);
               }
             }}
@@ -235,6 +247,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               }
               setProductOpen((open) => {
                 if (!open) setSupportOpen(false);
+                if (!open) setLanguageOpen(false);
                 return !open;
               });
             }}
@@ -339,6 +352,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
             cancelSupportHoverClose();
             supportOpenedByHoverRef.current = true;
             setProductOpen(false);
+            setLanguageOpen(false);
             setSupportOpen(true);
           }}
           onMouseLeave={() => {
@@ -368,6 +382,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               }
               if (!supportPointerIntentRef.current) {
                 setProductOpen(false);
+                setLanguageOpen(false);
                 setSupportOpen(true);
               }
             }}
@@ -381,6 +396,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               }
               setSupportOpen((open) => {
                 if (!open) setProductOpen(false);
+                if (!open) setLanguageOpen(false);
                 return !open;
               });
             }}
@@ -420,6 +436,43 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
             <span className="navbar__label">{item.label}</span>
           </NavLink>
         ))}
+
+        <div
+          className="navbar__language"
+          data-open={languageOpen}
+          ref={languageNavRef}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setLanguageOpen(false);
+          }}
+        >
+          <button
+            className="navbar__language-trigger"
+            type="button"
+            aria-label="选择语言，当前为中文"
+            aria-expanded={languageOpen}
+            aria-haspopup="menu"
+            aria-controls="language-navigation"
+            ref={languageTriggerRef}
+            onClick={() => {
+              setProductOpen(false);
+              setSupportOpen(false);
+              setLanguageOpen((open) => !open);
+            }}
+          >
+            <GlobeSimple size={21} weight="regular" aria-hidden="true" />
+            <span>中文</span>
+          </button>
+          <div className="navbar__language-menu" id="language-navigation" role="menu" aria-label="选择网站语言">
+            <button type="button" role="menuitem" disabled>
+              <span>English</span>
+              <small>筹备中</small>
+            </button>
+            <button type="button" role="menuitem" disabled>
+              <span>日本語</span>
+              <small>筹备中</small>
+            </button>
+          </div>
+        </div>
 
         <NavLink
           to="/inquiry"

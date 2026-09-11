@@ -10,6 +10,7 @@ export const productHeroProducts = [
     name: "MANTIS",
     variant: "STANDARD",
     positioning: "消费级",
+    heroDefinition: "双臂操作 · 全向移动 · 灵活工作空间",
     valueWords: ["More Useful", "More Options", "More Value"],
     approval: { copy: true, media: false, claim: true },
     cta: {

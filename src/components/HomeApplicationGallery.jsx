@@ -1,6 +1,12 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
+const taskStepsBySourceId = {
+  SV035: ["抓取", "移动", "放置"],
+  SV037: ["定位", "交互", "完成"],
+  SV054: ["接近", "操作", "完成"],
+};
+
 export function HomeApplicationGallery({ items }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const panelRefs = useRef([]);
@@ -56,6 +62,7 @@ export function HomeApplicationGallery({ items }) {
       <ol className="home-application-gallery" aria-label="Mantis Standard 应用场景">
         {items.map((item, index) => {
           const isActive = index === activeIndex;
+          const taskSteps = taskStepsBySourceId[item.sourceId] || [];
           return (
             <li
               className={isActive ? "is-active" : undefined}
@@ -87,10 +94,20 @@ export function HomeApplicationGallery({ items }) {
                 </span>
 
                 <span className="home-application-gallery__caption">
-                  <span className="home-application-gallery__category">{item.category}</span>
+                  <span className="home-application-gallery__category">TASK {String(index + 1).padStart(2, "0")} / {item.category}</span>
                   <strong>{item.titleZh}</strong>
                   <small>{item.titleEn}</small>
                   <span className="home-application-gallery__description">{item.descriptionZh}</span>
+                  {taskSteps.length ? (
+                    <span className="home-application-gallery__process" aria-label={`${item.titleZh}任务过程`}>
+                      {taskSteps.map((step, stepIndex) => (
+                        <span key={step}>
+                          <i aria-hidden="true">{String(stepIndex + 1).padStart(2, "0")}</i>
+                          {step}
+                        </span>
+                      ))}
+                    </span>
+                  ) : null}
                 </span>
               </button>
             </li>

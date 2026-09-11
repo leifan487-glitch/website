@@ -50,9 +50,9 @@ export function ProductHero() {
               key={`content-${activeProduct.id}`}
               className="product-hero__product-content product-hero__swap"
             >
-              <InternalStatus as="p" className="product-hero__positioning" status="VERIFIED">
-                {activeProduct.positioning}
-              </InternalStatus>
+              <p className="product-hero__positioning">
+                {activeProduct.heroDefinition || activeProduct.positioning}
+              </p>
 
               <Link className="text-link product-hero__cta" to={activeProduct.cta.href}>
                 <span>{activeProduct.cta.label}</span>

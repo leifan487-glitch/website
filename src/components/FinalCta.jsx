@@ -10,14 +10,15 @@ export function FinalCta({ title = "Explore Mantis Standard", primary = "/produc
         <div className="final-cta__copy">
           <p>下一步 / Mantis Standard</p>
           <h2>
-            <span>认识</span>
+            <span>深入了解</span>
             <strong>Mantis Standard</strong>
           </h2>
+          <p className="final-cta__summary">查看产品结构、规格与真实任务记录。</p>
           <span className="sr-only">{title}</span>
-        </div>
-        <div className="final-cta__links">
-          <Link to={primary}><span>探索产品</span><span aria-hidden="true">↗</span></Link>
-          <Link to="/inquiry"><span>商务询盘</span><span aria-hidden="true">↗</span></Link>
+          <div className="final-cta__links">
+            <Link to={primary}><span>查看产品详情</span><span aria-hidden="true">→</span></Link>
+            <Link to="/inquiry"><span>采购/合作</span><span aria-hidden="true">→</span></Link>
+          </div>
         </div>
       </div>
     </section>
