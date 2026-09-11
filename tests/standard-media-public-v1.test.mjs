@@ -12,11 +12,10 @@ import {
 } from "../src/data/standard/media.js";
 
 const task014AllowedIds = ["SV001", "SV003", "SV007", "SV010", "SV018", "SV035", "SV037", "SV054"];
-const task019AllowedIds = ["SV019"];
 const heldIds = ["SV049", "SV052", "SV053", "SV056", "SV057", "SV058", "SV059", "SV060", "SV061", "SV062"];
 
-test("Task 014.3 retains its locked eight videos and Task 019 adds only the approved Applications hero", () => {
-  assert.deepEqual(standardTaskMedia.map((item) => item.sourceId).sort(), [...task014AllowedIds, ...task019AllowedIds].sort());
+test("Task 014.3 retains its locked eight source-video records", () => {
+  assert.deepEqual(standardTaskMedia.map((item) => item.sourceId).sort(), task014AllowedIds.sort());
   assert.equal(standardTaskMedia.some((item) => heldIds.includes(item.sourceId)), false);
   for (const field of ["id", "sourceId", "titleZh", "titleEn", "taskGroup", "identity", "batchPublicPermission", "mediaApproved", "privacyRisk", "audioRemoved", "poster", "video", "duration", "usages", "publicApproved", "notes"]) {
     assert.ok(standardTaskMediaFields.includes(field), `${field} missing from schema`);
@@ -47,8 +46,8 @@ test("all referenced web derivatives exist", async () => {
 });
 
 test("Homepage Real World resolves only to the approved derived reel", () => {
-  assert.equal(standardTaskMedia.length, 9);
-  assert.equal(standardDerivedMedia.length, 1);
+  assert.equal(standardTaskMedia.length, 8);
+  assert.equal(standardDerivedMedia.length, 2);
   assert.equal(standardMedia.length, 10);
 
   const [reel] = getStandardMediaByUsage("homeRealWorld", { publicMode: true });
@@ -65,7 +64,10 @@ test("Homepage Real World resolves only to the approved derived reel", () => {
   assert.equal(reel.duration, 14);
 
   const [applicationsHero] = getStandardMediaByUsage("applicationsHero", { publicMode: true });
-  assert.equal(applicationsHero.sourceId, "SV019");
+  assert.equal(applicationsHero.sourceId, "APPLICATIONS-MULTI-TASK-REEL");
+  assert.equal(applicationsHero.derivedCompilation, true);
+  assert.equal(applicationsHero.derivativeType, "APPLICATIONS_REEL");
+  assert.deepEqual(applicationsHero.sourceMediaIds, ["SV028", "SV004", "SV016", "SV043"]);
   assert.deepEqual(applicationsHero.usages, ["applicationsHero"]);
   assert.equal(getStandardMediaByUsage("videoCenter", { publicMode: true }).length, 8);
 

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
   "fileCount": 235,
-  "totalBytes": 52607090,
+  "totalBytes": 53260394,
   "files": [
     {
       "path": ".env.example",
@@ -186,8 +186,8 @@
     },
     {
       "path": "internal/standard-media-provenance.mjs",
-      "bytes": 1013,
-      "sha256": "c4891667a70e602cf9a8e9b042d2a4019f7fec4ef1f138db1d14e74f8c9042b0"
+      "bytes": 1354,
+      "sha256": "2aacb23e069c6fd66e312720ed418f5a1ea8a68f9c3d7415e94df599d553e37e"
     },
     {
       "path": "package.json",
@@ -311,13 +311,13 @@
     },
     {
       "path": "public/assets/videos/standard/applications-hero/poster.webp",
-      "bytes": 68350,
-      "sha256": "e11952a9cb2a833db7f45867968c49343e434d531dd102972ce1aa031b1e1213"
+      "bytes": 104358,
+      "sha256": "f9e99f01856319a472b45ee23e355bcf07c84e4770b39e86245c427e28abd37b"
     },
     {
       "path": "public/assets/videos/standard/applications-hero/video.mp4",
-      "bytes": 4575417,
-      "sha256": "126ea3dabba10eba18351d25f8140d502c7ac31c749c8a0cae2e3964855478ad"
+      "bytes": 5190579,
+      "sha256": "cd6ce241234b870e11f3a7c204ab554d8a4525e5d3c2e2aad640de253b8233d3"
     },
     {
       "path": "public/assets/videos/standard/home-real-world/poster.webp",
@@ -956,8 +956,8 @@
     },
     {
       "path": "src/data/standard/media.js",
-      "bytes": 11183,
-      "sha256": "a54fddf4c1fd6a669a0241a46fb6467824753898701e0b355fb333fbabc6384d"
+      "bytes": 11840,
+      "sha256": "adec2c0723b994a31eb382e59eb15ba04446c97af62fddb46d7d1c95371d92c2"
     },
     {
       "path": "src/data/standard/product.js",
@@ -1076,8 +1076,8 @@
     },
     {
       "path": "src/styles.css",
-      "bytes": 317604,
-      "sha256": "0ef3ce93e1f87be12185f2b3276d9b5379434b21f6bf0de71bd8ed18257b84bc"
+      "bytes": 317675,
+      "sha256": "b9f85ab4883aadaf5757eb705cc0edbdf46493f95269a950079bd3ef4eb93bf9"
     },
     {
       "path": "tests/company-content-framework.test.mjs",
@@ -1131,8 +1131,8 @@
     },
     {
       "path": "tests/public-content-density-v1.test.mjs",
-      "bytes": 3671,
-      "sha256": "278ab96f492d6528db0879fd957703f987dd571260448c8f57dd6932c0edcf07"
+      "bytes": 3694,
+      "sha256": "90f4f4ab461210d8be6d3a0c85eecaeb00637cd1210209fffdc8699864e29e0d"
     },
     {
       "path": "tests/release-hygiene.test.mjs",
@@ -1146,13 +1146,13 @@
     },
     {
       "path": "tests/standard-content-framework.test.mjs",
-      "bytes": 7795,
-      "sha256": "a149d984639d0c1143cc70e6032b9eef06f7a5d3865726b18bae830cfd16a033"
+      "bytes": 7818,
+      "sha256": "65c88ee8d8067ada83821e9c131933ec2134eda55b6f6fd610d192c4f9aae206"
     },
     {
       "path": "tests/standard-media-public-v1.test.mjs",
-      "bytes": 4601,
-      "sha256": "ee3a8dad389846117589ce494b32df1c252dd496dc16185344b4dacca87980b7"
+      "bytes": 4740,
+      "sha256": "cf91b0861489cd752ef2241bbf35012f9febc8fa5776c018f05da66dcf5dd80a"
     },
     {
       "path": "tests/support-infrastructure.test.mjs",
@@ -1165,9 +1165,9 @@
       "sha256": "34c6b99e3d57e2af391aae1192d9222ea8fa00f4d7b3ccfc7eb04f45428f1015"
     },
     {
-      "path": "tests/task019-applications-hero-media.test.mjs",
-      "bytes": 1600,
-      "sha256": "49faec6f9e096b9669198959400c865fde974202ac4a3d8533fd8c901dba0e09"
+      "path": "tests/task020-applications-hero-reel.test.mjs",
+      "bytes": 2480,
+      "sha256": "adfc0369b62856faea2e6ea63be499bbe7271983f21c9d10b961c24f2d7164b4"
     },
     {
       "path": "vite.config.mjs",

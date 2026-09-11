@@ -17,12 +17,12 @@ test("Home public flow keeps the approved reel while Applications owns its exclu
   assert.doesNotMatch(home, /HomeTechnology|HomeLatest/);
   assert.match(realWorld, /hasPublicStandardTaskMedia/);
   assert.equal(hasPublicStandardTaskMedia, true);
-  assert.equal(standardTaskMedia.length, 9);
-  assert.equal(standardDerivedMedia.length, 1);
+  assert.equal(standardTaskMedia.length, 8);
+  assert.equal(standardDerivedMedia.length, 2);
   assert.equal(standardMedia.length, 10);
   assert.equal(standardTaskMedia.filter((item) => item.usages.includes("homeRealWorld")).length, 0);
   assert.equal(getStandardMediaByUsage("homeRealWorld", { publicMode: true })[0].derivativeType, "HOMEPAGE_REEL");
-  assert.equal(getStandardMediaByUsage("applicationsHero", { publicMode: true })[0].sourceId, "SV019");
+  assert.equal(getStandardMediaByUsage("applicationsHero", { publicMode: true })[0].sourceId, "APPLICATIONS-MULTI-TASK-REEL");
   assert.ok(standardTaskMedia.every((item) => item.audioRemoved === true));
   assert.doesNotMatch(sections, /technologyMedia|applicationStories|company\.image/);
   assert.match(sections, /home-technology__diagram/);

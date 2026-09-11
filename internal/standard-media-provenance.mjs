@@ -4,11 +4,15 @@ export const standardMediaProvenance = {
   SV007: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\A006C0109_700101_001X07.MOV" },
   SV010: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\A006C0178_700101_001X07.MOV" },
   SV018: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\C0175.MP4" },
-  SV019: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\C0176.MP4" },
+  SV004: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\A006C0072_700101_001X07.MOV" },
+  SV016: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\C0173.MP4" },
+  SV028: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\C0185.MP4" },
+  SV043: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\C0214.MP4" },
   SV035: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\C0198.MP4" },
   SV037: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\C0203.MP4" },
   SV054: { status: "SOURCE", sourceFile: "E:\\标准版视频网页\\C0229.MP4" },
   "HOME-REAL-WORLD-REEL": { status: "SOURCE", sourceFile: null },
+  "APPLICATIONS-MULTI-TASK-REEL": { status: "SOURCE", sourceFile: null },
 };
 
 export const standardMediaProvenanceFields = ["sourceId", "sourceFile", "status"];
