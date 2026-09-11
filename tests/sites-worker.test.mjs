@@ -39,7 +39,35 @@ test("serves the app shell with a 404 status for an unknown route", async () => 
 
   assert.equal(response.status, 404);
   assert.equal(await response.text(), "app");
-  assert.deepEqual(calls, ["/flow/step-two?source=share", "/index.html"]);
+  assert.deepEqual(calls, ["/index.html"]);
+});
+
+test("serves known browser routes directly even when the asset binding redirects missing paths", async () => {
+  const calls = [];
+  const response = await worker.fetch(
+    new Request("https://example.test/support/documents", {
+      headers: { accept: "text/html" },
+    }),
+    {
+      ASSETS: {
+        fetch: async (request) => {
+          const pathname = new URL(request.url).pathname;
+          calls.push(pathname);
+          if (pathname === "/index.html") {
+            return new Response("app", {
+              status: 200,
+              headers: { "Content-Type": "text/html; charset=utf-8" },
+            });
+          }
+          return Response.redirect("https://example.test/", 308);
+        },
+      },
+    },
+  );
+
+  assert.equal(response.status, 200);
+  assert.equal(await response.text(), "app");
+  assert.deepEqual(calls, ["/index.html"]);
 });
 
 test("redirects legacy public routes before asset lookup", async () => {

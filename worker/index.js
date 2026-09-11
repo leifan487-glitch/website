@@ -260,8 +260,25 @@ export default {
       return jsonResponse({ ok: false, message: "接口不存在。" }, 404);
     }
 
-    const response = await env.ASSETS.fetch(request);
     const acceptsHtml = request.headers.get("accept")?.includes("text/html");
+    const isDocumentNavigation = acceptsHtml && ["GET", "HEAD"].includes(request.method);
+
+    if (isDocumentNavigation && !url.pathname.split("/").pop()?.includes(".")) {
+      const indexUrl = new URL(request.url);
+      indexUrl.pathname = "/index.html";
+      indexUrl.search = "";
+      const indexResponse = await env.ASSETS.fetch(new Request(indexUrl, request));
+
+      if (PUBLIC_ROUTES.has(url.pathname)) return publicResponse(indexResponse, request);
+
+      const notFoundResponse = new Response(request.method === "HEAD" ? null : indexResponse.body, {
+        status: 404,
+        headers: indexResponse.headers,
+      });
+      return publicResponse(notFoundResponse, request);
+    }
+
+    const response = await env.ASSETS.fetch(request);
 
     if (response.status !== 404 || !acceptsHtml || !["GET", "HEAD"].includes(request.method)) {
       return publicResponse(response, request);
