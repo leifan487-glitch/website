@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { productHeroProducts } from "../src/data/productHeroProducts.js";
 
 test("Standard is the only public Product Hero state", () => {
@@ -54,4 +55,11 @@ test("the Standard state retains its locked responsive media layout", () => {
     assert.ok(product.mediaLayout?.compact?.objectPosition);
     assert.equal(typeof product.mediaLayout?.compact?.scale, "number");
   }
+});
+
+test("wide Product Hero viewports fade the source shadow edge without resizing the composition", async () => {
+  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
+
+  assert.match(styles, /@media \(min-width: 1280px\) and \(min-aspect-ratio: 8 \/ 5\)/);
+  assert.match(styles, /\.product-hero\[data-media-mode="series-array"\] \.product-hero__media img\s*{[^}]*width:\s*auto;[^}]*height:\s*100%;[^}]*mask-image:\s*linear-gradient\(to right, #000 0%, #000 86%, transparent 100%\);/s);
 });

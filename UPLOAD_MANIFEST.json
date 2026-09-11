@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
   "fileCount": 229,
-  "totalBytes": 47917938,
+  "totalBytes": 47921045,
   "files": [
     {
       "path": ".env.example",
@@ -51,8 +51,8 @@
     },
     {
       "path": "design-qa.md",
-      "bytes": 29349,
-      "sha256": "39d76f5eeee36fc00c8e937a36f5ec4230e307439913d1908b197c047cb9c452"
+      "bytes": 31324,
+      "sha256": "511f85a10b4246188a421b18eac447a57b9b6b37710afcdc23b25c0ecd7df14c"
     },
     {
       "path": "docs/HOMEPAGE_PREMIUM_MOTION_V1.md",
@@ -1061,8 +1061,8 @@
     },
     {
       "path": "src/styles.css",
-      "bytes": 291077,
-      "sha256": "63440b07eba7e41602be1e755b543ee7ab504e87f1254be8700bf9407afd1492"
+      "bytes": 291640,
+      "sha256": "c379e1ed6fd6960847a161f12707b9f950f42891218a1b42c546354bf162d3a7"
     },
     {
       "path": "tests/company-content-framework.test.mjs",
@@ -1106,8 +1106,8 @@
     },
     {
       "path": "tests/product-hero-config.test.mjs",
-      "bytes": 2689,
-      "sha256": "8d69ed1fdba58498191e43913d9fb39b4c0cd373a149c4442ac2c9ec79e03a59"
+      "bytes": 3258,
+      "sha256": "24334964131823c721c325bc28a571d6cb02fdfaf50936ac77d001b158880624"
     },
     {
       "path": "tests/public-content-density-v1.test.mjs",

@@ -1,3 +1,32 @@
+# Design QA — Ultra-wide Hero Shadow Edge Correction
+
+Date: 2026-09-11
+
+## Scope
+
+- User evidence: `C:/Users/99770/AppData/Local/Temp/codex-clipboard-aa3f46b3-b2c4-4bc4-a093-922d2db06828.png` and focused crop `codex-clipboard-3ed97609-edf1-4dca-a143-eee1280ab67c.png`.
+- Defect: at approximately 2554×1291, `object-fit: contain` left the 16:9 source image edge inside the wider media stage. The source's pale ground shadow ended abruptly at that internal edge.
+- Locked: A01644 source and web derivative files, robot scale, center alignment, copy, navigation, motion and mobile compositions.
+
+## Fix and evidence
+
+- Wide, landscape desktop stages keep the image at its prior height and centered position, but the image element now matches the rendered source bounds rather than the full stage bounds.
+- A right-edge alpha mask remains fully opaque through 86% of the image, after the rightmost robot, then fades only the remaining ground-shadow area to the white Hero background.
+- The first candidate used `object-fit: cover`; QA rejected it because it enlarged the product composition by roughly 20% at 2554×1291. It was replaced before shipping.
+- Final captures: `output/hero-shadow-fix/hero-2554-final.png`, `hero-1440-final.png`, `hero-1024-final.png`, and `hero-390-final.png`.
+- At 2554×1291 the internal vertical image boundary is no longer visible and the robot scale matches the user's original composition. At 1440×900 the shadow fades cleanly; 1024×768 and 390×844 retain the pre-existing responsive sources and geometry.
+
+## Validation
+
+- Chrome captures use `deviceScaleFactor: 1` and reduced-motion static state to avoid judging an intermediate opening-animation frame.
+- No source bitmap was edited, regenerated or overwritten.
+- Product Hero config tests include the wide-stage fade contract.
+- Impeccable detector found only existing out-of-scope font and historical layout-transition warnings; this patch adds neither.
+
+final result: passed
+
+---
+
 # Design QA — Task 015.2 Local Effects Integration
 
 Date: 2026-09-05
