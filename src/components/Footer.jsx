@@ -8,11 +8,11 @@ const groups = () => [
   },
   {
     label: "公司",
-    links: [["关于蓝虫", "/about"], ["动态", "/news"], ["商务询盘", "/inquiry"]],
+    links: [["关于蓝虫", "/about"], ["动态", "/news"], ["采购/合作", "/inquiry"]],
   },
   {
     label: "支持",
-    links: [["视频中心", "/support/videos"]],
+    links: [["文档中心", "/support/documents"], ["视频中心", "/support/videos"]],
   },
   {
     label: "信息",

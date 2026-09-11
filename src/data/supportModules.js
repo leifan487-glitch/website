@@ -8,7 +8,7 @@ export const supportModules = {
     label: "Documents",
     description: "Mantis Standard 官方文档的统一入口。",
     href: "/support/documents",
-    publicVisible: false,
+    publicVisible: true,
   },
   downloads: {
     id: "downloads",

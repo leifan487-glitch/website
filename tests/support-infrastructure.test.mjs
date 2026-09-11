@@ -13,13 +13,13 @@ const source = async (path) => readFile(new URL(path, import.meta.url), "utf8");
 
 const compatibilityRoutes = [
   "/support",
-  "/support/documents",
   "/support/downloads",
   "/support/service",
   "/support/knowledge",
 ];
 
 const publicRoutes = [
+  "/support/documents",
   "/support/videos",
   "/inquiry",
   "/policy/privacy",
@@ -50,33 +50,54 @@ test("only the approved video resource center is populated", () => {
   assert.equal(isPublicResource({ contentStatus: "VERIFIED", publicApproved: true, visibility: "PUBLIC", fileUrl: "/approved.pdf" }), true);
 });
 
-test("Navbar exposes one direct Video Center destination without a Support dropdown", async () => {
+test("Navbar exposes Documents and Videos in one accessible Support dropdown", async () => {
   const navbar = await source("../src/components/Navbar.jsx");
-  assert.match(navbar, /to="\/support\/videos"/);
-  assert.match(navbar, />视频中心</);
-  assert.doesNotMatch(navbar, /support-navigation|supportOpen|supportItems|getVisibleSupportModules|closeSupportNav/);
-  for (const module of Object.values(supportModules)) assert.match(module.href, /^\/support\//);
+  assert.match(navbar, /support-navigation/);
+  assert.match(navbar, /supportOpen/);
+  assert.match(navbar, />支持</);
+  assert.match(navbar, /supportModules\.documents/);
+  assert.match(navbar, /supportModules\.videos/);
+  assert.match(navbar, /to=\{item\.href\}/);
+  assert.match(navbar, /aria-expanded=\{supportOpen\}/);
+  assert.match(navbar, /scheduleSupportHoverClose/);
+  assert.match(navbar, /event\.key !== "Escape"/);
+  assert.doesNotMatch(navbar, /<span className="navbar__label">视频中心<\/span>/);
+  assert.doesNotMatch(navbar, /getVisibleSupportModules/);
+  assert.equal(supportModules.documents.href, "/support/documents");
+  assert.equal(supportModules.videos.href, "/support/videos");
 });
 
-test("Navbar exposes one direct Inquiry destination without a Contact dropdown", async () => {
+test("Navbar exposes one direct procurement and collaboration destination", async () => {
   const navbar = await source("../src/components/Navbar.jsx");
   assert.match(navbar, /to="\/inquiry"/);
-  assert.match(navbar, />联系我们</);
+  assert.match(navbar, />采购\/合作</);
+  assert.match(navbar, /navbar__inquiry-link/);
   assert.doesNotMatch(navbar, /contact-navigation|contactOpen|to="\/contact"/);
 });
 
-test("Video Center is the only public Support module", () => {
-  assert.deepEqual(Object.values(supportModules).filter((module) => module.publicVisible).map((module) => module.id), ["videos"]);
+test("Documents and Videos are the public Support modules", () => {
+  assert.deepEqual(Object.values(supportModules).filter((module) => module.publicVisible).map((module) => module.id), ["documents", "videos"]);
 });
 
-test("Footer contains only Video Center under Support plus Inquiry and Legal destinations", async () => {
+test("Footer contains Documents and Videos under Support plus Inquiry and Legal destinations", async () => {
   const footer = await source("../src/components/Footer.jsx");
-  for (const route of ["/support/videos", "/inquiry", "/policy/privacy", "/policy/terms"]) {
+  for (const route of ["/support/documents", "/support/videos", "/inquiry", "/policy/privacy", "/policy/terms"]) {
     assert.match(footer, new RegExp(route.replaceAll("/", "\\/")));
   }
-  assert.doesNotMatch(footer, /"\/support"|support\/documents|support\/downloads|support\/service|support\/knowledge|getVisibleSupportModules/);
+  assert.doesNotMatch(footer, /"\/support"|support\/downloads|support\/service|support\/knowledge|getVisibleSupportModules/);
+  assert.match(footer, /文档中心/);
   assert.match(footer, /视频中心/);
-  assert.match(footer, /商务询盘/);
+  assert.match(footer, /采购\/合作/);
+});
+
+test("Document Center exposes a searchable framework and a safe empty placeholder", async () => {
+  const documentCenter = await source("../src/components/DocumentCenter.jsx");
+  assert.match(documentCenter, /role="search"/);
+  assert.match(documentCenter, /aria-pressed=\{activeCategory === category\.value\}/);
+  assert.match(documentCenter, /resources\s*\.filter\(isPublicResource\)/);
+  assert.match(documentCenter, /文档内容待补充/);
+  assert.match(documentCenter, /等待正式资料/);
+  assert.doesNotMatch(documentCenter, /href="#"/);
 });
 
 test("Inquiry form has validation semantics and active submission feedback", async () => {

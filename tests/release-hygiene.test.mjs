@@ -7,10 +7,10 @@ import { getVisibleSupportModules, isSupportModuleVisible, supportModules } from
 const source = async (path) => readFile(new URL(path, import.meta.url), "utf8");
 
 test("Support module visibility preserves internal review and filters public preview", () => {
-  assert.deepEqual(Object.values(supportModules).filter((module) => module.publicVisible).map((module) => module.id), ["videos"]);
+  assert.deepEqual(Object.values(supportModules).filter((module) => module.publicVisible).map((module) => module.id), ["documents", "videos"]);
   assert.equal(isSupportModuleVisible("videos", { publicPreview: false, hiddenModuleIds: ["videos"] }), true);
   assert.equal(isSupportModuleVisible("videos", { publicPreview: true, hiddenModuleIds: ["videos"] }), false);
-  assert.deepEqual(getVisibleSupportModules({ publicPreview: true, hiddenModuleIds: ["downloads", "knowledge"] }).map((module) => module.id), ["videos"]);
+  assert.deepEqual(getVisibleSupportModules({ publicPreview: true, hiddenModuleIds: ["downloads", "knowledge"] }).map((module) => module.id), ["documents", "videos"]);
 });
 
 test("sitemap source excludes redirects, Pro and hidden Support modules", () => {
@@ -20,7 +20,14 @@ test("sitemap source excludes redirects, Pro and hidden Support modules", () => 
   assert.ok(!routes.includes("/products"));
   assert.ok(!routes.includes("/products/mantis-pro"));
   assert.ok(!routes.includes("/support/videos"));
+  assert.ok(routes.includes("/support/documents"));
   assert.ok(getSitemapRoutes({ hiddenModuleIds: [] }).includes("/support/videos"));
+});
+
+test("Cloudflare output includes a static 404 sentinel for real route statuses", async () => {
+  const notFound = await source("../public/404.html");
+  assert.match(notFound, /<meta name="robots" content="noindex"/);
+  assert.match(notFound, /页面未找到/);
 });
 
 test("all public route metadata has a safe title and description", () => {

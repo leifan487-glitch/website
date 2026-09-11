@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { DocumentCenter } from "../components/DocumentCenter.jsx";
 import { Footer } from "../components/Footer.jsx";
 import { EmptyState } from "../components/EmptyState.jsx";
 import { InternalStatus } from "../components/InternalStatus.jsx";
@@ -58,7 +59,7 @@ export function SupportOverviewPage() {
 }
 
 export function DocumentsPage() {
-  return <SupportModuleGate moduleId="documents"><ResourceCenter eyebrow="SUPPORT / DOCUMENTS" title="文档中心" intro="未来承载 Mantis Standard 经确认可公开的正式文档。" sectionLabel="MANTIS STANDARD" emptyTitle="资料准备中" emptyText="当前暂无可公开文档。" resources={documentResources} /></SupportModuleGate>;
+  return <SupportModuleGate moduleId="documents"><DocumentCenter resources={documentResources} /></SupportModuleGate>;
 }
 
 export function DownloadsPage() {

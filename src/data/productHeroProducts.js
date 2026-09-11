@@ -41,13 +41,13 @@ export const productHeroProducts = [
       desktop: {
         objectFit: "contain",
         objectPosition: "center bottom",
-        scale: 1.04,
-        translateY: "-3px",
+        scale: 1,
+        translateY: "0px",
       },
       mobile: {
         objectFit: "contain",
         objectPosition: "center bottom",
-        scale: 1.04,
+        scale: 1,
       },
       compact: {
         objectFit: "contain",

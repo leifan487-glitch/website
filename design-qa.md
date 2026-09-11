@@ -36,6 +36,43 @@ final result: passed
 
 ---
 
+# Design QA — Post-deploy Navigation, Documents and Hero Edge Refinement
+
+Date: 2026-09-11
+
+## Scope and visual sources
+
+- User references: `C:/Users/99770/AppData/Local/Temp/codex-clipboard-843566bc-6661-4ea9-80bf-567e9fe84ef6.png`, `codex-clipboard-f08b0365-d1dc-4321-9944-10fe3adf3218.png`, `codex-clipboard-c895e63c-49e0-49a4-9eb2-819596ec1a6f.png`, `codex-clipboard-e1de4729-cb4a-4e71-8839-1a29b3d1d2e4.png`, and `codex-clipboard-1964036b-2d7b-4e08-b7e3-857a6f195ca7.png`.
+- Implementation captures: ignored local QA output under `output/post-deploy-qa/` for 1440×900, 1024×768 and 390×844.
+- Combined source-and-implementation evidence: `output/post-deploy-qa/design-comparison.png`.
+- Locked boundaries: Standard-only strategy, approved media, inquiry disabled state, product claims and source media.
+
+## Findings
+
+- Homepage hero: the A01644 desktop image now renders at its native configured scale and zero horizontal translation. The rightmost robot and ground shadow fade within the image field without the prior hard boundary. The 1440px and 1024px captures have no horizontal overflow or broken media.
+- Navigation: “支持” now contains “文档中心 / 视频中心” in the existing dropdown and mobile accordion language. “采购/合作” is visually separated as a compact black pill, remains visible at 1440px, 1024px and 390px, and reuses the existing blue accent for hover/focus feedback.
+- Document Center: the reference's search + category + document-card information architecture is retained, while typography, spacing, neutral palette, radii and density are adapted to the existing Blue Worm system. No third-party copy, product line, date or document claim was imported.
+- Empty content: one deliberate Mantis Standard placeholder makes the future population point obvious without exposing a fake file link. Search and category controls are functional; a non-matching query shows a clear empty state.
+- Responsive behavior: 1024px retains the desktop navigation without clipping. At 390px the menu, Support accordion, procurement button, search, categories and placeholder card form one readable vertical flow with no horizontal overflow.
+- Accessibility and motion: Support exposes `aria-expanded` / `aria-controls`, closes through the existing outside-click and Escape behavior, returns focus, and removes non-essential transitions under reduced motion. Search has a programmatic label and results announce updates through `aria-live`.
+
+## Comparison history
+
+- Pass 1 found one P1 issue: the procurement link existed in the DOM but appeared white-on-white because the existing direct-child navigation selector overrode its pill background.
+- Fix: increased the intended pill selector specificity, rebuilt the production bundle and repeated all captures.
+- Pass 2 found no remaining actionable P0, P1 or P2 visual issue. The procurement pill is visible in desktop and mobile screenshots; Support and document states remain intact.
+
+## Browser evidence
+
+- `output/post-deploy-qa/report.json`: zero broken images, zero console errors, no horizontal overflow at 1440 / 1024 / 390.
+- Desktop and mobile Support states both contain exactly “文档中心 / 视频中心”.
+- The document placeholder is present for an empty catalog; a non-matching search hides it and shows the explicit empty result.
+- Final production build: 104 modules; CSS 236.55 kB / gzip 38.14 kB; JS 467.76 kB / gzip 153.58 kB.
+
+final result: passed
+
+---
+
 # Design QA — Task 014.3 Homepage Motion & Contact IA Refinement
 
 Date: 2026-09-04

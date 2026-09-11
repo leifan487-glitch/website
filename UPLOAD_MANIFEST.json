@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
-  "fileCount": 227,
-  "totalBytes": 47892904,
+  "fileCount": 229,
+  "totalBytes": 47916473,
   "files": [
     {
       "path": ".env.example",
@@ -51,8 +51,8 @@
     },
     {
       "path": "design-qa.md",
-      "bytes": 25880,
-      "sha256": "cd2ad7b67e95c4fd653682d37b74e05fa38985f29273b2dbd102cc8cfe90dd09"
+      "bytes": 29349,
+      "sha256": "39d76f5eeee36fc00c8e937a36f5ec4230e307439913d1908b197c047cb9c452"
     },
     {
       "path": "docs/HOMEPAGE_PREMIUM_MOTION_V1.md",
@@ -203,6 +203,11 @@
       "path": "pnpm-workspace.yaml",
       "bytes": 29,
       "sha256": "ac02d96368617c760f093cfe61fdec64b6244007ab3553e0d6621f706f54a353"
+    },
+    {
+      "path": "public/404.html",
+      "bytes": 388,
+      "sha256": "068729325408a39821ae9d2c2c91670afe53b3dd96956ace56ba414af2467dce"
     },
     {
       "path": "public/_headers",
@@ -700,6 +705,11 @@
       "sha256": "d0927c8980be9c34df6c49f816f70fde5df7b63b4839329827cd4992750cf938"
     },
     {
+      "path": "src/components/DocumentCenter.jsx",
+      "bytes": 5406,
+      "sha256": "c0069266e6e77a45f7e4b62a24555e65592c4041db4ef73e10c5938c06cfa4e4"
+    },
+    {
       "path": "src/components/EditorialSpotlightRow.jsx",
       "bytes": 1479,
       "sha256": "f29679a54470af7c9f368c48188f8d54a5ec7fc9bcf7b793af2194febac84dd6"
@@ -716,8 +726,8 @@
     },
     {
       "path": "src/components/Footer.jsx",
-      "bytes": 1687,
-      "sha256": "03a023932369dd458403c3d7d5c445afe07ed5a14f7bb3b3c0d946cf94263e57"
+      "bytes": 1728,
+      "sha256": "388fae93da507d689908a8e3ad3e69b5b44346911678e48323d6ae7609e67670"
     },
     {
       "path": "src/components/HomeApplicationGallery.jsx",
@@ -761,8 +771,8 @@
     },
     {
       "path": "src/components/Navbar.jsx",
-      "bytes": 10273,
-      "sha256": "e0b9917da179b47587614f00b98dba888b245f2be911bf77cd9afed28b724e45"
+      "bytes": 14770,
+      "sha256": "8eaa1bc4337bbe15d7682db75c20c7afb181f231a9c35e612c4fd2a5bde74891"
     },
     {
       "path": "src/components/PageHero.jsx",
@@ -861,8 +871,8 @@
     },
     {
       "path": "src/data/productHeroProducts.js",
-      "bytes": 1515,
-      "sha256": "33c0deb2d4cc438768c4ef5f069531e59c788a602bb970f36d49a26d7239654a"
+      "bytes": 1508,
+      "sha256": "06855b21cdf9764b85ac74bf07d6b319c1d4082a4296c0d6cedc517bda1f93f3"
     },
     {
       "path": "src/data/products.js",
@@ -961,8 +971,8 @@
     },
     {
       "path": "src/data/supportModules.js",
-      "bytes": 2193,
-      "sha256": "baf438d79229ebdc0100a452f82adbc28f8050a502d14e9fce56f2913e14aa0a"
+      "bytes": 2192,
+      "sha256": "b5a94a3871d4f5cfe750ee596347ed47ee3c46006aadf9fbef374bb36f75e61b"
     },
     {
       "path": "src/data/technology.js",
@@ -1041,8 +1051,8 @@
     },
     {
       "path": "src/pages/SupportPages.jsx",
-      "bytes": 5570,
-      "sha256": "305cbcdc448639aec76e12f0a8380f170355bc8514514242897e38b0162218ac"
+      "bytes": 5409,
+      "sha256": "7edb06e983cf0ab62b70a2904b951359c1d69f7eaba4ce7a189b54fdb49b0dcf"
     },
     {
       "path": "src/pages/TechnologyPage.jsx",
@@ -1051,8 +1061,8 @@
     },
     {
       "path": "src/styles.css",
-      "bytes": 282682,
-      "sha256": "96b27612fff73fe848e938ef08333304f5f01f553a9a1238743e75d30dd5ede1"
+      "bytes": 291077,
+      "sha256": "63440b07eba7e41602be1e755b543ee7ab504e87f1254be8700bf9407afd1492"
     },
     {
       "path": "tests/company-content-framework.test.mjs",
@@ -1106,8 +1116,8 @@
     },
     {
       "path": "tests/release-hygiene.test.mjs",
-      "bytes": 5581,
-      "sha256": "a4bcc40c12bf98c923d8889635874b60cabf751be391d8b40f5faf32524c3786"
+      "bytes": 5926,
+      "sha256": "97e15ff155d4d02f6583c355e3106c5860635863ab2dc6cb7057114a1ac7015a"
     },
     {
       "path": "tests/sites-worker.test.mjs",
@@ -1116,8 +1126,8 @@
     },
     {
       "path": "tests/standard-content-framework.test.mjs",
-      "bytes": 7460,
-      "sha256": "88c0ed3655ca6ee09c4443b04104dab2e130819e467c6ead30742689715f0bac"
+      "bytes": 7597,
+      "sha256": "71c12439913e4065f0fdbb4175c0247d675cbb995369bc3ed4a8c81e51405ed2"
     },
     {
       "path": "tests/standard-media-public-v1.test.mjs",
@@ -1126,8 +1136,8 @@
     },
     {
       "path": "tests/support-infrastructure.test.mjs",
-      "bytes": 4640,
-      "sha256": "85885d492a727bc38a406b1ec4f662bcb5b055387b570ac9a52b9f5e90d8c40e"
+      "bytes": 5700,
+      "sha256": "3d69c0690b0c2479c278b41e5f1c61b2070bb42c8404334b61ee396d2f4252ec"
     },
     {
       "path": "vite.config.mjs",

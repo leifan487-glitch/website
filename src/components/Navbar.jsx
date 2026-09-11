@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { supportModules } from "../data/supportModules.js";
 
 const navItems = [
   { label: "技术", href: "/technology" },
@@ -7,21 +8,34 @@ const navItems = [
   { label: "关于蓝虫", href: "/about" },
 ];
 
+const supportItems = [
+  supportModules.documents,
+  supportModules.videos,
+];
+
 export function Navbar({ theme = "dark", homeHref = "#top" }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
+  const [supportOpen, setSupportOpen] = useState(false);
   const [productView, setProductView] = useState("standard");
   const [scrolled, setScrolled] = useState(false);
   const productNavRef = useRef(null);
   const productTriggerRef = useRef(null);
+  const supportNavRef = useRef(null);
+  const supportTriggerRef = useRef(null);
   const pointerIntentRef = useRef(false);
+  const supportPointerIntentRef = useRef(false);
   const openedByHoverRef = useRef(false);
+  const supportOpenedByHoverRef = useRef(false);
   const suppressFocusOpenRef = useRef(false);
+  const suppressSupportFocusOpenRef = useRef(false);
   const hoverCloseTimerRef = useRef(null);
+  const supportHoverCloseTimerRef = useRef(null);
   const location = useLocation();
-  const solidSurface = scrolled || menuOpen || productOpen;
+  const solidSurface = scrolled || menuOpen || productOpen || supportOpen;
   const usePositiveLogo = theme === "light" || solidSurface;
   const productActive = location.pathname.startsWith("/products");
+  const supportActive = location.pathname.startsWith("/support");
 
   useEffect(() => {
     let frame = 0;
@@ -46,22 +60,33 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
   useEffect(() => {
     setMenuOpen(false);
     setProductOpen(false);
+    setSupportOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!productOpen) return undefined;
+    if (!productOpen && !supportOpen) return undefined;
 
     function closeOnOutsidePointer(event) {
-      if (!productNavRef.current?.contains(event.target)) setProductOpen(false);
+      if (productOpen && !productNavRef.current?.contains(event.target)) setProductOpen(false);
+      if (supportOpen && !supportNavRef.current?.contains(event.target)) setSupportOpen(false);
     }
 
     function closeOnEscape(event) {
       if (event.key !== "Escape") return;
-      setProductOpen(false);
-      suppressFocusOpenRef.current = true;
-      productTriggerRef.current?.focus();
-      if (document.activeElement === productTriggerRef.current) {
-        suppressFocusOpenRef.current = false;
+      if (supportOpen) {
+        setSupportOpen(false);
+        suppressSupportFocusOpenRef.current = true;
+        supportTriggerRef.current?.focus();
+        if (document.activeElement === supportTriggerRef.current) {
+          suppressSupportFocusOpenRef.current = false;
+        }
+      } else if (productOpen) {
+        setProductOpen(false);
+        suppressFocusOpenRef.current = true;
+        productTriggerRef.current?.focus();
+        if (document.activeElement === productTriggerRef.current) {
+          suppressFocusOpenRef.current = false;
+        }
       }
     }
 
@@ -71,10 +96,11 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
       document.removeEventListener("pointerdown", closeOnOutsidePointer);
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [productOpen]);
+  }, [productOpen, supportOpen]);
 
   useEffect(() => () => {
     if (hoverCloseTimerRef.current) window.clearTimeout(hoverCloseTimerRef.current);
+    if (supportHoverCloseTimerRef.current) window.clearTimeout(supportHoverCloseTimerRef.current);
   }, []);
 
   function cancelHoverClose() {
@@ -93,9 +119,27 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
     }, 280);
   }
 
+  function cancelSupportHoverClose() {
+    if (!supportHoverCloseTimerRef.current) return;
+    window.clearTimeout(supportHoverCloseTimerRef.current);
+    supportHoverCloseTimerRef.current = null;
+  }
+
+  function scheduleSupportHoverClose() {
+    cancelSupportHoverClose();
+    supportHoverCloseTimerRef.current = window.setTimeout(() => {
+      supportHoverCloseTimerRef.current = null;
+      if (!supportNavRef.current?.contains(document.activeElement)) {
+        setSupportOpen(false);
+      }
+    }, 280);
+  }
+
   function closeProductNav() {
     cancelHoverClose();
+    cancelSupportHoverClose();
     setProductOpen(false);
+    setSupportOpen(false);
     setMenuOpen(false);
     setProductView("standard");
   }
@@ -130,6 +174,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
         onClick={() => {
           setMenuOpen((open) => !open);
           setProductOpen(false);
+          setSupportOpen(false);
         }}
       >
         {menuOpen ? "关闭" : "菜单"}
@@ -147,6 +192,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
           onMouseEnter={() => {
             cancelHoverClose();
             openedByHoverRef.current = true;
+            setSupportOpen(false);
             setProductOpen(true);
           }}
           onMouseLeave={() => {
@@ -174,16 +220,23 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
                 suppressFocusOpenRef.current = false;
                 return;
               }
-              if (!pointerIntentRef.current) setProductOpen(true);
+              if (!pointerIntentRef.current) {
+                setSupportOpen(false);
+                setProductOpen(true);
+              }
             }}
             onClick={(event) => {
               pointerIntentRef.current = false;
               if (event.detail === 0 || openedByHoverRef.current) {
                 openedByHoverRef.current = false;
+                setSupportOpen(false);
                 setProductOpen(true);
                 return;
               }
-              setProductOpen((open) => !open);
+              setProductOpen((open) => {
+                if (!open) setSupportOpen(false);
+                return !open;
+              });
             }}
           >
             <span className="navbar__label">产品</span>
@@ -278,13 +331,84 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
           </NavLink>
         ))}
 
-        <NavLink
-          to="/support/videos"
-          className={({ isActive }) => isActive ? "is-active" : undefined}
-          onClick={closeProductNav}
+        <div
+          className="navbar__support"
+          data-open={supportOpen}
+          ref={supportNavRef}
+          onMouseEnter={() => {
+            cancelSupportHoverClose();
+            supportOpenedByHoverRef.current = true;
+            setProductOpen(false);
+            setSupportOpen(true);
+          }}
+          onMouseLeave={() => {
+            supportOpenedByHoverRef.current = false;
+            scheduleSupportHoverClose();
+          }}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) {
+              setSupportOpen(false);
+            }
+          }}
         >
-          <span className="navbar__label">视频中心</span>
-        </NavLink>
+          <button
+            className={`navbar__support-trigger${supportActive ? " is-active" : ""}`}
+            type="button"
+            aria-expanded={supportOpen}
+            aria-haspopup="true"
+            aria-controls="support-navigation"
+            ref={supportTriggerRef}
+            onPointerDown={() => {
+              supportPointerIntentRef.current = true;
+            }}
+            onFocus={() => {
+              if (suppressSupportFocusOpenRef.current) {
+                suppressSupportFocusOpenRef.current = false;
+                return;
+              }
+              if (!supportPointerIntentRef.current) {
+                setProductOpen(false);
+                setSupportOpen(true);
+              }
+            }}
+            onClick={(event) => {
+              supportPointerIntentRef.current = false;
+              if (event.detail === 0 || supportOpenedByHoverRef.current) {
+                supportOpenedByHoverRef.current = false;
+                setProductOpen(false);
+                setSupportOpen(true);
+                return;
+              }
+              setSupportOpen((open) => {
+                if (!open) setProductOpen(false);
+                return !open;
+              });
+            }}
+          >
+            <span className="navbar__label">支持</span>
+            <span className="navbar__support-caret" aria-hidden="true">⌄</span>
+          </button>
+
+          <div
+            className="navbar__support-menu"
+            id="support-navigation"
+            aria-label="支持导航"
+            onMouseEnter={cancelSupportHoverClose}
+            onMouseLeave={scheduleSupportHoverClose}
+          >
+            {supportItems.map((item) => (
+              <NavLink
+                key={item.id}
+                to={item.href}
+                className={({ isActive }) => isActive ? "is-active" : undefined}
+                onClick={closeProductNav}
+              >
+                <span>{item.title}</span>
+                <span aria-hidden="true">→</span>
+              </NavLink>
+            ))}
+          </div>
+        </div>
 
         {navItems.slice(2).map((item) => (
           <NavLink
@@ -299,10 +423,10 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
 
         <NavLink
           to="/inquiry"
-          className={({ isActive }) => isActive ? "is-active" : undefined}
+          className={({ isActive }) => `navbar__inquiry-link${isActive ? " is-active" : ""}`}
           onClick={closeProductNav}
         >
-          <span className="navbar__label">联系我们</span>
+          <span className="navbar__label">采购/合作</span>
         </NavLink>
       </nav>
     </header>

@@ -88,10 +88,11 @@ test("task media is one approval-driven usage source", () => {
   assert.ok(standardTaskMedia.every((item) => !item.usages.includes("homeRealWorld")));
 });
 
-test("documents stay empty while Video Center follows Support visibility", () => {
+test("documents stay content-empty while Documents and Video Center follow Support visibility", () => {
   assert.deepEqual(documentResources, []);
   assert.equal(videoResources.length, 8);
-  assert.equal(isSupportModuleVisible("documents", { publicPreview: true, hiddenModuleIds: [] }), false);
+  assert.equal(isSupportModuleVisible("documents", { publicPreview: true, hiddenModuleIds: [] }), true);
+  assert.equal(isSupportModuleVisible("documents", { publicPreview: true, hiddenModuleIds: ["documents"] }), false);
   assert.equal(isSupportModuleVisible("videos", { publicPreview: true, hiddenModuleIds: [] }), true);
   assert.equal(isSupportModuleVisible("videos", { publicPreview: true, hiddenModuleIds: ["videos"] }), false);
 });
