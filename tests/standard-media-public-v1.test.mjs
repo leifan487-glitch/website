@@ -66,8 +66,8 @@ test("Homepage Real World resolves only to the approved derived reel", () => {
   const [applicationsHero] = getStandardMediaByUsage("applicationsHero", { publicMode: true });
   assert.equal(applicationsHero.sourceId, "APPLICATIONS-MULTI-TASK-REEL");
   assert.equal(applicationsHero.derivedCompilation, true);
-  assert.equal(applicationsHero.derivativeType, "APPLICATIONS_REEL");
-  assert.deepEqual(applicationsHero.sourceMediaIds, ["SV028", "SV004", "SV016", "SV043"]);
+  assert.equal(applicationsHero.derivativeType, "APPLICATIONS_MONTAGE_V2");
+  assert.deepEqual(applicationsHero.sourceMediaIds, ["SV002", "SV005", "SV032", "SV036", "SV044", "SV050"]);
   assert.deepEqual(applicationsHero.usages, ["applicationsHero"]);
   assert.equal(getStandardMediaByUsage("videoCenter", { publicMode: true }).length, 8);
 

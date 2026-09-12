@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
   "fileCount": 235,
-  "totalBytes": 53260394,
+  "totalBytes": 53898012,
   "files": [
     {
       "path": ".env.example",
@@ -186,8 +186,8 @@
     },
     {
       "path": "internal/standard-media-provenance.mjs",
-      "bytes": 1354,
-      "sha256": "2aacb23e069c6fd66e312720ed418f5a1ea8a68f9c3d7415e94df599d553e37e"
+      "bytes": 1888,
+      "sha256": "92865604023aa1001bf9cfe72fc4f4fb54b52ce70b90e90270c8649464331d35"
     },
     {
       "path": "package.json",
@@ -310,14 +310,14 @@
       "sha256": "b3e54ec52e2c22cc277d89f4bac9636d5340d5ba6393289139b6b5869559491e"
     },
     {
-      "path": "public/assets/videos/standard/applications-hero/poster.webp",
-      "bytes": 104358,
-      "sha256": "f9e99f01856319a472b45ee23e355bcf07c84e4770b39e86245c427e28abd37b"
+      "path": "public/assets/videos/standard/applications-montage-v2/poster.webp",
+      "bytes": 63358,
+      "sha256": "2c5641f4ac02b53843cdb00ad57807518142dc1936adeb2ddd2d9919470399c0"
     },
     {
-      "path": "public/assets/videos/standard/applications-hero/video.mp4",
-      "bytes": 5190579,
-      "sha256": "cd6ce241234b870e11f3a7c204ab554d8a4525e5d3c2e2aad640de253b8233d3"
+      "path": "public/assets/videos/standard/applications-montage-v2/video.mp4",
+      "bytes": 5867956,
+      "sha256": "e95d22a7d602d480a0f9906ae992c3e8ed6fce0744d0bd1076ac5d44347c07c6"
     },
     {
       "path": "public/assets/videos/standard/home-real-world/poster.webp",
@@ -956,8 +956,8 @@
     },
     {
       "path": "src/data/standard/media.js",
-      "bytes": 11840,
-      "sha256": "adec2c0723b994a31eb382e59eb15ba04446c97af62fddb46d7d1c95371d92c2"
+      "bytes": 12189,
+      "sha256": "b43c37ebcab10f186301394c77dabe05ebf69f16396100e7df74c7997c983da7"
     },
     {
       "path": "src/data/standard/product.js",
@@ -1151,8 +1151,8 @@
     },
     {
       "path": "tests/standard-media-public-v1.test.mjs",
-      "bytes": 4740,
-      "sha256": "cf91b0861489cd752ef2241bbf35012f9febc8fa5776c018f05da66dcf5dd80a"
+      "bytes": 4764,
+      "sha256": "dcbd5c9c745b63dc6ca392f4e31cb4902feb1c77d793d00ea21ecbcd0d0ff398"
     },
     {
       "path": "tests/support-infrastructure.test.mjs",
@@ -1165,9 +1165,9 @@
       "sha256": "34c6b99e3d57e2af391aae1192d9222ea8fa00f4d7b3ccfc7eb04f45428f1015"
     },
     {
-      "path": "tests/task020-applications-hero-reel.test.mjs",
-      "bytes": 2480,
-      "sha256": "adfc0369b62856faea2e6ea63be499bbe7271983f21c9d10b961c24f2d7164b4"
+      "path": "tests/task021-applications-montage.test.mjs",
+      "bytes": 2814,
+      "sha256": "de2efe316b37d48005f253c71721017086a385cb5552c3e2b1579468b170f00f"
     },
     {
       "path": "vite.config.mjs",
