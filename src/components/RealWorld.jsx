@@ -3,7 +3,7 @@ import { InternalStatus } from "./InternalStatus.jsx";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
 import { getStandardMediaByUsage, hasPublicStandardTaskMedia, standardPublicMode } from "../data/standard/index.js";
 
-export function RealWorld({ sectionNumber = "04" }) {
+export function RealWorld({ sectionNumber = "04", title = "Real World", intro = "从产品体系到双臂操作、服务任务与工业设备场景。" }) {
   const media = getStandardMediaByUsage("homeRealWorld");
   if (standardPublicMode && !hasPublicStandardTaskMedia) return null;
 
@@ -14,8 +14,8 @@ export function RealWorld({ sectionNumber = "04" }) {
           <p className="section-index section-index--light">
             {sectionNumber} · REAL WORLD
           </p>
-          <h2 id="real-world-title">Real World</h2>
-          <p className="real-world__intro">从产品体系到双臂操作、服务任务与工业设备场景。</p>
+          <h2 id="real-world-title">{title}</h2>
+          <p className="real-world__intro">{intro}</p>
           <InternalStatus as="p" status="TODO">Standard 任务媒体待确认</InternalStatus>
         </header>
 

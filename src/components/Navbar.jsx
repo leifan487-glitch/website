@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { GlobeSimple } from "@phosphor-icons/react";
-import { supportModules } from "../data/supportModules.js";
+import { getVisibleSupportModules } from "../data/supportModules.js";
 
 const navItems = [
   { label: "技术", href: "/technology" },
@@ -9,24 +9,20 @@ const navItems = [
   { label: "关于蓝虫", href: "/about" },
 ];
 
-const supportItems = [
-  supportModules.documents,
-  supportModules.videos,
-];
+const supportItems = getVisibleSupportModules({ publicPreview: true });
 
 export function Navbar({ theme = "dark", homeHref = "#top" }) {
+  const headerRef = useRef(null);
+  const menuButtonRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
   const [supportOpen, setSupportOpen] = useState(false);
-  const [languageOpen, setLanguageOpen] = useState(false);
   const [productView, setProductView] = useState("standard");
   const [scrolled, setScrolled] = useState(false);
   const productNavRef = useRef(null);
   const productTriggerRef = useRef(null);
   const supportNavRef = useRef(null);
   const supportTriggerRef = useRef(null);
-  const languageNavRef = useRef(null);
-  const languageTriggerRef = useRef(null);
   const pointerIntentRef = useRef(false);
   const supportPointerIntentRef = useRef(false);
   const openedByHoverRef = useRef(false);
@@ -36,10 +32,69 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
   const hoverCloseTimerRef = useRef(null);
   const supportHoverCloseTimerRef = useRef(null);
   const location = useLocation();
-  const solidSurface = scrolled || menuOpen || productOpen || supportOpen || languageOpen;
+  const latestPathRef = useRef(location.pathname);
+  latestPathRef.current = location.pathname;
+  const solidSurface = scrolled || menuOpen || productOpen || supportOpen;
   const usePositiveLogo = theme === "light" || solidSurface;
   const productActive = location.pathname.startsWith("/products");
   const supportActive = location.pathname.startsWith("/support");
+
+
+  // Task 018.5 P1: mobile navigation is a viewport overlay, not a scrollable background.
+  useLayoutEffect(() => {
+    if (!menuOpen || !window.matchMedia("(max-width: 900px)").matches) return undefined;
+    const header = headerRef.current;
+    const startPath = location.pathname;
+    const scrollY = window.scrollY;
+    const bodyStyle = document.body.style.cssText;
+    const rootBehavior = document.documentElement.style.scrollBehavior;
+    const inertNodes = [];
+    let branch = header;
+    while (branch?.parentElement) {
+      for (const sibling of branch.parentElement.children) {
+        if (sibling !== branch) {
+          inertNodes.push([sibling, sibling.inert]);
+          sibling.inert = true;
+        }
+      }
+      if (branch.parentElement === document.body) break;
+      branch = branch.parentElement;
+    }
+    Object.assign(document.body.style, { position: "fixed", top: `-${scrollY}px`, width: "100%", overflow: "hidden" });
+    const visibleControls = () => [...header.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]')].filter(e => e.getClientRects().length && getComputedStyle(e).visibility !== "hidden");
+    function keydown(event) {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        setProductOpen(false);
+        setSupportOpen(false);
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      } else if (event.key === "Tab") {
+        const controls = visibleControls();
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && (document.activeElement === first || !header.contains(document.activeElement))) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && (document.activeElement === last || !header.contains(document.activeElement))) { event.preventDefault(); first?.focus(); }
+      }
+    }
+    function keepFocus(event) { if (!header.contains(event.target)) menuButtonRef.current?.focus(); }
+    const query = window.matchMedia("(max-width: 900px)");
+    const resized = () => { if (!query.matches) setMenuOpen(false); };
+    document.addEventListener("keydown", keydown, true);
+    document.addEventListener("focusin", keepFocus);
+    query.addEventListener("change", resized);
+    menuButtonRef.current?.focus();
+    return () => {
+      document.removeEventListener("keydown", keydown, true);
+      document.removeEventListener("focusin", keepFocus);
+      query.removeEventListener("change", resized);
+      for (const [node, wasInert] of inertNodes) node.inert = wasInert;
+      document.body.style.cssText = bodyStyle;
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, latestPathRef.current === startPath ? scrollY : 0);
+      document.documentElement.style.scrollBehavior = rootBehavior;
+    };
+  }, [menuOpen, location.pathname]);
 
   useEffect(() => {
     let frame = 0;
@@ -65,16 +120,14 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
     setMenuOpen(false);
     setProductOpen(false);
     setSupportOpen(false);
-    setLanguageOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!productOpen && !supportOpen && !languageOpen) return undefined;
+    if (!productOpen && !supportOpen) return undefined;
 
     function closeOnOutsidePointer(event) {
       if (productOpen && !productNavRef.current?.contains(event.target)) setProductOpen(false);
       if (supportOpen && !supportNavRef.current?.contains(event.target)) setSupportOpen(false);
-      if (languageOpen && !languageNavRef.current?.contains(event.target)) setLanguageOpen(false);
     }
 
     function closeOnEscape(event) {
@@ -93,9 +146,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
         if (document.activeElement === productTriggerRef.current) {
           suppressFocusOpenRef.current = false;
         }
-      } else if (languageOpen) {
-        setLanguageOpen(false);
-        languageTriggerRef.current?.focus();
       }
     }
 
@@ -105,7 +155,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
       document.removeEventListener("pointerdown", closeOnOutsidePointer);
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [productOpen, supportOpen, languageOpen]);
+  }, [productOpen, supportOpen]);
 
   useEffect(() => () => {
     if (hoverCloseTimerRef.current) window.clearTimeout(hoverCloseTimerRef.current);
@@ -149,7 +199,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
     cancelSupportHoverClose();
     setProductOpen(false);
     setSupportOpen(false);
-    setLanguageOpen(false);
     setMenuOpen(false);
     setProductView("standard");
   }
@@ -157,6 +206,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
   return (
     <header
       className="navbar"
+      ref={headerRef}
       data-open={menuOpen}
       data-theme={theme}
       data-solid={solidSurface}
@@ -178,6 +228,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
 
       <button
         className="navbar__menu-button"
+        ref={menuButtonRef}
         type="button"
         aria-expanded={menuOpen}
         aria-controls="primary-navigation"
@@ -203,7 +254,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
             cancelHoverClose();
             openedByHoverRef.current = true;
             setSupportOpen(false);
-            setLanguageOpen(false);
             setProductOpen(true);
           }}
           onMouseLeave={() => {
@@ -233,7 +283,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               }
               if (!pointerIntentRef.current) {
                 setSupportOpen(false);
-                setLanguageOpen(false);
                 setProductOpen(true);
               }
             }}
@@ -247,7 +296,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               }
               setProductOpen((open) => {
                 if (!open) setSupportOpen(false);
-                if (!open) setLanguageOpen(false);
                 return !open;
               });
             }}
@@ -275,7 +323,7 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
                   onClick={() => setProductView("standard")}
                   onMouseEnter={() => setProductView("standard")}
                 >
-                  Standard
+                  Mantis Standard
                 </button>
                 <button
                   type="button"
@@ -316,8 +364,8 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
                     </span>
                     <span className="navbar__product-copy">
                       <span className="navbar__product-kicker">MANTIS</span>
-                      <strong>Standard</strong>
-                      <span>机器人 + 效率工具</span>
+                      <strong>Mantis Standard</strong>
+                      <span>双臂移动操作机器人</span>
                     </span>
                     <span className="navbar__product-arrow" aria-hidden="true">→</span>
                   </Link>
@@ -352,7 +400,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
             cancelSupportHoverClose();
             supportOpenedByHoverRef.current = true;
             setProductOpen(false);
-            setLanguageOpen(false);
             setSupportOpen(true);
           }}
           onMouseLeave={() => {
@@ -382,7 +429,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               }
               if (!supportPointerIntentRef.current) {
                 setProductOpen(false);
-                setLanguageOpen(false);
                 setSupportOpen(true);
               }
             }}
@@ -396,19 +442,18 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               }
               setSupportOpen((open) => {
                 if (!open) setProductOpen(false);
-                if (!open) setLanguageOpen(false);
                 return !open;
               });
             }}
           >
-            <span className="navbar__label">支持</span>
+            <span className="navbar__label">服务与支持</span>
             <span className="navbar__support-caret" aria-hidden="true">⌄</span>
           </button>
 
           <div
             className="navbar__support-menu"
             id="support-navigation"
-            aria-label="支持导航"
+            aria-label="服务与支持导航"
             onMouseEnter={cancelSupportHoverClose}
             onMouseLeave={scheduleSupportHoverClose}
           >
@@ -437,41 +482,11 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
           </NavLink>
         ))}
 
-        <div
-          className="navbar__language"
-          data-open={languageOpen}
-          ref={languageNavRef}
-          onBlur={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget)) setLanguageOpen(false);
-          }}
-        >
-          <button
-            className="navbar__language-trigger"
-            type="button"
-            aria-label="选择语言，当前为中文"
-            aria-expanded={languageOpen}
-            aria-haspopup="menu"
-            aria-controls="language-navigation"
-            ref={languageTriggerRef}
-            onClick={() => {
-              setProductOpen(false);
-              setSupportOpen(false);
-              setLanguageOpen((open) => !open);
-            }}
-          >
+        <div className="navbar__language">
+          <span className="navbar__language-trigger navbar__language-status" aria-label="网站语言：中文">
             <GlobeSimple size={21} weight="regular" aria-hidden="true" />
             <span>中文</span>
-          </button>
-          <div className="navbar__language-menu" id="language-navigation" role="menu" aria-label="选择网站语言">
-            <button type="button" role="menuitem" disabled>
-              <span>English</span>
-              <small>筹备中</small>
-            </button>
-            <button type="button" role="menuitem" disabled>
-              <span>日本語</span>
-              <small>筹备中</small>
-            </button>
-          </div>
+          </span>
         </div>
 
         <NavLink

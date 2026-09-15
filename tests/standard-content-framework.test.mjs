@@ -24,15 +24,16 @@ async function files(directory) {
   return output;
 }
 
-test("Standard page retains sections 01–03 and adds confirmed content through Q&A", async () => {
+test("Task 018.3 Standard page follows the complete product story with documents", async () => {
   const page = await source("../src/pages/MantisStandardPage.jsx");
   const sections = await source("../src/components/StandardProductSections.jsx");
-  for (const component of ["ProductPageHeader", "MantisIntro", "MantisProductDetail", "StandardProductSections"]) {
+  for (const component of ["ProductPageHeader", "StandardProductSections"]) {
     assert.ok(page.indexOf(`<${component}`) > -1, `${component} missing`);
   }
-  const ids = ["modular", "capability-system", "real-tasks", "specifications", "questions", "product-inquiry"];
+  assert.doesNotMatch(page, /<MantisIntro|<MantisProductDetail/);
+  const ids = ["overview", "modular", "six-forms", "why-modular", "capability-system", "real-tasks", "development", "specifications", "questions", "product-documents", "product-inquiry"];
   for (const id of ids) assert.match(sections, new RegExp(`id=\\"${id}\\"`));
-  const renderOrder = ["ModularArchitectureSection", "CapabilitySystemSection", "RealTasksSection", "SpecificationsSection", "StandardQaSection", "StandardInquirySection"];
+  const renderOrder = ["ProductOverviewSection", "ModularArchitectureSection", "SixFormsSection", "WhyModularSection", "CapabilitySystemSection", "RealTasksSection", "DevelopmentSection", "SpecificationsSection", "StandardQaSection", "StandardDocumentsSection", "StandardInquirySection"];
   const renderBlock = sections.slice(sections.indexOf("export function StandardProductSections"));
   let cursor = -1;
   for (const component of renderOrder) {
@@ -90,8 +91,8 @@ test("task media is one approval-driven usage source", () => {
   assert.ok(standardTaskMedia.every((item) => !item.usages.includes("homeRealWorld")));
 });
 
-test("documents stay content-empty while Documents and Video Center follow Support visibility", () => {
-  assert.deepEqual(documentResources, []);
+test("official documents are published while the video archive retains its visibility gate", () => {
+  assert.equal(documentResources.length, 4);
   assert.equal(videoResources.length, 8);
   assert.equal(isSupportModuleVisible("documents", { publicPreview: true, hiddenModuleIds: [] }), true);
   assert.equal(isSupportModuleVisible("documents", { publicPreview: true, hiddenModuleIds: ["documents"] }), false);
@@ -104,7 +105,8 @@ test("Real Tasks player and Inquiry route are wired", async () => {
   assert.match(sections, /StandardMediaPlayer/);
   assert.match(sections, /productRealTasks/);
   assert.match(sections, /to="\/inquiry"/);
-  assert.doesNotMatch(sections, /product-resources|support\/documents|support\/videos/);
+  assert.match(sections, /support\/documents/);
+  assert.match(sections, /documentResources\.filter/);
 });
 
 test("Production Public visibility requires explicit approval and hides review badges", async () => {

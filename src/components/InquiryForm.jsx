@@ -58,7 +58,7 @@ export function InquiryForm() {
   const [errors, setErrors] = useState({});
   const [submitState, setSubmitState] = useState("idle");
   const [message, setMessage] = useState(
-    inquiryEnabled ? "" : "在线咨询功能准备中；开放后可直接在此提交。",
+    "",
   );
 
   function fieldProps(name, options = {}) {
@@ -112,21 +112,15 @@ export function InquiryForm() {
 
   return (
     <form className="inquiry-form" ref={formRef} noValidate aria-busy={submitState === "submitting"} onSubmit={handleSubmit}>
+      {!inquiryEnabled ? <div className="inquiry-availability" role="status"><strong>在线提交功能准备中</strong><p>目前可先整理下方需求信息。在线提交开放前，可通过上方商务邮箱联系我们。</p></div> : null}
       <header className="inquiry-form__header">
         <div>
-          <p>Task brief / 任务简报</p>
-          <h2>填写项目需求</h2>
-          <p className="inquiry-form__intro">以下信息用于理解任务背景与合作诉求。</p>
+          <h2>需求信息</h2>
         </div>
         <span><b>*</b> 为必填项</span>
       </header>
 
       <div className="inquiry-form__grid">
-        <div className="inquiry-form__section-heading">
-          <span>01</span>
-          <strong>联系信息</strong>
-          <small>CONTACT</small>
-        </div>
         <Field label="姓名" name="name" required error={errors.name}>
           {(errorId) => <input {...fieldProps("name", { autoComplete: "name", required: true })} aria-describedby={errorId} maxLength="80" />}
         </Field>
@@ -145,12 +139,7 @@ export function InquiryForm() {
         <Field label="联系电话" name="phone" required error={errors.phone}>
           {(errorId) => <input {...fieldProps("phone", { type: "tel", inputMode: "tel", autoComplete: "tel", required: true })} aria-describedby={errorId} maxLength="30" />}
         </Field>
-        <div className="inquiry-form__section-heading">
-          <span>02</span>
-          <strong>任务信息</strong>
-          <small>PROJECT</small>
-        </div>
-        <Field label="产品" name="product" error={errors.product}>
+        <Field label="意向产品" name="product" error={errors.product}>
           {(errorId) => <input {...fieldProps("product", { readOnly: true })} aria-describedby={errorId} />}
         </Field>
         <Field label="应用场景" name="application" required error={errors.application}>
@@ -163,7 +152,7 @@ export function InquiryForm() {
         </Field>
         <label className="inquiry-form__field inquiry-form__field--message" htmlFor="inquiry-message">
           <span>需求说明</span>
-          <textarea {...fieldProps("message")} rows="6" maxLength="2000" placeholder="请写明工作环境、任务对象、目标动作，以及希望采用的合作方式。" />
+          <textarea {...fieldProps("message")} rows="3" maxLength="2000" placeholder="请说明产品需求、任务场景或合作意向。" />
         </label>
       </div>
 
@@ -175,7 +164,7 @@ export function InquiryForm() {
       <footer className="inquiry-form__footer">
         <p>了解我们如何处理你提交的信息，请查看 <Link to="/policy/privacy">隐私政策</Link>。</p>
         <button type="submit" disabled={!inquiryEnabled || submitState === "submitting"}>
-          <span>{!inquiryEnabled ? "暂未开放" : submitState === "submitting" ? "发送中" : "提交项目需求"}</span>
+          <span>{!inquiryEnabled ? "在线提交准备中" : submitState === "submitting" ? "发送中" : "提交需求"}</span>
           <span aria-hidden="true">→</span>
         </button>
       </footer>

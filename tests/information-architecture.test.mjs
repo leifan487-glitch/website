@@ -4,27 +4,31 @@ import test from "node:test";
 
 const source = async (path) => readFile(new URL(path, import.meta.url), "utf8");
 
-test("Home composes the complete company-level V0 story", async () => {
+test("Task 018.2 Home composes the information-first product story", async () => {
   const homePage = await source("../src/pages/HomePage.jsx");
 
   assert.match(homePage, /ProductHero/);
   assert.match(homePage, /HomeMantisIntro/);
   assert.match(homePage, /RealWorld/);
   assert.match(homePage, /HomeApplications/);
-  assert.match(homePage, /HomeAbout/);
-  assert.match(homePage, /FinalCta/);
-  assert.doesNotMatch(homePage, /HomeTechnology/);
+  assert.doesNotMatch(homePage, /HomeAbout|FinalCta/);
+  assert.match(homePage, /HomeOfficialFilm/);
+  assert.match(homePage, /HomeForms/);
+  assert.match(homePage, /HomeWhyModular/);
+  assert.match(homePage, /HomeTechnology/);
+  assert.match(homePage, /HomeContact/);
   assert.doesNotMatch(homePage, /HomeLatest/);
   assert.doesNotMatch(homePage, /MantisProductDetail/);
   assert.doesNotMatch(homePage, /components\/MantisIntro/);
 });
 
-test("Standard product page owns the full idea and product detail sections", async () => {
+test("Task 018.3 Standard owns a dedicated product story instead of repeated introduction sections", async () => {
   const productPage = await source("../src/pages/MantisStandardPage.jsx");
 
   assert.match(productPage, /ProductPageHeader/);
-  assert.match(productPage, /MantisIntro/);
-  assert.match(productPage, /MantisProductDetail/);
+  assert.match(productPage, /StandardProductSections/);
+  assert.match(productPage, /StandardPageMotion/);
+  assert.doesNotMatch(productPage, /MantisIntro|MantisProductDetail/);
   assert.doesNotMatch(productPage, /RealWorld/);
 });
 

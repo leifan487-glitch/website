@@ -6,6 +6,8 @@ const PUBLIC_ROUTES = new Set([
   "/applications",
   "/about",
   "/news",
+  "/support",
+  "/support/contact",
   "/support/documents",
   "/support/downloads",
   "/support/videos",
@@ -19,7 +21,6 @@ const PUBLIC_REDIRECTS = new Map([
   ["/products", "/products/mantis-standard"],
   ["/products/mantis-pro", "/products/mantis-standard"],
   ["/contact", "/inquiry"],
-  ["/support", "/support/videos"],
 ]);
 const SECURITY_HEADERS = {
   "Content-Security-Policy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; media-src 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'",

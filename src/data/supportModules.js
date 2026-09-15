@@ -15,9 +15,9 @@ export const supportModules = {
     index: "02",
     title: "下载中心",
     label: "Downloads",
-    description: "产品资料、开发资源与软件工具的发布入口。",
+    description: "下载使用说明、交付清单、安全说明与开发手册。",
     href: "/support/downloads",
-    publicVisible: false,
+    publicVisible: true,
   },
   videos: {
     id: "videos",
@@ -27,15 +27,25 @@ export const supportModules = {
     description: "Mantis Standard 产品与任务视频。",
     href: "/support/videos",
     publicVisible: true,
+    primaryNavigation: false,
   },
   service: {
     id: "service",
     index: "04",
-    title: "售后服务",
+    title: "售后与服务",
     label: "After-sales",
     description: "产品使用与设备问题的支持入口。",
     href: "/support/service",
-    publicVisible: false,
+    publicVisible: true,
+  },
+  contact: {
+    id: "contact",
+    index: "05",
+    title: "联系支持",
+    label: "Contact support",
+    description: "通过官方邮箱联系，说明产品使用问题或合作需求。",
+    href: "/support/contact",
+    publicVisible: true,
   },
   knowledge: {
     id: "knowledge",
@@ -73,5 +83,5 @@ export function isSupportModuleVisible(
 }
 
 export function getVisibleSupportModules(options) {
-  return Object.values(supportModules).filter((module) => isSupportModuleVisible(module.id, options));
+  return Object.values(supportModules).filter((module) => module.primaryNavigation !== false && isSupportModuleVisible(module.id, options));
 }

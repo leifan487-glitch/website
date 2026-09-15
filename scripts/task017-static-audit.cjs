@@ -17,12 +17,15 @@ const clientBundles = files.filter((path) => /assets[\\/]index-[\w-]+\.js$/.test
 const clientText = clientBundles.map((path) => readFileSync(path, "utf8")).join("\n");
 const discoveredEmails = [...clientText.matchAll(/[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/g)].map((match) => match[0]);
 const thirdPartyLicenseEmails = discoveredEmails.filter((email) => email === "jack@greensock.com");
+// Task 018.1 approves this one public contact address; all other email checks remain.
+const approvedPublicEmails = discoveredEmails.filter((email) => email === "business@bluewormrobotics.com");
 const checks = {
   cloudflareWorker: existsSync(join(dist, "_worker.js")),
   cloudflareHeaders: existsSync(join(dist, "_headers")),
   sourceMaps: files.filter((path) => path.endsWith(".map")).map((path) => relative(dist, path)),
   localWindowsPaths: [...clientText.matchAll(/[A-Z]:\\[^"'`\s]+/g)].map((match) => match[0]),
-  hardcodedEmails: discoveredEmails.filter((email) => email !== "jack@greensock.com"),
+  hardcodedEmails: discoveredEmails.filter((email) => !["jack@greensock.com", "business@bluewormrobotics.com"].includes(email)),
+  approvedPublicEmails,
   thirdPartyLicenseEmails,
   leakedSecretShapes: [...clientText.matchAll(/(?:Bearer\s+[A-Za-z0-9._-]{16,}|re_[A-Za-z0-9_-]{16,})/g)].map((match) => match[0]),
   publicDebugCopy: ["TODO ·", "NEEDS CONFIRMATION", "HIGH RISK", "Backend Pending"].filter((value) => clientText.includes(value)),

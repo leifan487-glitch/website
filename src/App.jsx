@@ -12,6 +12,8 @@ import {
   DownloadsPage,
   KnowledgePage,
   ServicePage,
+  SupportOverviewPage,
+  SupportContactPage,
   VideosPage,
 } from "./pages/SupportPages.jsx";
 import { InquiryPage } from "./pages/InquiryPage.jsx";
@@ -66,9 +68,17 @@ function ScrollToTop() {
 }
 
 export function App() {
+  function skipNavigation(event) {
+    const target = document.querySelector("main h1") || document.getElementById("main-content");
+    if (!target) return;
+    event.preventDefault();
+    // Navbar lives inside main: focus the content heading so Tab truly bypasses it.
+    target.setAttribute("tabindex", "-1");
+    target.focus();
+  }
   return (
     <>
-      <a className="skip-link" href="#main-content">
+      <a className="skip-link" href="#main-content" onClick={skipNavigation}>
         跳到主要内容
       </a>
       <ScrollToTop />
@@ -82,7 +92,8 @@ export function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/contact" element={<Navigate to="/inquiry" replace />} />
-        <Route path="/support" element={<Navigate to="/support/videos" replace />} />
+        <Route path="/support" element={<SupportOverviewPage />} />
+        <Route path="/support/contact" element={<SupportContactPage />} />
         <Route path="/support/documents" element={<DocumentsPage />} />
         <Route path="/support/downloads" element={<DownloadsPage />} />
         <Route path="/support/videos" element={<VideosPage />} />

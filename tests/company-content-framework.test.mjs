@@ -56,21 +56,23 @@ test("public company selection requires VERIFIED and explicit approval", () => {
   assert.equal(selectCompanyContent(publicProjectRecords, { publicMode: true }).length, 5);
 });
 
-test("company pages expose the immersive V2 IA and explicit public fallbacks", async () => {
+test("Task 018.4 company pages expose compact approved content and public guards", async () => {
   const [technology, applications, about, progress] = await Promise.all([
     source("../src/pages/TechnologyPage.jsx"),
     source("../src/pages/ApplicationsPage.jsx"),
     source("../src/pages/AboutPage.jsx"),
     source("../src/pages/NewsPage.jsx"),
   ]);
-  for (const token of ["TechnologyExplorer", "companyTechnologyPlatforms", "technology-field", "TECHNOLOGY INQUIRY"]) assert.match(technology, new RegExp(token));
+  for (const token of ["TechnologyExplorer", "alignedPlatforms", "ecosystem-title"]) assert.match(technology, new RegExp(token));
+  assert.doesNotMatch(technology, /TECHNOLOGY INQUIRY|to="\/inquiry"/);
   assert.deepEqual(companyTechnologyPlatforms.map((item) => item.name), ["Silkworm", "Quantum", "Wormhole", "Honeycomb"]);
-  for (const token of ["application-spectrum", "application-scenes", "getStandardMediaByUsage", "PROJECT INQUIRY"]) assert.match(applications, new RegExp(token));
-  for (const token of ["companyIdentity", "companyMission", "leadership", "intellectualPropertyCopy", "about-story", "about-belief", "about-practice"]) assert.match(about, new RegExp(token));
+  for (const token of ["aligned-scenarios", "aligned-scenes", "getStandardMediaByUsage"]) assert.match(applications, new RegExp(token));
+  assert.doesNotMatch(applications, /PROJECT INQUIRY|to="\/inquiry"/);
+  for (const token of ["companyIdentity", "companyMission", "leadership", "intellectualPropertyCopy", "aligned-mission", "aligned-build", "aligned-people"]) assert.match(about, new RegExp(token));
   for (const token of ["COMPANY / PROGRESS", "COMPETITIONS", "媒体报道"]) assert.match(progress, new RegExp(token));
-  assert.match(technology, /companyPublicMode/);
+  assert.match(technology, /alignedPlatforms/);
   assert.doesNotMatch(applications, /companyProjects|companyPublicMode|InternalStatus/);
-  assert.match(about, /!companyPublicMode/);
+  assert.match(about, /selectCompanyContent\(leadership, \{publicMode:true\}\)/);
   assert.doesNotMatch(progress, /evidenceQueue|progressEvidenceRecords|NEEDS CONFIRMATION|companyPublicMode|InternalStatus/);
 });
 

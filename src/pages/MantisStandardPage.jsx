@@ -1,17 +1,18 @@
-import { MantisIntro } from "../components/MantisIntro.jsx";
-import { MantisProductDetail } from "../components/MantisProductDetail.jsx";
+import { useRef } from "react";
 import { ProductPageHeader } from "../components/ProductPageHeader.jsx";
 import { Footer } from "../components/Footer.jsx";
 import { StandardProductSections } from "../components/StandardProductSections.jsx";
 import { ProductSectionRail } from "../components/ProductSectionRail.jsx";
+import { StandardPageMotion } from "../components/StandardPageMotion.jsx";
+import "../standard-page.css";
 
 export function MantisStandardPage() {
+  const mainRef = useRef(null);
   return (
-    <><main id="main-content">
+    <><main id="main-content" className="standard-page-v2" ref={mainRef}>
+      <StandardPageMotion scopeRef={mainRef} />
       <ProductSectionRail />
       <ProductPageHeader />
-      <MantisIntro />
-      <MantisProductDetail />
       <StandardProductSections />
     </main><Footer /></>
   );

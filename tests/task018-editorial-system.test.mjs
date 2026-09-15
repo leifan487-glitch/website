@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const source = (relativePath) => fs.readFile(path.join(root, relativePath), "utf8");
 
-test("Task 018 uses one editorial heading component across key product and company surfaces", async () => {
+test("Task 018.4 keeps locked heading surfaces and gives remaining pages compact semantic headings", async () => {
   const [component, product, technology, applications, about, documents, videos] = await Promise.all([
     source("src/components/EditorialHeading.jsx"),
     source("src/components/StandardProductSections.jsx"),
@@ -21,9 +21,16 @@ test("Task 018 uses one editorial heading component across key product and compa
   assert.match(component, /editorial-heading__meta/);
   assert.match(component, /editorial-heading__title/);
   assert.match(component, /editorial-heading__detail/);
-  for (const file of [product, technology, applications, about, documents, videos]) {
+  for (const file of [product, videos]) {
     assert.match(file, /EditorialHeading/);
   }
+  for (const file of [technology, applications, about]) {
+    assert.match(file, /<h2/);
+    assert.match(file, /aria-labelledby/);
+    assert.match(file, /aligned-/);
+  }
+  assert.match(documents, /support-page-heading/);
+  assert.match(documents, /document-center__workspace/);
 });
 
 test("Task 018 keeps the final product family height-contained on wide screens", async () => {

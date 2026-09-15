@@ -2,6 +2,7 @@ import { productHeroProducts } from "../data/productHeroProducts.js";
 import { Navbar } from "./Navbar.jsx";
 import { Link } from "react-router-dom";
 import { InternalStatus } from "./InternalStatus.jsx";
+import { standardCommercial } from "../data/standard/commercial.js";
 
 export function ProductHero() {
   const activeProduct = productHeroProducts[0];
@@ -53,6 +54,8 @@ export function ProductHero() {
               <p className="product-hero__positioning">
                 {activeProduct.heroDefinition || activeProduct.positioning}
               </p>
+
+              <p className="product-hero__price">{standardCommercial.publicStartingPrice}</p>
 
               <Link className="text-link product-hero__cta" to={activeProduct.cta.href}>
                 <span>{activeProduct.cta.label}</span>

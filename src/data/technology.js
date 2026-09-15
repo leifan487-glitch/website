@@ -3,7 +3,7 @@ import { withCompanySource } from "./company/source.js";
 export const technologySystem = {
   id: "technology-system-v1",
   title: "Blue Worm Technology System",
-  summary: "Mantis 机器人本体与 Silkworm、Quantum、Wormhole、Honeycomb 四个平台共同构成蓝虫具身的技术体系。",
+  summary: "Mantis Standard 机器人本体与 Silkworm、Quantum、Wormhole、Honeycomb 四个平台共同构成蓝虫具身的技术体系。",
   sourceId: "BW-COMPANY-INTRO-036P",
   sourcePage: "7–11",
   contentStatus: "VERIFIED",
@@ -22,7 +22,7 @@ export const companyTechnologyPlatforms = [
 ];
 
 export const technologySystemNodes = [
-  { id: "mantis", name: "Mantis", label: "Robot body", kind: "body" },
+  { id: "mantis", name: "Mantis Standard", label: "Robot body", kind: "body" },
   ...companyTechnologyPlatforms.map(({ id, name, label }) => ({ id, name, label, kind: "platform" })),
 ];
 

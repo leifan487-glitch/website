@@ -74,16 +74,16 @@ async function auditInteractions(browser) {
   await page.waitForTimeout(250);
   const reelPausedOffscreen = await page.locator(".real-world video").evaluate((video) => video.paused);
 
-  await page.getByRole("button", { name: "产品" }).click();
-  const productMenuOpen = await page.getByRole("button", { name: "产品" }).getAttribute("aria-expanded");
+  await page.getByRole("button", { name: "产品", exact: true }).click();
+  const productMenuOpen = await page.getByRole("button", { name: "产品", exact: true }).getAttribute("aria-expanded");
   await context.close();
 
   const mobileContext = await browser.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: "reduce" });
   const mobilePage = await mobileContext.newPage();
   await mobilePage.goto(`${baseUrl}/inquiry`, { waitUntil: "load" });
   const inquiry = {
-    disabled: await mobilePage.getByRole("button", { name: "暂未开放" }).isDisabled(),
-    status: await mobilePage.locator(".inquiry-form__status").innerText(),
+    disabled: await mobilePage.locator('.inquiry-form button[type="submit"]').isDisabled(),
+    status: await mobilePage.locator(".inquiry-availability").innerText(),
   };
   await mobilePage.getByRole("button", { name: "菜单" }).click();
   const mobileMenuOpen = await mobilePage.getByRole("button", { name: "关闭" }).getAttribute("aria-expanded");

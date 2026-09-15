@@ -46,7 +46,8 @@ test("Inquiry keeps the confirmed fields and submits through the website API", a
   for (const direction of ["科研测试", "商业服务", "家庭服务", "仓储物流", "柔性制造", "特种行业", "其他"]) {
     assert.match(form, new RegExp(direction));
   }
-  assert.match(inquiry, /inquiry-folder/);
+  assert.match(inquiry, /aligned-inquiry/);
+  assert.doesNotMatch(inquiry, /inquiry-folder/);
   assert.match(form, /fetch\("\/api\/inquiry"/);
   assert.match(form, /submitting/);
   assert.match(form, /success/);
@@ -63,8 +64,9 @@ test("Home and Standard page expose confirmed copy without changing the locked h
     source("../src/components/StandardProductSections.jsx"),
   ]);
   assert.match(hero, /product-hero__values/);
-  assert.match(intro, /机器人 \+ 效率工具/);
-  assert.match(intro, /消费级 · 一脑多形，真模块化/);
+  assert.match(intro, /双臂移动操作机器人/);
+  assert.match(intro, /一脑多形/);
+  assert.match(intro, /真模块化/);
   assert.match(sections, /aria-expanded/);
   assert.match(sections, /aria-controls/);
   assert.match(sections, /id="questions"/);

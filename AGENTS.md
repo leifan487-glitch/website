@@ -1,5 +1,39 @@
 # Prototype Instructions
 
+## 2026-09-14 Task 018.5 RC-018.5
+
+- 018.4 已由最新任务卡 ACCEPT / LOCK；首页与Standard结构/视觉继续锁定，六问仍 OWNER COPY REVIEW REQUIRED。
+- 本轮只修手机菜单视口/背景/键盘、视频卸载资源、skip-link，并做静态中文、询盘邮箱去重、390文档分类三个P2；六个src文件是明确例外，不允许扩展重设计。
+- `internal/task0185-locked-files.json` 保存144个开工哈希和六个带原因例外；其余138文件含所有页面、qa.js、public和Worker完全不改。
+- RC-018.5 为本地候选，不是Production批准；未commit/push/deploy，不进入018.6。报告 `../docs/final/TASK0185_FINAL_QA_REPORT.md`，部署前必须取得负责人/ChatGPT明确批准。
+- 原始bundle中框架/治理关键词与实际公开DOM分开记录，不声称原始token全部清零；Legal、六问、媒体授权与正式域名仍需负责人决定。
+
+## 2026-09-14 Task 018.4 remaining pages alignment
+
+- 最新任务卡：Homepage 018.2 + 018.2R LOCK；Standard 018.3 STRUCTURE / VISUAL LOCK；六问 OWNER COPY REVIEW REQUIRED，qa.js 不改。
+- 本轮只对 Technology / Applications / About / Inquiry 做信息优先收口并核验 Support。四技术平台中文优先；六应用方向配任务解释；About 收缩；询盘白底紧凑表单与明确 disabled 提示；导航四支持入口和四 PDF 不变。
+- `internal/task0184-locked-files.json` 锁定首页、Standard、六问、后端、共享数据与全部既有媒体。136 项哈希测试通过；018.3 历史锁仅对本轮七个获授权实现文件例外，不重置基线。
+- 本地完成待 ChatGPT 独立 Review，无 commit / push / deploy，未开始 018.5。完整证据 `../docs/boss-review/TASK0184_REMAINING_PAGES_ALIGNMENT.md`。
+
+## 2026-09-14 Task 018.3 Standard product revision
+
+- 最新任务卡确认 018.2 + 018.2R ACCEPT / HOMEPAGE LOCK；本轮只重构 `/products/mantis-standard`，不改首页或其他独立页、不部署、不进入 018.4。
+- 产品页偏 Product Documentation / Editorial；十二节信息路径，章节标题克制、参数可检索、六问默认摘要并可展开。复用六形态 WebP、批准任务、四份 PDF、单一价格常量；不新增媒体或渠道下载。
+- 六问原始 Word 已定位，公开边界仍优先于原文中的数值 / 比较 / 未来规划；逐项差异与参数冲突见 `../docs/boss-review/TASK0183_STANDARD_PRODUCT_REVISION.md`。等待 ChatGPT 独立 Visual Review，不把实现完成等同 ACCEPT。
+- `internal/task0183-locked-files.json` 锁定本轮不得变更的首页、共享样式、其他页面、参数及 public 资源；后续任务如需变更必须有新授权，不为通过测试随意重置哈希。
+
+## 2026-09-14 Task 018.2R Homepage refinement
+
+- 只收口 Hero 产品名层级、六形态与 Why Modular；不改 018.2 IA、影片顺序或独立页面。无部署，等待 ChatGPT Final Homepage Review，未开始 018.3。
+- 六形态使用正式宣传片真实帧：机械臂 / 工程 / 底盘 / 双臂 / 巡检 / 完整。它们是同一 Mantis Standard 的组合形态，不是六 SKU；不添加参数、套餐或配置等级。
+- 派生 WebP 溯源保存在 `internal/task0182r-form-posters.json`。原片与锁定 Hero / Reel 字节不改；静态图 lazy load，官方影片 / Real World 首屏请求继续为 0。
+
+## 2026-09-14 Task 018.2 Homepage override
+
+- Task 018.1 ACCEPT / Task 018.1A ACCEPT WITH CONFLICT RULES。首页本轮按“内容少、清楚、实用”重排信息；覆盖旧第二屏布局锁定及旧首页不公开价格限制，仅批准 `0.98 万起`，不推导配置或交付条件。
+- A01644、现有 Reel 字节及导航 / 页脚视觉不变；官方影片点击才加载，Real World 保留近视口准备 / 离屏暂停。首页减少重复产品入口、使命大字和页内询盘。
+- 仅 Homepage；Standard / Technology / Applications 独立页、Support、后端、Legal 与生产配置不在本轮范围。无 push / deploy；等待 ChatGPT 独立 Review 后才能开始 Task 018.3。
+
 Run the local server yourself and open the preview in the browser available to this environment. Do not give the user server-start instructions when you can run it.
 
 Before making substantial visual changes, use the Product Design plugin's `get-context` skill when the visual source is unclear or no longer matches the current goal. When the user gives durable prototype-specific design feedback, preferences, or decisions, record them in `AGENTS.md`.

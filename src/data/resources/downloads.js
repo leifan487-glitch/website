@@ -13,5 +13,5 @@ export const downloadResourceFields = [
   "publicApproved",
 ];
 
-export const downloadResources = [];
-
+// Viewing and downloading use the same approved files and metadata.
+export { documentResources as downloadResources } from "./documents.js";

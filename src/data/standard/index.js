@@ -7,3 +7,4 @@ export { standardQa, standardQaSource } from "./qa.js";
 export { standardConfigurations } from "./configurations.js";
 export { standardDerivedMedia, standardMedia, standardTaskMedia, standardTaskMediaFields, getStandardMediaByUsage, hasPublicStandardTaskMedia, isPublicStandardMedia } from "./media.js";
 export { standardPublicMode, isApprovedStandardContent, selectStandardContent } from "./visibility.js";
+export { officialProductFilm } from "./officialFilm.js";

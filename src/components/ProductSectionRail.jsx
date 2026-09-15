@@ -2,13 +2,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const productSections = [
   { id: "product-top", label: "OVERVIEW" },
-  { id: "mantis", label: "IDEA" },
-  { id: "standard", label: "DETAIL" },
+  { id: "overview", label: "产品概览" },
   { id: "modular", label: "MODULAR" },
+  { id: "six-forms", label: "六种形态" },
+  { id: "why-modular", label: "模块化价值" },
   { id: "capability-system", label: "SYSTEM" },
   { id: "real-tasks", label: "TASKS" },
+  { id: "development", label: "开发路径" },
   { id: "specifications", label: "SPECS" },
   { id: "questions", label: "QUESTIONS" },
+  { id: "product-documents", label: "资料与开发" },
   { id: "product-inquiry", label: "INQUIRY" },
 ];
 

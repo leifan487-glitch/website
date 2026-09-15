@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import { DocumentCenter } from "../components/DocumentCenter.jsx";
 import { Footer } from "../components/Footer.jsx";
 import { EmptyState } from "../components/EmptyState.jsx";
-import { InternalStatus } from "../components/InternalStatus.jsx";
+import { Navbar } from "../components/Navbar.jsx";
 import { PageHero } from "../components/PageHero.jsx";
-import { PendingForm } from "../components/PendingForm.jsx";
 import { ResourceCenter } from "../components/ResourceCenter.jsx";
 import { VideoCenter } from "../components/VideoCenter.jsx";
 import { documentResources } from "../data/resources/documents.js";
 import { downloadResources } from "../data/resources/downloads.js";
 import { knowledgeResources } from "../data/resources/knowledge.js";
 import { getVisibleSupportModules, isSupportModuleVisible, supportModules } from "../data/supportModules.js";
+import { businessEmail, businessEmailHref } from "../data/contact.js";
 
 function SupportModuleGate({ moduleId, children }) {
   if (isSupportModuleVisible(moduleId)) return children;
@@ -20,8 +20,8 @@ function SupportModuleGate({ moduleId, children }) {
       <main id="main-content">
         <PageHero eyebrow={`SUPPORT / ${module.label.toUpperCase()}`} title={module.title} intro="该内容当前未在公开模式开放。" />
         <section className="resource-center page-shell">
-          <EmptyState eyebrow="SUPPORT MODULE" title="该内容暂未开放" description="请返回支持中心查看当前可用内容。" />
-          <Link className="text-link" to="/support">返回支持中心</Link>
+          <EmptyState eyebrow="SUPPORT MODULE" title="该内容暂未开放" description="请返回服务与支持查看当前可用内容。" />
+          <Link className="text-link" to="/support">返回服务与支持</Link>
         </section>
       </main>
       <Footer />
@@ -31,30 +31,16 @@ function SupportModuleGate({ moduleId, children }) {
 
 export function SupportOverviewPage() {
   return (
-    <>
-      <main id="main-content">
-        <PageHero eyebrow="BLUE WORM / SUPPORT" title="支持中心" intro="文档、下载、视频、售后与知识内容的统一入口。" />
-        <section className="support-directory page-shell" aria-labelledby="support-directory-title">
-          <header>
-            <p>RESOURCE NAVIGATION</p>
-            <h2 id="support-directory-title">支持与资源</h2>
-            <InternalStatus as="p" status="TODO">正式资源与服务流程正在准备中</InternalStatus>
-          </header>
-          <nav aria-label="支持资源">
-            {getVisibleSupportModules().map((item) => (
+    <SupportLayout title="服务与支持" intro="从使用说明到开发资料，查找 Mantis Standard 所需的文档与帮助。">
+          <nav className="support-resource-directory" aria-label="服务与支持资源">
+            {getVisibleSupportModules({ publicPreview: true }).map((item) => (
               <Link key={item.id} to={item.href}>
-                <span>{item.index}</span>
-                <strong>{item.title}</strong>
-                <span>{item.label}</span>
-                <p>{item.description}</p>
+                <div><h2>{item.title}</h2><p>{item.description}</p></div>
                 <span aria-hidden="true">→</span>
               </Link>
             ))}
           </nav>
-        </section>
-      </main>
-      <Footer />
-    </>
+    </SupportLayout>
   );
 }
 
@@ -63,7 +49,7 @@ export function DocumentsPage() {
 }
 
 export function DownloadsPage() {
-  return <SupportModuleGate moduleId="downloads"><ResourceCenter eyebrow="SUPPORT / DOWNLOADS" title="下载中心" intro="产品资料、开发资源与软件工具的统一下载入口。" sectionLabel="MANTIS STANDARD" emptyTitle="资料准备中" emptyText="当前暂无可公开下载资源。" resources={downloadResources} /></SupportModuleGate>;
+  return <SupportModuleGate moduleId="downloads"><DocumentCenter resources={downloadResources} mode="downloads" /></SupportModuleGate>;
 }
 
 export function VideosPage() {
@@ -74,32 +60,41 @@ export function KnowledgePage() {
   return <SupportModuleGate moduleId="knowledge"><ResourceCenter eyebrow="SUPPORT / KNOWLEDGE" title="知识库" intro="经确认的产品使用、开发与故障排查内容将在此归档。" sectionLabel="MANTIS STANDARD" emptyTitle="内容正在整理中" emptyText="当前暂无可公开知识条目。" resources={knowledgeResources} /></SupportModuleGate>;
 }
 
-const serviceFields = [
-  { name: "service-name", label: "姓名", required: true, autoComplete: "name" },
-  { name: "service-company", label: "公司 / 机构", required: true, autoComplete: "organization" },
-  { name: "service-contact", label: "联系方式", type: "tel", inputMode: "tel", required: true, validation: "phone", autoComplete: "tel" },
-  { name: "service-product", label: "产品", defaultValue: "Mantis Standard", readOnly: true },
-  { name: "service-issue", label: "问题类型", as: "select", options: ["请选择", "产品使用", "设备问题", "其他"] },
-  { name: "service-description", label: "问题描述", as: "textarea", rows: 6 },
-];
+function SupportLayout({ title, intro, children }) {
+  return <>
+    <main id="main-content" className="support-practical-page">
+      <Navbar theme="light" homeHref="/" />
+      <section className="support-practical page-shell" aria-labelledby="support-title">
+        <header className="support-page-heading">
+          {title !== "服务与支持" ? <nav aria-label="面包屑"><Link to="/support">服务与支持</Link><span aria-hidden="true"> / </span><span>{title}</span></nav> : null}
+          <h1 id="support-title">{title}</h1><p>{intro}</p>
+        </header>
+        {children}
+      </section>
+    </main><Footer />
+  </>;
+}
 
 export function ServicePage() {
   return (
     <SupportModuleGate moduleId="service">
-      <>
-      <main id="main-content">
-        <PageHero eyebrow="SUPPORT / SERVICE" title="售后服务" intro="为产品使用或设备问题预留统一支持入口。" />
-        <section className="form-page page-shell">
-          <div className="form-page__context">
-            <p>AFTER-SALES SERVICE</p>
-            <h2>支持入口已建立，正式流程待确认。</h2>
-            <InternalStatus as="p" status="TODO">官方售后流程、接收方与处理时效待确认</InternalStatus>
-          </div>
-          <PendingForm title="售后支持信息" fields={serviceFields} backendText="售后接收后台待接入" />
-        </section>
-      </main>
-      <Footer />
-      </>
+      <SupportLayout title="售后与服务" intro="查阅产品使用与安全说明，或联系蓝虫说明设备问题。">
+        <div className="support-help-content">
+          <section><h2>使用前查阅</h2><p>使用说明书与注意事项可在线查看，也可下载保存。</p><Link className="text-link" to="/support/documents">查看产品文档</Link></section>
+          <section><h2>描述设备问题</h2><p>联系时可附上产品型号、问题现象、发生条件及相关图片，便于了解情况。请勿发送密码或其他敏感信息。</p><Link className="text-link" to="/support/contact">联系支持</Link></section>
+        </div>
+      </SupportLayout>
     </SupportModuleGate>
   );
+}
+
+export function SupportContactPage() {
+  return <SupportModuleGate moduleId="contact">
+    <SupportLayout title="联系支持" intro="产品使用问题与商务合作需求，可通过官方邮箱联系蓝虫。">
+      <div className="support-help-content">
+        <section><h2>官方联系邮箱</h2><a className="support-email" href={businessEmailHref}>{businessEmail}</a><p>请在邮件中说明产品型号、问题或需求，并留下方便联系的方式。</p></section>
+        <section><h2>查找产品资料</h2><p>Mantis Standard 使用说明、交付清单、注意事项与开发手册集中在文档中心。</p><Link className="text-link" to="/support/documents">前往文档中心</Link></section>
+      </div>
+    </SupportLayout>
+  </SupportModuleGate>;
 }

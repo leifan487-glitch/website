@@ -67,7 +67,7 @@ function revealMedia(root, config) {
   const timeline = scrollTimeline(trigger, config.start || "top 84%");
   addFrom(timeline, frame, {
     clipPath: config.direction === -1 ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)",
-    y: 42,
+    y: window.matchMedia("(max-width: 700px)").matches ? 14 : 42,
     duration: 1.2,
   }, 0);
   addFrom(timeline, media, {
@@ -93,8 +93,8 @@ function createOpening(root) {
     clipPath: "inset(16% 0 0 0)", yPercent: 4, scaleY: 0.96,
     transformOrigin: "center bottom", duration: 1.42,
   }, 0.2);
-  addFrom(opening, hero.querySelector(".product-hero__positioning"), {
-    autoAlpha: 0, y: 38, duration: 0.82,
+  addFrom(opening, targets(hero, ".product-hero__positioning, .product-hero__price"), {
+    autoAlpha: 0, y: 24, duration: 0.82, stagger: 0.06,
   }, 0.58);
   addFrom(opening, hero.querySelector(".product-hero__cta"), {
     autoAlpha: 0, y: 24, duration: 0.72,
@@ -107,29 +107,19 @@ function createOpening(root) {
 function createHomepageMotion(root) {
   createOpening(root);
 
-  const mantisSection = root.querySelector(".home-mantis-intro");
-  if (mantisSection) {
-    const mantis = scrollTimeline(mantisSection, "top 72%");
-    addFrom(mantis, targets(mantisSection, ".home-mantis-intro__copy h2 span"), {
-      clipPath: "inset(0 100% 0 0)",
-      xPercent: -16,
-      scaleX: 0.82,
-      transformOrigin: "left center",
-      duration: 1.06,
-      stagger: 0.08,
+  const compact = window.matchMedia("(max-width: 700px)").matches;
+  revealHeader(root, {
+    section: ".home-difference",
+    title: "h2",
+    support: ".home-story-label, .home-story-heading > p, .home-difference__explanations article, .home-difference__note",
+  });
+  revealMedia(root, { trigger: ".home-film__frame", frame: ".home-film__frame" });
+  for (const selector of [".home-forms__gallery", ".home-why__items", ".home-technology-preview__items", ".home-tasks__items", ".home-news ul", ".home-partners ul"]) {
+    const container = root.querySelector(selector);
+    if (!container) continue;
+    addFrom(scrollTimeline(container, "top 86%"), [...container.children], {
+      autoAlpha: 0, y: compact ? 12 : 28, duration: 0.72, stagger: 0.08,
     }, 0);
-    addFrom(mantis, targets(mantisSection, ".home-mantis-intro__identity, .home-mantis-intro__definition, .home-mantis-intro__status, .home-mantis-intro__link"), {
-      autoAlpha: 0, y: 28, duration: 0.72, stagger: 0.07,
-    }, 0.24);
-    addFrom(mantis, mantisSection.querySelector(".home-mantis-intro__visual"), {
-      clipPath: "inset(0 0 100% 0)", y: 46, duration: 1.28,
-    }, 0.16);
-    addFrom(mantis, targets(mantisSection, ".home-mantis-intro__keywords li"), {
-      autoAlpha: 0, x: 24, duration: 0.7, stagger: 0.08,
-    }, 0.5);
-    addFrom(mantis, targets(mantisSection, ".home-mantis-intro__drawing span"), {
-      scaleX: 0, transformOrigin: "left center", duration: 1.1, stagger: 0.1,
-    }, 0.34);
   }
 
   revealHeader(root, {
@@ -144,59 +134,8 @@ function createHomepageMotion(root) {
     media: ".real-world__frame video",
   });
 
-  revealHeader(root, {
-    section: ".home-applications__masthead",
-    title: "h2",
-    support: ".home-section-name, :scope > p:last-child",
-    direction: -1,
-  });
-  const gallery = root.querySelector(".home-application-gallery");
-  if (gallery) {
-    const panels = targets(gallery, ":scope > li");
-    const timeline = scrollTimeline(gallery, "top 82%");
-    addFrom(timeline, panels, {
-      autoAlpha: 0, y: 72, duration: 0.92, stagger: 0.12,
-    }, 0);
-    panels.forEach((panel, index) => {
-      addFrom(timeline, panel.querySelector(".home-application-gallery__media"), {
-        clipPath: index % 2 ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)",
-        duration: 1.05,
-      }, 0.08 + index * 0.12);
-    });
-  }
-
-  const about = root.querySelector(".home-about");
-  if (about) {
-    const timeline = scrollTimeline(about, "top 74%");
-    addFrom(timeline, targets(about, ".home-about__copy h2 span"), {
-      clipPath: "inset(0 0 100% 0)", yPercent: 52, scaleY: 0.82,
-      transformOrigin: "left bottom", duration: 1.04, stagger: 0.1,
-    }, 0);
-    addFrom(timeline, targets(about, ".home-about__identity, .home-about__copy > p, .home-about__copy > .home-section-link"), {
-      autoAlpha: 0, y: 26, duration: 0.72, stagger: 0.07,
-    }, 0.32);
-    addFrom(timeline, about.querySelector(".home-about__signal"), {
-      autoAlpha: 0, scale: 0.82, rotate: -8, duration: 1.16,
-    }, 0.18);
-  }
-
-  const finalCta = root.querySelector(".final-cta");
-  if (finalCta) {
-    const timeline = scrollTimeline(finalCta, "top 78%");
-    addFrom(timeline, targets(finalCta, "h2 span, h2 strong"), {
-      clipPath: "inset(0 100% 0 0)", xPercent: -15, scaleX: 0.82,
-      transformOrigin: "left center", duration: 1.08, stagger: 0.08,
-    }, 0);
-    addFrom(timeline, finalCta.querySelector(".final-cta__media"), {
-      clipPath: "inset(100% 0 0 0)", y: 46, duration: 1.22,
-    }, 0.14);
-    addFrom(timeline, targets(finalCta, ".final-cta__links a"), {
-      autoAlpha: 0, y: 30, duration: 0.72, stagger: 0.1,
-    }, 0.5);
-  }
-
   if (window.matchMedia("(min-width: 769px)").matches) {
-    targets(root, ".home-mantis-intro__visual img, .real-world__frame video, .home-application-gallery__media img, .final-cta__media img")
+    targets(root, ".real-world__frame video")
       .forEach((item) => gsap.fromTo(item, {
         "--motion-media-y": "-3%",
       }, {

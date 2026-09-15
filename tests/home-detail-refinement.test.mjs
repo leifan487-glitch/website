@@ -7,15 +7,18 @@ const source = (path) => readFile(new URL(path, import.meta.url), "utf8");
 test("home hero uses the approved concise capability definition", async () => {
   const products = await source("../src/data/productHeroProducts.js");
   const hero = await source("../src/components/ProductHero.jsx");
-  assert.match(products, /heroDefinition:\s*"双臂操作 · 全向移动 · 灵活工作空间"/);
+  assert.match(products, /heroDefinition:\s*"一脑多形，真模块化"/);
   assert.match(hero, /activeProduct\.heroDefinition \|\| activeProduct\.positioning/);
   assert.doesNotMatch(hero, /InternalStatus as="p" className="product-hero__positioning"/);
 });
 
-test("the second home screen remains on its existing content model", async () => {
+test("Task 018.2 repurposes the second home screen to explain modularity", async () => {
   const intro = await source("../src/components/HomeMantisIntro.jsx");
-  assert.match(intro, /机器人 \+ 效率工具/);
-  assert.match(intro, /消费级 · 一脑多形，真模块化/);
+  assert.match(intro, /双臂移动操作机器人/);
+  assert.doesNotMatch(intro, /效率工具/);
+  assert.match(intro, /同一套智能与软件体系/);
+  assert.match(intro, /机器人由可组合模块构成/);
+  assert.doesNotMatch(intro, /进入产品页/);
   assert.doesNotMatch(intro, /550 mm|standardPublicSpecs|capabilities/);
 });
 
@@ -34,12 +37,12 @@ test("final home conversion uses explicit product and cooperation actions", asyn
   assert.match(cta, /采购\/合作/);
 });
 
-test("language selector exposes Chinese with honest English and Japanese pending states", async () => {
+test("Task 018.5 language is a static Chinese status until translations exist", async () => {
   const navbar = await source("../src/components/Navbar.jsx");
   assert.match(navbar, /GlobeSimple/);
   assert.match(navbar, /<span>中文<\/span>/);
-  assert.match(navbar, /<span>English<\/span>/);
-  assert.match(navbar, /<span>日本語<\/span>/);
-  assert.match(navbar, /<small>筹备中<\/small>/);
+  assert.match(navbar, /navbar__language-status/);
+  assert.match(navbar, /网站语言：中文/);
+  assert.doesNotMatch(navbar, /languageOpen|选择网站语言|<span>English<\/span>|<span>日本語<\/span>/);
   assert.doesNotMatch(navbar, /한국어/);
 });

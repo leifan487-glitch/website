@@ -63,13 +63,16 @@ export function StandardMediaPlayer({ media, homeLoop = false, className = "", l
     element.play().catch(() => setPlaying(false));
   }, [autoplay, homeLoop, inViewport, shouldLoad, video]);
 
-  useEffect(() => () => {
+  useEffect(() => {
     const element = videoRef.current;
-    if (!element) return;
-    element.pause();
-    element.removeAttribute("src");
-    element.load();
-  }, []);
+    if (!element) return undefined;
+    // Capture the mounted element: React clears the ref before passive cleanup.
+    return () => {
+      element.pause();
+      element.removeAttribute("src");
+      element.load();
+    };
+  }, [homeLoop, activated]);
 
   useEffect(() => {
     if (!activated || !videoRef.current) return;

@@ -7,10 +7,10 @@ import { getVisibleSupportModules, isSupportModuleVisible, supportModules } from
 const source = async (path) => readFile(new URL(path, import.meta.url), "utf8");
 
 test("Support module visibility preserves internal review and filters public preview", () => {
-  assert.deepEqual(Object.values(supportModules).filter((module) => module.publicVisible).map((module) => module.id), ["documents", "videos"]);
+  assert.deepEqual(Object.values(supportModules).filter((module) => module.publicVisible).map((module) => module.id), ["documents", "downloads", "videos", "service", "contact"]);
   assert.equal(isSupportModuleVisible("videos", { publicPreview: false, hiddenModuleIds: ["videos"] }), true);
   assert.equal(isSupportModuleVisible("videos", { publicPreview: true, hiddenModuleIds: ["videos"] }), false);
-  assert.deepEqual(getVisibleSupportModules({ publicPreview: true, hiddenModuleIds: ["downloads", "knowledge"] }).map((module) => module.id), ["documents", "videos"]);
+  assert.deepEqual(getVisibleSupportModules({ publicPreview: true, hiddenModuleIds: ["downloads", "knowledge"] }).map((module) => module.id), ["documents", "service", "contact"]);
 });
 
 test("sitemap source excludes redirects, Pro and hidden Support modules", () => {
@@ -90,7 +90,8 @@ test("forms use mobile input semantics and a local error description", async () 
   const inquiry = await source("../src/components/InquiryForm.jsx");
   const support = await source("../src/pages/SupportPages.jsx");
   assert.match(inquiry, /type: "tel"/);
-  assert.match(support, /type: "tel"/);
+  assert.doesNotMatch(support, /PendingForm|serviceFields/);
+  assert.match(support, /businessEmailHref/);
   assert.match(inquiry, /aria-describedby/);
   assert.match(inquiry, /role="alert"/);
   assert.match(inquiry, /required: true/);

@@ -72,11 +72,11 @@ test("serves known browser routes directly even when the asset binding redirects
 
 test("redirects legacy public routes before asset lookup", async () => {
   let calls = 0;
-  const response = await worker.fetch(new Request("https://example.test/support"), {
+  const response = await worker.fetch(new Request("https://example.test/contact"), {
     ASSETS: { fetch: async () => { calls += 1; return new Response("missing", { status: 404 }); } },
   });
   assert.equal(response.status, 308);
-  assert.equal(response.headers.get("Location"), "https://example.test/support/videos");
+  assert.equal(response.headers.get("Location"), "https://example.test/inquiry");
   assert.equal(calls, 0);
 });
 

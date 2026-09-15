@@ -1,67 +1,33 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "@phosphor-icons/react";
 import { Footer } from "../components/Footer.jsx";
-import { EditorialHeading } from "../components/EditorialHeading.jsx";
-import { InternalStatus } from "../components/InternalStatus.jsx";
 import { Navbar } from "../components/Navbar.jsx";
 import { SubpageMotion } from "../components/SubpageMotion.jsx";
 import { TechnologyExplorer } from "../components/TechnologyExplorer.jsx";
-import { companyPublicMode, selectCompanyContent } from "../data/company/visibility.js";
-import { companyTechnologyPlatforms, technologySystem } from "../data/technology.js";
+import { alignedPlatforms } from "../data/alignment.js";
+import { standardDevelopmentPaths } from "../data/standard/story.js";
+import "../alignment.css";
 
 export function TechnologyPage() {
   const mainRef = useRef(null);
-  const platforms = selectCompanyContent(companyTechnologyPlatforms);
-
-  return (
-    <>
-      <main id="main-content" ref={mainRef} className="technology-page">
-        <SubpageMotion scopeRef={mainRef} />
-
-        <section className="technology-hero" data-immersive-hero aria-labelledby="technology-title">
-          <Navbar theme="dark" homeHref="/" />
-          <div className="technology-hero__media" data-hero-media>
-            <img src="/assets/hero-standard-a01791.webp" alt="Mantis Standard 机器人本体结构局部" width="2200" height="1238" fetchPriority="high" data-parallax />
-          </div>
-          <div className="technology-hero__beam" aria-hidden="true" />
-          <div className="technology-hero__content page-shell">
-            <h1 id="technology-title" data-hero-title>
-              <span>TECHNOLOGY</span>
-              <span>连接本体、<br className="technology-hero__title-break" aria-hidden="true" />控制与智能。</span>
-            </h1>
-            <p data-hero-lead>{technologySystem.summary}</p>
-            {!companyPublicMode ? <InternalStatus status="SOURCE" data-hero-lead>PAGES {technologySystem.sourcePage} · RELATIONSHIP PARTIAL</InternalStatus> : null}
-          </div>
-        </section>
-
-        <TechnologyExplorer platforms={platforms} />
-
-        <section className="technology-field" data-motion-section aria-labelledby="technology-field-title">
-          <div className="technology-field__media" data-motion-media>
-            <img src="/assets/detail-standard-a01792.webp" alt="Mantis Standard 机器人本体细节" width="2200" height="1238" loading="lazy" decoding="async" data-parallax />
-          </div>
-          <EditorialHeading
-            as="div"
-            className="technology-field__copy page-shell"
-            meta="Robot body / system / workflow"
-            title="本体承载动作，系统连接任务。"
-            titleId="technology-field-title"
-            tone="dark"
-            motion
-            detail={<div>
-              <p>机器人本体承载动作，平台系统连接控制、感知、模型与数据工作流。</p>
-              <Link className="subpage-line-link" to="/products/mantis-standard"><span>了解 Mantis Standard</span><span aria-hidden="true">↗</span></Link>
-            </div>}
-          />
-        </section>
-
-        <section className="subpage-contact subpage-contact--blue page-shell" data-motion-section>
-          <p data-motion-copy>技术合作 / TECHNOLOGY INQUIRY</p>
-          <h2 data-motion-heading><span>从任务条件开始，</span><span>讨论技术方案。</span></h2>
-          <Link className="subpage-line-link" to="/inquiry" data-motion-copy><span>提交技术需求</span><span aria-hidden="true">→</span></Link>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+  return <>
+    <main id="main-content" ref={mainRef} className="aligned-page technology-aligned">
+      <SubpageMotion scopeRef={mainRef} compact />
+      <Navbar theme="light" homeHref="/" />
+      <section className="aligned-hero page-shell" aria-labelledby="technology-title">
+        <div><h1 id="technology-title">技术体系</h1><p className="aligned-lead">从机器人本体到遥操作、具身模型与云平台。</p><p>春茧、量子、虫洞与蜂巢分别连接本体、操作、模型和数据工作流。</p>
+          <nav className="aligned-index" aria-label="技术平台定位">{alignedPlatforms.map(p => <a key={p.id} href={"#" + p.id}>{p.nameZh}<ArrowRight size={16} aria-hidden="true" /></a>)}</nav>
+        </div>
+        <img src="/assets/hero-standard-a01791.webp" alt="Mantis Standard 机器人本体结构局部" width="2200" height="1238" fetchPriority="high" />
+      </section>
+      <TechnologyExplorer platforms={alignedPlatforms} />
+      <section className="aligned-section aligned-tint" data-motion-section aria-labelledby="ecosystem-title"><div className="page-shell">
+        <h2 id="ecosystem-title" data-motion-copy>开发生态</h2><p>连接仿真、控制、数据与操作验证。以下工具按具体配置与开发方案选用，不表示所有设备默认配备。</p>
+        <dl className="aligned-ecosystem">{standardDevelopmentPaths.map(item => <div key={item.id} data-motion-item><dt>{item.title}</dt><dd>{item.tools.join(" / ")}</dd></div>)}</dl>
+        <p className="aligned-note">BlueWorm SDK 为蓝虫开发接口；ROS 2、MoveIt 2、Isaac Sim、Genesis、LeRobot 及相关外部模型属于开发生态。</p>
+      </div></section>
+      <section className="aligned-related page-shell"><div><h2>Mantis Standard</h2><p>查看机器人形态、核心能力、公开参数与开发资料。</p></div><Link className="aligned-link" to="/products/mantis-standard">查看产品<ArrowRight size={20} aria-hidden="true" /></Link></section>
+    </main><Footer />
+  </>;
 }

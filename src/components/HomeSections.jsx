@@ -1,87 +1,17 @@
-import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { companyTechnologyPlatforms } from "../data/technology.js";
-import { newsItems } from "../data/news.js";
-import { companyIdentity, companyMission } from "../data/company.js";
 import { getStandardMediaByUsage } from "../data/standard/index.js";
-import { InternalStatus } from "./InternalStatus.jsx";
-import { companyPublicMode } from "../data/company/visibility.js";
-import { HomeApplicationGallery } from "./HomeApplicationGallery.jsx";
-
-function getNextIndex(index, key, length) {
-  if (key === "Home") return 0;
-  if (key === "End") return length - 1;
-  if (key === "ArrowDown" || key === "ArrowRight") return (index + 1) % length;
-  if (key === "ArrowUp" || key === "ArrowLeft") return (index - 1 + length) % length;
-  return null;
-}
+import { homeTechnologyPlatforms, getPublicHomeNews, getPublicHomePartners } from "../data/home.js";
+import { businessEmail, businessEmailHref } from "../data/contact.js";
 
 export function HomeTechnology() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const buttonRefs = useRef([]);
-  const activePlatform = companyTechnologyPlatforms[activeIndex];
-
-  function handleKeyDown(index, event) {
-    const nextIndex = getNextIndex(index, event.key, companyTechnologyPlatforms.length);
-    if (nextIndex === null) return;
-    event.preventDefault();
-    setActiveIndex(nextIndex);
-    buttonRefs.current[nextIndex]?.focus();
-  }
-
   return (
-    <section className="home-technology" id="technology" aria-labelledby="home-technology-title">
-      <header className="home-technology__masthead page-shell">
-        <div>
-          <p className="home-section-name">Technology System</p>
-          <h2 id="home-technology-title">技术系统</h2>
-        </div>
-        <p>{companyPublicMode ? "Mantis 机器人本体与四个技术平台共同构成蓝虫具身的技术体系。" : "四个技术平台的内部来源与公开边界。"}</p>
-      </header>
-
-      <div className="home-technology__body page-shell">
-        <aside className="home-technology__active" aria-live="polite">
-          <div className="home-technology__active-index">
-            <span>{String(activeIndex + 1).padStart(2, "0")}</span>
-            <span>{String(companyTechnologyPlatforms.length).padStart(2, "0")}</span>
-          </div>
-          <div className="home-technology__active-content" key={activePlatform.id}>
-            <p>{activePlatform.label}</p>
-            <h3>{activePlatform.name}</h3>
-            <p>{activePlatform.summary}</p>
-          </div>
-          <Link className="home-section-link" to="/technology">
-            <span>查看完整技术体系</span>
-            <span aria-hidden="true">↗</span>
-          </Link>
-        </aside>
-
-        <div className="home-technology__diagram">
-          <div className="home-technology__body-node">
-            <span>00</span>
-            <strong>Mantis</strong>
-            <small>Robot Body</small>
-          </div>
-          <ol>
-            {companyTechnologyPlatforms.map((item, index) => (
-              <li className={index === activeIndex ? "is-active" : undefined} key={item.id}>
-                <button
-                  type="button"
-                  aria-pressed={index === activeIndex}
-                  ref={(element) => { buttonRefs.current[index] = element; }}
-                  onClick={() => setActiveIndex(index)}
-                  onFocus={() => setActiveIndex(index)}
-                  onMouseEnter={() => setActiveIndex(index)}
-                  onKeyDown={(event) => handleKeyDown(index, event)}
-                >
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <strong>{item.name}</strong>
-                  <small>{item.label}</small>
-                  <i aria-hidden="true">↗</i>
-                </button>
-              </li>
-            ))}
-          </ol>
+    <section className="home-technology-preview home-story-section" id="technology" aria-labelledby="home-technology-title">
+      <div className="page-shell">
+        <header className="home-story-heading"><h2 id="home-technology-title">技术体系</h2><Link className="home-section-link" to="/technology"><span>查看技术</span><span aria-hidden="true">↗</span></Link></header>
+        <div className="home-technology-preview__items">
+          {homeTechnologyPlatforms.map((item) => <article key={item.id}>
+            <h3>{item.nameZh}<span>{item.name}</span></h3><p>{item.roleZh}</p>
+          </article>)}
         </div>
       </div>
     </section>
@@ -91,124 +21,52 @@ export function HomeTechnology() {
 export function HomeApplications() {
   const applicationScenes = getStandardMediaByUsage("applications", { publicMode: true }).slice(0, 3);
   return (
-    <section className="home-applications" id="applications" aria-labelledby="home-applications-title">
-      <header className="home-applications__masthead page-shell">
-        <div>
-          <p className="home-section-name">Applications / Mantis Standard</p>
-          <h2 id="home-applications-title">任务现场</h2>
+    <section className="home-tasks home-story-section" id="applications" aria-labelledby="home-applications-title">
+      <div className="page-shell">
+        <header className="home-story-heading"><h2 id="home-applications-title">任务现场</h2><Link className="home-section-link" to="/applications"><span>查看全部应用</span><span aria-hidden="true">↗</span></Link></header>
+        <div className="home-tasks__items">
+          {applicationScenes.map((item) => <article key={item.id}>
+            <img src={item.poster} alt={`${item.titleZh}真实任务画面`} width={item.width} height={item.height} loading="lazy" decoding="async" />
+            <h3>{item.titleZh}</h3><p>{item.descriptionZh}</p>
+          </article>)}
         </div>
-        <p>{companyPublicMode ? "以已公开的任务影像，呈现机器人在不同现场中的操作过程。" : "匿名项目文字记录；未批准媒体不进入公开页面。"}</p>
-      </header>
-
-      <div className="home-applications__gallery page-shell">
-        <HomeApplicationGallery items={applicationScenes} />
-      </div>
-
-      <div className="home-applications__footer page-shell">
-        <p>三段经过公开复核的 Mantis Standard 任务记录</p>
-        <Link className="home-section-link" to="/applications">
-          <span>查看全部应用</span>
-          <span aria-hidden="true">↗</span>
-        </Link>
       </div>
     </section>
   );
 }
 
-export function HomeLatest() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const buttonRefs = useRef([]);
-  const activeItem = newsItems[activeIndex];
-
-  function handleKeyDown(index, event) {
-    const nextIndex = getNextIndex(index, event.key, newsItems.length);
-    if (nextIndex === null) return;
-    event.preventDefault();
-    setActiveIndex(nextIndex);
-    buttonRefs.current[nextIndex]?.focus();
-  }
-
+export function HomeNews({ items = getPublicHomeNews() }) {
+  const visible = getPublicHomeNews(items);
+  if (visible.length === 0) return null;
   return (
-    <section className="home-latest" aria-labelledby="home-latest-title">
-      <header className="home-latest__masthead page-shell">
-        <div>
-          <p className="home-section-name">Progress Archive</p>
-          <h2 id="home-latest-title">进展记录</h2>
-        </div>
-        <p>{companyPublicMode ? "赛事与公开报道构成公司的阶段性进展记录。" : "活动与任务记录的内部核对入口。"}</p>
-      </header>
-
-      <div className="home-latest__archive page-shell">
-        <article className="home-latest__active" aria-live="polite">
-          <div>
-            <span>{activeItem.year || "Record"}</span>
-            <span>{String(activeIndex + 1).padStart(2, "0")} / {String(newsItems.length).padStart(2, "0")}</span>
-          </div>
-          <p>{activeItem.category}</p>
-          <h3>{activeItem.title}</h3>
-          <strong>{activeItem.result}</strong>
-          <InternalStatus status="VERIFIED">PUBLIC RECORD</InternalStatus>
-        </article>
-
-        <ol className="home-latest__index">
-          {newsItems.map((item, index) => (
-            <li className={index === activeIndex ? "is-active" : undefined} key={item.id}>
-              <button
-                type="button"
-                aria-pressed={index === activeIndex}
-                ref={(element) => { buttonRefs.current[index] = element; }}
-                onClick={() => setActiveIndex(index)}
-                onFocus={() => setActiveIndex(index)}
-                onMouseEnter={() => setActiveIndex(index)}
-                onKeyDown={(event) => handleKeyDown(index, event)}
-              >
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <span>{item.year || "Record"}</span>
-                <strong>{item.title}</strong>
-                <i aria-hidden="true">↗</i>
-              </button>
-            </li>
-          ))}
-        </ol>
-      </div>
-
-      <div className="home-latest__footer page-shell">
-        <Link className="home-section-link" to="/news">
-          <span>查看全部动态</span>
-          <span aria-hidden="true">↗</span>
-        </Link>
+    <section className="home-news home-story-section" id="news" aria-labelledby="home-news-title">
+      <div className="page-shell">
+        <header className="home-story-heading"><h2 id="home-news-title">新闻与报道</h2></header>
+        <ul>{visible.map((item) => <li key={item.id}>
+          <time dateTime={item.date}>{item.date}</time>
+          <div><p>{item.publisher}</p><h3><a href={item.href} target="_blank" rel="noopener noreferrer">{item.title}<span aria-hidden="true">↗</span><span className="sr-only">（新标签页）</span></a></h3></div>
+        </li>)}</ul>
       </div>
     </section>
   );
 }
 
-export function HomeAbout() {
+export function HomePartners({ items = getPublicHomePartners() }) {
+  const visible = getPublicHomePartners(items);
+  if (visible.length === 0) return null;
   return (
-    <section className="home-about" id="about" aria-labelledby="home-about-title">
-      <div className="home-about__layout page-shell">
-        <div className="home-about__identity">
-          <p>Blue Worm / 蓝虫具身</p>
-        </div>
+    <section className="home-partners home-story-section" aria-labelledby="home-partners-title"><div className="page-shell">
+      <header className="home-story-heading"><h2 id="home-partners-title">合作伙伴</h2></header>
+      <ul>{visible.map((item) => <li key={item.id}><img src={item.logo} alt={item.name} loading="lazy" decoding="async" /></li>)}</ul>
+    </div></section>
+  );
+}
 
-        <div className="home-about__copy">
-          <p>我们的使命</p>
-          <h2 id="home-about-title">
-            <span>创造一个</span>
-            <span>人机共融新世界</span>
-          </h2>
-          <p className="home-about__legal-name">{companyIdentity.legalNameZh}<br />{companyIdentity.legalNameEn}</p>
-          <InternalStatus as="p" status={companyMission.contentStatus}>MISSION / VERIFIED COPY</InternalStatus>
-          <Link className="home-section-link home-section-link--light" to="/about">
-            <span>关于蓝虫</span>
-            <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
-
-        <div className="home-about__signal" aria-hidden="true">
-          <span />
-          <span />
-          <strong>BW</strong>
-        </div>
+export function HomeContact() {
+  return (
+    <section className="home-contact home-story-section" id="home-contact" aria-labelledby="home-contact-title">
+      <div className="page-shell home-contact__layout"><div><h2 id="home-contact-title">采购 / 合作</h2><p>{businessEmail}</p></div>
+        <a className="home-section-link" href={businessEmailHref}><span>联系商务</span><span aria-hidden="true">↗</span></a>
       </div>
     </section>
   );

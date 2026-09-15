@@ -73,7 +73,7 @@ export function ResourceCenter({
             />
           )}
 
-          <Link className="text-link" to="/support">返回支持中心</Link>
+          <Link className="text-link" to="/support">返回服务与支持</Link>
         </section>
       </main>
       <Footer />

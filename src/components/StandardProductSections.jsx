@@ -1,200 +1,95 @@
-import { useId, useRef, useState } from "react";
+import { useId, useState } from "react";
 import { Link } from "react-router-dom";
-import { EmptyState } from "./EmptyState.jsx";
+import { ArrowDown, ArrowRight, ArrowUpRight, Minus, Plus } from "@phosphor-icons/react";
 import { EditorialHeading } from "./EditorialHeading.jsx";
-import { InternalStatus } from "./InternalStatus.jsx";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
-import {
-  getStandardMediaByUsage,
-  selectStandardContent,
-  standardApplicationDirections,
-  standardCapabilities,
-  standardDevelopment,
-  standardModularArchitecture,
-  standardProduct,
-  standardPublicMode,
-  standardQa,
-  standardPublicSpecs,
-  standardSpecGroups,
-  standardSpecs,
-} from "../data/standard/index.js";
+import { businessEmail, businessEmailHref } from "../data/contact.js";
+import { officialProductFilm } from "../data/standard/officialFilm.js";
+import { documentResources } from "../data/resources/documents.js";
+import { isPublicResource } from "../data/resources/visibility.js";
+import { getStandardMediaByUsage, selectStandardContent, standardPublicSpecs, standardSpecGroups, standardQa } from "../data/standard/index.js";
+import { standardForms, standardModularValues, standardHardware, standardDevelopmentPaths } from "../data/standard/story.js";
 
-function SectionHeading({ index, label, title, intro, titleId, light = false }) {
-  return (
-    <EditorialHeading
-      className="standard-section__heading page-shell"
-      meta={`${index} · ${label}`}
-      title={title}
-      intro={intro}
-      titleId={titleId}
-      tone={light ? "dark" : "light"}
-    />
-  );
+function Heading({ title, intro, id, dark = false }) {
+  return <EditorialHeading className="sp-heading" title={title} intro={intro} titleId={id} tone={dark ? "dark" : "light"} />;
 }
 
-function ReviewEmpty({ eyebrow, title, description }) {
+export function ProductOverviewSection() {
   return (
-    <div className="standard-section__empty page-shell">
-      <EmptyState eyebrow={eyebrow} title={title} description={description} statusText="正式内容与公开口径待确认" />
-    </div>
-  );
-}
-
-export function ModularArchitectureSection() {
-  const items = selectStandardContent(standardModularArchitecture);
-  const moduleGroups = [items.slice(0, 3), items.slice(3)];
-  return (
-    <section className="standard-section standard-modular" id="modular" aria-labelledby="standard-modular-title">
-      <div className="standard-modular__stage page-shell">
-        <EditorialHeading
-          className="standard-modular__heading"
-          meta={standardProduct.slogan}
-          title={<><span>一套本体，</span><span>按任务组合形态。</span></>}
-          intro="机器人主体、双臂、移动、升降、快换与工具，在同一套产品架构中协同工作。"
-          titleId="standard-modular-title"
-          tone="dark"
-        />
-
-        {items.length ? (
-          <div className="standard-modular__assembly">
-            <ul className="standard-modular__modules standard-modular__modules--left">
-              {moduleGroups[0].map((item) => (
-                <li key={item.id}>
-                  <div><strong>{item.title}</strong><small>{item.label}</small></div>
-                  <p>{item.description}</p>
-                </li>
-              ))}
-            </ul>
-
-            <figure className="standard-modular__visual">
-              <div className="standard-modular__visual-label" aria-hidden="true">
-                <span>ONE CORE</span>
-                <span>MULTIPLE FORMS</span>
-              </div>
-              <img src="/assets/nav-standard-a01781.webp" alt="Mantis Standard 正面整机渲染" width="349" height="760" loading="lazy" decoding="async" />
-              <figcaption><InternalStatus status="SOURCE">A01781 · Standard visual</InternalStatus></figcaption>
-            </figure>
-
-            <ul className="standard-modular__modules standard-modular__modules--right">
-              {moduleGroups[1].map((item) => (
-                <li key={item.id}>
-                  <div><strong>{item.title}</strong><small>{item.label}</small></div>
-                  <p>{item.description}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : <ReviewEmpty eyebrow="MODULAR ARCHITECTURE" title="模块信息待确认" description="正式模块边界与接口说明将在确认后发布。" />}
+    <section className="sp-section sp-overview" id="overview" aria-labelledby="overview-title" data-standard-reveal>
+      <div className="page-shell sp-overview__layout">
+        <figure><img src="/assets/nav-standard-a01781.webp" alt="Mantis Standard 完整机器人形态" width="349" height="760" loading="lazy" decoding="async" /></figure>
+        <div>
+          <Heading title="什么是 Mantis Standard" id="overview-title" />
+          <p className="sp-lead">Mantis Standard 是一个模块化机器人平台。机器人可根据任务需求组合不同形态，并围绕统一的软件与智能体系进行开发和使用。</p>
+          <p>从机械臂、轮式底盘到双臂与完整形态，产品的重点不只是外观变化，而是让机器人配置更贴近实际任务。</p>
+          <a className="sp-text-link" href={officialProductFilm.src} target="_blank" rel="noopener noreferrer" aria-label="观看官方产品影片（新窗口）">观看官方产品影片<ArrowUpRight size={18} aria-hidden="true" /></a>
+        </div>
       </div>
     </section>
   );
 }
 
-const systemTabs = [
-  { id: "capabilities", label: "核心能力", en: "Capabilities" },
-  { id: "development", label: "开发路径", en: "Development" },
-  { id: "applications", label: "应用方向", en: "Applications" },
-];
+export function ModularArchitectureSection() {
+  return (
+    <section className="sp-section sp-modular" id="modular" aria-labelledby="modular-title" data-standard-reveal>
+      <div className="page-shell">
+        <Heading title="一脑多形，真模块化" intro="统一的软件体系，可组合的机器人结构。" id="modular-title" dark />
+        <div className="sp-modular__columns">
+          <article>
+            <h3>一脑多形</h3>
+            <p className="sp-lead">同一套智能与软件体系，<br />服务不同机器人形态。</p>
+            <p>形态随任务改变，开发仍围绕统一的软件体系展开。从仿真、控制接口到数据与模型，连接不同形态的开发与使用。</p>
+            <p>这里的“一脑”指软件与智能体系；具体主控和开发支持根据配置与方案确定。</p>
+          </article>
+          <article>
+            <h3>真模块化</h3>
+            <p className="sp-lead">从可组合模块出发，<br />构成任务需要的形态。</p>
+            <p>本体、双臂、轮式底盘、升降结构、视觉模块与末端执行器，围绕快速组合设计。模块可根据任务进行重新组合。</p>
+            <p>机器人形态与模块选择围绕实际需要确定，不以完整整机作为每一项任务的唯一形式。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function SixFormsSection() {
+  return (
+    <section className="sp-section sp-forms" id="six-forms" aria-labelledby="six-forms-title" data-standard-reveal>
+      <div className="page-shell">
+        <Heading title="六种形态，围绕任务组合" intro="同一个 Mantis Standard 的不同组合形态。以下视觉来自官方宣传片，用于说明形态与任务之间的关系。" id="six-forms-title" />
+        <div className="sp-forms__grid">
+          {standardForms.map(item => <figure key={item.id} data-standard-item>
+            <img src={item.image} alt={item.name} width={item.width} height={item.height} loading="lazy" decoding="async" />
+            <figcaption><h3>{item.name}</h3>{item.paragraphs.map(text => <p key={text}>{text}</p>)}</figcaption>
+          </figure>)}
+        </div>
+        <p className="sp-note">影片展示的是具体任务例子；实际使用需结合任务条件、配置与开发方案。</p>
+      </div>
+    </section>
+  );
+}
+
+export function WhyModularSection() {
+  return (
+    <section className="sp-section sp-why" id="why-modular" aria-labelledby="why-modular-title" data-standard-reveal>
+      <div className="page-shell">
+        <Heading title="让机器人配置更贴近实际任务" intro="用户不一定始终需要完整整机。模块化让当前使用与后续扩展有了不同的组合选择。" id="why-modular-title" />
+        <ol className="sp-why__grid">{standardModularValues.map((item, index) => <li key={item.title}><span className="sp-index">{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.description}</p></li>)}</ol>
+      </div>
+    </section>
+  );
+}
 
 export function CapabilitySystemSection() {
-  const [activeTab, setActiveTab] = useState(systemTabs[0].id);
-  const tabRefs = useRef([]);
-  const capabilities = selectStandardContent(standardCapabilities);
-  const development = selectStandardContent(standardDevelopment);
-  const applications = selectStandardContent(standardApplicationDirections);
-
-  function handleTabKeyDown(index, event) {
-    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
-    event.preventDefault();
-    let nextIndex = index;
-    if (event.key === 'Home') nextIndex = 0;
-    if (event.key === 'End') nextIndex = systemTabs.length - 1;
-    if (event.key === 'ArrowRight') nextIndex = (index + 1) % systemTabs.length;
-    if (event.key === 'ArrowLeft') nextIndex = (index - 1 + systemTabs.length) % systemTabs.length;
-    setActiveTab(systemTabs[nextIndex].id);
-    tabRefs.current[nextIndex]?.focus();
-  }
-
   return (
-    <section className="standard-section standard-system" id="capability-system" aria-labelledby="standard-system-title">
-      <EditorialHeading
-        className="standard-system__header page-shell"
-        meta="Body / Development / Task"
-        title={<><span>从本体能力，</span><span>到任务执行。</span></>}
-        intro="同一套产品架构连接机器人能力、开放开发流程与六类应用方向。"
-        titleId="standard-system-title"
-      />
-
-      <div className="standard-system__body page-shell">
-        <div className="standard-system__tabs" role="tablist" aria-label="产品能力系统">
-          {systemTabs.map((tab, index) => (
-            <button
-              key={tab.id}
-              ref={(element) => { tabRefs.current[index] = element; }}
-              id={`system-tab-${tab.id}`}
-              type="button"
-              role="tab"
-              aria-selected={activeTab === tab.id}
-              aria-controls={`system-panel-${tab.id}`}
-              tabIndex={activeTab === tab.id ? 0 : -1}
-              onClick={() => setActiveTab(tab.id)}
-              onKeyDown={(event) => handleTabKeyDown(index, event)}
-            >
-              <span aria-hidden="true">{index === 0 ? "BODY" : index === 1 ? "BUILD" : "TASK"}</span>
-              <strong>{tab.label}</strong>
-              <small>{tab.en}</small>
-            </button>
-          ))}
-        </div>
-
-        <div className="standard-system__panels">
-          <div id="system-panel-capabilities" role="tabpanel" aria-labelledby="system-tab-capabilities" hidden={activeTab !== "capabilities"}>
-            <div className="standard-system__panel-heading">
-              <p>本体能力</p>
-              <span>结构、操作、移动、工具与开放开发共同构成任务基础。</span>
-            </div>
-            <ul className="standard-system__capabilities">
-              {capabilities.map((item) => (
-                <li key={item.id}>
-                  <div><h3>{item.title}</h3><small>{item.label}</small></div>
-                  <p>{item.description}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div id="system-panel-development" role="tabpanel" aria-labelledby="system-tab-development" hidden={activeTab !== "development"}>
-            <div className="standard-system__panel-heading">
-              <p>开发路径</p>
-              <span>从仿真和接口出发，连接数据、操作与任务调用。</span>
-            </div>
-            <ol className="standard-system__development">
-              {development.map((item, index) => (
-                <li key={item.id}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <p>{item.category}</p>
-                  <h3>{item.title}</h3>
-                  <ul aria-label={`${item.title}开发工具`}>{item.tools.map((tool) => <li key={tool}>{tool}</li>)}</ul>
-                  <small>{item.description}</small>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          <div id="system-panel-applications" role="tabpanel" aria-labelledby="system-tab-applications" hidden={activeTab !== "applications"}>
-            <div className="standard-system__panel-heading">
-              <p>应用方向</p>
-              <span>六类任务方向，共用同一套产品与开发体系。</span>
-            </div>
-            <ul className="standard-system__applications">
-              {applications.map((item) => (
-                <li key={item.id}>
-                  <strong>{item.title}</strong>
-                  <small>{item.label}</small>
-                </li>
-              ))}
-            </ul>
-          </div>
+    <section className="sp-section sp-capabilities" id="capability-system" aria-labelledby="capabilities-title" data-standard-reveal>
+      <div className="page-shell">
+        <Heading title="从本体到接口，看清核心能力" intro="移动、操作、感知与开发，各有对应的结构和接口。具体组合根据配置与任务方案确定。" id="capabilities-title" />
+        <div className="sp-capabilities__layout">
+          <figure><img src="/assets/nav-standard-a01781.webp" alt="Mantis Standard 本体与双臂、升降和底盘结构" width="349" height="760" loading="lazy" decoding="async" /></figure>
+          <dl>{standardHardware.map(item => <div key={item.id}><dt>{item.title}<small>{item.label}</small></dt><dd>{item.description}</dd></div>)}</dl>
         </div>
       </div>
     </section>
@@ -203,108 +98,96 @@ export function CapabilitySystemSection() {
 
 export function RealTasksSection() {
   const media = getStandardMediaByUsage("productRealTasks");
-  if (standardPublicMode && !media.length) return null;
+  if (!media.length) return null;
   return (
-    <section className="standard-section standard-real-tasks" id="real-tasks" aria-labelledby="standard-real-tasks-title">
-      <SectionHeading index="06" label="REAL TASKS" title="任务记录" intro="只展示机器人身份、任务内容与公开权限均已确认的 Standard 媒体。" titleId="standard-real-tasks-title" />
-      {media.length ? (
-        <div className="standard-real-tasks__media page-shell">
-          {media.map((item) => (
-            <figure key={item.id}>
-              <StandardMediaPlayer media={item} />
-              <figcaption><span>{item.titleZh}</span><small>{item.titleEn}</small><p>{item.descriptionZh}</p><em>{item.durationLabel}</em></figcaption>
-            </figure>
-          ))}
-        </div>
-      ) : (
-        <div className="standard-section__empty page-shell">
-          <EmptyState eyebrow="MANTIS STANDARD" title="真实任务资料准备中" description="当前没有已确认并获准公开的 Standard 任务视频或照片。" statusText="机器人身份、任务内容与公开权限待确认" />
-        </div>
-      )}
+    <section className="sp-section sp-real-tasks" id="real-tasks" aria-labelledby="real-tasks-title" data-standard-reveal>
+      <div className="page-shell">
+        <Heading title="真实任务，实际操作" intro="四段已公开的任务记录，展示双臂操作、物体抓取、织物处理与工业设备操作。点击查看过程。" id="real-tasks-title" dark />
+        <div className="sp-real-tasks__grid">{media.map(item => <figure key={item.id}>
+          <StandardMediaPlayer media={item} />
+          <figcaption><div><h3>{item.titleZh}</h3><span>{item.durationLabel}</span></div><p>{item.descriptionZh}</p></figcaption>
+        </figure>)}</div>
+      </div>
     </section>
   );
 }
 
-const specGroupLabels = {
-  "Robot Body": "机器人本体",
-  Mobility: "移动系统",
-  "Dual Arm": "双臂系统",
-  "Lift / Workspace": "升降与工作空间",
-  "Compute / Interface": "计算与接口",
-  "Development / Connectivity": "开发与连接",
-};
+export function DevelopmentSection() {
+  return (
+    <section className="sp-section sp-development" id="development" aria-labelledby="development-title" data-standard-reveal>
+      <div className="page-shell">
+        <Heading title="开发 Mantis Standard" intro="根据配置与开发方案，支持的开发路径包括仿真、控制接口、数据与模型，以及操作验证。" id="development-title" />
+        <ol className="sp-development__list">{standardDevelopmentPaths.map((item, index) => <li key={item.id}>
+          <div><span className="sp-index">{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3></div>
+          <ul aria-label={item.title + "相关工具"}>{item.tools.map(tool => <li key={tool}>{tool}</li>)}</ul>
+          <p>{item.description}</p>
+        </li>)}</ol>
+        <p className="sp-note">开发工具与流程按实际配置、软硬件环境及开发方案选择，不表示所有设备均默认配备。</p>
+      </div>
+    </section>
+  );
+}
+
+const specGroupLabels = { "Robot Body": "机器人本体", Mobility: "移动系统", "Dual Arm": "双臂系统", "Lift / Workspace": "升降与工作空间", "Compute / Interface": "计算与感知", "Development / Connectivity": "开发与连接" };
 
 export function SpecificationsSection() {
-  const visibleSpecs = standardPublicMode ? selectStandardContent(standardPublicSpecs) : selectStandardContent(standardSpecs);
-  const groups = standardSpecGroups
-    .map((group) => ({ group, specs: visibleSpecs.filter((item) => item.group === group) }))
-    .filter((entry) => entry.specs.length);
-
+  const specs = selectStandardContent(standardPublicSpecs, { publicMode: true });
+  const groups = standardSpecGroups.map(group => ({ group, items: specs.filter(item => item.group === group) })).filter(group => group.items.length);
   return (
-    <section className="standard-section standard-specifications" id="specifications" aria-labelledby="standard-specifications-title">
-      <header className="standard-specifications__header page-shell">
-        <p>Specifications</p>
-        <div><h2 id="standard-specifications-title">规格参数</h2><p>以公开基线分组呈现整机尺寸、移动、双臂、升降、计算接口与开发连接信息。</p></div>
-        <div className="standard-specifications__summary"><strong>{String(groups.length).padStart(2, "0")}</strong><span>PUBLIC GROUPS</span></div>
-      </header>
-
-      {groups.length ? (
-        <div className="standard-specifications__matrix page-shell">
-          {groups.map(({ group, specs }, groupIndex) => (
-            <article className="standard-specifications__group" key={group} aria-labelledby={`spec-group-${groupIndex}`}>
-              <header>
-                <span>{String(groupIndex + 1).padStart(2, "0")}</span>
-                <div><h3 id={`spec-group-${groupIndex}`}>{specGroupLabels[group] || group}</h3><small>{group}</small></div>
-              </header>
-              <dl>
-                {specs.map((item) => (
-                  <div key={item.id} data-conflict={item.conflict || undefined}>
-                    <dt><span>{item.label}</span><small>{item.variant}</small></dt>
-                    <dd><strong>{item.value}</strong>{item.unit ? <span>{item.unit}</span> : null}</dd>
-                  </div>
-                ))}
-              </dl>
-            </article>
-          ))}
-        </div>
-      ) : <ReviewEmpty eyebrow="SPECIFICATIONS" title="参数信息待确认" description="当前没有通过公开批准且不存在冲突的 Standard 参数。" />}
+    <section className="sp-section sp-specs" id="specifications" aria-labelledby="specs-title">
+      <div className="page-shell">
+        <Heading title="核心参数" intro="按本体、移动、双臂、升降、计算与接口分组。配置相关项目以实际方案为准。" id="specs-title" />
+        <div className="sp-specs__grid">{groups.map(({group, items}) => <article key={group}>
+          <h3>{specGroupLabels[group]}</h3><dl>{items.map(item => <div key={item.id}><dt>{item.label}</dt><dd>{item.value}{item.unit ? <span> {item.unit}</span> : null}</dd></div>)}</dl>
+        </article>)}</div>
+      </div>
     </section>
   );
 }
 
 function QaItem({ item, index }) {
-  const [open, setOpen] = useState(index === 0);
-  const baseId = useId();
-  const panelId = `${baseId}-panel`;
-  const buttonId = `${baseId}-button`;
+  const [open, setOpen] = useState(false);
+  const id = useId();
   return (
-    <li data-open={open}>
-      <button id={buttonId} type="button" aria-expanded={open} aria-controls={panelId} onClick={() => setOpen((current) => !current)}>
-        <span>{String(index + 1).padStart(2, "0")}</span>
-        <strong>{item.question}</strong>
-        <span aria-hidden="true">{open ? "−" : "+"}</span>
+    <article className="sp-question" data-open={open}>
+      <div className="sp-question__title"><span className="sp-index">{String(index + 1).padStart(2, "0")}</span><h3 id={id + "-title"}>{item.question}</h3></div>
+      <p className="sp-question__summary">{item.answer}</p>
+      <button type="button" className="sp-text-link" aria-expanded={open} aria-controls={id + "-panel"} onClick={() => setOpen(value => !value)}>
+        {open ? "收起完整说明" : "展开完整说明"}{open ? <Minus size={18} aria-hidden="true" /> : <Plus size={18} aria-hidden="true" />}
       </button>
-      <div id={panelId} role="region" aria-labelledby={buttonId} hidden={!open}>
-        <p>{item.answer}</p>
+      <div className="sp-question__full" id={id + "-panel"} role="region" aria-labelledby={id + "-title"} hidden={!open}>
+        {item.fullExplanation.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}
       </div>
-    </li>
+    </article>
   );
 }
 
 export function StandardQaSection() {
   const items = selectStandardContent(standardQa);
-  if (!items.length) return null;
   return (
-    <section className="standard-section standard-qa" id="questions" aria-labelledby="standard-qa-title">
-      <div className="standard-qa__layout page-shell">
-        <header>
-          <p>Questions</p>
-          <h2 id="standard-qa-title">常见<br />问题</h2>
-          <p>关于产品形态、模块化设计、开发方式与应用方向。</p>
-        </header>
-        <ol className="standard-qa__list">
-          {items.map((item, index) => <QaItem key={item.id} item={item} index={index} />)}
-        </ol>
+    <section className="sp-section sp-qa" id="questions" aria-labelledby="questions-title">
+      <div className="page-shell sp-qa__layout">
+        <Heading title="设计背后的六个问题" intro="从形态选择到使用方式，了解产品设计的出发点。" id="questions-title" />
+        <div>{items.map((item, index) => <QaItem key={item.id} item={item} index={index} />)}</div>
+      </div>
+    </section>
+  );
+}
+
+export function StandardDocumentsSection() {
+  const documents = documentResources.filter(item => item.product === "Mantis Standard" && isPublicResource(item));
+  return (
+    <section className="sp-section sp-documents" id="product-documents" aria-labelledby="documents-title">
+      <div className="page-shell">
+        <Heading title="资料与开发" intro="安装、使用、交付核对与二次开发，查阅对应的正式文档。" id="documents-title" />
+        <ul>{documents.map(item => <li key={item.id}>
+          <div><h3>{item.title}</h3><p>{item.description}</p></div>
+          <div className="sp-documents__actions">
+            <a href={item.fileUrl} target="_blank" rel="noopener noreferrer" aria-label={"查看" + item.title + "（新窗口）"}>查看<ArrowUpRight size={18} aria-hidden="true" /></a>
+            <a href={item.fileUrl} download aria-label={"下载" + item.title}>下载<ArrowDown size={18} aria-hidden="true" /></a>
+          </div>
+        </li>)}</ul>
+        <Link className="sp-text-link" to="/support/documents">查看全部文档<ArrowRight size={18} aria-hidden="true" /></Link>
       </div>
     </section>
   );
@@ -312,25 +195,15 @@ export function StandardQaSection() {
 
 export function StandardInquirySection() {
   return (
-    <section className="standard-section standard-inquiry" id="product-inquiry" aria-labelledby="standard-inquiry-title">
-      <div className="standard-inquiry__inner page-shell">
-        <p>Build with Mantis</p>
-        <h2 id="standard-inquiry-title">让 Mantis<br />进入你的任务。</h2>
-        <Link to="/inquiry"><span>提交商务询盘</span><span aria-hidden="true">→</span></Link>
+    <section className="sp-section sp-contact" id="product-inquiry" aria-labelledby="contact-title">
+      <div className="page-shell sp-contact__layout">
+        <div><h2 id="contact-title">采购 / 合作</h2><a href={businessEmailHref}>{businessEmail}</a></div>
+        <Link className="sp-button" to="/inquiry">联系商务<ArrowRight size={18} aria-hidden="true" /></Link>
       </div>
     </section>
   );
 }
 
 export function StandardProductSections() {
-  return (
-    <>
-      <ModularArchitectureSection />
-      <CapabilitySystemSection />
-      <RealTasksSection />
-      <SpecificationsSection />
-      <StandardQaSection />
-      <StandardInquirySection />
-    </>
-  );
+  return <><ProductOverviewSection /><ModularArchitectureSection /><SixFormsSection /><WhyModularSection /><CapabilitySystemSection /><RealTasksSection /><DevelopmentSection /><SpecificationsSection /><StandardQaSection /><StandardDocumentsSection /><StandardInquirySection /></>;
 }

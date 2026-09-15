@@ -4693,6 +4693,19 @@ main section[id] {
   flex: 0 0 auto;
 }
 
+.navbar__language-status { cursor: default; }
+
+/* Task 018.5 P1: keep mobile navigation inside the actual visible viewport. */
+@media (max-width: 900px) {
+  .navbar[data-open="true"] .navbar__links {
+    height: calc(100dvh - var(--nav-height));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    padding-bottom: max(22px, env(safe-area-inset-bottom));
+  }
+}
+
 .navbar__language-trigger:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 6px;

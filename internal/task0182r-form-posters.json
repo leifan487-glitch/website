@@ -1,0 +1,101 @@
+{
+  "task": "018.2R",
+  "source": "经验素材取地/新资料/宣传视频.mp4",
+  "sourceWidth": 3840,
+  "sourceHeight": 2160,
+  "sourceFps": 60,
+  "sourceSha256": "b35f9813f5f91cab0ea0e5baff569bd28093210133ab161fd425e660acadb501",
+  "notes": "Official source frame extraction only. Crop/resize/neutral letterbox; no generated structures, retouching or added claims. Timestamps are seconds from source start, aligned with official-product-film.mp4.",
+  "records": [
+    {
+      "id": "arm",
+      "name": "机械臂形态",
+      "timestamp": 24,
+      "crop": [
+        3680,
+        1760,
+        120,
+        120
+      ],
+      "image": "/media/mantis-standard/forms/arm.webp",
+      "bytes": 8302,
+      "sha256": "b834d0dd8ae6176e5a479a2cb9c3220dadb73010290c7e0d4cc4438a66796f09",
+      "filter": "crop=3680:1760:120:120,scale=900:720:force_original_aspect_ratio=decrease,pad=900:720:(ow-iw)/2:(oh-ih)/2:color=0xeef0f0"
+    },
+    {
+      "id": "engineering",
+      "name": "工程形态",
+      "timestamp": 41,
+      "crop": [
+        1380,
+        1940,
+        1100,
+        0
+      ],
+      "image": "/media/mantis-standard/forms/engineering.webp",
+      "bytes": 12672,
+      "sha256": "e59ec3b6fae3fa720f3ef209b3a7e7a995186897aad2a96c58dd51ad9d2fb24a",
+      "filter": "crop=1380:1940:1100:0,scale=900:720:force_original_aspect_ratio=decrease,pad=900:720:(ow-iw)/2:(oh-ih)/2:color=0xeef0f0"
+    },
+    {
+      "id": "chassis",
+      "name": "底盘形态",
+      "timestamp": 53,
+      "crop": [
+        2880,
+        2000,
+        480,
+        80
+      ],
+      "image": "/media/mantis-standard/forms/chassis.webp",
+      "bytes": 9510,
+      "sha256": "bfc1b8846026b3ef617765a7422cd4be42808daa44c2e2b88557e473dbde8d69",
+      "filter": "crop=2880:2000:480:80,scale=900:720:force_original_aspect_ratio=decrease,pad=900:720:(ow-iw)/2:(oh-ih)/2:color=0xeef0f0"
+    },
+    {
+      "id": "dual",
+      "name": "双臂形态",
+      "timestamp": 72.5,
+      "crop": [
+        1960,
+        1540,
+        920,
+        400
+      ],
+      "image": "/media/mantis-standard/forms/dual.webp",
+      "bytes": 22078,
+      "sha256": "d6516f1ce19066597b3967eec6bda051db0d3f25042ef7cd6fa1184ee550d5de",
+      "filter": "crop=1960:1540:920:400,scale=900:720:force_original_aspect_ratio=decrease,pad=900:720:(ow-iw)/2:(oh-ih)/2:color=0xeef0f0"
+    },
+    {
+      "id": "inspection",
+      "name": "巡检形态",
+      "timestamp": 79,
+      "crop": [
+        2200,
+        2000,
+        820,
+        80
+      ],
+      "image": "/media/mantis-standard/forms/inspection.webp",
+      "bytes": 8324,
+      "sha256": "b28d33b30af47baf4d29a1a114bd270c8af03494cc1733819c5c5a349560ba02",
+      "filter": "crop=2200:2000:820:80,scale=900:720:force_original_aspect_ratio=decrease,pad=900:720:(ow-iw)/2:(oh-ih)/2:color=0xeef0f0"
+    },
+    {
+      "id": "complete",
+      "name": "完整形态",
+      "timestamp": 22,
+      "crop": [
+        2200,
+        1800,
+        820,
+        240
+      ],
+      "image": "/media/mantis-standard/forms/complete.webp",
+      "bytes": 11852,
+      "sha256": "7979062efdcb983f0124e51dfedf20df104ddb5a5aabd98c6076a11b676b393f",
+      "filter": "crop=2200:1800:820:240,scale=900:720:force_original_aspect_ratio=decrease,pad=900:720:(ow-iw)/2:(oh-ih)/2:color=0xeef0f0"
+    }
+  ]
+}

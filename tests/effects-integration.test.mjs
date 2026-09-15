@@ -12,25 +12,23 @@ test("product page keeps the section rail and consolidates content without chang
   assert.match(page, /ProductSectionRail/);
   assert.doesNotMatch(home, /ProductSectionRail|EditorialSpotlightRow/);
   assert.match(sections, /CapabilitySystemSection/);
-  assert.match(sections, /role="tablist"/);
-  assert.match(sections, /standard-specifications__matrix/);
-  assert.doesNotMatch(sections, /StandardResourcesSection/);
+  assert.doesNotMatch(sections, /role="tablist"/);
+  assert.match(sections, /sp-specs__grid/);
+  assert.match(sections, /StandardDocumentsSection/);
 });
 
-test("product definition removes the repeated hero image and the product systems use structural layouts", async () => {
+test("product systems use visible structural information instead of hiding development in tabs", async () => {
   const intro = await source("../src/components/MantisIntro.jsx");
   const sections = await source("../src/components/StandardProductSections.jsx");
 
   assert.doesNotMatch(intro, /mantis-standard-a01790|<img/);
   assert.match(intro, /mantis-intro__inner/);
-  assert.match(intro, /机器人 \+ 效率工具/);
-  assert.match(sections, /standard-modular__assembly/);
-  assert.match(sections, /moduleGroups/);
-  assert.match(sections, /standard-system__panel-heading/);
-  assert.match(sections, /tabIndex=\{activeTab === tab\.id \? 0 : -1\}/);
-  assert.match(sections, /BODY/);
-  assert.match(sections, /BUILD/);
-  assert.match(sections, /TASK/);
+  assert.match(intro, /双臂移动操作机器人/);
+  assert.match(sections, /sp-modular__columns/);
+  assert.match(sections, /standardHardware\.map/);
+  assert.match(sections, /sp-development__list/);
+  assert.match(sections, /standardDevelopmentPaths\.map/);
+  assert.doesNotMatch(sections, /systemTabs|activeTab/);
   assert.doesNotMatch(sections, /模块化<br \/>设计|从本体<br \/>到任务/);
 });
 

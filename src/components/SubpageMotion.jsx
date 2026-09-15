@@ -13,7 +13,7 @@ function animateFrom(timeline, target, vars, position) {
   }, position);
 }
 
-export function SubpageMotion({ scopeRef }) {
+export function SubpageMotion({ scopeRef, compact = false }) {
   useLayoutEffect(() => {
     const root = scopeRef.current;
     if (!root) return undefined;
@@ -21,6 +21,16 @@ export function SubpageMotion({ scopeRef }) {
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
+        if (compact) {
+          const distance = window.matchMedia("(min-width: 769px)").matches ? 16 : 8;
+          root.querySelectorAll("[data-motion-section]").forEach(section => {
+            gsap.from(section.querySelectorAll("[data-motion-copy], [data-motion-item]"), {
+              y: distance, autoAlpha: 0, duration: .6, stagger: .05, ease: "expo.out", clearProps: "all",
+              scrollTrigger: {trigger: section, start: "top 90%", once: true},
+            });
+          });
+          return;
+        }
         const hero = root.querySelector("[data-immersive-hero]");
         if (hero) {
           const opening = gsap.timeline({ defaults: { ease: "expo.out" } });
@@ -111,7 +121,7 @@ export function SubpageMotion({ scopeRef }) {
       media.revert();
       context.revert();
     };
-  }, [scopeRef]);
+  }, [scopeRef, compact]);
 
   return null;
 }

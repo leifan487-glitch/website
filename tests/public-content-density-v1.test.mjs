@@ -14,7 +14,8 @@ test("Home public flow keeps the approved reel while Applications owns its exclu
     source("../src/components/RealWorld.jsx"),
     source("../src/styles.css"),
   ]);
-  assert.doesNotMatch(home, /HomeTechnology|HomeLatest/);
+  assert.match(home, /HomeTechnology/);
+  assert.doesNotMatch(home, /HomeLatest/);
   assert.match(realWorld, /hasPublicStandardTaskMedia/);
   assert.equal(hasPublicStandardTaskMedia, true);
   assert.equal(standardTaskMedia.length, 8);
@@ -25,10 +26,10 @@ test("Home public flow keeps the approved reel while Applications owns its exclu
   assert.equal(getStandardMediaByUsage("applicationsHero", { publicMode: true })[0].sourceId, "APPLICATIONS-MULTI-TASK-REEL");
   assert.ok(standardTaskMedia.every((item) => item.audioRemoved === true));
   assert.doesNotMatch(sections, /technologyMedia|applicationStories|company\.image/);
-  assert.match(sections, /home-technology__diagram/);
-  assert.match(sections, /HomeApplicationGallery/);
-  assert.match(sections, /companyIdentity/);
-  assert.match(sections, /companyMission/);
+  assert.match(sections, /home-technology-preview/);
+  assert.match(sections, /getStandardMediaByUsage/);
+  assert.match(sections, /getPublicHomeNews/);
+  assert.match(sections, /getPublicHomePartners/);
   assert.doesNotMatch(sections, /Xi'an, China/);
   assert.match(styles, /home-technology-content-in/);
   assert.match(styles, /writing-mode:\s*vertical-rl/);
@@ -61,11 +62,11 @@ test("About uses approved product media and Inquiry exposes the active public-sa
     source("../src/pages/InquiryPage.jsx"),
     source("../src/components/InquiryForm.jsx"),
   ]);
-  assert.match(about, /className="about-hero"/);
+  assert.match(about, /className="aligned-hero page-shell"/);
   assert.match(about, /detail-standard-a01792\.webp/);
-  assert.match(about, /hero-standard-series-a01644\.webp/);
-  assert.match(about, /!companyPublicMode \? <InternalStatus/);
-  assert.match(inquiry, /从需求/);
+  assert.doesNotMatch(about, /hero-standard-series-a01644\.webp/);
+  assert.match(about, /selectCompanyContent/);
+  assert.match(inquiry, /采购 \/ 合作/);
   assert.match(inquiry, /InquiryForm/);
   assert.match(form, /fetch\("\/api\/inquiry"/);
   assert.doesNotMatch(form, /不会传输或保存数据/);

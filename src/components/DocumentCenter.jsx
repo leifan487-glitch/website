@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Footer } from "./Footer.jsx";
-import { EditorialHeading } from "./EditorialHeading.jsx";
+import { Link } from "react-router-dom";
 import { Navbar } from "./Navbar.jsx";
 import { isPublicResource } from "../data/resources/visibility.js";
 
@@ -13,7 +13,7 @@ function documentHref(resource) {
   return resource.fileUrl || resource.href;
 }
 
-export function DocumentCenter({ resources }) {
+export function DocumentCenter({ resources, mode = "documents" }) {
   const [activeCategory, setActiveCategory] = useState("all");
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLocaleLowerCase("zh-CN");
@@ -28,7 +28,9 @@ export function DocumentCenter({ resources }) {
         .some((value) => value.toLocaleLowerCase("zh-CN").includes(normalizedQuery));
     }), [activeCategory, normalizedQuery, resources]);
 
-  const hasPublishedDocuments = resources.some(isPublicResource);
+  const publishedDocuments = resources.filter(isPublicResource);
+  const downloadMode = mode === "downloads";
+  const title = downloadMode ? "下载中心" : "文档中心";
 
   return (
     <>
@@ -36,14 +38,11 @@ export function DocumentCenter({ resources }) {
         <Navbar theme="light" homeHref="/" />
 
         <section className="document-center page-shell" aria-labelledby="document-center-title">
-          <EditorialHeading
-            className="document-center__heading"
-            meta="支持 / 文档"
-            title="文档中心"
-            intro="集中查找 Mantis Standard 的使用、开发与交付资料。正式内容将在审核后持续补充。"
-            titleId="document-center-title"
-            titleTag="h1"
-          />
+          <header className="support-page-heading">
+            <nav aria-label="面包屑"><Link to="/support">服务与支持</Link><span aria-hidden="true"> / </span><span>{title}</span></nav>
+            <h1 id="document-center-title">{title}</h1>
+            <p>{downloadMode ? "下载 Mantis Standard 使用、开发与交付资料，便于离线查阅。" : "查阅 Mantis Standard 使用、开发与交付资料。"}</p>
+          </header>
 
           <div className="document-center__workspace">
             <aside className="document-center__controls" aria-label="文档筛选">
@@ -76,7 +75,7 @@ export function DocumentCenter({ resources }) {
                     onClick={() => setActiveCategory(category.value)}
                   >
                     <span>{category.label}</span>
-                    <span aria-hidden="true">{category.value === "all" ? "01" : "02"}</span>
+                    <span>{publishedDocuments.filter((resource) => category.value === "all" || resource.product === category.value).length}</span>
                   </button>
                 ))}
               </div>
@@ -85,41 +84,31 @@ export function DocumentCenter({ resources }) {
             <section className="document-results" aria-labelledby="document-results-title" aria-live="polite">
               <header>
                 <h2 id="document-results-title">
-                  {activeCategory === "all" ? "全部文档" : activeCategory}
+                  {activeCategory === "all" ? (downloadMode ? "全部文件" : "全部文档") : activeCategory}
                 </h2>
-                <p>{visibleDocuments.length} 项已发布</p>
+                <p>{visibleDocuments.length} {normalizedQuery ? "项匹配" : "项已发布"}</p>
               </header>
 
               <div className="document-grid">
                 {visibleDocuments.map((resource) => (
-                  <a
+                  <article
                     className="document-card"
-                    href={documentHref(resource)}
                     key={resource.id}
                   >
                     <p>{resource.product || "Mantis Standard"}</p>
                     <h3>{resource.title}</h3>
                     <span>{resource.description}</span>
                     <footer>
-                      <span>{resource.version || resource.updatedAt || "最新版本"}</span>
-                      <strong>{resource.fileType || "查看"}</strong>
-                    </footer>
-                  </a>
-                ))}
-
-                {!hasPublishedDocuments && !normalizedQuery ? (
-                  <article className="document-card document-card--placeholder" aria-label="待补充文档占位">
-                    <p>Mantis Standard</p>
-                    <h3>文档内容待补充</h3>
-                    <span>页面框架已经就绪，正式文件将在完成内容与公开审核后发布。</span>
-                    <footer>
-                      <span>等待正式资料</span>
-                      <strong>待发布</strong>
+                      <span>{resource.fileType} · {(resource.fileSize / 1024 / 1024).toFixed(2)} MB</span>
+                      <div className="document-card__actions">
+                        <a href={documentHref(resource)} target="_blank" rel="noopener noreferrer" aria-label={`查看${resource.title}`}>查看</a>
+                        <a className={downloadMode ? "is-primary" : undefined} href={documentHref(resource)} download aria-label={`下载${resource.title}`}>下载</a>
+                      </div>
                     </footer>
                   </article>
-                ) : null}
+                ))}
 
-                {visibleDocuments.length === 0 && (hasPublishedDocuments || normalizedQuery) ? (
+                {visibleDocuments.length === 0 ? (
                   <div className="document-results__empty">
                     <h3>没有找到相关文档</h3>
                     <p>请尝试更换关键词或选择其他分类。</p>
