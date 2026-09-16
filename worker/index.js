@@ -62,7 +62,13 @@ function sliceVideoStream(body, start, end) {
 
 async function fetchVideoAsset(request, env) {
   const response = await env.ASSETS.fetch(request);
-  const lengthHeader = response.headers.get("Content-Length");
+  // Pages can omit Content-Length inside ASSETS even when its final wire response has it.
+  // Only the two approved Homepage film encodings have a verified fallback length.
+  const filmSizes = {
+    "/media/mantis-standard/official-product-film.mp4": 25090788,
+    "/media/web-v2/official-product-film-720.mp4": 17199781,
+  };
+  const lengthHeader = response.headers.get("Content-Length") ?? String(filmSizes[new URL(request.url).pathname] ?? "");
   const size = Number(lengthHeader);
   if (response.status !== 200 || !response.headers.get("Content-Type")?.startsWith("video/")
     || response.headers.has("Content-Encoding") || !/^\d+$/.test(lengthHeader || "")
@@ -70,6 +76,7 @@ async function fetchVideoAsset(request, env) {
 
   const headers = new Headers(response.headers);
   headers.set("Accept-Ranges", "bytes");
+  headers.set("Content-Length", String(size));
   const full = () => new Response(response.body, { status: 200, headers });
   const range = request.headers.get("Range");
   if (request.method !== "GET" || !range) return full();

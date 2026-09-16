@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
   "fileCount": 350,
-  "totalBytes": 153536011,
+  "totalBytes": 153537374,
   "files": [
     {
       "path": ".env.example",
@@ -1137,7 +1137,7 @@
     {
       "path": "src/components/HomeProductStory.jsx",
       "bytes": 4553,
-      "sha256": "7e678473092a7a416b1c6506b66bc1d49070db75237288219390f597b3cfb97d"
+      "sha256": "4112bdf50128f662b98b7c967898e6ffd71a0e59b8b5350f1be63c11c1e7bbe1"
     },
     {
       "path": "src/components/HomeSections.jsx",
@@ -1741,8 +1741,8 @@
     },
     {
       "path": "tests/video-range.test.mjs",
-      "bytes": 4259,
-      "sha256": "14caa98cab3304524663e5397c1940babd694fe6f39e27e74de4c359785d37e1"
+      "bytes": 5188,
+      "sha256": "4641e3d248b6f6bad56fafe207ebac156dc64233f303fe557fe356abd91803df"
     },
     {
       "path": "vite.config.mjs",
@@ -1751,8 +1751,8 @@
     },
     {
       "path": "worker/index.js",
-      "bytes": 13607,
-      "sha256": "98749de17bbe7efbe5f0d2295dfb8cca7a0a0288aca8262d3d5ffa2811f2b059"
+      "bytes": 14041,
+      "sha256": "1f02218cd02975a131ff08ff4f8a0c2a23a95629078dd36a80f2b76f1a8dc99f"
     }
   ]
 }

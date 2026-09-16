@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import worker from '../worker/index.js';
+import {stat} from 'node:fs/promises';
 
 const payload=Uint8Array.from({length:256},(_,i)=>i);
 function fixture({status=200,type='video/mp4',length=256,extra={},method='GET'}={}) {
@@ -46,4 +47,14 @@ test('Range stream cancels upstream and does not eagerly consume the whole file'
  const f=fixture(),r=await worker.fetch(request('bytes=0-1'),f.env);await r.arrayBuffer();assert.ok(f.stats().reads<16);
  const aborted=fixture(),response=await worker.fetch(request('bytes=0-'),aborted.env);await response.body.cancel();assert.equal(aborted.stats().canceled,true);
  const short=await worker.fetch(request('bytes=250-299'),fixture({length:300}).env);await assert.rejects(()=>short.arrayBuffer(),/ended before/);
+});
+
+test('Pages binding without Content-Length uses verified Homepage film sizes',async()=>{
+ for(const [file,size]of [['/media/mantis-standard/official-product-film.mp4',25090788],['/media/web-v2/official-product-film-720.mp4',17199781]]){
+  assert.equal((await stat(new URL('../public'+file,import.meta.url))).size,size);
+  const response=await worker.fetch(request('bytes=0-15',{},'GET',file),{ASSETS:{fetch:async()=>new Response(payload,{headers:{'Content-Type':'video/mp4'}})}});
+  assert.equal(response.status,206);assert.equal(response.headers.get('Content-Range'),`bytes 0-15/${size}`);assert.deepEqual(new Uint8Array(await response.arrayBuffer()),payload.slice(0,16));
+ }
+ const unknown=await worker.fetch(request('bytes=0-15'),{ASSETS:{fetch:async()=>new Response(payload,{headers:{'Content-Type':'video/mp4'}})}});
+ assert.equal(unknown.status,200);await unknown.body.cancel();
 });
