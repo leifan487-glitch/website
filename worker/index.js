@@ -23,6 +23,78 @@ const PUBLIC_REDIRECTS = new Map([
   ["/contact", "/inquiry"],
   ["/support/downloads", "/support/documents"],
 ]);
+// BEGIN VIDEO RANGE ADAPTER — Pages assets currently ignore Range requests.
+function sliceVideoStream(body, start, end) {
+  const reader = body.getReader();
+  let offset = 0;
+  const sliced = new ReadableStream({
+    async pull(controller) {
+      try {
+        while (offset <= end) {
+          const { done, value } = await reader.read();
+          if (done) throw new Error("Video asset ended before the requested range");
+          const from = Math.max(0, start - offset);
+          const to = Math.min(value.byteLength, end + 1 - offset);
+          offset += value.byteLength;
+          if (to > from) controller.enqueue(value.subarray(from, to));
+          if (offset > end) {
+            controller.close();
+            await reader.cancel();
+            return;
+          }
+          if (to > from) return;
+        }
+      } catch (error) {
+        controller.error(error);
+        await reader.cancel(error).catch(() => {});
+      }
+    },
+    cancel(reason) { return reader.cancel(reason); },
+  });
+  // Cloudflare derives Content-Length from the stream, not a manually set header.
+  if (typeof FixedLengthStream !== "undefined") {
+    const fixed = new FixedLengthStream(end - start + 1);
+    sliced.pipeTo(fixed.writable).catch(() => {}); // Errors also propagate to the response stream.
+    return fixed.readable;
+  }
+  return sliced; // Standard Streams fallback for local Node tests.
+}
+
+async function fetchVideoAsset(request, env) {
+  const response = await env.ASSETS.fetch(request);
+  const lengthHeader = response.headers.get("Content-Length");
+  const size = Number(lengthHeader);
+  if (response.status !== 200 || !response.headers.get("Content-Type")?.startsWith("video/")
+    || response.headers.has("Content-Encoding") || !/^\d+$/.test(lengthHeader || "")
+    || !Number.isSafeInteger(size) || size <= 0) return response;
+
+  const headers = new Headers(response.headers);
+  headers.set("Accept-Ranges", "bytes");
+  const full = () => new Response(response.body, { status: 200, headers });
+  const range = request.headers.get("Range");
+  if (request.method !== "GET" || !range) return full();
+  const ifRange = request.headers.get("If-Range");
+  if (ifRange && (ifRange.startsWith('W/') || (ifRange !== headers.get("ETag")
+    && !(Number.isFinite(Date.parse(ifRange)) && Date.parse(headers.get("Last-Modified")) <= Date.parse(ifRange))))) return full();
+  const match = /^bytes=(\d*)-(\d*)$/.exec(range.trim());
+  // Unknown units, malformed and multipart ranges are ignored, as allowed by HTTP.
+  if (!match || (!match[1] && !match[2])) return full();
+  const first = Number(match[1]), last = Number(match[2]);
+  if (!Number.isSafeInteger(first) || !Number.isSafeInteger(last)) return full();
+  const start = match[1] ? first : Math.max(0, size - last);
+  const end = match[1] && match[2] ? Math.min(last, size - 1) : size - 1;
+  if (start >= size || start > end) {
+    await response.body?.cancel();
+    headers.set("Content-Range", `bytes */${size}`);
+    headers.set("Content-Length", "0");
+    return new Response(null, { status: 416, headers });
+  }
+  if (!response.body) return full();
+  headers.set("Content-Range", `bytes ${start}-${end}/${size}`);
+  headers.set("Content-Length", String(end - start + 1));
+  return new Response(sliceVideoStream(response.body, start, end), { status: 206, headers });
+}
+// END VIDEO RANGE ADAPTER
 const SECURITY_HEADERS = {
   "Content-Security-Policy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; media-src 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'",
   "Permissions-Policy": "camera=(), geolocation=(), microphone=()",
@@ -280,7 +352,9 @@ export default {
       return publicResponse(notFoundResponse, request);
     }
 
-    const response = await env.ASSETS.fetch(request);
+    const response = /\.(?:mp4)$/i.test(url.pathname) && ["GET", "HEAD"].includes(request.method)
+      ? await fetchVideoAsset(request, env)
+      : await env.ASSETS.fetch(request);
 
     if (response.status !== 404 || !acceptsHtml || !["GET", "HEAD"].includes(request.method)) {
       return publicResponse(response, request);

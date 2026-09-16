@@ -1,5 +1,11 @@
 # Prototype Instructions
 
+## 2026-09-16 Homepage video seeking fix and release
+
+- Owner reports the Homepage official-film native timeline cannot seek and explicitly authorizes fixing and publishing it.
+- Add streaming single-byte-range responses for existing MP4 assets in the current Pages Worker; preserve inquiry/security/routes and original media. Do not buffer the whole movie, add services, or redesign controls.
+- The Homepage official-film URL gets a query version to bypass cached full-only responses. Validate native forward/backward seeking beyond buffered data on desktop/mobile and verify actual 206 Content-Range bytes before declaring success.
+
 ## 2026-09-16 Owner approves all current refinements for release
 
 - Owner accepted the current engineering image and product-page tail removal, and explicitly requested publishing all current local website updates to the existing official Pages site.

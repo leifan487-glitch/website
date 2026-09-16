@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
-  "fileCount": 348,
-  "totalBytes": 153526660,
+  "fileCount": 350,
+  "totalBytes": 153536011,
   "files": [
     {
       "path": ".env.example",
@@ -31,8 +31,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 16791,
-      "sha256": "d90d73d2e8d48dc386837b799e9fe6a97c8331da493f3d79a5a58ad7c5388987"
+      "bytes": 17426,
+      "sha256": "d0269422e10d8dd58bbc215af6e76e863655a45843a7261885207f0b68f8e92a"
     },
     {
       "path": "DEPLOYMENT.md",
@@ -1136,8 +1136,8 @@
     },
     {
       "path": "src/components/HomeProductStory.jsx",
-      "bytes": 4457,
-      "sha256": "932a58c90974ce92e2615b16051416f01a3dbd77a4780c4c86440e844c949662"
+      "bytes": 4553,
+      "sha256": "7e678473092a7a416b1c6506b66bc1d49070db75237288219390f597b3cfb97d"
     },
     {
       "path": "src/components/HomeSections.jsx",
@@ -1576,8 +1576,8 @@
     },
     {
       "path": "tests/final-polish-20260916.test.mjs",
-      "bytes": 3197,
-      "sha256": "af522abac10f343975a195a9dfddd2fd8bb58f06a609caa461a858cef9831652"
+      "bytes": 3332,
+      "sha256": "370032445755ae609e69f0c1013b7e5a57afca7e4e232d162973fde55f0d917d"
     },
     {
       "path": "tests/helpers/final-polish-scope.mjs",
@@ -1598,6 +1598,11 @@
       "path": "tests/helpers/task0191-control-fix.mjs",
       "bytes": 641,
       "sha256": "725e8a696f6df2fe3fd3fe8d57f844f7987529844939c3395362055d4acaf1e2"
+    },
+    {
+      "path": "tests/helpers/video-range-scope.mjs",
+      "bytes": 490,
+      "sha256": "4f6c1e753effe755c83e37614008a56f509e6806f8f5f3d310e7681dc87870b7"
     },
     {
       "path": "tests/hero-edge-20260916.test.mjs",
@@ -1626,8 +1631,8 @@
     },
     {
       "path": "tests/owner-feedback-20260916.test.mjs",
-      "bytes": 2896,
-      "sha256": "ac18be58df6d6edb8bc156aef54bf1beb169aa2e0add6737d63385c12dc108ce"
+      "bytes": 3051,
+      "sha256": "d2baf523efdc17e40edd0fd5e89c1a9d5c0adf6a5cddd32ee04d7d695a2b7213"
     },
     {
       "path": "tests/performance-readiness.test.mjs",
@@ -1716,8 +1721,8 @@
     },
     {
       "path": "tests/task0188b-editorial.test.mjs",
-      "bytes": 3159,
-      "sha256": "116badb0848fa493ddd48e6e26357e6ff9f46f19daa18c26b3829540fae341b0"
+      "bytes": 3245,
+      "sha256": "3f6009fb40a9eafb35f73e562d904fd856af88582f8e0afd73b4419001815a7a"
     },
     {
       "path": "tests/task0188bf-final.test.mjs",
@@ -1735,14 +1740,19 @@
       "sha256": "de2efe316b37d48005f253c71721017086a385cb5552c3e2b1579468b170f00f"
     },
     {
+      "path": "tests/video-range.test.mjs",
+      "bytes": 4259,
+      "sha256": "14caa98cab3304524663e5397c1940babd694fe6f39e27e74de4c359785d37e1"
+    },
+    {
       "path": "vite.config.mjs",
       "bytes": 382,
       "sha256": "5f20ad6ef5aa89956c8791d8caefa224bc80718ca38df213b5e0c9c883d4bfee"
     },
     {
       "path": "worker/index.js",
-      "bytes": 10112,
-      "sha256": "2ec0ad17ff9c95ae2b7c4ad9cf4820fc4677cecd664cb66e2d99ebc67f50ca8a"
+      "bytes": 13607,
+      "sha256": "98749de17bbe7efbe5f0d2295dfb8cca7a0a0288aca8262d3d5ffa2811f2b059"
     }
   ]
 }

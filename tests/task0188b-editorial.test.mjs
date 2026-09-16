@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { withoutVideoRange } from './helpers/video-range-scope.mjs';
 import {reopened0188bf,reopenedHomeFinal} from './helpers/task0188b-scope.mjs';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -14,7 +15,7 @@ test('018.8B preserves facts, six questions, all assets and email/security imple
  const lock=JSON.parse(await read('internal/task0188b-locked-files.json'));
  assert.ok(lock.reopened.every(f=>!f.startsWith('public/')&&!f.startsWith('src/data/standard/')&&!f.startsWith('src/data/company/')));
  for(const [f,h] of Object.entries(lock.files))if(!lock.reopened.includes(f)&&!reopened0188bf.has(f)&&!reopenedHomeFinal.has(f))assert.equal(hash(await bytes(f)),h,f);
- assert.equal(hash((await read('worker/index.js')).split('const SECURITY_HEADERS')[1]),lock.workerImplementation);
+ assert.equal(hash(withoutVideoRange(await read('worker/index.js')).split('const SECURITY_HEADERS')[1]),lock.workerImplementation);
  assert.match(await read('.env.example'),/VITE_INQUIRY_ENABLED=false/);
 });
 test('018.8B canonical news and document routes work without reviving Progress',async()=>{

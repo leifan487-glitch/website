@@ -24,7 +24,8 @@ export function HomeOfficialFilm() {
   const [activated, setActivated] = useState(false);
   const [failed, setFailed] = useState(false);
   const videoRef = useRef(null);
-  const [videoSource] = useState(() => selectVideoDelivery(officialProductFilm.src));
+  // Bypass previously cached full-only responses when enabling byte-range seeking.
+  const [videoSource] = useState(() => `${selectVideoDelivery(officialProductFilm.src)}?seek=1`);
 
   useEffect(() => {
     const video = videoRef.current;

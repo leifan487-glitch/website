@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { withoutVideoRange } from './helpers/video-range-scope.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -6,7 +7,7 @@ import { finalPolish, reopenedFinalPolish } from './helpers/final-polish-scope.m
 import { selectVideoDelivery, videoDelivery } from '../src/data/videoDelivery.js';
 const read = f => readFile(new URL('../'+f,import.meta.url));
 test('Final local polish preserves all prior-round facts, routes, media, server and inquiry files',async()=>{
- for(const [f,h]of Object.entries(finalPolish.files)) if(!reopenedFinalPolish.has(f)) assert.equal(createHash('sha256').update(await read(f)).digest('hex'),h,f);
+ for(const [f,h]of Object.entries(finalPolish.files)) if(!reopenedFinalPolish.has(f)) {const b=await read(f);assert.equal(createHash('sha256').update(f==='worker/index.js'?withoutVideoRange(b.toString()):b).digest('hex'),h,f);}
  assert.equal(reopenedFinalPolish.size,6);
 });
 test('Delivery selects bounded approved variants, with stable desktop/mobile fallback',async()=>{
