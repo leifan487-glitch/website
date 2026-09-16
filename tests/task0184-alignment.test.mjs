@@ -1,3 +1,4 @@
+import { reopened0188b } from "./helpers/task0188b-scope.mjs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import {readFile} from "node:fs/promises";
@@ -8,7 +9,9 @@ const read = p => readFile(new URL('../'+p,import.meta.url),'utf8');
 
 test('Task 018.4 locks Home, Standard, six-Q, backend and all existing public resources', async()=>{
   const locks=JSON.parse(await read('internal/task0184-locked-files.json'));
+  const {exceptions:polish0187}=JSON.parse(await read('internal/task0187-locked-files.json'));
   for(const [file,expected] of Object.entries(locks)) {
+    if(polish0187[file] || reopened0188b.has(file)) continue;
     // Explicit Task 018.5 bug-fix / small responsive exceptions; historical hashes retained.
     if (["src/App.jsx", "src/components/Navbar.jsx", "src/components/StandardMediaPlayer.jsx", "src/styles.css", "src/support.css"].includes(file)) continue;
     assert.equal(createHash('sha256').update(await readFile(new URL('../'+file,import.meta.url))).digest('hex'),expected,file);

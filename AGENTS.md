@@ -1,5 +1,40 @@
 # Prototype Instructions
 
+## 2026-09-16 Task0191 Boss Preview release authorization
+
+- Owner authorizes publishing the approved local website to existing origin/main and bluewormrobotics Pages. Email/Resend/Turnstile remain postponed and disabled; no real email or email-variable changes.
+- Sole new UI fix authorized: Applications Hero empty caption overlay passes pointer events through to video controls, while its actual text remains selectable. No visual/content/media changes. Historical lock hashes stay intact; tests subtract only this exact CSS addition.
+- Require full local and production QA before declaring success. No new project, DNS or domain changes.
+
+## 2026-09-16 Owner restores standalone inquiry (supersedes inline contact below)
+
+- Restore the existing `/inquiry` page. Navbar purchase and the single Homepage contact CTA navigate to `/inquiry`; no inline form on Homepage. `/contact` redirects 308 to `/inquiry`.
+- Homepage forms heading is now 形态展示. Preserve the six images, content, grid and hover behavior.
+- InquiryPage / InquiryForm and email security stay unchanged; sending remains disabled. No commit/push/deploy or Task018.9. Report: ../docs/boss-review/INQUIRY_RESTORE_FORMS_LABEL.md.
+
+## 2026-09-16 Owner final homepage polish / contact IA
+
+- 018.8B Editorial, NAV and F News/Partners accepted by Owner. Current new card reopens only below-Hero homepage headers, six-form presentation and contact IA. Hero and all product facts/media remain locked.
+- Homepage headers: 产品影片、六种形态、按需组合、真实任务、核心技术、合作伙伴、新闻动态、采购合作. Center heading anchors, not every content block. Six photographic forms use a small-gap 3×2 / mobile 2×3 grid, subtle fine-pointer hover, no fake links.
+- Homepage #contact owns the inline existing InquiryForm, collapsed by default. /inquiry and /contact are 308 compatibility redirects to /#contact. Navbar purchase destination changes without changing its visual system; other locked pages/Footer keep legacy links via redirects.
+- Email remains disabled. InquiryForm and Worker email/security implementation stay unchanged; only Worker public route/redirect declarations change. Do not start Task 018.9 or release preparation; no commit/push/deploy. Report: ../docs/boss-review/HOMEPAGE_FINAL_VISUAL_POLISH.md.
+
+## 2026-09-15 Task 018.8B-F bounded final additions
+
+- Owner confirms 018.8B Editorial and Navbar ACCEPT; current visual system including centered Navbar underlines is LOCK.
+- Homepage replaces only the rendered three-task teaser with four static, non-clickable partner logos: 西安电子科技大学、西安交通大学、陕旅集团、质子汽车. Do not infer any other partner or stronger relationship label.
+- Logo provenance stays in internal/task0188bf-logo-sources.json; original colors/proportions remain. No competitor extraction, tracing, generated logos or external hotlinks.
+- People's Daily original URL is http://gd.people.com.cn/n2/2025/0818/c123932-41325012.html. Internal detail remains text-only with original approved facts and a secure new-tab link.
+- Applications records/anchors/media remain; all prior public assets, Navbar, Standard, facts and email backend stay locked. No commit/push/deploy; stop for ChatGPT Review before 018.8C.
+
+## 2026-09-15 Task 018.7 local polish
+
+- RC-018.6 已由负责人确认上线；当前HEAD bb3b328。以下018.5“未部署”文字为历史状态，不覆盖最新任务。
+- 本轮只重新开放 HomePage、HomeProductStory、HomeSections、Navbar、home.css 五个源文件：首页统一MANTIS/STANDARD字体逻辑、蓝色细框CTA、移除重复模块化解释、影片intro、六形态、轻量现场片段；主导航文档中心直达，不删除支持页面。
+- 新增首页专用六形态官方截图只允许裁切/缩放，不生成机器人结构；800×640 WebP来源记录见 internal/task0187-form-posters.json。产品页共享原图和所有既有public资源不改。
+- 中文静态标识、Standard-only、0.98万起、六问、参数、询盘disabled、四PDF、独立页和路由锁定；internal/task0187-locked-files.json 保留145个RC哈希，五个src有明确例外。
+- 本地完成待ChatGPT Review；不commit/push/deploy。018.6V已知Applications暂停按钮P1仍存在，不得声称全站生产验收通过。详情见 ../docs/boss-review/TASK0187_HOMEPAGE_POLISH.md。
+
 ## 2026-09-14 Task 018.5 RC-018.5
 
 - 018.4 已由最新任务卡 ACCEPT / LOCK；首页与Standard结构/视觉继续锁定，六问仍 OWNER COPY REVIEW REQUIRED。

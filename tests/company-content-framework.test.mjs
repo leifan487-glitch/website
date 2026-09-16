@@ -43,7 +43,7 @@ test("company source remains traceable while only Task 014-approved records are 
   }
   assert.ok(publicProjectRecords.every((record) => record.customerName === null && record.schoolName === null));
   assert.ok(publicProgressRecords.every((record) => record.contentStatus === "VERIFIED" && record.publicApproved));
-  assert.ok(verifiedMediaCoverage.every((record) => record.href.startsWith("https://")));
+  assert.ok(verifiedMediaCoverage.every((record) => record.href.startsWith("https://") || record.href === "http://gd.people.com.cn/n2/2025/0818/c123932-41325012.html")); // Owner-confirmed 018.8B-F original.
 });
 
 test("public company selection requires VERIFIED and explicit approval", () => {
@@ -69,7 +69,7 @@ test("Task 018.4 company pages expose compact approved content and public guards
   for (const token of ["aligned-scenarios", "aligned-scenes", "getStandardMediaByUsage"]) assert.match(applications, new RegExp(token));
   assert.doesNotMatch(applications, /PROJECT INQUIRY|to="\/inquiry"/);
   for (const token of ["companyIdentity", "companyMission", "leadership", "intellectualPropertyCopy", "aligned-mission", "aligned-build", "aligned-people"]) assert.match(about, new RegExp(token));
-  for (const token of ["COMPANY / PROGRESS", "COMPETITIONS", "媒体报道"]) assert.match(progress, new RegExp(token));
+  for (const token of ["新闻与动态", "赛事记录", "媒体报道"]) assert.match(progress, new RegExp(token));
   assert.match(technology, /alignedPlatforms/);
   assert.doesNotMatch(applications, /companyProjects|companyPublicMode|InternalStatus/);
   assert.match(about, /selectCompanyContent\(leadership, \{publicMode:true\}\)/);

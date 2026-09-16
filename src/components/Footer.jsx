@@ -10,7 +10,7 @@ const groups = () => [
   },
   {
     label: "公司",
-    links: [["关于蓝虫", "/about"], ["动态", "/news"], ["采购/合作", "/inquiry"]],
+    links: [["关于蓝虫", "/about"], ["新闻与动态", "/news"], ["采购/合作", "/inquiry"]],
   },
   {
     label: "服务与支持",

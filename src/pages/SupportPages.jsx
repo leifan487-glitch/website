@@ -53,7 +53,7 @@ export function DownloadsPage() {
 }
 
 export function VideosPage() {
-  return <SupportModuleGate moduleId="videos"><><main id="main-content" className="videos-page"><PageHero variant="video" eyebrow="VIDEO CENTER / MANTIS STANDARD" title="任务影像" intro="Mantis Standard 的产品形态、操作过程与应用场景影像。" /><VideoCenter /></main><Footer /></></SupportModuleGate>;
+  return <SupportModuleGate moduleId="videos"><><main id="main-content" className="videos-page"><PageHero variant="video" title="任务影像" intro="Mantis Standard 的产品形态、操作过程与应用场景影像。" /><VideoCenter /></main><Footer /></></SupportModuleGate>;
 }
 
 export function KnowledgePage() {

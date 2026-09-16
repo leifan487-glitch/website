@@ -47,11 +47,12 @@ export const publicProgressRecords = [
 export const verifiedMediaCoverage = [
   {
     id: "peoples-daily-whrg-2025",
+    internalPath: "/news/peoples-daily-whrg-2025",
     publisher: "人民日报",
     date: "2025-08-18",
     title: "全球首个人形机器人运动会精彩瞬间",
     summary: "报道图片说明记录蓝虫具身机器人亮相酒店场景清洁服务技能比赛。",
-    href: "https://paper.people.com.cn/rmrb/pad/content/202508/18/content_30096779.html",
+    href: "http://gd.people.com.cn/n2/2025/0818/c123932-41325012.html",
     contentStatus: "VERIFIED",
     publicApproved: true,
     visibility: "PUBLIC",

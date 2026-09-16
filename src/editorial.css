@@ -1,0 +1,95 @@
+/* 018.8B: scoped editorial roles. Product heroes retain their own scale. */
+:is(.homepage-v2, .standard-page-v2, .aligned-page, .news-page, .support-practical-page, .document-center-page, .videos-page, .not-found) {
+  --editorial-font: "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --editorial-h1: clamp(36px, 4.2vw, 60px);
+  --editorial-h2: clamp(28px, 2.65vw, 40px);
+  --editorial-card: 22px;
+  --editorial-body: 16px;
+  --editorial-leading: 1.8;
+  font-family: var(--editorial-font);
+}
+.aligned-page h1, .news-page h1, .not-found h1,
+.support-practical-page .support-page-heading h1,
+.document-center-page .support-page-heading h1,
+.videos-page .page-hero h1 {
+  font-family: var(--editorial-font); font-size: var(--editorial-h1);
+  font-weight: 600; line-height: 1.25; letter-spacing: -.02em;
+}
+.homepage-v2 .home-story-heading h2, .homepage-v2 .home-contact h2,
+.homepage-v2 .real-world__header h2,
+.standard-page-v2 .sp-heading .editorial-heading__title,
+.standard-page-v2 .sp-contact h2, .aligned-page .aligned-section h2,
+.aligned-page .aligned-platform h2, .aligned-page .aligned-related h2,
+.news-page h2, .videos-page .video-featured > .editorial-heading > .editorial-heading__title,
+.videos-page .video-library > .editorial-heading > .editorial-heading__title {
+  font-family: var(--editorial-font); font-size: var(--editorial-h2);
+  font-weight: 600; line-height: 1.35; letter-spacing: -.015em;
+}
+.homepage-v2 .home-technology-preview__items h3, .news-page h3,
+.videos-page .video-card h3, .videos-page .video-featured h3 {
+  font-family: var(--editorial-font); font-size: var(--editorial-card); font-weight: 600; line-height: 1.5;
+}
+.standard-page-v2 .sp-lead, .standard-page-v2 .sp-real-tasks figcaption p,
+.standard-page-v2 .sp-development__list p, .standard-page-v2 .sp-capabilities dd,
+.standard-page-v2 .sp-question__full p, .standard-page-v2 .sp-documents p,
+.document-center .document-card > span, .news-page p,
+.aligned-page .aligned-scenarios p, .aligned-page .aligned-scenes figcaption p,
+.aligned-page .aligned-build dd, .support-practical-page .support-resource-directory p,
+.videos-page .video-card__copy > p, .videos-page .editorial-heading__detail p {
+  font-size: var(--editorial-body); line-height: var(--editorial-leading);
+}
+.aligned-page .aligned-lead { font-size: 18px; line-height: var(--editorial-leading); }
+.aligned-scenes > figure, .sp-module-relations, #why-modular { scroll-margin-top: 112px; }
+.standard-page-v2 .sp-module-relations { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--sp-line); }
+.standard-page-v2 .sp-module-relations dl { margin: 0; }
+.standard-page-v2 .sp-module-relations dl > div { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 28px; padding: 18px 0; border-bottom: 1px solid var(--sp-line); }
+.standard-page-v2 .sp-module-relations dt { font-size: 18px; font-weight: 600; }
+.standard-page-v2 .sp-module-relations dd { margin: 0; }
+.standard-page-v2 .sp-module-relations dd p { margin: 0; }
+.standard-page-v2 .sp-structure-index dt { display: flex; align-items: baseline; gap: 16px; }
+.standard-page-v2 .sp-capabilities__layout { grid-template-columns: minmax(240px, .8fr) minmax(0, 1.2fr); gap: 56px; }
+.standard-page-v2 .sp-structure-index > div { grid-template-columns: 175px minmax(0, 1fr); gap: 20px; }
+.standard-page-v2 .sp-development-interface { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--sp-line); }
+.standard-page-v2 .sp-development-interface h3 { display: flex; align-items: baseline; gap: 16px; font-size: 20px; }
+.standard-page-v2 .sp-development-interface p { margin: 0; }
+.news-page { background: #fff; color: #0a0b0c; min-height: 70vh; }
+.news-page .page-shell { max-width: 1360px; margin-inline: auto; }
+.news-heading { padding-top: calc(var(--nav-height) + 64px); padding-bottom: 56px; }
+.news-page h1, .news-page h2, .news-page h3 { margin: 0; }
+.news-section { padding-bottom: 64px; }
+.news-section > h2 { margin-bottom: 28px; }
+.news-records { margin: 0; padding: 0; list-style: none; }
+.news-records > li { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; padding: 28px 0; border-top: 1px solid #d4dcdf; }
+.news-records h3 a { display: flex; justify-content: space-between; gap: 24px; text-decoration: none; color: inherit; }
+.news-records h3 a:hover { text-decoration: underline; text-underline-offset: 6px; }
+.news-records p { margin: 12px 0 0; color: #535f66; }
+.news-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; align-content: start; font-size: 14px; color: #535f66; line-height: 1.7; }
+.news-detail.page-shell { max-width: 1100px; padding-top: calc(var(--nav-height) + 48px); padding-bottom: 100px; }
+.news-back { display: inline-flex; min-height: 44px; align-items: center; color: #535f66; text-decoration: none; margin-bottom: 36px; }
+.news-detail header { max-width: 18em; font-size: var(--editorial-h1); }
+.news-detail header .news-meta { margin-bottom: 20px; }
+.news-detail__summary { max-width: 40em; margin: 40px 0 32px; }
+.news-original { display: inline-flex; gap: 24px; align-items: center; min-height: 44px; color: inherit; border-bottom: 1px solid currentColor; text-decoration: none; }
+.news-page a:focus-visible { outline: 2px solid #246787; outline-offset: 5px; }
+@media (max-width: 900px) {
+  .standard-page-v2 .sp-capabilities__layout { grid-template-columns: 1fr; gap: 32px; }
+  .standard-page-v2 .sp-capabilities figure img { height: 360px; }
+  .standard-page-v2 .sp-development-interface { grid-template-columns: 1fr; gap: 12px; }
+  .news-records > li { grid-template-columns: 160px minmax(0, 1fr); gap: 24px; }
+}
+@media (max-width: 600px) {
+  :is(.homepage-v2, .standard-page-v2, .aligned-page, .news-page, .support-practical-page, .document-center-page, .videos-page, .not-found) {
+    --editorial-h1: 36px; --editorial-h2: 28px; --editorial-card: 20px;
+  }
+  .standard-page-v2 .sp-module-relations dl > div, .standard-page-v2 .sp-structure-index > div { grid-template-columns: 1fr; gap: 10px; }
+  .news-heading { padding-top: calc(var(--nav-height) + 36px); padding-bottom: 40px; }
+  .news-section { padding-bottom: 40px; }
+  .news-records > li { grid-template-columns: 1fr; gap: 12px; padding-block: 24px; }
+  .news-records .news-meta:empty { display: none; }
+  .news-detail.page-shell { padding-top: calc(var(--nav-height) + 28px); padding-bottom: 64px; }
+  .news-detail__summary { margin-top: 28px; }
+}
+
+/* Task0191: let the empty caption layer pass clicks to the video controls. */
+.applications-aligned .applications-hero__content { pointer-events: none; }
+.applications-aligned .applications-hero__content > * { pointer-events: auto; }

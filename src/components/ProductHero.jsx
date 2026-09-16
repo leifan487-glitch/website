@@ -88,10 +88,6 @@ export function ProductHero() {
           />
         </picture>
 
-        <ul className="product-hero__values" aria-label="Mantis Standard 核心价值">
-          {activeProduct.valueWords.map((word) => <li key={word}>{word}</li>)}
-        </ul>
-
         <InternalStatus as="p" className="product-hero__asset-note" status="SOURCE">
           <span className="product-hero__asset-id product-hero__asset-id--desktop">{activeProduct.poster.desktop.assetId}</span>
           <span className="product-hero__asset-id product-hero__asset-id--mobile">{activeProduct.poster.mobile.assetId}</span>{` · INTERNAL V1`}

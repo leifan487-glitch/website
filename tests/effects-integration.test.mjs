@@ -25,7 +25,7 @@ test("product systems use visible structural information instead of hiding devel
   assert.match(intro, /mantis-intro__inner/);
   assert.match(intro, /双臂移动操作机器人/);
   assert.match(sections, /sp-modular__columns/);
-  assert.match(sections, /standardHardware\.map/);
+  assert.match(sections, /structures\.map/);
   assert.match(sections, /sp-development__list/);
   assert.match(sections, /standardDevelopmentPaths\.map/);
   assert.doesNotMatch(sections, /systemTabs|activeTab/);

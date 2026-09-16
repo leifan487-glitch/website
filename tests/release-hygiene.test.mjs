@@ -7,7 +7,7 @@ import { getVisibleSupportModules, isSupportModuleVisible, supportModules } from
 const source = async (path) => readFile(new URL(path, import.meta.url), "utf8");
 
 test("Support module visibility preserves internal review and filters public preview", () => {
-  assert.deepEqual(Object.values(supportModules).filter((module) => module.publicVisible).map((module) => module.id), ["documents", "downloads", "videos", "service", "contact"]);
+  assert.deepEqual(Object.values(supportModules).filter((module) => module.publicVisible).map((module) => module.id), ["documents", "videos", "service", "contact"]);
   assert.equal(isSupportModuleVisible("videos", { publicPreview: false, hiddenModuleIds: ["videos"] }), true);
   assert.equal(isSupportModuleVisible("videos", { publicPreview: true, hiddenModuleIds: ["videos"] }), false);
   assert.deepEqual(getVisibleSupportModules({ publicPreview: true, hiddenModuleIds: ["downloads", "knowledge"] }).map((module) => module.id), ["documents", "service", "contact"]);

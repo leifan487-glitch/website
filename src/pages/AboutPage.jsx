@@ -23,13 +23,13 @@ export function AboutPage() {
       <section className="aligned-mission" data-motion-section aria-labelledby="mission-title"><div className="page-shell"><h2 id="mission-title" data-motion-copy>公司使命</h2><p data-motion-copy>{companyMission.text}</p></div></section>
       <section className="aligned-section page-shell" data-motion-section aria-labelledby="build-title">
         <h2 id="build-title" data-motion-copy>产品与技术体系</h2>
-        <div className="aligned-build"><div><h3>Mantis Standard</h3><p>一脑多形，真模块化。围绕不同任务组合机器人形态，连接操作与开发。</p><Link className="aligned-link" to="/products/mantis-standard">查看产品<ArrowRight size={20} aria-hidden="true" /></Link></div>
+        <div className="aligned-build"><div><h3>Mantis Standard</h3><p>一脑多形，真模块化。围绕不同任务组合机器人形态，连接操作与开发。</p><Link className="aligned-link" to="/products/mantis-standard">了解 Mantis Standard<ArrowRight size={20} aria-hidden="true" /></Link></div>
           <dl>{alignedPlatforms.map(p => <div key={p.id}><dt>{p.nameZh}<span>{p.name}</span></dt><dd>{p.roleZh}</dd></div>)}</dl>
         </div>
       </section>
       <section className="aligned-section aligned-tint" data-motion-section aria-labelledby="people-title"><div className="page-shell aligned-people">
         <div><h2 id="people-title" data-motion-copy>核心团队</h2>{leaders.map(leader => <article key={leader.id}><h3>{leader.name}</h3><p>{leader.role}</p><p>{leader.education}</p></article>)}</div>
-        <div><h2>研发与进展</h2><p>{intellectualPropertyCopy.text}</p><Link className="aligned-link" to="/news">查看公司进展<ArrowRight size={20} aria-hidden="true" /></Link></div>
+        <div><h2>研发与进展</h2><p>{intellectualPropertyCopy.text}</p><Link className="aligned-link" to="/news">查看新闻与动态<ArrowRight size={20} aria-hidden="true" /></Link></div>
       </div></section>
     </main><Footer />
   </>;

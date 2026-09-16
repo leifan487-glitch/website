@@ -6,17 +6,17 @@ import { TechnologyPage } from "./pages/TechnologyPage.jsx";
 import { ApplicationsPage } from "./pages/ApplicationsPage.jsx";
 import { AboutPage } from "./pages/AboutPage.jsx";
 import { NewsPage } from "./pages/NewsPage.jsx";
+import { NewsDetailPage } from "./pages/NewsDetailPage.jsx";
+import { InquiryPage } from "./pages/InquiryPage.jsx";
 import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 import {
   DocumentsPage,
-  DownloadsPage,
   KnowledgePage,
   ServicePage,
   SupportOverviewPage,
   SupportContactPage,
   VideosPage,
 } from "./pages/SupportPages.jsx";
-import { InquiryPage } from "./pages/InquiryPage.jsx";
 import { PrivacyPage, TermsPage } from "./pages/PolicyPages.jsx";
 import { getRouteMetadata } from "./data/siteMetadata.js";
 
@@ -50,7 +50,7 @@ function setSiteUrlMetadata(pathname) {
 }
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     const metadata = getRouteMetadata(pathname);
@@ -62,7 +62,15 @@ function ScrollToTop() {
     setMeta('meta[property="og:description"]', { property: "og:description" }, metadata.description);
     setMeta('meta[property="og:type"]', { property: "og:type" }, "website");
     setSiteUrlMetadata(pathname);
-  }, [pathname]);
+    const frame = requestAnimationFrame(() => {
+      if (hash) {
+        const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+        target?.scrollIntoView();
+        if (hash === "#contact") target?.focus({ preventScroll: true });
+      }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, hash]);
 
   return null;
 }
@@ -91,11 +99,12 @@ export function App() {
         <Route path="/applications" element={<ApplicationsPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/news" element={<NewsPage />} />
+        <Route path="/news/peoples-daily-whrg-2025" element={<NewsDetailPage />} />
         <Route path="/contact" element={<Navigate to="/inquiry" replace />} />
         <Route path="/support" element={<SupportOverviewPage />} />
         <Route path="/support/contact" element={<SupportContactPage />} />
         <Route path="/support/documents" element={<DocumentsPage />} />
-        <Route path="/support/downloads" element={<DownloadsPage />} />
+        <Route path="/support/downloads" element={<Navigate to="/support/documents" replace />} />
         <Route path="/support/videos" element={<VideosPage />} />
         <Route path="/support/service" element={<ServicePage />} />
         <Route path="/support/knowledge" element={<KnowledgePage />} />

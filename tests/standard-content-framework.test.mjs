@@ -33,7 +33,7 @@ test("Task 018.3 Standard page follows the complete product story with documents
   assert.doesNotMatch(page, /<MantisIntro|<MantisProductDetail/);
   const ids = ["overview", "modular", "six-forms", "why-modular", "capability-system", "real-tasks", "development", "specifications", "questions", "product-documents", "product-inquiry"];
   for (const id of ids) assert.match(sections, new RegExp(`id=\\"${id}\\"`));
-  const renderOrder = ["ProductOverviewSection", "ModularArchitectureSection", "SixFormsSection", "WhyModularSection", "CapabilitySystemSection", "RealTasksSection", "DevelopmentSection", "SpecificationsSection", "StandardQaSection", "StandardDocumentsSection", "StandardInquirySection"];
+  const renderOrder = ["ProductOverviewSection", "ModularArchitectureSection", "CapabilitySystemSection", "RealTasksSection", "DevelopmentSection", "SpecificationsSection", "StandardQaSection", "StandardDocumentsSection", "StandardInquirySection"];
   const renderBlock = sections.slice(sections.indexOf("export function StandardProductSections"));
   let cursor = -1;
   for (const component of renderOrder) {
@@ -106,7 +106,8 @@ test("Real Tasks player and Inquiry route are wired", async () => {
   assert.match(sections, /productRealTasks/);
   assert.match(sections, /to="\/inquiry"/);
   assert.match(sections, /support\/documents/);
-  assert.match(sections, /documentResources\.filter/);
+  assert.match(sections, /查看产品文档/);
+  assert.doesNotMatch(sections, /documentResources\.filter/);
 });
 
 test("Production Public visibility requires explicit approval and hides review badges", async () => {

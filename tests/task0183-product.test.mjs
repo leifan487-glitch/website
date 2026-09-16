@@ -1,3 +1,4 @@
+import { reopened0188b } from "./helpers/task0188b-scope.mjs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
@@ -9,10 +10,12 @@ const read = file => readFile(new URL("../" + file, import.meta.url), "utf8");
 
 test("Task 018.3 locks homepage, standalone routes, baseline and all existing public media", async () => {
   const locked = JSON.parse(await read("internal/task0183-locked-files.json"));
+  const { exceptions: polish0187 } = JSON.parse(await read("internal/task0187-locked-files.json"));
   // Task 018.4 explicitly reopens only these remaining-page implementations.
   // Preserve the historical snapshot; the 018.4 test separately locks Home / Standard.
   const reopened0184 = new Set(["src/pages/TechnologyPage.jsx", "src/pages/ApplicationsPage.jsx", "src/pages/AboutPage.jsx", "src/pages/InquiryPage.jsx", "src/components/TechnologyExplorer.jsx", "src/components/InquiryForm.jsx", "src/components/SubpageMotion.jsx"]);
   for (const [file, expected] of Object.entries(locked)) {
+    if (polish0187[file] || reopened0188b.has(file)) continue; // Explicit five-file polish scope; other RC files remain hash-locked.
     if (reopened0184.has(file)) continue;
     // Task 018.5: only documented navigation/media bugs and mobile document density.
     if (["src/App.jsx", "src/components/Navbar.jsx", "src/components/StandardMediaPlayer.jsx", "src/styles.css", "src/support.css"].includes(file)) continue;
@@ -51,8 +54,8 @@ test("Task 018.3 single price source, document reuse and click-only task media",
   assert.doesNotMatch(hero, /0\.98/);
   const source = await read("src/components/StandardProductSections.jsx");
   assert.match(source, /standardPublicSpecs, \{ publicMode: true \}/);
-  assert.match(source, /isPublicResource\(item\)/);
-  assert.match(source, /href=\{item.fileUrl\} download/);
+  assert.match(source, /to="\/support\/documents"/);
+  assert.doesNotMatch(source, /href=\{item.fileUrl\} download/); // 018.8B centralizes PDF actions.
   assert.equal((source.match(/to="\/inquiry"/g) || []).length, 1);
   assert.doesNotMatch(source, /<video|autoPlay|homeLoop|<iframe/);
   assert.match(source, /href=\{officialProductFilm.src\}/);

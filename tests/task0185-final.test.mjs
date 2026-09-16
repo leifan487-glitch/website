@@ -1,3 +1,4 @@
+import { reopened0188b } from "./helpers/task0188b-scope.mjs";
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
@@ -5,7 +6,8 @@ import {createHash} from 'node:crypto';
 const read=p=>readFile(new URL('../'+p,import.meta.url),'utf8');
 test('Task 018.5 preserves every snapshot source and public resource outside six documented fix files',async()=>{
  const {files,exceptions}=JSON.parse(await read('internal/task0185-locked-files.json'));
- for(const [file,h]of Object.entries(files))if(!exceptions[file])assert.equal(createHash('sha256').update(await readFile(new URL('../'+file,import.meta.url))).digest('hex'),h,file);
+ const {exceptions:polish0187}=JSON.parse(await read('internal/task0187-locked-files.json'));
+ for(const [file,h]of Object.entries(files))if(!exceptions[file]&&!polish0187[file]&&!reopened0188b.has(file))assert.equal(createHash('sha256').update(await readFile(new URL('../'+file,import.meta.url))).digest('hex'),h,file);
 });
 test('Task 018.5 mobile menu has viewport, background and keyboard safeguards',async()=>{
  const nav=await read('src/components/Navbar.jsx'),css=await read('src/styles.css');

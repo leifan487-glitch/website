@@ -1,5 +1,6 @@
 import { companyTechnologyPlatforms } from "./technology.js";
 import { verifiedMediaCoverage } from "./news.js";
+import { partners } from "./partners.js";
 
 // Official film frames; provenance: internal/task0182r-form-posters.json. Forms, not SKUs.
 export const homeForms = [
@@ -28,12 +29,12 @@ export const homeTechnologyPlatforms = companyTechnologyPlatforms.map((item) => 
 export const homeNewsItems = verifiedMediaCoverage
   .filter((item) => item.id === "peoples-daily-whrg-2025")
   .map((item) => ({ ...item, publicationStatus: "published" }));
-export const homePartnerItems = [];
+export const homePartnerItems = partners;
 
 export function getPublicHomeNews(items = homeNewsItems) {
   return items.filter((item) => item.contentStatus === "VERIFIED" && item.publicApproved === true
     && item.visibility === "PUBLIC" && item.publicationStatus === "published"
-    && item.title && item.date && /^https:\/\//.test(item.href));
+    && item.title && item.date && /^https?:\/\//.test(item.href));
 }
 
 export function getPublicHomePartners(items = homePartnerItems) {

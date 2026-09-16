@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { GlobeSimple } from "@phosphor-icons/react";
-import { getVisibleSupportModules } from "../data/supportModules.js";
+import "./navbar.css";
 
 const navItems = [
   { label: "技术", href: "/technology" },
@@ -9,35 +9,24 @@ const navItems = [
   { label: "关于蓝虫", href: "/about" },
 ];
 
-const supportItems = getVisibleSupportModules({ publicPreview: true });
-
-export function Navbar({ theme = "dark", homeHref = "#top" }) {
+export function Navbar({ homeHref = "#top" }) {
   const headerRef = useRef(null);
   const menuButtonRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
-  const [supportOpen, setSupportOpen] = useState(false);
   const [productView, setProductView] = useState("standard");
   const [scrolled, setScrolled] = useState(false);
   const productNavRef = useRef(null);
   const productTriggerRef = useRef(null);
-  const supportNavRef = useRef(null);
-  const supportTriggerRef = useRef(null);
   const pointerIntentRef = useRef(false);
-  const supportPointerIntentRef = useRef(false);
   const openedByHoverRef = useRef(false);
-  const supportOpenedByHoverRef = useRef(false);
   const suppressFocusOpenRef = useRef(false);
-  const suppressSupportFocusOpenRef = useRef(false);
   const hoverCloseTimerRef = useRef(null);
-  const supportHoverCloseTimerRef = useRef(null);
   const location = useLocation();
   const latestPathRef = useRef(location.pathname);
   latestPathRef.current = location.pathname;
-  const solidSurface = scrolled || menuOpen || productOpen || supportOpen;
-  const usePositiveLogo = theme === "light" || solidSurface;
+  const solidSurface = scrolled || menuOpen || productOpen;
   const productActive = location.pathname.startsWith("/products");
-  const supportActive = location.pathname.startsWith("/support");
 
 
   // Task 018.5 P1: mobile navigation is a viewport overlay, not a scrollable background.
@@ -67,7 +56,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
         event.preventDefault();
         event.stopImmediatePropagation();
         setProductOpen(false);
-        setSupportOpen(false);
         setMenuOpen(false);
         menuButtonRef.current?.focus();
       } else if (event.key === "Tab") {
@@ -119,27 +107,18 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
   useEffect(() => {
     setMenuOpen(false);
     setProductOpen(false);
-    setSupportOpen(false);
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!productOpen && !supportOpen) return undefined;
+    if (!productOpen) return undefined;
 
     function closeOnOutsidePointer(event) {
       if (productOpen && !productNavRef.current?.contains(event.target)) setProductOpen(false);
-      if (supportOpen && !supportNavRef.current?.contains(event.target)) setSupportOpen(false);
     }
 
     function closeOnEscape(event) {
       if (event.key !== "Escape") return;
-      if (supportOpen) {
-        setSupportOpen(false);
-        suppressSupportFocusOpenRef.current = true;
-        supportTriggerRef.current?.focus();
-        if (document.activeElement === supportTriggerRef.current) {
-          suppressSupportFocusOpenRef.current = false;
-        }
-      } else if (productOpen) {
+      if (productOpen) {
         setProductOpen(false);
         suppressFocusOpenRef.current = true;
         productTriggerRef.current?.focus();
@@ -155,11 +134,10 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
       document.removeEventListener("pointerdown", closeOnOutsidePointer);
       document.removeEventListener("keydown", closeOnEscape);
     };
-  }, [productOpen, supportOpen]);
+  }, [productOpen]);
 
   useEffect(() => () => {
     if (hoverCloseTimerRef.current) window.clearTimeout(hoverCloseTimerRef.current);
-    if (supportHoverCloseTimerRef.current) window.clearTimeout(supportHoverCloseTimerRef.current);
   }, []);
 
   function cancelHoverClose() {
@@ -178,27 +156,9 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
     }, 280);
   }
 
-  function cancelSupportHoverClose() {
-    if (!supportHoverCloseTimerRef.current) return;
-    window.clearTimeout(supportHoverCloseTimerRef.current);
-    supportHoverCloseTimerRef.current = null;
-  }
-
-  function scheduleSupportHoverClose() {
-    cancelSupportHoverClose();
-    supportHoverCloseTimerRef.current = window.setTimeout(() => {
-      supportHoverCloseTimerRef.current = null;
-      if (!supportNavRef.current?.contains(document.activeElement)) {
-        setSupportOpen(false);
-      }
-    }, 280);
-  }
-
   function closeProductNav() {
     cancelHoverClose();
-    cancelSupportHoverClose();
     setProductOpen(false);
-    setSupportOpen(false);
     setMenuOpen(false);
     setProductView("standard");
   }
@@ -208,16 +168,13 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
       className="navbar"
       ref={headerRef}
       data-open={menuOpen}
-      data-theme={theme}
+      data-theme="light"
+      data-polished="true"
       data-solid={solidSurface}
     >
       <Link className="navbar__brand" to={homeHref} aria-label="蓝虫具身首页">
         <img
-          src={
-            usePositiveLogo
-              ? "/assets/brand-logo-a01623.png"
-              : "/assets/brand-logo-reverse-a01621.png"
-          }
+          src="/assets/brand-logo-a01623.png"
           alt="蓝虫具身"
           width="1600"
           height="413"
@@ -235,7 +192,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
         onClick={() => {
           setMenuOpen((open) => !open);
           setProductOpen(false);
-          setSupportOpen(false);
         }}
       >
         {menuOpen ? "关闭" : "菜单"}
@@ -253,7 +209,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
           onMouseEnter={() => {
             cancelHoverClose();
             openedByHoverRef.current = true;
-            setSupportOpen(false);
             setProductOpen(true);
           }}
           onMouseLeave={() => {
@@ -282,7 +237,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
                 return;
               }
               if (!pointerIntentRef.current) {
-                setSupportOpen(false);
                 setProductOpen(true);
               }
             }}
@@ -290,12 +244,10 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
               pointerIntentRef.current = false;
               if (event.detail === 0 || openedByHoverRef.current) {
                 openedByHoverRef.current = false;
-                setSupportOpen(false);
                 setProductOpen(true);
                 return;
               }
               setProductOpen((open) => {
-                if (!open) setSupportOpen(false);
                 return !open;
               });
             }}
@@ -363,7 +315,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
                       />
                     </span>
                     <span className="navbar__product-copy">
-                      <span className="navbar__product-kicker">MANTIS</span>
                       <strong>Mantis Standard</strong>
                       <span>双臂移动操作机器人</span>
                     </span>
@@ -371,7 +322,6 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
                   </Link>
                 ) : (
                   <div className="navbar__upcoming-panel">
-                    <span className="navbar__product-kicker">UPCOMING</span>
                     <strong>敬请期待</strong>
                     <p>更多产品信息将于后续发布</p>
                   </div>
@@ -392,84 +342,13 @@ export function Navbar({ theme = "dark", homeHref = "#top" }) {
           </NavLink>
         ))}
 
-        <div
-          className="navbar__support"
-          data-open={supportOpen}
-          ref={supportNavRef}
-          onMouseEnter={() => {
-            cancelSupportHoverClose();
-            supportOpenedByHoverRef.current = true;
-            setProductOpen(false);
-            setSupportOpen(true);
-          }}
-          onMouseLeave={() => {
-            supportOpenedByHoverRef.current = false;
-            scheduleSupportHoverClose();
-          }}
-          onBlur={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget)) {
-              setSupportOpen(false);
-            }
-          }}
+        <NavLink
+          to="/support/documents"
+          className={({ isActive }) => isActive ? "is-active" : undefined}
+          onClick={closeProductNav}
         >
-          <button
-            className={`navbar__support-trigger${supportActive ? " is-active" : ""}`}
-            type="button"
-            aria-expanded={supportOpen}
-            aria-haspopup="true"
-            aria-controls="support-navigation"
-            ref={supportTriggerRef}
-            onPointerDown={() => {
-              supportPointerIntentRef.current = true;
-            }}
-            onFocus={() => {
-              if (suppressSupportFocusOpenRef.current) {
-                suppressSupportFocusOpenRef.current = false;
-                return;
-              }
-              if (!supportPointerIntentRef.current) {
-                setProductOpen(false);
-                setSupportOpen(true);
-              }
-            }}
-            onClick={(event) => {
-              supportPointerIntentRef.current = false;
-              if (event.detail === 0 || supportOpenedByHoverRef.current) {
-                supportOpenedByHoverRef.current = false;
-                setProductOpen(false);
-                setSupportOpen(true);
-                return;
-              }
-              setSupportOpen((open) => {
-                if (!open) setProductOpen(false);
-                return !open;
-              });
-            }}
-          >
-            <span className="navbar__label">服务与支持</span>
-            <span className="navbar__support-caret" aria-hidden="true">⌄</span>
-          </button>
-
-          <div
-            className="navbar__support-menu"
-            id="support-navigation"
-            aria-label="服务与支持导航"
-            onMouseEnter={cancelSupportHoverClose}
-            onMouseLeave={scheduleSupportHoverClose}
-          >
-            {supportItems.map((item) => (
-              <NavLink
-                key={item.id}
-                to={item.href}
-                className={({ isActive }) => isActive ? "is-active" : undefined}
-                onClick={closeProductNav}
-              >
-                <span>{item.title}</span>
-                <span aria-hidden="true">→</span>
-              </NavLink>
-            ))}
-          </div>
-        </div>
+          <span className="navbar__label">文档中心</span>
+        </NavLink>
 
         {navItems.slice(2).map((item) => (
           <NavLink

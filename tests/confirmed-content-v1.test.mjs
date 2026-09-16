@@ -63,7 +63,7 @@ test("Home and Standard page expose confirmed copy without changing the locked h
     source("../src/components/HomeMantisIntro.jsx"),
     source("../src/components/StandardProductSections.jsx"),
   ]);
-  assert.match(hero, /product-hero__values/);
+  assert.doesNotMatch(hero, /product-hero__values/); // 018.8B explicitly removes decorative English.
   assert.match(intro, /双臂移动操作机器人/);
   assert.match(intro, /一脑多形/);
   assert.match(intro, /真模块化/);

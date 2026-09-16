@@ -15,12 +15,12 @@ test("Task 018.4 replaces remaining large slogans with direct page purposes", as
     source("src/pages/ApplicationsPage.jsx"),
   ]);
 
-  assert.match(inquiry, /采购 \/ 合作/);
+  assert.match(inquiry, /采购\/合作/);
   assert.match(inquiry, /InquiryForm/);
   assert.match(explorer, /platform.nameZh/);
   assert.match(explorer, /platform.purpose/);
   assert.doesNotMatch(technology, /从任务条件开始|讨论技术方案|to="\/inquiry"/);
-  assert.match(applications, /六个方向，具体到任务/);
+  assert.match(applications, /应用方向/);
   assert.match(applications, /item.keywords/);
   assert.doesNotMatch(applications, /提交任务现场|明确合作目标|to="\/inquiry"/);
 

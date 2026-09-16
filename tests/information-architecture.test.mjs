@@ -8,9 +8,11 @@ test("Task 018.2 Home composes the information-first product story", async () =>
   const homePage = await source("../src/pages/HomePage.jsx");
 
   assert.match(homePage, /ProductHero/);
-  assert.match(homePage, /HomeMantisIntro/);
+  // Task 018.7 removes only the duplicate homepage explanation.
+  assert.doesNotMatch(homePage, /HomeMantisIntro/);
   assert.match(homePage, /RealWorld/);
-  assert.match(homePage, /HomeApplications/);
+  assert.doesNotMatch(homePage, /HomeApplications/); // 018.8B-F replaces only this homepage rendering.
+  assert.match(homePage, /HomePartners/);
   assert.doesNotMatch(homePage, /HomeAbout|FinalCta/);
   assert.match(homePage, /HomeOfficialFilm/);
   assert.match(homePage, /HomeForms/);

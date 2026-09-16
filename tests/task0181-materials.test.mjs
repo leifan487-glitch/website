@@ -54,7 +54,7 @@ test("Task 018.1 service routes serve the shell while unknown routes keep genuin
         ? new Response("app", { headers: { "Content-Type": "text/html" } })
         : new Response("missing", { status: 404 }) },
     });
-    assert.equal(response.status, route.startsWith("/missing") ? 404 : 200, route);
+    assert.equal(response.status, route.startsWith("/missing") ? 404 : route === "/support/downloads" ? 308 : 200, route);
   }
 });
 

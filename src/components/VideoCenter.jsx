@@ -33,9 +33,8 @@ function VideoCard({ item }) {
     <article className="video-card">
       <StandardMediaPlayer media={item} />
       <div className="video-card__copy">
-        <div><p>{item.category}</p><span>{item.durationLabel}</span></div>
+        <div><span>{item.durationLabel}</span></div>
         <h3>{item.titleZh}</h3>
-        <small>{item.titleEn}</small>
         <p>{item.descriptionZh}</p>
       </div>
     </article>
@@ -53,14 +52,13 @@ export function VideoCenter() {
       {featured ? (
         <section className="video-featured page-shell" aria-labelledby="video-featured-title">
           <EditorialHeading
-            meta="01 · FEATURED"
             title="连续任务记录"
             intro="通过连续、未经加速的任务片段，查看 Mantis Standard 的实际操作过程。"
             titleId="video-featured-title"
           />
           <article>
             <StandardMediaPlayer media={featured} />
-            <div><p>{featured.category} · {featured.durationLabel}</p><h3>{featured.titleZh}</h3><small>{featured.titleEn}</small><p>{featured.descriptionZh}</p></div>
+            <div><p>{featured.durationLabel}</p><h3>{featured.titleZh}</h3><p>{featured.descriptionZh}</p></div>
           </article>
         </section>
       ) : null}
@@ -69,7 +67,6 @@ export function VideoCenter() {
         <section className="video-library page-shell" aria-labelledby="video-library-title">
           <EditorialHeading
             className="video-library__header"
-            meta="02 · LIBRARY"
             title="公开视频"
             titleId="video-library-title"
             detail={<><p>公开影像集中排列，可按任务类型查看。</p><strong aria-live="polite">{String(visibleVideos.length).padStart(2, "0")}</strong></>}

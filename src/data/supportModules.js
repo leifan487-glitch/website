@@ -17,7 +17,8 @@ export const supportModules = {
     label: "Downloads",
     description: "下载使用说明、交付清单、安全说明与开发手册。",
     href: "/support/downloads",
-    publicVisible: true,
+    publicVisible: false,
+    primaryNavigation: false,
   },
   videos: {
     id: "videos",

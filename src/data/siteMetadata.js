@@ -6,7 +6,8 @@ export const siteMetadata = {
   "/technology": { title: "技术体系 | Blue Worm", description: "了解 Silkworm、Quantum、Wormhole 与 Honeycomb 四个技术平台。" },
   "/applications": { title: "应用方向 | Blue Worm", description: "了解蓝虫具身在科研、商业服务、家庭、物流、制造与特种行业的应用方向。" },
   "/about": { title: "关于蓝虫具身 | Blue Worm", description: "了解西安蓝虫具身智能科技有限公司、公司使命与团队信息。" },
-  "/news": { title: "公司进展 | Blue Worm", description: "蓝虫具身赛事与媒体公开记录。" },
+  "/news": { title: "新闻与动态 | Blue Worm", description: "蓝虫具身赛事与媒体公开记录。" },
+  "/news/peoples-daily-whrg-2025": { title: "全球首个人形机器人运动会精彩瞬间 | Blue Worm", description: "人民日报，2025-08-18。报道图片说明记录蓝虫具身机器人亮相酒店场景清洁服务技能比赛。" },
   "/support": { title: "服务与支持 | Blue Worm", description: "查阅 Mantis Standard 官方文档、下载产品资料并联系支持。" },
   "/support/contact": { title: "联系支持 · 服务与支持 | Blue Worm", description: "通过官方邮箱联系蓝虫，说明产品使用问题与商务合作需求。", supportModule: "contact" },
   "/support/documents": { title: "文档中心 | Blue Worm", description: "Mantis Standard 公开文档入口。", supportModule: "documents" },
@@ -14,7 +15,7 @@ export const siteMetadata = {
   "/support/videos": { title: "视频中心 | Blue Worm", description: "Mantis Standard 公开视频入口。", supportModule: "videos" },
   "/support/service": { title: "售后与服务 | Blue Worm", description: "Mantis Standard 产品使用与设备问题支持入口。", supportModule: "service" },
   "/support/knowledge": { title: "知识库 | Blue Worm", description: "Mantis Standard 产品使用与开发知识入口。", supportModule: "knowledge" },
-  "/inquiry": { title: "商务询盘 | Blue Worm", description: "提交 Mantis Standard 产品与应用场景咨询。" },
+  "/inquiry": { title: "采购/合作 | Blue Worm", description: "通过商务邮箱联系蓝虫具身，咨询 Mantis Standard 产品与应用需求。" },
   "/policy/privacy": { title: "隐私政策 | Blue Worm", description: "蓝虫具身网站隐私政策页面。" },
   "/policy/terms": { title: "网站条款 | Blue Worm", description: "蓝虫具身网站使用条款页面。" },
 };

@@ -8,7 +8,7 @@ export function PageHero({ eyebrow, title, intro, status = "TODO", theme = "ligh
     <section className={`page-hero page-hero--${theme}${variantClass}`} data-title-script={titleScript} aria-labelledby="page-title">
       <Navbar theme={theme} homeHref="/" />
       <div className="page-hero__inner page-shell">
-        <p className="eyebrow eyebrow--dark">{eyebrow}</p>
+        {eyebrow ? <p className="eyebrow eyebrow--dark">{eyebrow}</p> : null}
         <h1 id="page-title">{title}</h1>
         <div className="page-hero__intro">
           <p>{intro}</p>

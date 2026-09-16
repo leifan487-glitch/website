@@ -1,0 +1,94 @@
+{
+  "task": "018.7",
+  "source": "public/media/mantis-standard/official-product-film.mp4",
+  "sourceSha256": "ed4f73c9a433c8cd83cd67533b06ffac581f1cea9551664007bebde8cac844e7",
+  "width": 800,
+  "height": 640,
+  "notes": "Real official-film frames; crop and resize only. No padding, synthesis or retouching. Shared Standard assets are unchanged.",
+  "records": [
+    {
+      "id": "arm",
+      "timestamp": 26,
+      "crop": [
+        1000,
+        800,
+        500,
+        190
+      ],
+      "image": "/media/mantis-standard/home-forms/arm.webp",
+      "filter": "crop=1000:800:500:190,scale=800:640",
+      "bytes": 10406,
+      "sha256": "380faf31d988ed6260307a2478341eb1897efd12791788b82a76053339b560ec"
+    },
+    {
+      "id": "engineering",
+      "timestamp": 41,
+      "crop": [
+        1220,
+        976,
+        10,
+        0
+      ],
+      "image": "/media/mantis-standard/home-forms/engineering.webp",
+      "filter": "crop=1220:976:10:0,scale=800:640",
+      "bytes": 10556,
+      "sha256": "f760646a3974314dd5a17ef4d9ec9c8ab0f124d5a4d16c2b3e1320dff1ce21c5"
+    },
+    {
+      "id": "chassis",
+      "timestamp": 53,
+      "crop": [
+        1250,
+        1000,
+        350,
+        40
+      ],
+      "image": "/media/mantis-standard/home-forms/chassis.webp",
+      "filter": "crop=1250:1000:350:40,scale=800:640",
+      "bytes": 7300,
+      "sha256": "b47a105986cd4b4adb999a01c2bb6c855343c24798f52a813431e9d4620631a7"
+    },
+    {
+      "id": "dual",
+      "timestamp": 72.5,
+      "crop": [
+        1040,
+        832,
+        400,
+        130
+      ],
+      "image": "/media/mantis-standard/home-forms/dual.webp",
+      "filter": "crop=1040:832:400:130,scale=800:640",
+      "bytes": 15484,
+      "sha256": "2cc9fe69647f5c521446b19f0c3ad5954f6e4e89265f941ba3778d597f247bf8"
+    },
+    {
+      "id": "inspection",
+      "timestamp": 79,
+      "crop": [
+        1250,
+        1000,
+        350,
+        40
+      ],
+      "image": "/media/mantis-standard/home-forms/inspection.webp",
+      "filter": "crop=1250:1000:350:40,scale=800:640",
+      "bytes": 6240,
+      "sha256": "35b34334355f75e7cbfa50d6a2787f01228edc54bc9e0ad664eb3f53e7172bb3"
+    },
+    {
+      "id": "complete",
+      "timestamp": 22,
+      "crop": [
+        1100,
+        880,
+        410,
+        100
+      ],
+      "image": "/media/mantis-standard/home-forms/complete.webp",
+      "filter": "crop=1100:880:410:100,scale=800:640",
+      "bytes": 9534,
+      "sha256": "f29f422c78e09838925b66c0b358c05d423be085d586e9c939eee07f2c2a50fe"
+    }
+  ]
+}

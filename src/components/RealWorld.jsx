@@ -3,7 +3,7 @@ import { InternalStatus } from "./InternalStatus.jsx";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
 import { getStandardMediaByUsage, hasPublicStandardTaskMedia, standardPublicMode } from "../data/standard/index.js";
 
-export function RealWorld({ sectionNumber = "04", title = "Real World", intro = "从产品体系到双臂操作、服务任务与工业设备场景。" }) {
+export function RealWorld({ title = "任务记录", intro = "从产品体系到双臂操作、服务任务与工业设备场景。" }) {
   const media = getStandardMediaByUsage("homeRealWorld");
   if (standardPublicMode && !hasPublicStandardTaskMedia) return null;
 
@@ -11,9 +11,6 @@ export function RealWorld({ sectionNumber = "04", title = "Real World", intro = 
     <section className="real-world" id="real-world" aria-labelledby="real-world-title">
       {media.length ? <div className="real-world__stage">
         <header className="real-world__header page-shell">
-          <p className="section-index section-index--light">
-            {sectionNumber} · REAL WORLD
-          </p>
           <h2 id="real-world-title">{title}</h2>
           <p className="real-world__intro">{intro}</p>
           <InternalStatus as="p" status="TODO">Standard 任务媒体待确认</InternalStatus>
@@ -25,8 +22,8 @@ export function RealWorld({ sectionNumber = "04", title = "Real World", intro = 
               <StandardMediaPlayer media={item} homeLoop label={`播放${item.titleZh}`} />
             </div>
             <figcaption>
-              <div><span>{item.titleZh}</span><small>{item.titleEn}</small></div>
-              <p>{item.category} / {item.durationLabel}</p>
+              <div><span>{item.titleZh}</span></div>
+              <p>{item.durationLabel}</p>
             </figcaption>
             <InternalStatus as="p" status={item.contentStatus}>{item.sourceId}</InternalStatus>
           </figure>

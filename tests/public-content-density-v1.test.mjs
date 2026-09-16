@@ -66,7 +66,7 @@ test("About uses approved product media and Inquiry exposes the active public-sa
   assert.match(about, /detail-standard-a01792\.webp/);
   assert.doesNotMatch(about, /hero-standard-series-a01644\.webp/);
   assert.match(about, /selectCompanyContent/);
-  assert.match(inquiry, /采购 \/ 合作/);
+  assert.match(inquiry, /采购\/合作/);
   assert.match(inquiry, /InquiryForm/);
   assert.match(form, /fetch\("\/api\/inquiry"/);
   assert.doesNotMatch(form, /不会传输或保存数据/);

@@ -1,18 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const productSections = [
-  { id: "product-top", label: "OVERVIEW" },
+  { id: "product-top", label: "产品" },
   { id: "overview", label: "产品概览" },
-  { id: "modular", label: "MODULAR" },
-  { id: "six-forms", label: "六种形态" },
-  { id: "why-modular", label: "模块化价值" },
-  { id: "capability-system", label: "SYSTEM" },
-  { id: "real-tasks", label: "TASKS" },
+  { id: "modular", label: "模块与形态" },
+  { id: "capability-system", label: "产品结构" },
+  { id: "real-tasks", label: "任务记录" },
   { id: "development", label: "开发路径" },
-  { id: "specifications", label: "SPECS" },
-  { id: "questions", label: "QUESTIONS" },
+  { id: "specifications", label: "核心参数" },
+  { id: "questions", label: "六个问题" },
   { id: "product-documents", label: "资料与开发" },
-  { id: "product-inquiry", label: "INQUIRY" },
+  { id: "product-inquiry", label: "采购/合作" },
 ];
 
 const smoothstep = (value) => value * value * (3 - (2 * value));

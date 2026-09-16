@@ -3,6 +3,22 @@ import { Play } from "@phosphor-icons/react";
 import { officialProductFilm } from "../data/standard/officialFilm.js";
 import { homeForms, modularBenefits } from "../data/home.js";
 
+// Homepage captions only: shared form data and Standard page copy stay locked.
+const formCaptions = {
+  arm: "抓取与操作",
+  engineering: "移动与操作",
+  chassis: "移动任务",
+  dual: "双臂协作",
+  inspection: "移动巡检",
+  complete: "综合任务",
+};
+
+const benefitCaptions = [
+  "根据实际任务选择所需机器人形态。",
+  "任务变化时，扩展或重新组合已有模块。",
+  "已有模块可用于不同任务，不必始终绑定完整整机。",
+];
+
 export function HomeOfficialFilm() {
   const [activated, setActivated] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -24,9 +40,9 @@ export function HomeOfficialFilm() {
   return (
     <section className="home-film home-story-section" id="official-film" aria-labelledby="home-film-title">
       <div className="page-shell">
-        <header className="home-story-heading">
-          <h2 id="home-film-title">官方产品影片</h2>
-          <p>Mantis Standard <span aria-hidden="true">/</span> 约 02:19</p>
+        <header className="home-story-heading home-film__heading">
+          <h2 id="home-film-title">产品影片</h2>
+          <p className="home-film__duration">官方影片 <span aria-hidden="true">/</span> 02:19</p>
         </header>
         <div className="home-film__frame">
           {activated ? <video ref={videoRef} src={officialProductFilm.src} poster={officialProductFilm.poster}
@@ -49,15 +65,14 @@ export function HomeForms() {
     <section className="home-forms home-story-section" id="forms" aria-labelledby="home-forms-title">
       <div className="page-shell">
         <header className="home-story-heading">
-          <h2 id="home-forms-title">不同任务，<br />不同组合</h2>
-          <p>同一个 Mantis Standard，<br />根据任务组合不同形态。</p>
+          <h2 id="home-forms-title">形态展示</h2>
         </header>
         <div className="home-forms__gallery">
-          {homeForms.map((item) => <figure key={item.id}>
+          {homeForms.map((item) => <figure key={item.id} data-form={item.id}>
             <div className="home-forms__visual">
-              <img src={item.image} alt={item.name} width={item.width} height={item.height} loading="lazy" decoding="async" />
+              <img src={`/media/mantis-standard/home-forms/${item.id}.webp`} alt={item.name} width={800} height={640} loading="lazy" decoding="async" />
             </div>
-            <figcaption><h3>{item.name}</h3><p>{item.description}</p></figcaption>
+            <figcaption><h3>{item.name}</h3><p>{formCaptions[item.id]}</p></figcaption>
           </figure>)}
         </div>
       </div>
@@ -69,8 +84,8 @@ export function HomeWhyModular() {
   return (
     <section className="home-why home-story-section" id="why-modular" aria-labelledby="home-why-title">
       <div className="page-shell">
-        <header className="home-story-heading"><h2 id="home-why-title">让配置贴近实际需求</h2><p>不必为每个新任务，<br />都从一台完整机器人开始。</p></header>
-        <div className="home-why__items">{modularBenefits.map((item, index) => <article key={item.title}><span className="home-why__index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div>
+        <header className="home-story-heading"><h2 id="home-why-title">按需组合</h2></header>
+        <div className="home-why__items">{modularBenefits.map((item, index) => <article key={item.title}><span className="home-why__index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{benefitCaptions[index]}</p></article>)}</div>
       </div>
     </section>
   );

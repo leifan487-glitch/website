@@ -19,9 +19,9 @@ const compatibilityRoutes = [
 ];
 
 const publicRoutes = [
+  "/inquiry",
   "/support/documents",
   "/support/videos",
-  "/inquiry",
   "/policy/privacy",
   "/policy/terms",
 ];
@@ -52,18 +52,17 @@ test("approved documents share their dataset with downloads; video archive remai
   assert.equal(isPublicResource({ contentStatus: "VERIFIED", publicApproved: true, visibility: "PUBLIC", fileUrl: "/approved.pdf" }), true);
 });
 
-test("Navbar exposes the practical support IA in its accessible dropdown", async () => {
+test("Task 018.7 navbar points directly to documents without a support dropdown", async () => {
   const navbar = await source("../src/components/Navbar.jsx");
-  assert.match(navbar, /support-navigation/);
-  assert.match(navbar, /supportOpen/);
-  assert.match(navbar, />服务与支持</);
-  assert.match(navbar, /getVisibleSupportModules/);
+  assert.doesNotMatch(navbar, /support-navigation|supportOpen|getVisibleSupportModules/);
+  assert.match(navbar, /to="\/support\/documents"/);
+  assert.match(navbar, />文档中心</);
   assert.match(navbar, /to=\{item\.href\}/);
-  assert.match(navbar, /aria-expanded=\{supportOpen\}/);
-  assert.match(navbar, /scheduleSupportHoverClose/);
+  assert.match(navbar, /aria-expanded=\{productOpen\}/);
+  assert.match(navbar, /scheduleHoverClose/);
   assert.match(navbar, /event\.key !== "Escape"/);
   assert.doesNotMatch(navbar, /<span className="navbar__label">视频中心<\/span>/);
-  assert.deepEqual(getVisibleSupportModules({ publicPreview: true }).map((item) => item.id), ["documents", "downloads", "service", "contact"]);
+  assert.deepEqual(getVisibleSupportModules({ publicPreview: true }).map((item) => item.id), ["documents", "service", "contact"]);
   assert.equal(supportModules.documents.href, "/support/documents");
   assert.equal(supportModules.videos.href, "/support/videos");
 });

@@ -26,7 +26,8 @@ test("Task 018.2R six official form posters have traceable timestamps and bounde
 
 test("Task 018.2R keeps poster loading lazy and value statements within approved meaning", async () => {
   const component = await readFile(new URL("../src/components/HomeProductStory.jsx", import.meta.url), "utf8");
-  assert.match(component, /src=\{item.image\}[^>]+loading="lazy"[^>]+decoding="async"/);
+  // Task 018.7 uses homepage-only crops; original six shared posters remain hash-locked above.
+  assert.match(component, /home-forms\/[^>]+loading="lazy"[^>]+decoding="async"/);
   assert.deepEqual(modularBenefits.map(item => item.title), ["按任务组合", "随需求扩展", "提高模块利用率"]);
   assert.match(modularBenefits[1].description, /扩展或重新组合已有模块/);
   assert.match(modularBenefits[2].description, /不是始终绑定在完整整机形态中/);

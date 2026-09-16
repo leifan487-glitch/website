@@ -16,13 +16,16 @@ test("Task 018.2 limits the new commercial approval to one starting-price string
 test("Task 018.2 renders the agreed information order and only one product body CTA", async () => {
   const home = await source("../src/pages/HomePage.jsx");
   let position = -1;
-  for (const name of ["ProductHero", "HomeMantisIntro", "HomeOfficialFilm", "HomeForms", "HomeWhyModular", "RealWorld", "HomeTechnology", "HomeApplications", "HomeNews", "HomePartners", "HomeContact"]) {
+  // Task 018.7 removes HomeMantisIntro; remaining order is unchanged.
+  for (const name of ["ProductHero", "HomeOfficialFilm", "HomeForms", "HomeWhyModular", "RealWorld", "HomeTechnology", "HomePartners", "HomeNews", "HomeContact"]) {
     const next = home.indexOf(`<${name}`, position + 1);
     assert.ok(next > position, name); position = next;
   }
   assert.doesNotMatch(home, /HomeAbout|FinalCta/);
   for (const file of ["HomeMantisIntro", "HomeSections", "HomeProductStory"]) {
-    assert.doesNotMatch(await source(`../src/components/${file}.jsx`), /to="\/products\/mantis-standard"|to="\/inquiry"|效率工具/);
+    const text = await source(`../src/components/${file}.jsx`);
+    assert.doesNotMatch(text, /to="\/products\/mantis-standard"|效率工具/);
+    assert.equal((text.match(/to="\/inquiry"/g) || []).length, file === "HomeSections" ? 1 : 0);
   }
 });
 
@@ -45,7 +48,8 @@ test("Task 018.2 forms and platform names are bounded, not configuration promise
 
 test("Task 018.2 news and partners hide empty or unapproved records", () => {
   assert.deepEqual(getPublicHomeNews([]), []);
-  assert.deepEqual(getPublicHomePartners(), []);
+  assert.deepEqual(getPublicHomePartners([]), []);
+  assert.deepEqual(getPublicHomePartners().map(item=>item.name), ['西安电子科技大学','西安交通大学','陕旅集团','质子汽车']);
   const news = getPublicHomeNews()[0];
   assert.equal(news.publisher, "人民日报");
   for (const patch of [{publicApproved:false},{contentStatus:"SOURCE"},{visibility:"PRIVATE"},{publicationStatus:"draft"},{href:""}]) {

@@ -20,7 +20,7 @@ export function ProductPageHeader() {
           <p className="standard-product-hero__slogan">一脑多形，真模块化</p>
           <p className="standard-product-hero__price">{standardCommercial.publicStartingPrice}</p>
           <p className="standard-product-hero__definition">面向任务组合与开发扩展的<br />模块化双臂移动操作机器人。</p>
-          <a className="sp-button" href="#capability-system">查看核心能力<ArrowDown size={18} aria-hidden="true" /></a>
+          <a className="sp-button" href="#capability-system">查看产品结构<ArrowDown size={18} aria-hidden="true" /></a>
         </div>
         <picture className="standard-product-hero__visual">
           <source media="(max-width: 600px)" srcSet="/assets/hero-standard-series-a01644-mobile-focus.webp" />

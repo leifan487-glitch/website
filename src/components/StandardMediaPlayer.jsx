@@ -96,7 +96,7 @@ export function StandardMediaPlayer({ media, homeLoop = false, className = "", l
         onClick={() => setActivated(true)}
       >
         <img src={poster} alt="" width={media.width} height={media.height} loading="lazy" decoding="async" />
-        <span className="standard-media-player__play" aria-hidden="true">PLAY</span>
+        <span className="standard-media-player__play" aria-hidden="true">播放视频</span>
       </button>
     );
   }

@@ -1,12 +1,10 @@
 import { useId, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowDown, ArrowRight, ArrowUpRight, Minus, Plus } from "@phosphor-icons/react";
+import { ArrowRight, ArrowUpRight, Minus, Plus } from "@phosphor-icons/react";
 import { EditorialHeading } from "./EditorialHeading.jsx";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
 import { businessEmail, businessEmailHref } from "../data/contact.js";
 import { officialProductFilm } from "../data/standard/officialFilm.js";
-import { documentResources } from "../data/resources/documents.js";
-import { isPublicResource } from "../data/resources/visibility.js";
 import { getStandardMediaByUsage, selectStandardContent, standardPublicSpecs, standardSpecGroups, standardQa } from "../data/standard/index.js";
 import { standardForms, standardModularValues, standardHardware, standardDevelopmentPaths } from "../data/standard/story.js";
 
@@ -49,48 +47,33 @@ export function ModularArchitectureSection() {
             <p>机器人形态与模块选择围绕实际需要确定，不以完整整机作为每一项任务的唯一形式。</p>
           </article>
         </div>
-      </div>
-    </section>
-  );
-}
-
-export function SixFormsSection() {
-  return (
-    <section className="sp-section sp-forms" id="six-forms" aria-labelledby="six-forms-title" data-standard-reveal>
-      <div className="page-shell">
-        <Heading title="六种形态，围绕任务组合" intro="同一个 Mantis Standard 的不同组合形态。以下视觉来自官方宣传片，用于说明形态与任务之间的关系。" id="six-forms-title" />
-        <div className="sp-forms__grid">
-          {standardForms.map(item => <figure key={item.id} data-standard-item>
-            <img src={item.image} alt={item.name} width={item.width} height={item.height} loading="lazy" decoding="async" />
-            <figcaption><h3>{item.name}</h3>{item.paragraphs.map(text => <p key={text}>{text}</p>)}</figcaption>
-          </figure>)}
+        <div className="sp-module-relations" id="six-forms">
+          <h3>模块与形态</h3>
+          <dl>{[
+            { title: "操作单元", ids: ["arm", "dual"] },
+            { title: "移动与操作", ids: ["chassis", "engineering"] },
+            { title: "巡检与完整形态", ids: ["inspection", "complete"] },
+          ].map(group => <div key={group.title}><dt>{group.title}</dt><dd>{group.ids.map(id => <p key={id}>{standardForms.find(form => form.id === id).paragraphs[0]}</p>)}</dd></div>)}</dl>
+          <p className="sp-note" id="why-modular">{standardModularValues[2].description}</p>
+          <p className="sp-note">影片展示的是具体任务例子；实际使用需结合任务条件、配置与开发方案。</p>
         </div>
-        <p className="sp-note">影片展示的是具体任务例子；实际使用需结合任务条件、配置与开发方案。</p>
-      </div>
-    </section>
-  );
-}
-
-export function WhyModularSection() {
-  return (
-    <section className="sp-section sp-why" id="why-modular" aria-labelledby="why-modular-title" data-standard-reveal>
-      <div className="page-shell">
-        <Heading title="让机器人配置更贴近实际任务" intro="用户不一定始终需要完整整机。模块化让当前使用与后续扩展有了不同的组合选择。" id="why-modular-title" />
-        <ol className="sp-why__grid">{standardModularValues.map((item, index) => <li key={item.title}><span className="sp-index">{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3><p>{item.description}</p></li>)}</ol>
       </div>
     </section>
   );
 }
 
 export function CapabilitySystemSection() {
+  const structures = standardHardware.filter(item => item.id !== "development");
+  const development = standardHardware.find(item => item.id === "development");
   return (
     <section className="sp-section sp-capabilities" id="capability-system" aria-labelledby="capabilities-title" data-standard-reveal>
       <div className="page-shell">
-        <Heading title="从本体到接口，看清核心能力" intro="移动、操作、感知与开发，各有对应的结构和接口。具体组合根据配置与任务方案确定。" id="capabilities-title" />
+        <Heading title="产品结构与接口" intro="移动、操作、感知与开发，各有对应的结构和接口。具体组合根据配置与任务方案确定。" id="capabilities-title" />
         <div className="sp-capabilities__layout">
           <figure><img src="/assets/nav-standard-a01781.webp" alt="Mantis Standard 本体与双臂、升降和底盘结构" width="349" height="760" loading="lazy" decoding="async" /></figure>
-          <dl>{standardHardware.map(item => <div key={item.id}><dt>{item.title}<small>{item.label}</small></dt><dd>{item.description}</dd></div>)}</dl>
+          <dl className="sp-structure-index">{structures.map((item, index) => <div key={item.id}><dt><span className="sp-index">{String(index + 1).padStart(2, "0")}</span>{index === 0 ? "机器人本体" : item.title}</dt><dd>{item.description}</dd></div>)}</dl>
         </div>
+        <div className="sp-development-interface"><h3><span className="sp-index">07</span>{development.title}</h3><p>{development.description}</p></div>
       </div>
     </section>
   );
@@ -102,7 +85,7 @@ export function RealTasksSection() {
   return (
     <section className="sp-section sp-real-tasks" id="real-tasks" aria-labelledby="real-tasks-title" data-standard-reveal>
       <div className="page-shell">
-        <Heading title="真实任务，实际操作" intro="四段已公开的任务记录，展示双臂操作、物体抓取、织物处理与工业设备操作。点击查看过程。" id="real-tasks-title" dark />
+        <Heading title="任务记录" intro="四段已公开的任务记录，展示双臂操作、物体抓取、织物处理与工业设备操作。点击查看过程。" id="real-tasks-title" dark />
         <div className="sp-real-tasks__grid">{media.map(item => <figure key={item.id}>
           <StandardMediaPlayer media={item} />
           <figcaption><div><h3>{item.titleZh}</h3><span>{item.durationLabel}</span></div><p>{item.descriptionZh}</p></figcaption>
@@ -175,19 +158,11 @@ export function StandardQaSection() {
 }
 
 export function StandardDocumentsSection() {
-  const documents = documentResources.filter(item => item.product === "Mantis Standard" && isPublicResource(item));
   return (
     <section className="sp-section sp-documents" id="product-documents" aria-labelledby="documents-title">
       <div className="page-shell">
         <Heading title="资料与开发" intro="安装、使用、交付核对与二次开发，查阅对应的正式文档。" id="documents-title" />
-        <ul>{documents.map(item => <li key={item.id}>
-          <div><h3>{item.title}</h3><p>{item.description}</p></div>
-          <div className="sp-documents__actions">
-            <a href={item.fileUrl} target="_blank" rel="noopener noreferrer" aria-label={"查看" + item.title + "（新窗口）"}>查看<ArrowUpRight size={18} aria-hidden="true" /></a>
-            <a href={item.fileUrl} download aria-label={"下载" + item.title}>下载<ArrowDown size={18} aria-hidden="true" /></a>
-          </div>
-        </li>)}</ul>
-        <Link className="sp-text-link" to="/support/documents">查看全部文档<ArrowRight size={18} aria-hidden="true" /></Link>
+        <Link className="sp-text-link" to="/support/documents">查看产品文档<ArrowRight size={18} aria-hidden="true" /></Link>
       </div>
     </section>
   );
@@ -197,13 +172,13 @@ export function StandardInquirySection() {
   return (
     <section className="sp-section sp-contact" id="product-inquiry" aria-labelledby="contact-title">
       <div className="page-shell sp-contact__layout">
-        <div><h2 id="contact-title">采购 / 合作</h2><a href={businessEmailHref}>{businessEmail}</a></div>
-        <Link className="sp-button" to="/inquiry">联系商务<ArrowRight size={18} aria-hidden="true" /></Link>
+        <div><h2 id="contact-title">采购/合作</h2><a href={businessEmailHref}>{businessEmail}</a></div>
+        <Link className="sp-button" to="/inquiry">采购/合作<ArrowRight size={18} aria-hidden="true" /></Link>
       </div>
     </section>
   );
 }
 
 export function StandardProductSections() {
-  return <><ProductOverviewSection /><ModularArchitectureSection /><SixFormsSection /><WhyModularSection /><CapabilitySystemSection /><RealTasksSection /><DevelopmentSection /><SpecificationsSection /><StandardQaSection /><StandardDocumentsSection /><StandardInquirySection /></>;
+  return <><ProductOverviewSection /><ModularArchitectureSection /><CapabilitySystemSection /><RealTasksSection /><DevelopmentSection /><SpecificationsSection /><StandardQaSection /><StandardDocumentsSection /><StandardInquirySection /></>;
 }

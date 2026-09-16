@@ -1,0 +1,60 @@
+{
+  "task": "018.8B-F",
+  "relationshipAuthority": "Owner-confirmed four-name Homepage Partner V1 list; no additional relationship inferred.",
+  "assetUse": "Official-source candidates for Owner/ChatGPT review under task rule B. No third-party permission claim is inferred.",
+  "localAudit": "No dedicated partner logo files identified by name in original material directories or ASSET_INVENTORY.csv; existing homePartnerItems was empty. No logos were extracted from competitor screenshots or presentations.",
+  "records": [
+    {
+      "id": "xidian",
+      "name": "西安电子科技大学",
+      "file": "xidian.png",
+      "publicFile": "xidian.png",
+      "page": "https://www.xidian.edu.cn/",
+      "url": "https://www.xidian.edu.cn/2020images/logo-on.png",
+      "logo": "/assets/partners/xidian.png",
+      "sha256": "4b537e6a6d1b5c006d8c80ddc6ca1dbdada05c2909bfcc3c9c79035eb721b72a",
+      "bytes": 26534,
+      "sourceClass": "B — official website asset",
+      "transformation": "None: original bytes, aspect ratio and colors retained"
+    },
+    {
+      "id": "xjtu",
+      "name": "西安交通大学",
+      "file": "xjtu-official.jpg",
+      "publicFile": "xjtu.jpg",
+      "page": "https://www.xjtu.edu.cn/info/1024/5221.htm",
+      "url": "https://www.xjtu.edu.cn/__local/E/26/06/414ABA4090B26221D9D69928163_9872DAFE_9521.jpg",
+      "logo": "/assets/partners/xjtu.jpg",
+      "sha256": "d57dfa56aef2bec5f1f2988a5e275066d2f7ad01d4b0ace9fb6ed2ae73fb2c60",
+      "bytes": 38177,
+      "sourceClass": "B — official website asset",
+      "transformation": "None: original bytes, aspect ratio and colors retained"
+    },
+    {
+      "id": "sxtour",
+      "name": "陕旅集团",
+      "file": "sxtour.png",
+      "publicFile": "sxtour.png",
+      "page": "https://www.sxtourgroup.com/",
+      "url": "https://www.sxtourgroup.com/static/sxtourgroup/images/logo.png",
+      "logo": "/assets/partners/sxtour.png",
+      "sha256": "e2fce96df0aa69e751fa4363e1c91f6009eec27d72bf5d78809dfc73be8d1945",
+      "bytes": 875576,
+      "sourceClass": "B — official website asset",
+      "transformation": "None: original bytes, aspect ratio and colors retained"
+    },
+    {
+      "id": "zhizi",
+      "name": "质子汽车",
+      "file": "zhizi.jpg",
+      "publicFile": "zhizi.jpg",
+      "page": "https://www.zzqckj.com/",
+      "url": "https://www.zzqckj.com/images/logo_zz06.jpg",
+      "logo": "/assets/partners/zhizi.jpg",
+      "sha256": "a346ed17a495432371d20aaefbf8c53c4b0aa833c2e6f5260d4abc5e7aab150c",
+      "bytes": 3391,
+      "sourceClass": "B — official website asset",
+      "transformation": "None: original bytes, aspect ratio and colors retained"
+    }
+  ]
+}
