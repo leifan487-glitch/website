@@ -1,0 +1,13 @@
+{
+  "source": "经验素材取地/新资料/宣传视频.mp4",
+  "sourceSha256": "b35f9813f5f91cab0ea0e5baff569bd28093210133ab161fd425e660acadb501",
+  "timestamp": 43.2,
+  "crop": [1920, 1536, 1250, 300],
+  "width": 1200,
+  "height": 960,
+  "filter": "crop=1920:1536:1250:300,scale=1200:960:flags=lanczos",
+  "image": "/media/mantis-standard/home-forms-v2/engineering-v3.webp",
+  "bytes": 63014,
+  "sha256": "355e30b6606127e3e33feb23293b0617eec1caa549f299438920b0ae6ec7d005",
+  "notes": "Actual frame from the already-public official film; front-facing bag-carrying task. Crop/resize only, no generated structures, retouching or sharpening. The other five cards and prior image files remain unchanged."
+}

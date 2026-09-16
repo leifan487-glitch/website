@@ -65,7 +65,7 @@ test("Home and Standard page expose confirmed copy without changing the locked h
   ]);
   assert.doesNotMatch(hero, /product-hero__values/); // 018.8B explicitly removes decorative English.
   assert.match(intro, /双臂移动操作机器人/);
-  assert.match(intro, /一脑多形/);
+  assert.match(intro, /一脑多型/);
   assert.match(intro, /真模块化/);
   assert.match(sections, /aria-expanded/);
   assert.match(sections, /aria-controls/);

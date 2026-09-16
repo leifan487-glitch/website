@@ -31,9 +31,9 @@ test("Task 018.3 Standard page follows the complete product story with documents
     assert.ok(page.indexOf(`<${component}`) > -1, `${component} missing`);
   }
   assert.doesNotMatch(page, /<MantisIntro|<MantisProductDetail/);
-  const ids = ["overview", "modular", "six-forms", "why-modular", "capability-system", "real-tasks", "development", "specifications", "questions", "product-documents", "product-inquiry"];
+  const ids = ["overview", "modular", "six-forms", "why-modular", "capability-system", "real-tasks", "development", "specifications", "questions"];
   for (const id of ids) assert.match(sections, new RegExp(`id=\\"${id}\\"`));
-  const renderOrder = ["ProductOverviewSection", "ModularArchitectureSection", "CapabilitySystemSection", "RealTasksSection", "DevelopmentSection", "SpecificationsSection", "StandardQaSection", "StandardDocumentsSection", "StandardInquirySection"];
+  const renderOrder = ["ProductOverviewSection", "ModularArchitectureSection", "CapabilitySystemSection", "RealTasksSection", "DevelopmentSection", "SpecificationsSection", "StandardQaSection"];
   const renderBlock = sections.slice(sections.indexOf("export function StandardProductSections"));
   let cursor = -1;
   for (const component of renderOrder) {
@@ -100,13 +100,12 @@ test("official documents are published while the video archive retains its visib
   assert.equal(isSupportModuleVisible("videos", { publicPreview: true, hiddenModuleIds: ["videos"] }), false);
 });
 
-test("Real Tasks player and Inquiry route are wired", async () => {
+test("Real Tasks player stays wired after Owner removes the product tail CTAs", async () => {
   const sections = await source("../src/components/StandardProductSections.jsx");
   assert.match(sections, /StandardMediaPlayer/);
   assert.match(sections, /productRealTasks/);
-  assert.match(sections, /to="\/inquiry"/);
-  assert.match(sections, /support\/documents/);
-  assert.match(sections, /查看产品文档/);
+  assert.doesNotMatch(sections, /product-documents|product-inquiry|查看产品文档/);
+  assert.match(await source("../src/App.jsx"), /path="\/inquiry"/);
   assert.doesNotMatch(sections, /documentResources\.filter/);
 });
 

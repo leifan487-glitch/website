@@ -1,7 +1,7 @@
 import { standardSource } from "./product.js";
 
 export const standardCapabilities = [
-  ["modular-architecture", "模块化架构", "Modular architecture", "一脑多形，通过可组合模块适配不同任务形态。"],
+  ["modular-architecture", "模块化架构", "Modular architecture", "一脑多型，通过可组合模块适配不同任务形态。"],
   ["dual-arm-operation", "双臂任务执行", "Dual-arm task execution", "双臂结构面向抓取、搬运与协同操作。"],
   ["wheeled-lift", "轮式移动与升降", "Wheeled mobility & lift", "全向轮式底盘与升降机构共同扩展工作范围。"],
   ["quick-change", "手部快换", "Quick-change", "通过手部接口更换末端执行器。"],

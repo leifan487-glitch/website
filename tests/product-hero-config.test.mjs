@@ -57,9 +57,7 @@ test("the Standard state retains its locked responsive media layout", () => {
   }
 });
 
-test("wide Product Hero viewports fade the source shadow edge without resizing the composition", async () => {
-  const styles = await readFile(new URL("../src/styles.css", import.meta.url), "utf8");
-
-  assert.match(styles, /@media \(min-width: 1280px\) and \(min-aspect-ratio: 8 \/ 5\)/);
-  assert.match(styles, /\.product-hero\[data-media-mode="series-array"\] \.product-hero__media img\s*{[^}]*width:\s*auto;[^}]*height:\s*100%;[^}]*mask-image:\s*linear-gradient\(to right, #000 0%, #000 86%, transparent 100%\);/s);
+test("Owner refinement contains the full Hero image and resets the legacy wide-screen offset", async () => {
+  const styles = await readFile(new URL("../src/owner-refinements.css", import.meta.url), "utf8");
+  assert.match(styles, /\.homepage-v2 \.product-hero\[data-media-mode="series-array"\] \.product-hero__media img\s*{[^}]*inset: 0;[^}]*width: 100%;[^}]*object-fit: contain;[^}]*transform: none;[^}]*mask-image: none;/s);
 });

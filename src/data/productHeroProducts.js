@@ -10,7 +10,7 @@ export const productHeroProducts = [
     name: "MANTIS",
     variant: "STANDARD",
     positioning: "消费级",
-    heroDefinition: "一脑多形，真模块化",
+    heroDefinition: "一脑多型，真模块化",
     valueWords: ["More Useful", "More Options", "More Value"],
     approval: { copy: true, media: false, claim: true },
     cta: {

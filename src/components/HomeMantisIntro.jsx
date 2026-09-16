@@ -5,13 +5,13 @@ export function HomeMantisIntro() {
         <header className="home-story-heading">
           <div>
             <p className="home-story-label">Mantis Standard</p>
-            <h2 id="home-mantis-title">一脑多形，<br />真模块化</h2>
+            <h2 id="home-mantis-title">一脑多型，<br />真模块化</h2>
           </div>
           <p>双臂移动操作机器人，<br />也可以是适合不同任务的模块组合。</p>
         </header>
         <div className="home-difference__explanations">
           <article>
-            <h3>一脑多形</h3>
+            <h3>一脑多型</h3>
             <p>同一套智能与软件体系，服务不同机器人形态。</p>
           </article>
           <article>

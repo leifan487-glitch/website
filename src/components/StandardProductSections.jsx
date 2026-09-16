@@ -1,9 +1,7 @@
 import { useId, useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, ArrowUpRight, Minus, Plus } from "@phosphor-icons/react";
+import { ArrowUpRight, Minus, Plus } from "@phosphor-icons/react";
 import { EditorialHeading } from "./EditorialHeading.jsx";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
-import { businessEmail, businessEmailHref } from "../data/contact.js";
 import { officialProductFilm } from "../data/standard/officialFilm.js";
 import { getStandardMediaByUsage, selectStandardContent, standardPublicSpecs, standardSpecGroups, standardQa } from "../data/standard/index.js";
 import { standardForms, standardModularValues, standardHardware, standardDevelopmentPaths } from "../data/standard/story.js";
@@ -20,7 +18,7 @@ export function ProductOverviewSection() {
         <div>
           <Heading title="什么是 Mantis Standard" id="overview-title" />
           <p className="sp-lead">Mantis Standard 是一个模块化机器人平台。机器人可根据任务需求组合不同形态，并围绕统一的软件与智能体系进行开发和使用。</p>
-          <p>从机械臂、轮式底盘到双臂与完整形态，产品的重点不只是外观变化，而是让机器人配置更贴近实际任务。</p>
+          <p>从机械臂、轮式底盘到双臂与完整形态，按任务需要组合配置。</p>
           <a className="sp-text-link" href={officialProductFilm.src} target="_blank" rel="noopener noreferrer" aria-label="观看官方产品影片（新窗口）">观看官方产品影片<ArrowUpRight size={18} aria-hidden="true" /></a>
         </div>
       </div>
@@ -32,10 +30,10 @@ export function ModularArchitectureSection() {
   return (
     <section className="sp-section sp-modular" id="modular" aria-labelledby="modular-title" data-standard-reveal>
       <div className="page-shell">
-        <Heading title="一脑多形，真模块化" intro="统一的软件体系，可组合的机器人结构。" id="modular-title" dark />
+        <Heading title="一脑多型，真模块化" intro="统一的软件体系，可组合的机器人结构。" id="modular-title" dark />
         <div className="sp-modular__columns">
           <article>
-            <h3>一脑多形</h3>
+            <h3>一脑多型</h3>
             <p className="sp-lead">同一套智能与软件体系，<br />服务不同机器人形态。</p>
             <p>形态随任务改变，开发仍围绕统一的软件体系展开。从仿真、控制接口到数据与模型，连接不同形态的开发与使用。</p>
             <p>这里的“一脑”指软件与智能体系；具体主控和开发支持根据配置与方案确定。</p>
@@ -65,13 +63,36 @@ export function ModularArchitectureSection() {
 export function CapabilitySystemSection() {
   const structures = standardHardware.filter(item => item.id !== "development");
   const development = standardHardware.find(item => item.id === "development");
+  const [activePart, setActivePart] = useState("vision");
+  // Coordinates refer to the existing full-body image on a fixed 520 × 640 stage.
+  const points = {
+    "robot-body": { x: 260, y: 184, end: 56 },
+    "dual-arms": { x: 340, y: 222, end: 464 },
+    "mobile-base": { x: 175, y: 551, end: 56 },
+    lift: { x: 260, y: 412, end: 56 },
+    vision: { x: 260, y: 60, end: 464 },
+    "quick-connect": { x: 332, y: 344, end: 464 },
+  };
   return (
     <section className="sp-section sp-capabilities" id="capability-system" aria-labelledby="capabilities-title" data-standard-reveal>
       <div className="page-shell">
-        <Heading title="产品结构与接口" intro="移动、操作、感知与开发，各有对应的结构和接口。具体组合根据配置与任务方案确定。" id="capabilities-title" />
+        <Heading title="产品结构与接口" intro="按编号查看对应部位。模块组合以配置与任务方案为准。" id="capabilities-title" />
         <div className="sp-capabilities__layout">
-          <figure><img src="/assets/nav-standard-a01781.webp" alt="Mantis Standard 本体与双臂、升降和底盘结构" width="349" height="760" loading="lazy" decoding="async" /></figure>
-          <dl className="sp-structure-index">{structures.map((item, index) => <div key={item.id}><dt><span className="sp-index">{String(index + 1).padStart(2, "0")}</span>{index === 0 ? "机器人本体" : item.title}</dt><dd>{item.description}</dd></div>)}</dl>
+          <figure className="sp-anatomy" aria-label="Mantis Standard 部位索引">
+            <div className="sp-anatomy__stage">
+              <img src="/assets/nav-standard-a01781.webp" alt="Mantis Standard 完整结构；编号与右侧说明对应" width="349" height="760" loading="lazy" decoding="async" />
+              <svg viewBox="0 0 520 640" aria-hidden="true">{structures.map(item => {
+                const point = points[item.id];
+                return <g key={item.id} data-active={activePart === item.id}><circle className="sp-anatomy__halo" cx={point.x} cy={point.y} r="22" /><line x1={point.x} y1={point.y} x2={point.end} y2={point.y} /><circle cx={point.x} cy={point.y} r="4" /></g>;
+              })}</svg>
+              {structures.map((item, index) => <button key={item.id} type="button" className="sp-anatomy__marker" style={{ left: `${points[item.id].end / 5.2}%`, top: `${points[item.id].y / 6.4}%` }} aria-label={`${String(index + 1).padStart(2, "0")} ${item.title}`} aria-controls={`part-${item.id}`} aria-pressed={activePart === item.id} onClick={() => setActivePart(item.id)}>{String(index + 1).padStart(2, "0")}</button>)}
+            </div>
+            <figcaption>选择编号，查看对应部位说明</figcaption>
+          </figure>
+          <dl className="sp-structure-index">{structures.map((item, index) => <div key={item.id} id={`part-${item.id}`} data-active={activePart === item.id}>
+            <dt><button type="button" aria-pressed={activePart === item.id} onClick={() => setActivePart(item.id)}><span className="sp-index">{String(index + 1).padStart(2, "0")}</span>{index === 0 ? "机器人本体" : item.id === "vision" ? "视觉头部" : item.title}</button></dt>
+            <dd>{item.description}</dd>
+          </div>)}</dl>
         </div>
         <div className="sp-development-interface"><h3><span className="sp-index">07</span>{development.title}</h3><p>{development.description}</p></div>
       </div>
@@ -99,7 +120,7 @@ export function DevelopmentSection() {
   return (
     <section className="sp-section sp-development" id="development" aria-labelledby="development-title" data-standard-reveal>
       <div className="page-shell">
-        <Heading title="开发 Mantis Standard" intro="根据配置与开发方案，支持的开发路径包括仿真、控制接口、数据与模型，以及操作验证。" id="development-title" />
+        <Heading title="开发 Mantis Standard" intro="仿真、控制、数据与模型、操作验证，按配置与开发方案选用。" id="development-title" />
         <ol className="sp-development__list">{standardDevelopmentPaths.map((item, index) => <li key={item.id}>
           <div><span className="sp-index">{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3></div>
           <ul aria-label={item.title + "相关工具"}>{item.tools.map(tool => <li key={tool}>{tool}</li>)}</ul>
@@ -157,28 +178,6 @@ export function StandardQaSection() {
   );
 }
 
-export function StandardDocumentsSection() {
-  return (
-    <section className="sp-section sp-documents" id="product-documents" aria-labelledby="documents-title">
-      <div className="page-shell">
-        <Heading title="资料与开发" intro="安装、使用、交付核对与二次开发，查阅对应的正式文档。" id="documents-title" />
-        <Link className="sp-text-link" to="/support/documents">查看产品文档<ArrowRight size={18} aria-hidden="true" /></Link>
-      </div>
-    </section>
-  );
-}
-
-export function StandardInquirySection() {
-  return (
-    <section className="sp-section sp-contact" id="product-inquiry" aria-labelledby="contact-title">
-      <div className="page-shell sp-contact__layout">
-        <div><h2 id="contact-title">采购/合作</h2><a href={businessEmailHref}>{businessEmail}</a></div>
-        <Link className="sp-button" to="/inquiry">采购/合作<ArrowRight size={18} aria-hidden="true" /></Link>
-      </div>
-    </section>
-  );
-}
-
 export function StandardProductSections() {
-  return <><ProductOverviewSection /><ModularArchitectureSection /><CapabilitySystemSection /><RealTasksSection /><DevelopmentSection /><SpecificationsSection /><StandardQaSection /><StandardDocumentsSection /><StandardInquirySection /></>;
+  return <><ProductOverviewSection /><ModularArchitectureSection /><CapabilitySystemSection /><RealTasksSection /><DevelopmentSection /><SpecificationsSection /><StandardQaSection /></>;
 }

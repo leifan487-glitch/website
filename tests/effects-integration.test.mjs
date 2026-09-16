@@ -14,7 +14,7 @@ test("product page keeps the section rail and consolidates content without chang
   assert.match(sections, /CapabilitySystemSection/);
   assert.doesNotMatch(sections, /role="tablist"/);
   assert.match(sections, /sp-specs__grid/);
-  assert.match(sections, /StandardDocumentsSection/);
+  assert.doesNotMatch(sections, /StandardDocumentsSection|StandardInquirySection/);
 });
 
 test("product systems use visible structural information instead of hiding development in tabs", async () => {

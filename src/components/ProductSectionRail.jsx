@@ -9,8 +9,6 @@ const productSections = [
   { id: "development", label: "开发路径" },
   { id: "specifications", label: "核心参数" },
   { id: "questions", label: "六个问题" },
-  { id: "product-documents", label: "资料与开发" },
-  { id: "product-inquiry", label: "采购/合作" },
 ];
 
 const smoothstep = (value) => value * value * (3 - (2 * value));

@@ -7,7 +7,7 @@ const source = (path) => readFile(new URL(path, import.meta.url), "utf8");
 test("home hero uses the approved concise capability definition", async () => {
   const products = await source("../src/data/productHeroProducts.js");
   const hero = await source("../src/components/ProductHero.jsx");
-  assert.match(products, /heroDefinition:\s*"一脑多形，真模块化"/);
+  assert.match(products, /heroDefinition:\s*"一脑多型，真模块化"/);
   assert.match(hero, /activeProduct\.heroDefinition \|\| activeProduct\.positioning/);
   assert.doesNotMatch(hero, /InternalStatus as="p" className="product-hero__positioning"/);
 });

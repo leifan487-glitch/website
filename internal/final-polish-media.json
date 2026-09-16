@@ -1,0 +1,134 @@
+{
+  "sourceMasterSha256": "b35f9813f5f91cab0ea0e5baff569bd28093210133ab161fd425e660acadb501",
+  "assets": {
+    "public/media/mantis-standard/home-forms-v2/arm.webp": {
+      "sha256": "4feb77b76955f4234f3cb5ff7ecbcbf1fb31e364e50038ba1270dd2cfaba8221",
+      "bytes": 30804
+    },
+    "public/media/mantis-standard/home-forms-v2/engineering.webp": {
+      "sha256": "00bbce8e3bea332059d2a36fc9f5f4dd328033664793666b814388c0553a0141",
+      "bytes": 23172
+    },
+    "public/media/mantis-standard/home-forms-v2/chassis.webp": {
+      "sha256": "d0e4a360eea7fd07705d9c380003f7e9d0f289ac6eea3e22113d66cfc5651876",
+      "bytes": 18122
+    },
+    "public/media/mantis-standard/home-forms-v2/dual.webp": {
+      "sha256": "50e207dda31daf5b507909c9700606539ef645a72cd7346c9bcabb2960e2b54d",
+      "bytes": 32136
+    },
+    "public/media/mantis-standard/home-forms-v2/inspection.webp": {
+      "sha256": "567226c4cd296d79d24258ed619ce26f96aa96d56723dee2baeb868625347a5c",
+      "bytes": 14024
+    },
+    "public/media/mantis-standard/home-forms-v2/complete.webp": {
+      "sha256": "fe8182c0966b605b4a7c1ca8a86f9395943a246230e22c73a1f4f1bba1cf5256",
+      "bytes": 20026
+    },
+    "public/media/web-v2/applications-montage-v2-1080.mp4": {
+      "sha256": "341585226a9d1e973cacc0587b91e801086bf678c65988e5e77315433e49e41f",
+      "bytes": 4086307,
+      "ssim": 0.992824,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/applications-montage-v2-720.mp4": {
+      "sha256": "a1514f6b8593088e3b4ef9284b9e20190606d472c29f703df4baaff7fc7fcf4b",
+      "bytes": 2004458,
+      "ssim": 0.9903,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/home-real-world-1080.mp4": {
+      "sha256": "5956a2b459717b523b49c15bc8748c55aa3523181129d68a7a7768de7e46999d",
+      "bytes": 3720065,
+      "ssim": 0.994566,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/home-real-world-720.mp4": {
+      "sha256": "1a726e0a77b0b666dc0754a6976e4215f73ec4b02a722868a664fd450d97f262",
+      "bytes": 2107568,
+      "ssim": 0.99148,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv001-720.mp4": {
+      "sha256": "528715e64c687b65dc8d6dfcaa1ab3ecd0fc049e648cba544f8d2f7b7544ab26",
+      "bytes": 830207,
+      "ssim": 0.996534,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv003-720.mp4": {
+      "sha256": "f0e317e6e909db4d0f7f7e4781c1051f5e6c81747e308bf3e7099857683b35f8",
+      "bytes": 1785449,
+      "ssim": 0.995249,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv007-720.mp4": {
+      "sha256": "76840e25dc24384a14b19be43c56e3bc2e8cc078c85ec80f8dd9325a3a7ec377",
+      "bytes": 1227023,
+      "ssim": 0.994506,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv010-720.mp4": {
+      "sha256": "317b40d6f6601738c34dcfde7b6f94d84a50170166ac90b40959baa036ab8b4e",
+      "bytes": 639582,
+      "ssim": 0.996387,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv018-720.mp4": {
+      "sha256": "a4dd7ce7c7048563f4bb6adf940e07b374475c31bcc22d107554d5a09e7b639a",
+      "bytes": 2234616,
+      "ssim": 0.990296,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv035-720.mp4": {
+      "sha256": "2035bb70343db3554ad7786e90e5e6916b1f73ae954d03f7336a1ebd390f61af",
+      "bytes": 3524912,
+      "ssim": 0.990364,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv037-1080.mp4": {
+      "sha256": "36696616db21c9c89bee69e4ad50c55bdbb08c13b502c652c9e9a0d4708fd1cd",
+      "bytes": 8045158,
+      "ssim": 0.990253,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv037-720.mp4": {
+      "sha256": "cb401e269c8f12faa243416fb9897dd8cb2e056d0e709fc8c1f9181538bef1af",
+      "bytes": 4294930,
+      "ssim": 0.98903,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv054-1080.mp4": {
+      "sha256": "0f7206c71ea422f50a909df87d64c07c2e46ddda5050ec078742db91a20c72d4",
+      "bytes": 7408534,
+      "ssim": 0.993468,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/sv054-720.mp4": {
+      "sha256": "4f5bcb9fb8a3375bb013d6a94ef86405dc4104ce35d10ba8bc6928952dd6e178",
+      "bytes": 4448800,
+      "ssim": 0.989175,
+      "sameFrameCount": true,
+      "sameDuration": true
+    },
+    "public/media/web-v2/official-product-film-720.mp4": {
+      "sha256": "a9caba19a94f468773b753e989e4c966739d7e35989c73f9231a3b05943bbb54",
+      "bytes": 17199781,
+      "ssim": 0.993922,
+      "sameFrameCount": true,
+      "sameDuration": true
+    }
+  }
+}

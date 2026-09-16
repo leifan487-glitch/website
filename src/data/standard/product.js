@@ -4,12 +4,12 @@ export const standardProduct = {
   id: "mantis-standard",
   name: "Mantis Standard",
   positioning: "消费级",
-  slogan: "一脑多形，真模块化",
+  slogan: "一脑多型，真模块化",
   source: `${standardSource} · Slide 4`,
   contentStatus: "VERIFIED",
   publicApproved: true,
   approval: { copy: true, media: false, claim: true },
-  notes: "Task 014 负责人确认：消费级；一脑多形，真模块化。",
+  notes: "Task 014 负责人确认：消费级；一脑多型，真模块化。",
 };
 
 export const standardModularArchitecture = [

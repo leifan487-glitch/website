@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Play } from "@phosphor-icons/react";
 import { officialProductFilm } from "../data/standard/officialFilm.js";
 import { homeForms, modularBenefits } from "../data/home.js";
+import { selectVideoDelivery } from "../data/videoDelivery.js";
 
 // Homepage captions only: shared form data and Standard page copy stay locked.
 const formCaptions = {
@@ -23,6 +24,7 @@ export function HomeOfficialFilm() {
   const [activated, setActivated] = useState(false);
   const [failed, setFailed] = useState(false);
   const videoRef = useRef(null);
+  const [videoSource] = useState(() => selectVideoDelivery(officialProductFilm.src));
 
   useEffect(() => {
     const video = videoRef.current;
@@ -45,7 +47,7 @@ export function HomeOfficialFilm() {
           <p className="home-film__duration">官方影片 <span aria-hidden="true">/</span> 02:19</p>
         </header>
         <div className="home-film__frame">
-          {activated ? <video ref={videoRef} src={officialProductFilm.src} poster={officialProductFilm.poster}
+          {activated ? <video ref={videoRef} src={videoSource} poster={officialProductFilm.poster}
             width={officialProductFilm.width} height={officialProductFilm.height}
             aria-label={officialProductFilm.title} controls playsInline preload="none" tabIndex={0}
             onError={() => setFailed(true)} />
@@ -70,7 +72,7 @@ export function HomeForms() {
         <div className="home-forms__gallery">
           {homeForms.map((item) => <figure key={item.id} data-form={item.id}>
             <div className="home-forms__visual">
-              <img src={`/media/mantis-standard/home-forms/${item.id}.webp`} alt={item.name} width={800} height={640} loading="lazy" decoding="async" />
+              <img src={`/media/mantis-standard/home-forms-v2/${item.id === "engineering" ? "engineering-v3" : item.id}.webp`} alt={item.name} width={1200} height={960} loading="lazy" decoding="async" />
             </div>
             <figcaption><h3>{item.name}</h3><p>{formCaptions[item.id]}</p></figcaption>
           </figure>)}

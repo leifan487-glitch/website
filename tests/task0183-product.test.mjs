@@ -48,15 +48,15 @@ test("Task 018.3 six questions preserve detailed reasoning behind always-visible
   assert.match(source, /fullExplanation\.map/);
 });
 
-test("Task 018.3 single price source, document reuse and click-only task media", async () => {
+test("Task 018.3 single price source and click-only media survive Owner tail removal", async () => {
   const hero = await read("src/components/ProductPageHeader.jsx");
   assert.match(hero, /standardCommercial\.publicStartingPrice/);
   assert.doesNotMatch(hero, /0\.98/);
   const source = await read("src/components/StandardProductSections.jsx");
   assert.match(source, /standardPublicSpecs, \{ publicMode: true \}/);
-  assert.match(source, /to="\/support\/documents"/);
+  assert.doesNotMatch(source, /to="\/support\/documents"/); // Owner 2026-09-16 removes the documents tail block.
   assert.doesNotMatch(source, /href=\{item.fileUrl\} download/); // 018.8B centralizes PDF actions.
-  assert.equal((source.match(/to="\/inquiry"/g) || []).length, 1);
+  assert.equal((source.match(/to="\/inquiry"/g) || []).length, 0); // Independent route and navigation remain.
   assert.doesNotMatch(source, /<video|autoPlay|homeLoop|<iframe/);
   assert.match(source, /href=\{officialProductFilm.src\}/);
 });

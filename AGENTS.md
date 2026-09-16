@@ -1,5 +1,13 @@
 # Prototype Instructions
 
+## 2026-09-16 Owner approves all current refinements for release
+
+- Owner accepted the current engineering image and product-page tail removal, and explicitly requested publishing all current local website updates to the existing official Pages site.
+- Include the approved owner-feedback/final-polish work: 一脑多型, dimensions label, responsive composition, partner logo/name cards, technology typography, product anatomy, new form images and web video variants, and removal of the final two product-page sections.
+- Release through existing origin/main and bluewormrobotics Pages only. Run manifest:upload, audit:upload and verify:upload before push, then validate deployed SHA and production pages/media.
+- Do not enable inquiry/email/Resend/Turnstile, change DNS/domains, or redesign further during release. Original media stays read-only.
+- Owner subsequently paused upload to fix the Homepage Hero right-side floor-shadow seam; authorizes a narrow edge-blending correction and release after verification. Keep product pixels opaque through 88% of the image, preserve composition and all source assets; mobile remains unchanged.
+
 ## 2026-09-16 Task0191 Boss Preview release authorization
 
 - Owner authorizes publishing the approved local website to existing origin/main and bluewormrobotics Pages. Email/Resend/Turnstile remain postponed and disabled; no real email or email-variable changes.

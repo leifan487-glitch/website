@@ -12,7 +12,7 @@ function spec(record) {
 }
 
 export const standardSpecs = [
-  spec({ id: "dimensions-overall", group: "Robot Body", label: "全尺寸", value: "633 × 552 × 1300", unit: "mm", variant: "productGeneral", source: `${standardSource} · Slide 3` }),
+  spec({ id: "dimensions-overall", group: "Robot Body", label: "尺寸", value: "633 x 552 x 1300", unit: "mm", variant: "productGeneral", source: `${standardSource} · Slide 3` }),
   spec({ id: "arm-reach", group: "Dual Arm", label: "臂展", value: "663", unit: "mm", variant: "productGeneral", source: `${standardSource} · Slide 3` }),
   spec({ id: "lift-range", group: "Lift / Workspace", label: "升降范围", value: "550", unit: "mm", variant: "productGeneral", source: `${standardSource} · Slide 3` }),
   spec({ id: "repeat-position", group: "Dual Arm", label: "重复定位精度", value: "1?", unit: "mm", variant: "productGeneral", source: `${standardSource} · Slide 2`, conflict: true, notes: "源文件数值带问号，必须确认。" }),
@@ -55,7 +55,7 @@ const publicSpec = (record) => ({
 // standardSpecs for Internal Review; their public rows only state that the
 // value depends on configuration and never expose an unresolved number.
 export const standardPublicSpecs = [
-  publicSpec({ id: "public-dimensions", group: "Robot Body", label: "全尺寸", value: "633 × 552 × 1300", unit: "mm", variant: "整机通用" }),
+  publicSpec({ id: "public-dimensions", group: "Robot Body", label: "尺寸", value: "633 x 552 x 1300", unit: "mm", variant: "整机通用" }),
   publicSpec({ id: "public-base-dof", group: "Mobility", label: "底盘能力", value: "3 自由度全向移动", variant: "整机通用" }),
   publicSpec({ id: "public-mobility-config", group: "Mobility", label: "移动能力与续航", value: "根据配置不同", variant: "配置相关" }),
   publicSpec({ id: "public-arm-reach", group: "Dual Arm", label: "臂展", value: "663", unit: "mm", variant: "整机通用" }),

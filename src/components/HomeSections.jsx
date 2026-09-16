@@ -14,7 +14,6 @@ export function HomeTechnology() {
             <h3>{item.nameZh}<span>{item.name}</span></h3><p>{item.roleZh}</p>
           </article>)}
         </div>
-        <div className="home-section-action"><Link className="home-section-link" to="/technology"><span>查看技术体系</span><span aria-hidden="true">↗</span></Link></div>
       </div>
     </section>
   );
@@ -61,7 +60,10 @@ export function HomePartners({ items = getPublicHomePartners() }) {
   return (
     <section className="home-partners home-story-section" id="partners" aria-labelledby="home-partners-title"><div className="page-shell">
       <header className="home-story-heading"><h2 id="home-partners-title">合作伙伴</h2></header>
-      <ul>{visible.map((item) => <li key={item.id}><img src={item.logo} alt={item.alt} loading="lazy" decoding="async" /></li>)}</ul>
+      <ul>{visible.map((item) => <li key={item.id}>
+        <div className="home-partners__logo" data-partner={item.id}><img src={item.logo} alt="" loading="lazy" decoding="async" /></div>
+        <p className="home-partners__name">{item.name}</p>
+      </li>)}</ul>
     </div></section>
   );
 }

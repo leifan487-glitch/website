@@ -35,6 +35,6 @@ test('018.8B keeps three unique task anchors and six structures plus separate de
  const standard=await read('src/components/StandardProductSections.jsx');
  assert.match(standard,/产品结构与接口/);assert.match(standard,/sp-development-interface/);
  assert.doesNotMatch(standard,/SixFormsSection|sp-forms__grid|documentResources\.filter/);
- assert.equal((standard.match(/to="\/support\/documents"/g)||[]).length,1);
+ assert.equal((standard.match(/to="\/support\/documents"/g)||[]).length,0); // Owner removes only the product-page tail block.
  const css=await read('src/editorial.css');assert.match(css,/HarmonyOS Sans SC/);assert.doesNotMatch(css,/@font-face|url\(/);
 });

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { selectVideoDelivery } from "../data/videoDelivery.js";
 
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(() => (
@@ -22,18 +23,29 @@ export function StandardMediaPlayer({ media, homeLoop = false, className = "", l
   const reducedMotion = usePrefersReducedMotion();
   const playerRef = useRef(null);
   const videoRef = useRef(null);
+  const userPaused = useRef(false);
+  const [saveData] = useState(() => typeof navigator !== "undefined" && Boolean(navigator.connection?.saveData));
+  const [buffering, setBuffering] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [activated, setActivated] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(!homeLoop);
   const [inViewport, setInViewport] = useState(!homeLoop);
-  const video = homeLoop ? (media.homeVideo || media.video) : media.video;
+  const [video] = useState(() => selectVideoDelivery(homeLoop ? (media.homeVideo || media.video) : media.video));
   const poster = homeLoop ? (media.homePoster || media.poster) : media.poster;
   const accessibleLabel = label || `播放${media.titleZh}`;
-  const autoplay = homeLoop && !reducedMotion;
+  const autoplay = homeLoop && !reducedMotion && !saveData;
+
+  useEffect(() => {
+    if (!buffering || failed) { setShowLoading(false); return undefined; }
+    const timer = window.setTimeout(() => setShowLoading(true), 900);
+    return () => window.clearTimeout(timer);
+  }, [buffering, failed]);
 
   useEffect(() => {
     const player = playerRef.current;
-    if (!homeLoop || !player) return undefined;
+    if (!homeLoop || !player || saveData) return undefined;
 
     const prepareObserver = new IntersectionObserver((entries) => {
       if (!entries.some((entry) => entry.isIntersecting)) return;
@@ -50,12 +62,12 @@ export function StandardMediaPlayer({ media, homeLoop = false, className = "", l
       prepareObserver.disconnect();
       visibilityObserver.disconnect();
     };
-  }, [homeLoop]);
+  }, [homeLoop, saveData]);
 
   useEffect(() => {
     const element = videoRef.current;
     if (!homeLoop || !element) return;
-    if (!autoplay || !shouldLoad || !inViewport) {
+    if (!autoplay || !shouldLoad || !inViewport || userPaused.current) {
       element.pause();
       setPlaying(false);
       return;
@@ -83,17 +95,17 @@ export function StandardMediaPlayer({ media, homeLoop = false, className = "", l
   async function togglePlayback() {
     const element = videoRef.current;
     if (!element) return;
-    if (element.paused) await element.play().catch(() => {});
-    else element.pause();
+    if (element.paused) { userPaused.current = false; await element.play().catch(() => {}); }
+    else { userPaused.current = true; element.pause(); }
   }
 
-  if (!homeLoop && !activated) {
+  if ((!homeLoop || saveData || reducedMotion) && !activated) {
     return (
       <button
         className={`standard-media-player standard-media-player--poster ${className}`.trim()}
         type="button"
         aria-label={accessibleLabel}
-        onClick={() => setActivated(true)}
+        onClick={() => { setShouldLoad(true); setActivated(true); }}
       >
         <img src={poster} alt="" width={media.width} height={media.height} loading="lazy" decoding="async" />
         <span className="standard-media-player__play" aria-hidden="true">播放视频</span>
@@ -122,8 +134,15 @@ export function StandardMediaPlayer({ media, homeLoop = false, className = "", l
         preload={shouldLoad && autoplay ? "metadata" : "none"}
         tabIndex="0"
         onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
+        onPause={() => { setPlaying(false); setBuffering(false); }}
+        onWaiting={() => setBuffering(true)}
+        onPlaying={() => { setBuffering(false); setFailed(false); }}
+        onCanPlay={() => setBuffering(false)}
+        onError={() => { setFailed(true); setBuffering(false); }}
       />
+      {failed || showLoading ? <div className="standard-media-player__status" role="status">
+        {failed ? <>视频暂时无法播放。<button type="button" onClick={() => { setFailed(false); videoRef.current?.load(); videoRef.current?.play().catch(() => {}); }}>重新加载</button></> : "正在缓冲…"}
+      </div> : null}
       {autoplay && shouldLoad ? (
         <button className="standard-media-player__control" type="button" aria-label={playing ? "暂停" : "播放"} onClick={togglePlayback}>
           <span aria-hidden="true">{playing ? "Ⅱ" : "▶"}</span>

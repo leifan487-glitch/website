@@ -29,7 +29,8 @@ test('Task 018.7 removes duplication, retains real previews and does not add pro
   const home=await read('src/pages/HomePage.jsx'),story=await read('src/components/HomeProductStory.jsx'),sections=await read('src/components/HomeSections.jsx');
   assert.doesNotMatch(home,/HomeMantisIntro/);
   assert.match(story,/>形态展示<\/h2>/); // Owner's four-character label; six real forms remain.
-  assert.match(story,/width=\{800\} height=\{640\} loading="lazy"/);
+  // Owner's final polish uses new 4K-master crops; the historical assets above remain intact.
+  assert.match(story,/width=\{1200\} height=\{960\} loading="lazy"/);
   assert.match(sections,/现场片段/);assert.match(sections,/slice\(0, 3\)/);
   assert.doesNotMatch(sections,/item.descriptionZh/);
   assert.match(sections,/getApplicationTaskAnchor\(item\)/);
