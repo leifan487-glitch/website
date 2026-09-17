@@ -72,8 +72,10 @@ export function ProductHero() {
           style={mediaStyle}
         >
           <source
-            media="(max-width: 600px)"
-            srcSet={activeProduct.poster.compact.src}
+            media="(max-width: 767px)"
+            srcSet={activeProduct.poster.phone.src}
+            width={activeProduct.poster.phone.width}
+            height={activeProduct.poster.phone.height}
           />
           <source
             media="(max-width: 900px)"

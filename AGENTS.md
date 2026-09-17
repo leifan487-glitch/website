@@ -1,5 +1,18 @@
 # Prototype Instructions
 
+## 2026-09-17 Mobile Homepage Hero release authorization
+
+- Owner accepted the local mobile Hero result and explicitly requested publication. This supersedes the local-only restriction below for this approved change only.
+- Commit/push the approved <=767px Hero and derivative through existing origin/main -> bluewormrobotics Cloudflare Pages, after manifest:upload, audit:upload and verify:upload pass.
+- Verify the deployed commit and four phone widths, desktop, responsive media, routes and existing video Range support. No further redesign, new hosting, DNS/domain, email or inquiry changes.
+
+## 2026-09-17 Dedicated mobile Homepage Hero / local review only
+
+- Owner reopens only Homepage Hero at <=767px: dedicated official full-body derivative and one small-viewport composition containing the existing title, tagline, price and CTA. No second homepage or duplicated copy.
+- Desktop >=768px, header, other sections/pages, facts and video seeking remain unchanged. Source assets stay read-only; new derivative uses A01781 with proportional scaling and transparent padding only, no generated/retouched product appearance.
+- Capture before/after at 360/375/390/430, desktop regression and breakpoint/resize checks. Browser emulation is not real iOS/WeChat verification.
+- Do not commit, push, deploy or update release manifests. Wait for independent Review; this overrides prior release authorization.
+
 ## 2026-09-16 Homepage video seeking fix and release
 
 - Owner reports the Homepage official-film native timeline cannot seek and explicitly authorizes fixing and publishing it.

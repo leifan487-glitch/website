@@ -1,0 +1,11 @@
+{
+  "source": "经验素材取地/蓝虫具身/标准版渲染/整机/PNG/01.png",
+  "assetId": "A01781",
+  "sourceSha256": "d61864753f49ffa4a193316cadd96d29ebaaf8139096789a61741d59962e5acb",
+  "output": "public/assets/hero-mobile-standard-a01781.webp",
+  "width": 900,
+  "height": 1500,
+  "bytes": 73994,
+  "sha256": "4ba3ae49a39c49f09108f2d7094bf5e425240632cf81b72e08ef31686d5a040c",
+  "operations": "Trim transparent margins; proportional resize to 1400px tall; center on transparent 900x1500 canvas, 50px vertical safety margin. No product pixel retouching."
+}

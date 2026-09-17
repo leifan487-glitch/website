@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
-  "fileCount": 350,
-  "totalBytes": 153537374,
+  "fileCount": 355,
+  "totalBytes": 153619844,
   "files": [
     {
       "path": ".env.example",
@@ -31,8 +31,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 17426,
-      "sha256": "d0269422e10d8dd58bbc215af6e76e863655a45843a7261885207f0b68f8e92a"
+      "bytes": 18832,
+      "sha256": "add385dde70c4184a459620187a9ae780f9c4aa9d442680551745546c40e68d3"
     },
     {
       "path": "DEPLOYMENT.md",
@@ -205,6 +205,11 @@
       "sha256": "b62d821414e593d1957b6acde64a494bf1bf6d02b140db704c8bbbf06960bc98"
     },
     {
+      "path": "internal/mobile-hero-20260917.json",
+      "bytes": 565,
+      "sha256": "85d362d406336e8decd4fc9389645d69f9d135b20718bba6d0323fbc824aa9d1"
+    },
+    {
       "path": "internal/owner-feedback-20260916.json",
       "bytes": 14682,
       "sha256": "f3b4b8fd489c7419c647f636aca71246d54974c4c8bd421b564664aa0abc4299"
@@ -333,6 +338,11 @@
       "path": "public/assets/engineering-a00706.webp",
       "bytes": 252740,
       "sha256": "c92c1dfa9e231d237a4a20d1c9f5b6f1b3613592ea110950b2b8df3a668c88b3"
+    },
+    {
+      "path": "public/assets/hero-mobile-standard-a01781.webp",
+      "bytes": 73994,
+      "sha256": "4ba3ae49a39c49f09108f2d7094bf5e425240632cf81b72e08ef31686d5a040c"
     },
     {
       "path": "public/assets/hero-standard-a01791-mobile.webp",
@@ -1181,8 +1191,8 @@
     },
     {
       "path": "src/components/ProductHero.jsx",
-      "bytes": 3983,
-      "sha256": "e1e3f6109e0189ab67fb097a7c7b371205ec5699e9e32f60c1917ecb5d6205b1"
+      "bytes": 4089,
+      "sha256": "a93f7a405ab165014438719d1f565221e8482795297be62e807a28a34ccf1bb7"
     },
     {
       "path": "src/components/ProductPageHeader.jsx",
@@ -1301,8 +1311,8 @@
     },
     {
       "path": "src/data/productHeroProducts.js",
-      "bytes": 1559,
-      "sha256": "ab421ed8ac7a756079bc56afbb1d2d46784e6f7a0455eda2645e8dbe153fbe4e"
+      "bytes": 1709,
+      "sha256": "736891f6acd6281218cb34a04d19fb278004143dc59bd1c94878fce72b9eebaa"
     },
     {
       "path": "src/data/products.js",
@@ -1466,8 +1476,13 @@
     },
     {
       "path": "src/main.jsx",
-      "bytes": 419,
-      "sha256": "36826c3f1a1e16bb4921ae0c966facd3d942e649b3cdd466e6dfd8dbfa7fa7d5"
+      "bytes": 447,
+      "sha256": "a3a80c1646728ddd93e2d82e7aeec4f7ac25df6a00f833718d44cf1570995e52"
+    },
+    {
+      "path": "src/mobile-hero.css",
+      "bytes": 2322,
+      "sha256": "e346b16426e5211b016f5ba37a01b5015fcc8a39a085ebdc2885ef7878db896d"
     },
     {
       "path": "src/owner-refinements.css",
@@ -1576,13 +1591,18 @@
     },
     {
       "path": "tests/final-polish-20260916.test.mjs",
-      "bytes": 3332,
-      "sha256": "370032445755ae609e69f0c1013b7e5a57afca7e4e232d162973fde55f0d917d"
+      "bytes": 3422,
+      "sha256": "1b867a56b394164068747a9382d5dbde7935cb43364f9ad47687d4be6b754cea"
     },
     {
       "path": "tests/helpers/final-polish-scope.mjs",
       "bytes": 454,
       "sha256": "e609d47bb2a217f753a156524d35023d03a6a887087825cac2e08a763ef3c7bc"
+    },
+    {
+      "path": "tests/helpers/mobile-hero-scope.mjs",
+      "bytes": 1089,
+      "sha256": "15ac95e57eed0f24f65ff5660991ba9f4f74b1f477efae3c924fb779d2a63119"
     },
     {
       "path": "tests/helpers/owner-feedback-scope.mjs",
@@ -1616,8 +1636,8 @@
     },
     {
       "path": "tests/home-final.test.mjs",
-      "bytes": 2622,
-      "sha256": "5340e5f04b0de691a5dc5f090eb1e848ef8590ac881a75173222b9959f325836"
+      "bytes": 2713,
+      "sha256": "604a046f08d4d63d283db8b2d1b3fa7bdf4f6e7127709deed75f28cfeea21db7"
     },
     {
       "path": "tests/home-motion.test.mjs",
@@ -1630,9 +1650,14 @@
       "sha256": "c63a1349058b6501ac2809c8baa8391f3a48ac981819755919dad6c1dd8b5d01"
     },
     {
+      "path": "tests/mobile-hero-20260917.test.mjs",
+      "bytes": 2444,
+      "sha256": "5bb9f015a1e6a360131f1902af39ec9ff2be26fb8e976b2c64b106ec4c38212c"
+    },
+    {
       "path": "tests/owner-feedback-20260916.test.mjs",
-      "bytes": 3051,
-      "sha256": "d2baf523efdc17e40edd0fd5e89c1a9d5c0adf6a5cddd32ee04d7d695a2b7213"
+      "bytes": 3145,
+      "sha256": "5129cedb9ecf4f3f73fa5dd5fd8940faa37251980c17c0766b2915169c76fc5b"
     },
     {
       "path": "tests/performance-readiness.test.mjs",
@@ -1726,8 +1751,8 @@
     },
     {
       "path": "tests/task0188bf-final.test.mjs",
-      "bytes": 2165,
-      "sha256": "70dc44876d16c4c12f60b76ca71fd15ef0f92ec1bc7092c10aef998475ff4f89"
+      "bytes": 2256,
+      "sha256": "dbf51bab7d198910545bac3254d04e4cc71c6873e10446ef10f959ad0420cb5b"
     },
     {
       "path": "tests/task0191-controls.test.mjs",

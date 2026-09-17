@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { withoutMobileHero } from './helpers/mobile-hero-scope.mjs';
 import { withoutVideoRange } from './helpers/video-range-scope.mjs';
 import { reopenedFinalPolish } from './helpers/final-polish-scope.mjs';
 import assert from 'node:assert/strict';
@@ -13,7 +14,7 @@ const blob = b => createHash('sha1').update(`blob ${b.length}\0`).update(b).dige
 test('Owner feedback preserves all media, company facts, price, inquiry, backend and unrelated source', async () => {
   for (const [file, hash] of Object.entries(scope.files)) {
     if (scope.editable.includes(file) || reopenedFinalPolish.has(file)) continue;
-    let b = await bytes(file);
+    let b = withoutMobileHero(file, await bytes(file));
     if (file === 'worker/index.js') b = Buffer.from(withoutVideoRange(b.toString()));
     if (scope.phraseOnly.includes(file)) b = Buffer.from(b.toString().replaceAll('一脑多型', '一脑多形'));
     if (scope.dimensionsOnly.includes(file)) b = Buffer.from(b.toString().replaceAll('label: "尺寸"', 'label: "全尺寸"').replaceAll('633 x 552 x 1300', '633 × 552 × 1300'));

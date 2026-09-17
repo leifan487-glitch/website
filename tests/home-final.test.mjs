@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {withoutMobileHero} from './helpers/mobile-hero-scope.mjs';
 import {reopenedOwnerFeedback} from './helpers/owner-feedback-scope.mjs';
 import {beforeControlFix} from './helpers/task0191-control-fix.mjs';
 import assert from 'node:assert/strict';
@@ -9,7 +10,7 @@ import {getSitemapRoutes} from '../src/data/siteMetadata.js';
 const bytes=f=>readFile(new URL('../'+f,import.meta.url)),hash=b=>createHash('sha256').update(b).digest('hex');
 test('Final homepage preserves Hero, facts, partner/news assets and all non-authorized source',async()=>{
  const lock=JSON.parse(await bytes('internal/home-final-locked-files.json'));
- for(const [file,h]of Object.entries(lock.files))if(!lock.reopened.includes(file)&&!reopenedOwnerFeedback.has(file))assert.equal(hash(beforeControlFix(file,await bytes(file))),h,file);
+ for(const [file,h]of Object.entries(lock.files))if(!lock.reopened.includes(file)&&!reopenedOwnerFeedback.has(file))assert.equal(hash(beforeControlFix(file,withoutMobileHero(file,await bytes(file)))),h,file);
  assert.equal(lock.reopened.length,7);
 });
 test('Owner refinement restores standalone Inquiry and legacy Contact redirects',async()=>{

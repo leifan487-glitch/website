@@ -18,6 +18,12 @@ export const productHeroProducts = [
       href: "/products/mantis-standard",
     },
     poster: {
+      phone: {
+        src: "/assets/hero-mobile-standard-a01781.webp",
+        width: 900,
+        height: 1500,
+        assetId: "A01781",
+      },
       desktop: {
         src: "/assets/hero-standard-series-a01644.webp",
         width: 2400,

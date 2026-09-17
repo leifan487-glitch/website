@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {withoutMobileHero} from './helpers/mobile-hero-scope.mjs';
 import {beforeControlFix} from './helpers/task0191-control-fix.mjs';
 import {reopenedHomeFinal} from './helpers/task0188b-scope.mjs';
 import assert from 'node:assert/strict';
@@ -10,7 +11,7 @@ const bytes=f=>readFile(new URL('../'+f,import.meta.url)),hash=b=>createHash('sh
 test('018.8B-F keeps locked source, all prior media and Navbar byte-identical',async()=>{
  const lock=JSON.parse(await bytes('internal/task0188bf-locked-files.json'));
  assert.deepEqual(lock.reopened,['src/pages/HomePage.jsx','src/components/HomeSections.jsx','src/data/home.js','src/data/news.js','src/home.css']);
- for(const [file,h]of Object.entries(lock.files))if(!lock.reopened.includes(file)&&!reopenedHomeFinal.has(file))assert.equal(hash(beforeControlFix(file,await bytes(file))),h,file);
+ for(const [file,h]of Object.entries(lock.files))if(!lock.reopened.includes(file)&&!reopenedHomeFinal.has(file))assert.equal(hash(beforeControlFix(file,withoutMobileHero(file,await bytes(file)))),h,file);
 });
 test('018.8B-F uses the exact Owner source and four official logos without new relationships',async()=>{
  assert.equal(getPublicHomeNews()[0].href,'http://gd.people.com.cn/n2/2025/0818/c123932-41325012.html');

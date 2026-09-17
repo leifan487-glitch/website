@@ -1,0 +1,57 @@
+/* Mobile art direction only. Shared DOM/copy; approved desktop stays intact.
+   svh intentionally remains stable when browser address bars retract. */
+@media (max-width: 767px) {
+  .homepage-v2 .product-hero,
+  .homepage-v2 .product-hero__content {
+    height: 100svh;
+    min-height: 0;
+  }
+  .homepage-v2 .product-hero__content {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 8px;
+    padding: calc(var(--nav-height) + 20px) 20px max(16px, env(safe-area-inset-bottom));
+  }
+  .homepage-v2 .product-hero__copy {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+  }
+  .homepage-v2 .product-hero__identity { align-items: center; }
+  .homepage-v2 .product-hero__name,
+  .homepage-v2 .product-hero__variant {
+    font-size: clamp(32px, 9vw, 40px);
+    line-height: 1.04;
+    letter-spacing: -.025em;
+  }
+  .homepage-v2 .product-hero__variant { margin-top: 2px; }
+  .homepage-v2 .product-hero__details { margin-top: 12px; }
+  .homepage-v2 .product-hero__product-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .homepage-v2 .product-hero__positioning { margin: 0 0 8px; font-size: 16px; line-height: 1.5; }
+  .homepage-v2 .product-hero__price { margin: 0 0 12px; font-size: 28px; line-height: 1.2; }
+  .homepage-v2 .product-hero__cta { min-height: 44px; font-size: 14px; }
+  .homepage-v2 .product-hero__media {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: auto;
+    margin: 0;
+  }
+  .homepage-v2 .product-hero[data-media-mode="series-array"] .product-hero__media img {
+    object-fit: contain;
+    object-position: center;
+  }
+}
+/* Landscape / accessibility: readable copy wins over forcing a short screen.
+   A horizontal composition keeps the same image and content, without clipping. */
+@media (max-width: 767px) and (max-height: 540px) and (orientation: landscape) {
+  .homepage-v2 .product-hero__content { grid-template-columns: 1.15fr 1fr; grid-template-rows: minmax(240px, 1fr); height: auto; min-height: 100svh; gap: 12px; }
+  .homepage-v2 .product-hero { height: auto; }
+  .homepage-v2 .product-hero__copy { align-self: center; }
+  .homepage-v2 .product-hero__name,
+  .homepage-v2 .product-hero__variant { font-size: 30px; }
+}
