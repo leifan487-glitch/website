@@ -5,6 +5,7 @@ import { Footer } from "../components/Footer.jsx";
 import { Navbar } from "../components/Navbar.jsx";
 import { SubpageMotion } from "../components/SubpageMotion.jsx";
 import { TechnologyExplorer } from "../components/TechnologyExplorer.jsx";
+import { BrainRelationship } from "../components/BrainRelationship.jsx";
 import { alignedPlatforms } from "../data/alignment.js";
 import { standardDevelopmentPaths } from "../data/standard/story.js";
 import "../alignment.css";
@@ -16,10 +17,14 @@ export function TechnologyPage() {
       <SubpageMotion scopeRef={mainRef} compact />
       <Navbar theme="light" homeHref="/" />
       <section className="aligned-hero page-shell" aria-labelledby="technology-title">
-        <div><h1 id="technology-title">技术体系</h1><p className="aligned-lead">本体、遥操作、具身模型与云平台。</p><p>四个平台，连接机器人与数据工作流。</p>
-          <nav className="aligned-index" aria-label="技术平台定位">{alignedPlatforms.map(p => <a key={p.id} href={"#" + p.id}><span>{p.nameZh}</span><ArrowRight size={16} aria-hidden="true" /></a>)}</nav>
+        <div><h1 id="technology-title">技术体系</h1><p className="aligned-lead">本体、遥操作、具身模型与云平台。</p><p>四个平台与 BW Brain 智能体，连接机器人与数据工作流。</p>
+          <nav className="aligned-index" aria-label="技术平台定位">{alignedPlatforms.map((p, index) => <a key={p.id} href={"#" + p.id}><span>{p.nameZh}</span>{index < alignedPlatforms.length - 1 ? <ArrowRight size={16} aria-hidden="true" /> : null}</a>)}</nav>
         </div>
         <img src="/assets/hero-standard-a01791.webp" alt="Mantis Standard 机器人本体结构局部" width="2200" height="1238" fetchPriority="high" />
+      </section>
+      <section className="technology-brain page-shell" aria-labelledby="technology-brain-title">
+        <h2 id="technology-brain-title">模型与智能体</h2>
+        <BrainRelationship />
       </section>
       <TechnologyExplorer platforms={alignedPlatforms} />
       <section className="aligned-section aligned-tint" data-motion-section aria-labelledby="ecosystem-title"><div className="page-shell">

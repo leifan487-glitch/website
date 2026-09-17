@@ -1,4 +1,4 @@
-const editorialTitles = { silkworm: "本体、模块与开发接口", quantum: "遥操作与数据采集", wormhole: "数据、模型与任务技能", honeycomb: "采集、训练与推理工作流" };
+const editorialTitles = { silkworm: "本体、模块与开发接口", quantum: "遥操作与数据采集", wormhole: "具身基础模型", honeycomb: "采集、训练与推理工作流" };
 
 export function TechnologyExplorer({ platforms }) {
   return <div className="aligned-platforms page-shell">

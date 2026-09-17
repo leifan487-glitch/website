@@ -1,0 +1,26 @@
+{
+  "task": "019.4R",
+  "status": "LOCAL_OWNER_REVIEW",
+  "authority": "Owner Task 019.4R, sections 3, 7–12",
+  "brain": {
+    "source": "经验素材取地/蓝虫具身/Mantis Standard六大核心问题.docx",
+    "locations": ["问题2（5）", "问题3", "问题6"],
+    "supportedRelationship": "自研大脑 BW-Brain 搭载虫洞系列具身智能基模；任务卡明确 Agent 与基础模型层区分。",
+    "publicName": "BW Brain",
+    "publicCopy": "蓝虫自研机器人“大脑”，由虫洞系列具身基础模型支撑。",
+    "excluded": ["模型架构细节", "性能及泛化性宣称", "新增技能和自主能力", "未来规划"]
+  },
+  "engineering": {
+    "source": "经验素材取地/蓝虫具身/标准版渲染/底盘加手臂/PNG/03.png",
+    "sourceSha256": "99249718eef88a8efc9ab14de51cb828dcfacb4335e3f244ef46530df16630aa",
+    "sourceDimensions": [8000, 4502],
+    "output": "public/media/mantis-standard/home-forms-v2/engineering-v4.webp",
+    "outputSha256": "89f5638f4b15b4399565c46493cd0711ce842e0b22312b5eb6f9fb0478c2c304",
+    "bytes": 23984,
+    "dimensions": [1200, 960],
+    "processing": "透明边界裁剪、等比缩放、居中合成微灰底；不生成产品像素，不改结构。",
+    "type": "官方渲染衍生图，不是实拍"
+  },
+  "manual": {"public": false, "pagesActuallyReused": [], "reviewedCandidates": [1, 3, 7, 8], "visualOnly": [2], "hold": [4, 5, 6]},
+  "locked": {"publicDocuments": 4, "price": "0.98 万起", "dimension": "633 x 552 x 1300 mm", "inquiryEnabled": false, "serverChanges": false}
+}

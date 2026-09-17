@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { GlobeSimple } from "@phosphor-icons/react";
+import { ArrowRight, GlobeSimple } from "@phosphor-icons/react";
 import "./navbar.css";
 
 const navItems = [
@@ -202,6 +202,9 @@ export function Navbar({ homeHref = "#top" }) {
         id="primary-navigation"
         aria-label="主导航"
       >
+        <NavLink to="/" end className={({ isActive }) => isActive ? "is-active" : undefined} onClick={closeProductNav}>
+          <span className="navbar__label">首页</span>
+        </NavLink>
         <div
           className="navbar__product"
           data-open={productOpen}
@@ -326,6 +329,7 @@ export function Navbar({ homeHref = "#top" }) {
                     <p>更多产品信息将于后续发布</p>
                   </div>
                 )}
+                {productView === "standard" ? <Link className="navbar__product-documents" to="/support/documents" onClick={closeProductNav}>产品文档<ArrowRight size={18} aria-hidden="true" /></Link> : null}
               </div>
             </div>
           </div>

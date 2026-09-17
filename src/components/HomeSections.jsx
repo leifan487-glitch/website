@@ -3,6 +3,7 @@ import { getApplicationTaskAnchor } from "../data/applicationTaskAnchors.js";
 import { getStandardMediaByUsage } from "../data/standard/index.js";
 import { homeTechnologyPlatforms, getPublicHomeNews, getPublicHomePartners } from "../data/home.js";
 import { businessEmail } from "../data/contact.js";
+import { BrainRelationship } from "./BrainRelationship.jsx";
 
 export function HomeTechnology() {
   return (
@@ -14,6 +15,7 @@ export function HomeTechnology() {
             <h3>{item.nameZh}<span>{item.name}</span></h3><p>{item.roleZh}</p>
           </article>)}
         </div>
+        <BrainRelationship />
       </div>
     </section>
   );

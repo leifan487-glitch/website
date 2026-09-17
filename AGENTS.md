@@ -1,5 +1,25 @@
 # Prototype Instructions
 
+## Task 019.5 — approved boss-review release
+
+- Owner confirms 019.4R and 019.4R-Fix FINAL ACCEPT / LOCK. Publish that exact version via existing main -> Cloudflare Pages; no page/content/design changes.
+- Require scope/secrets/inquiry checks, all tests/builds/diff checks and upload-integrity gates before the release commit `Boss review technology and product content update` and push. Stop on any failed preflight.
+- A failed network push permits one command-scoped HTTP/1.1 retry, never global Git configuration changes. Confirm successful production deployment SHA and live QA.
+- Keep four PDFs, price 0.98 万起, dimension 633 x 552 x 1300 mm, inquiry/email disabled. No channel manual/config/warranty/new parameter table, DNS, server or video migration.
+
+## Task 019.4R-Fix — final technology consistency
+
+- Owner reports 019.4R passed ChatGPT Review. Only remove the last Technology platform-chain arrow and normalize the rendered Wormhole name to 具身基础模型 in Home/Technology.
+- BW Brain remains 智能体（Agent）层; do not rewrite its copy, add capabilities or change layout/other content. QA only 1440 / 768 / 390 / 360; run existing tests/build. No commit/push/deploy; final review required.
+
+## Task 019.4R — Boss follow-up / local only
+
+- Owner reopens only Hero supporting typography (not title/layout), Home entry in shared nav/mobile menu, product-to-documents link, Homepage engineering image, and BW Brain relationship in Homepage/Technology.
+- BW Brain is the Agent/brain layer supported by Wormhole foundation models; not a fifth platform or a synonym for the model. Preserve all four platform names and the confirmed six-question copy.
+- Channel manual is reference only, never a fifth public PDF. P4–P6 HOLD; no channel matrix/warranty/new parameters. Price and 633 x 552 x 1300 mm stay fixed.
+- Only derive from real official imagery; originals read-only. Videos/Worker/server/DNS/email are locked; provide migration notes without infrastructure changes.
+- No commit/push/deploy, no manifest refresh. Eight-width QA and full tests/build, then Owner/ChatGPT Review. This supersedes the previous release authorization.
+
 ## 2026-09-17 Mobile Homepage Hero release authorization
 
 - Owner accepted the local mobile Hero result and explicitly requested publication. This supersedes the local-only restriction below for this approved change only.

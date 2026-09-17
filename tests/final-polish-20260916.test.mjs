@@ -9,7 +9,7 @@ import { selectVideoDelivery, videoDelivery } from '../src/data/videoDelivery.js
 const read = f => readFile(new URL('../'+f,import.meta.url));
 test('Final local polish preserves all prior-round facts, routes, media, server and inquiry files',async()=>{
  for(const [f,h]of Object.entries(finalPolish.files)) if(!reopenedFinalPolish.has(f)) {const b=withoutMobileHero(f,await read(f));assert.equal(createHash('sha256').update(f==='worker/index.js'?withoutVideoRange(b.toString()):b).digest('hex'),h,f);}
- assert.equal(reopenedFinalPolish.size,6);
+ assert.equal(reopenedFinalPolish.size,11); // Six prior exceptions + five newly reopened files in 019.4R.
 });
 test('Delivery selects bounded approved variants, with stable desktop/mobile fallback',async()=>{
  assert.equal(Object.keys(videoDelivery).length,11);

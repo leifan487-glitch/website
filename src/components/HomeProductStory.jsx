@@ -73,7 +73,7 @@ export function HomeForms() {
         <div className="home-forms__gallery">
           {homeForms.map((item) => <figure key={item.id} data-form={item.id}>
             <div className="home-forms__visual">
-              <img src={`/media/mantis-standard/home-forms-v2/${item.id === "engineering" ? "engineering-v3" : item.id}.webp`} alt={item.name} width={1200} height={960} loading="lazy" decoding="async" />
+              <img src={`/media/mantis-standard/home-forms-v2/${item.id === "engineering" ? "engineering-v4" : item.id}.webp`} alt={item.name} width={1200} height={960} loading="lazy" decoding="async" />
             </div>
             <figcaption><h3>{item.name}</h3><p>{formCaptions[item.id]}</p></figcaption>
           </figure>)}

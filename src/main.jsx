@@ -7,6 +7,7 @@ import "./support.css";
 import "./editorial.css";
 import "./owner-refinements.css";
 import "./mobile-hero.css";
+import "./boss-review.css";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>

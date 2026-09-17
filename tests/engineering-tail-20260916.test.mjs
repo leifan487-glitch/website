@@ -17,9 +17,9 @@ test('Owner removes only the last two product sections and matching rail anchors
  assert.match(await text('src/components/HomeSections.jsx'),/to="\/inquiry"/);
  assert.match(await text('src/App.jsx'),/path="\/inquiry"/);
 });
-test('Only the engineering card switches to the new official-film frame',async()=>{
+test('Only engineering uses the approved replacement; its legacy film derivative remains intact',async()=>{
  const source=await text('src/components/HomeProductStory.jsx');
- assert.match(source,/item.id === "engineering" \? "engineering-v3" : item.id/);
+ assert.match(source,/item.id === "engineering" \? "engineering-v4" : item.id/); // 019.4R official studio render replaces corridor.
  const manifest=JSON.parse(await text('internal/engineering-tail-20260916.json'));
  const image=await bytes('public'+manifest.image);
  assert.equal(createHash('sha256').update(image).digest('hex'),manifest.sha256);

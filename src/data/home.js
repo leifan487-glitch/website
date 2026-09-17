@@ -20,7 +20,7 @@ export const modularBenefits = [
 
 // Chinese names checked against company introduction PDF p7. No platform claims added.
 const platformNames = { silkworm: "春茧", quantum: "量子", wormhole: "虫洞", honeycomb: "蜂巢" };
-const platformRoles = { silkworm: "机器人架构", quantum: "遥操作", wormhole: "具身智能模型", honeycomb: "云平台" };
+const platformRoles = { silkworm: "机器人架构", quantum: "遥操作", wormhole: "具身基础模型", honeycomb: "云平台" };
 export const homeTechnologyPlatforms = companyTechnologyPlatforms.map((item) => ({
   ...item, nameZh: platformNames[item.id], roleZh: platformRoles[item.id],
 }));
