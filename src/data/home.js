@@ -1,6 +1,7 @@
 import { companyTechnologyPlatforms } from "./technology.js";
 import { verifiedMediaCoverage } from "./news.js";
 import { partners } from "./partners.js";
+import { bwBrain } from "./bwBrain.js";
 
 // Official film frames; provenance: internal/task0182r-form-posters.json. Forms, not SKUs.
 export const homeForms = [
@@ -20,10 +21,21 @@ export const modularBenefits = [
 
 // Chinese names checked against company introduction PDF p7. No platform claims added.
 const platformNames = { silkworm: "春茧", quantum: "量子", wormhole: "虫洞", honeycomb: "蜂巢" };
-const platformRoles = { silkworm: "机器人架构", quantum: "遥操作", wormhole: "具身基础模型", honeycomb: "云平台" };
-export const homeTechnologyPlatforms = companyTechnologyPlatforms.map((item) => ({
+const platformRoles = { silkworm: "机器人本体架构", quantum: "遥操作", wormhole: "具身基础模型", honeycomb: "云平台 / 数据管理" };
+const existingPlatforms = companyTechnologyPlatforms.map((item) => ({
   ...item, nameZh: platformNames[item.id], roleZh: platformRoles[item.id],
 }));
+// Task 019.6 Owner override: TEMPORARY OWNER NAME / FINAL CN NAME TBD.
+// The Agent layer is a peer navigation entry, not a new model or capability claim.
+const brainPlatform = {
+  id: "bw-brain", nameZh: "大脑", name: bwBrain.name, roleZh: "机器人智能体层",
+  description: bwBrain.description, purpose: bwBrain.role, concepts: [],
+  contentStatus: "VERIFIED", publicApproved: true, visibility: "PUBLIC",
+  source: "Owner Task 019.6 / confirmed BW Brain relationship",
+};
+export const homeTechnologyPlatforms = [
+  existingPlatforms[0], existingPlatforms[1], brainPlatform, existingPlatforms[2], existingPlatforms[3],
+];
 
 // Only an already approved, dated public media report; internal Progress is not news.
 export const homeNewsItems = verifiedMediaCoverage

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
+import { ArrowRight } from "@phosphor-icons/react";
 import { getApplicationTaskAnchor } from "../data/applicationTaskAnchors.js";
 import { getStandardMediaByUsage } from "../data/standard/index.js";
 import { homeTechnologyPlatforms, getPublicHomeNews, getPublicHomePartners } from "../data/home.js";
 import { businessEmail } from "../data/contact.js";
-import { BrainRelationship } from "./BrainRelationship.jsx";
 
 export function HomeTechnology() {
   return (
@@ -11,11 +11,11 @@ export function HomeTechnology() {
       <div className="page-shell">
         <header className="home-story-heading"><h2 id="home-technology-title">核心技术</h2></header>
         <div className="home-technology-preview__items">
-          {homeTechnologyPlatforms.map((item) => <article key={item.id}>
+          {homeTechnologyPlatforms.map((item) => <article key={item.id} data-platform={item.id}>
             <h3>{item.nameZh}<span>{item.name}</span></h3><p>{item.roleZh}</p>
           </article>)}
         </div>
-        <BrainRelationship />
+        <div className="home-technology-preview__link"><Link className="home-section-link" to="/technology">了解技术体系<ArrowRight size={18} aria-hidden="true" /></Link></div>
       </div>
     </section>
   );

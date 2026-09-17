@@ -1,0 +1,144 @@
+{
+  "task": "019.7",
+  "sources": [
+    {
+      "kind": "ppt",
+      "file": "C:/Users/99770/AppData/Local/Temp/codex-clipboard-afeb2151-94c2-4c41-9273-5b0741e182d9.png",
+      "sha256": "c6be97b5c064892253051c997b60d93e419667d062fd9800b0b131f94c4bc2fe",
+      "page": 1
+    },
+    {
+      "kind": "pdf",
+      "file": "D:\\codex\\蓝虫具身官网\\经验素材取地\\新资料\\渠道方产品手册大(1).pdf",
+      "sha256": "64ab798d9dd59d627ca0320803b44be2cc17f1c7c081ddd27c8f765c1ff50d57",
+      "page": 2
+    }
+  ],
+  "parameters": [
+    {
+      "id": "latency",
+      "label": "控制延迟",
+      "value": "<10",
+      "unit": "ms",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "speed",
+      "label": "前进速度",
+      "value": "3",
+      "unit": "m/s",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "liftSpeed",
+      "label": "升降速度",
+      "value": "200",
+      "unit": "mm/s",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "base",
+      "label": "底盘能力",
+      "value": "3",
+      "unit": "自由度全向移动",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "length",
+      "label": "长",
+      "value": "633",
+      "unit": "mm",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "width",
+      "label": "宽",
+      "value": "552",
+      "unit": "mm",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "height",
+      "label": "高",
+      "value": "1400",
+      "unit": "mm",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "liftRange",
+      "label": "升降范围",
+      "value": "550",
+      "unit": "mm",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "dof",
+      "label": "全身自由度",
+      "value": "22",
+      "unit": "",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "endurance",
+      "label": "整机续航",
+      "value": "3",
+      "unit": "h",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "upperArm",
+      "label": "大臂",
+      "value": "250",
+      "unit": "mm",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "forearm",
+      "label": "小臂",
+      "value": "260",
+      "unit": "mm",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "reach",
+      "label": "臂展",
+      "value": "663",
+      "unit": "mm",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    },
+    {
+      "id": "payload",
+      "label": "单臂负载",
+      "value": "7",
+      "unit": "kg",
+      "source": "Owner performance PPT screenshot 1; matching channel manual page 2",
+      "status": "OWNER-AUTHORIZED LOCAL REVIEW ONLY"
+    }
+  ],
+  "conflict": {
+    "parameter": "height",
+    "previous": "1300 mm",
+    "current": "1400 mm",
+    "resolution": "Latest owner task explicitly prioritizes the supplied PPT/PDF over existing website values. This local section uses 1400 mm; historical sources and the four locked public PDFs are not silently rewritten. Owner final review required before release."
+  },
+  "excluded": [
+    "Channel SKU and configuration matrix",
+    "Warranty",
+    "Unconfirmed product lines",
+    "Original private PDF publication"
+  ],
+  "otherContentAdded": false
+}

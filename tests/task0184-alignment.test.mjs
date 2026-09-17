@@ -18,10 +18,10 @@ test('Task 018.4 locks Home, Standard, six-Q, backend and all existing public re
   }
 });
 test('Task 018.4 platforms put approved Chinese names first and distinguish external models',async()=>{
-  assert.deepEqual(alignedPlatforms.map(p=>p.nameZh),['春茧','量子','虫洞','蜂巢']);
+  assert.deepEqual(alignedPlatforms.map(p=>p.nameZh),['春茧','量子','大脑','虫洞','蜂巢']); // Owner 019.6
   assert.ok(alignedPlatforms.every(p=>p.publicApproved&&p.purpose&&p.description));
   assert.match(alignedPlatforms[1].note,/不代表所有网络条件/);
-  assert.match(alignedPlatforms[2].description,/不是蓝虫自研模型/);
+  assert.match(alignedPlatforms.find(p=>p.id==='wormhole').description,/不是蓝虫自研模型/);
   const source=await read('src/components/TechnologyExplorer.jsx');
   assert.doesNotMatch(source,/role="tab/);
   assert.match(source,/nameZh.*platform.name/);

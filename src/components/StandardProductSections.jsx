@@ -3,7 +3,8 @@ import { ArrowUpRight, Minus, Plus } from "@phosphor-icons/react";
 import { EditorialHeading } from "./EditorialHeading.jsx";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
 import { officialProductFilm } from "../data/standard/officialFilm.js";
-import { getStandardMediaByUsage, selectStandardContent, standardPublicSpecs, standardSpecGroups, standardQa } from "../data/standard/index.js";
+import { getStandardMediaByUsage, selectStandardContent, standardQa } from "../data/standard/index.js";
+import { StandardPerformance } from "./StandardPerformance.jsx";
 import { standardForms, standardModularValues, standardHardware, standardDevelopmentPaths } from "../data/standard/story.js";
 
 function Heading({ title, intro, id, dark = false }) {
@@ -132,21 +133,9 @@ export function DevelopmentSection() {
   );
 }
 
-const specGroupLabels = { "Robot Body": "机器人本体", Mobility: "移动系统", "Dual Arm": "双臂系统", "Lift / Workspace": "升降与工作空间", "Compute / Interface": "计算与感知", "Development / Connectivity": "开发与连接" };
-
+// Task 019.6's four-row presentation is superseded by the owner's Task 019.7.
 export function SpecificationsSection() {
-  const specs = selectStandardContent(standardPublicSpecs, { publicMode: true });
-  const groups = standardSpecGroups.map(group => ({ group, items: specs.filter(item => item.group === group) })).filter(group => group.items.length);
-  return (
-    <section className="sp-section sp-specs" id="specifications" aria-labelledby="specs-title">
-      <div className="page-shell">
-        <Heading title="核心参数" intro="按本体、移动、双臂、升降、计算与接口分组。配置相关项目以实际方案为准。" id="specs-title" />
-        <div className="sp-specs__grid">{groups.map(({group, items}) => <article key={group}>
-          <h3>{specGroupLabels[group]}</h3><dl>{items.map(item => <div key={item.id}><dt>{item.label}</dt><dd>{item.value}{item.unit ? <span> {item.unit}</span> : null}</dd></div>)}</dl>
-        </article>)}</div>
-      </div>
-    </section>
-  );
+  return <StandardPerformance />;
 }
 
 function QaItem({ item, index }) {

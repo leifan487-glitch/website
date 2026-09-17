@@ -22,6 +22,22 @@ Date: 2026-09-11
 
 final result: passed
 
+## Task 019.7 — Mantis Standard performance section (2026-09-17)
+
+Owner-selected reference: performance PPT screenshot 1, matching channel manual page 2. Compared reference render `../docs/boss-review/evidence/task0197/manual-page2.png` and implementation captures together; adaptation to existing site typography and responsive reflow is authorized, not a pixel-identical PPT clone.
+
+Five fidelity surfaces: layout retains four small modules plus dominant complete front/side module; typography inherits Blue Worm; material uses six genuine official derivatives; ground remains white/soft gray with blue hover; content maps14 literal values to PPT/PDF. At narrow widths the complete-machine module comes first and cards reflow without horizontal scroll.
+
+Actual Edge captures: parameters-1440/1024/768/430/390/360.png; hover-before/after.png and hover-comparison.png under the evidence directory. Six widths: overflow0, console/page errors0, fourteen metrics, six decoded contain-fit images. Hover raises4px and scales1.025; reduced-motion removes transforms. Separate arm/image payload grid maintains16px normal clearance and >=13.35px with hover. PublicPDF4 and Inquiry disabled.
+
+Initial screenshot round identified latency image/unit overlap and a360px unit wrap; fixed. Fresh Impeccable implementation review then identified arm/payload collision; fixed using real grid separation and recaptured all six widths. Reviewer verdict resolved / disposition ship covers the one listed fix only. Final Owner/ChatGPT acceptance remains pending. Documentation audit preserves existing global system; no new global DESIGN or PRODUCT files.
+
+183 tests, independent14Worker tests, build, build:cloudflare, diff-check pass. Historical tests adjusted only for owner-authorized component extraction/new file allowlist;019.6V baseline hashes protect every other runtime file and existing public asset. HEAD25f5105 unchanged. Source-only local height override1400 versus historical1300 is explicitly recorded. No other product-page reference content added; no channel manual/config/warranty published. No physical iPhone/WeChat check.
+
+Full report: `../docs/boss-review/TASK0197_PRODUCT_PERFORMANCE.md`.
+
+NO COMMIT / NO PUSH / NO DEPLOY. TASK 019.7 READY FOR CHATGPT / OWNER REVIEW.
+
 ---
 
 # Design QA — Task 018 Editorial Type System & Final CTA Fit

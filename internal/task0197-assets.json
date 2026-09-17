@@ -1,0 +1,104 @@
+[
+  {
+    "name": "front",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/整机/PNG/06.png",
+    "sourceSha256": "04b7221b15bbd25a1db53ee201c2ab297acfec6d4fb353144055abc5905cc55b",
+    "sourceDimensions": [
+      8000,
+      4500
+    ],
+    "output": "public/media/mantis-standard/performance-v1/front.webp",
+    "outputSha256": "fbca5db5fab401be5646d87482ef8acae1e773ed0208528f549340e048f61642",
+    "dimensions": [
+      619,
+      1500
+    ],
+    "bytes": 81964,
+    "operation": "Alpha trim, proportional resize, WebP. No product alteration."
+  },
+  {
+    "name": "side",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/整机/PNG/04.png",
+    "sourceSha256": "0f8397c6782eecc010da11b8ba26524c527e918f1953655efa9b4aea39aeddbc",
+    "sourceDimensions": [
+      8000,
+      4500
+    ],
+    "output": "public/media/mantis-standard/performance-v1/side.webp",
+    "outputSha256": "dea9ca8478489958f9596191eee03185a9471d897aca569360cb35f5d6b81b97",
+    "dimensions": [
+      616,
+      1500
+    ],
+    "bytes": 44960,
+    "operation": "Alpha trim, proportional resize, WebP. No product alteration."
+  },
+  {
+    "name": "head",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/整机/PNG/09.png",
+    "sourceSha256": "cc90ad8da6cabf62aa8e3a85d7feb3f117f5995e7c3273e8353ba371a20e3022",
+    "sourceDimensions": [
+      8000,
+      4500
+    ],
+    "output": "public/media/mantis-standard/performance-v1/head.webp",
+    "outputSha256": "d3b617de94e8ba1e07a9619992bde14637d89a27d9296ab3ca84a3136fa6e8ae",
+    "dimensions": [
+      1000,
+      684
+    ],
+    "bytes": 40730,
+    "operation": "Alpha trim, proportional resize, WebP. No product alteration."
+  },
+  {
+    "name": "base",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/底盘/PNG/01.png",
+    "sourceSha256": "bb7b6a476ba0cbe8f9a6b15591191189d23d56f548b33802e50698de31c6d6a0",
+    "sourceDimensions": [
+      8000,
+      4502
+    ],
+    "output": "public/media/mantis-standard/performance-v1/base.webp",
+    "outputSha256": "34100b1ca5dd60e926e8a04044e8704a242a2dceae7c66d8f7d51c559ea20a86",
+    "dimensions": [
+      1000,
+      371
+    ],
+    "bytes": 30212,
+    "operation": "Alpha trim, proportional resize, WebP. No product alteration."
+  },
+  {
+    "name": "battery",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/底盘/PNG/05.png",
+    "sourceSha256": "e89cf5c0fd0a20847214095f7b0ea03a5559ffa8cbbd160e135ae64f2b1721b7",
+    "sourceDimensions": [
+      8000,
+      4502
+    ],
+    "output": "public/media/mantis-standard/performance-v1/battery.webp",
+    "outputSha256": "8814fdfddf7a4d4e5f546e40ad5dce8f14be0bd84dafa15bc98352c08b6a2710",
+    "dimensions": [
+      1000,
+      895
+    ],
+    "bytes": 47324,
+    "operation": "Alpha trim, proportional resize, WebP. No product alteration."
+  },
+  {
+    "name": "arm",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/手臂细节/PNG/07.png",
+    "sourceSha256": "aee147c2618f022e049f083d9048d678bf2efc902afa11bb5bfbe2e4630a2385",
+    "sourceDimensions": [
+      8000,
+      4500
+    ],
+    "output": "public/media/mantis-standard/performance-v1/arm.webp",
+    "outputSha256": "80782e97270b5b91773eb02511ffd6365c476ae5382ac4cbabf00388e3282374",
+    "dimensions": [
+      1000,
+      512
+    ],
+    "bytes": 42400,
+    "operation": "Alpha trim, proportional resize, WebP. No product alteration."
+  }
+]

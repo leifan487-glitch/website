@@ -1,8 +1,9 @@
 // Preserve historical hashes by subtracting ONLY the Owner-authorized mobile
 // source/import additions. Any unrelated change still fails the original lock.
 import { beforeWormholeName } from './wormhole-name-scope.mjs';
+import { beforeParameterApproval } from './task0197f-scope.mjs';
 export function withoutMobileHero(file, bytes) {
-  bytes = beforeWormholeName(file, bytes);
+  bytes = beforeParameterApproval(file, beforeWormholeName(file, bytes));
   let source = bytes.toString();
   if (file === 'src/main.jsx') source = source.replace('import "./mobile-hero.css";\n', '').replace('import "./boss-review.css";\n', '');
   if (file === 'src/components/ProductHero.jsx') source = source.replace(

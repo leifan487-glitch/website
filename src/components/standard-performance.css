@@ -1,0 +1,91 @@
+/* Task 019.7: native performance board; no styles escape this section. */
+.standard-page-v2 .sp-performance { --performance-surface: #eef0f0; --performance-accent: #216d91; background: #fff; }
+.sp-performance .performance-board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.95fr); grid-template-areas: "latency motion body" "endurance arm body"; gap: 18px; }
+.sp-performance .performance-card { position: relative; min-width: 0; padding: 26px; border-radius: 16px; background: var(--performance-surface); overflow: hidden; isolation: isolate; transition: transform 250ms ease-out, box-shadow 250ms ease-out, background-color 250ms ease-out; }
+.standard-page-v2 .sp-performance h3 { font-size: 21px; margin: 0 0 18px; }
+.sp-performance dl { margin: 0; position: relative; z-index: 1; }
+.sp-performance .performance-metric { min-width: 0; font-variant-numeric: tabular-nums; }
+.sp-performance dt { color: var(--sp-muted); font-size: 14px; line-height: 1.6; }
+.sp-performance dd { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px; line-height: 1.2; font-size: 24px; font-weight: 600; }
+.sp-performance dd > span { transition: color 250ms ease-out; white-space: nowrap; letter-spacing: -.025em; }
+.sp-performance dd small { font-size: 13px; font-weight: 400; letter-spacing: 0; white-space: nowrap; }
+.sp-performance .performance-metric--large dt { color: #0a0b0c; font-size: 20px; font-weight: 600; margin-bottom: 12px; }
+.sp-performance .performance-metric--large dd { font-size: clamp(42px, 4.5vw, 64px); gap: 7px; }
+.sp-performance .performance-metric--large dd small { font-size: 20px; }
+.sp-performance .performance-image { display: block; max-width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; transition: transform 300ms ease-out; }
+.sp-performance .performance-card--latency { grid-area: latency; min-height: 326px; }
+.sp-performance .performance-card--latency .performance-image { position: absolute; width: 100%; height: calc(100% - 154px); right: 0; bottom: 0; object-position: right bottom; transform-origin: bottom right; }
+.sp-performance .performance-card--latency dl { z-index: 2; }
+.sp-performance .performance-card--motion { grid-area: motion; display: flex; flex-direction: column; min-height: 326px; }
+.sp-performance .performance-card--motion .performance-image { width: 100%; margin: 2px auto 24px; }
+.sp-performance .performance-motion-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 12px; margin-top: auto; }
+.sp-performance .performance-motion-stats > :last-child { grid-column: 1 / -1; }
+.sp-performance .performance-motion-stats > :last-child dt { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+.sp-performance .performance-motion-stats > :last-child dd { font-size: 25px; padding-top: 14px; border-top: 1px solid #cbd3d6; }
+.sp-performance .performance-card--endurance { grid-area: endurance; min-height: 326px; }
+.sp-performance .performance-card--endurance .performance-image { width: 78%; position: absolute; bottom: 18px; right: 5%; transform-origin: bottom right; }
+.sp-performance .performance-card--arm { grid-area: arm; min-height: 326px; display: flex; flex-direction: column; }
+.sp-performance .performance-arm-stats { display: grid; gap: 6px; }
+.sp-performance .performance-arm-stats .performance-metric { display: flex; align-items: baseline; gap: 8px; }
+.sp-performance .performance-arm-stats dd { font-size: 18px; }
+.sp-performance .performance-arm-detail { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 16px; margin-top: auto; padding-top: 20px; }
+.sp-performance .performance-card--arm .performance-image { width: 100%; transform-origin: center; }
+.sp-performance .performance-payload .performance-metric--large dt { font-size: 16px; margin-bottom: 4px; }
+.sp-performance .performance-payload .performance-metric--large dd { font-size: 46px; }
+.sp-performance .performance-card--body { grid-area: body; display: flex; flex-direction: column; padding: 30px; background: #e5e8e9; }
+.sp-performance .performance-dimensions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.sp-performance .performance-dimensions dd { font-size: 28px; }
+.sp-performance .performance-views { display: flex; justify-content: center; align-items: end; gap: 7%; flex: 1; min-height: 0; padding: 25px 0; }
+.sp-performance .performance-views .performance-image { width: 40%; height: 385px; object-fit: contain; object-position: center bottom; transform-origin: center bottom; }
+.sp-performance .performance-body-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 20px; border-top: 1px solid #bbc5ca; }
+.sp-performance .performance-body-stats .performance-metric--large dt { font-size: 15px; margin-bottom: 6px; }
+.sp-performance .performance-body-stats .performance-metric--large dd { font-size: 46px; }
+@media (hover: hover) and (pointer: fine) {
+  .sp-performance .performance-card:hover { transform: translateY(-4px); background: #e6eef2; box-shadow: 0 14px 28px -14px #233b4c40; }
+  .sp-performance .performance-card:hover dd > span { color: var(--performance-accent); }
+  .sp-performance .performance-card:hover .performance-image { transform: scale(1.025); }
+}
+@media (max-width: 1199px) and (min-width: 901px) {
+  .sp-performance .performance-card { padding: 20px; }
+  .sp-performance .performance-card--body { padding: 24px; }
+  .sp-performance .performance-dimensions dd { font-size: 25px; }
+  .sp-performance .performance-motion-stats { grid-template-columns: 1fr; gap: 10px; }
+  .sp-performance .performance-motion-stats .performance-metric:not(:last-child) { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .sp-performance .performance-motion-stats dd { font-size: 21px; }
+  .sp-performance .performance-card--endurance .performance-image { width: 88%; }
+}
+@media (max-width: 900px) {
+  .sp-performance .performance-board { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "body body" "latency motion" "endurance arm"; gap: 16px; }
+  .sp-performance .performance-card--body { display: grid; grid-template-columns: 1fr 1.3fr; grid-template-rows: auto auto 1fr; column-gap: 28px; }
+  .sp-performance .performance-card--body h3 { grid-column: 1; }
+  .sp-performance .performance-dimensions { grid-column: 1; grid-template-columns: 1fr; gap: 15px; }
+  .sp-performance .performance-dimensions .performance-metric { display: flex; align-items: baseline; gap: 15px; }
+  .sp-performance .performance-views { grid-column: 2; grid-row: 1 / 4; padding: 0; gap: 8%; }
+  .sp-performance .performance-views .performance-image { width: 45%; height: 370px; }
+  .sp-performance .performance-body-stats { grid-column: 1; align-self: end; margin-top: 25px; gap: 16px; }
+  .sp-performance .performance-body-stats .performance-metric--large dd { font-size: 38px; }
+  .sp-performance .performance-body-stats .performance-metric--large dd small { font-size: 15px; }
+}
+@media (max-width: 599px) {
+  .sp-performance .performance-board { grid-template-columns: minmax(0, 1fr); grid-template-areas: "body" "latency" "motion" "endurance" "arm"; gap: 16px; }
+  .sp-performance .performance-card { padding: 24px; }
+  .sp-performance .performance-card--body { display: flex; padding: 24px; }
+  .sp-performance .performance-dimensions { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .sp-performance .performance-dimensions .performance-metric { display: block; }
+  .sp-performance .performance-dimensions dd { font-size: clamp(22px, 6vw, 25px); gap: 3px; flex-wrap: nowrap; }
+  .sp-performance .performance-dimensions dd small { font-size: 12px; }
+  .sp-performance .performance-views { padding: 24px 0; gap: 8%; }
+  .sp-performance .performance-views .performance-image { width: 44%; height: 290px; }
+  .sp-performance .performance-body-stats { width: 100%; margin: 0; }
+  .sp-performance .performance-card--latency { min-height: 320px; }
+  .sp-performance .performance-metric--large dd { font-size: 56px; }
+  .sp-performance .performance-card--motion { min-height: 310px; }
+  .sp-performance .performance-card--motion .performance-image { width: 90%; max-height: 125px; }
+  .sp-performance .performance-card--endurance { min-height: 290px; }
+  .sp-performance .performance-card--endurance .performance-image { width: 66%; right: 4%; }
+  .sp-performance .performance-card--arm { min-height: 320px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp-performance .performance-card, .sp-performance .performance-image, .sp-performance dd > span { transition: none; }
+  .sp-performance .performance-card:hover, .sp-performance .performance-card:hover .performance-image { transform: none; }
+}

@@ -1,5 +1,33 @@
 # Prototype Instructions
 
+## Task 019.8 — accepted release authorization
+
+- Owner confirms 019.7F ChatGPT Final Accept; publish the accepted 019.6/019.7/019.7F product and technology work via existing origin/main to bluewormrobotics Pages. Performance design and Owner-approved PPT values remain LOCKED; current height1400 mm supersedes historical1300 mm.
+- Audit exact release files and credentials, run all tests/builds/diff checks and upload-integrity gates, then commit `Boss review product and technology release`. Push main; only one command-scoped HTTP/1.1 retry for the specified network failures. Never alter global Git settings.
+- Verify Cloudflare success and exact deployed SHA, production alias/assets, routes/menu/media and approved parameter cards. Stop on a failing gate or production issue; no opportunistic fixes. Keep four PDFs, channel manual/Pro/Ultra hidden, price0.98万起 and Inquiry/email disabled. No DNS/server/Resend/video migration or platform-setting changes.
+- This authorization supersedes prior local-only restrictions for the accepted release only. Physical iPhone/WeChat status must be reported separately from Edge viewport simulation.
+
+## Task 019.7F — FINAL PUBLIC PARAMETER BASELINE / LOCAL ONLY
+
+- Owner confirms all adopted performance PPT values are approved for public use; PARAMETER HOLD is lifted. Source: Owner-approved Performance PPT. Resolution: RESOLVED BY OWNER — PPT BASELINE APPROVED. PPT overrides prior website values where they conflict.
+- Current approved dimensions: 633 × 552 × 1400 mm. Old height1300 mm is LEGACY / SUPERSEDED VALUE, retained only in historical evidence / unapproved source records. Current public data and production delivery must not use it.
+- 019.7 five-module design, official images, desktop/mobile composition, hover, blue feedback and reduced-motion are LOCKED. No visual or content expansion. Keep channel SKU/configuration matrix/warranty/Pro/Ultra/original channel PDF hidden; exactly4 public PDFs; Inquiry disabled.
+- Historical provenance/report/conflict evidence stays unchanged; append the final approval resolution separately. NO COMMIT / NO PUSH / NO DEPLOY.
+
+## Task 019.7 — native performance board / LOCAL REVIEW ONLY
+
+- Owner reopens only Mantis Standard core parameters: replace the 019.6 four-row summary with native PPT-inspired image/parameter modules and restrained pointer hover. Keep other pages, price, Hero, technology order, six questions, public PDFs and Inquiry unchanged.
+- Use the owner's supplied performance screenshot and matching manual page 2 for 14 explicit parameters. Height is 1400 mm in this local section, superseding its previous 1300 mm display per the latest source-priority instruction. Preserve and disclose that discrepancy; do not silently rewrite historical records or the four approved PDFs.
+- Official renders may be proportionally trimmed/resized into separate derivatives; originals remain read-only. No whole-slide screenshots in the page, raw channel PDF, configuration matrix, warranty, new SKU or invented performance claims.
+- Local Edge review at 1440/1024/768/430/390/360, native hover and reduced-motion checks, full tests/build. NO COMMIT / NO PUSH / NO DEPLOY; final ChatGPT/Owner acceptance remains pending.
+
+## Task 019.6 — structure refinement / LOCAL ONLY
+
+- Owner overrides the previous four-platform IA: 春茧 / 量子 / 大脑 BW Brain / 虫洞 / 蜂巢 are five peers in one row. BW Brain sits between Quantum and Wormhole; remove the separate relationship card. 大脑 is TEMPORARY OWNER NAME / FINAL CN NAME TBD. No new capabilities.
+- Home uses the same order and one lightweight 了解技术体系 link to /technology. Product core specs become four existing confirmed key values plus 具体配置请咨询销售; source values remain unchanged.
+- Channel manual is visual reference only. No new PDF, configuration matrix or brochure publication. Pro HOLD; Ultra hidden. Preserve all locked Hero/nav/partner/news/application/about/six-Q/PDF/inquiry/legal/footer content.
+- Run four-width local QA and full tests/build; wait for Owner/ChatGPT Review. NO COMMIT / NO PUSH / NO DEPLOY; this overrides previous release authorization.
+
 ## Task 019.5 — approved boss-review release
 
 - Owner confirms 019.4R and 019.4R-Fix FINAL ACCEPT / LOCK. Publish that exact version via existing main -> Cloudflare Pages; no page/content/design changes.

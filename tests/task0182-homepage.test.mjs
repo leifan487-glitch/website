@@ -42,7 +42,7 @@ test("Task 018.2 film is activated by an accessible button, not viewport autopla
 test("Task 018.2 forms and platform names are bounded, not configuration promises", () => {
   assert.equal(homeForms.length, 6);
   assert.equal(modularBenefits.length, 3);
-  assert.deepEqual(homeTechnologyPlatforms.map(p => p.nameZh), ["春茧", "量子", "虫洞", "蜂巢"]);
+  assert.deepEqual(homeTechnologyPlatforms.map(p => p.nameZh), ["春茧", "量子", "大脑", "虫洞", "蜂巢"]); // Owner 019.6
   assert.doesNotMatch(JSON.stringify({homeForms,modularBenefits}), /1400|热插拔|免工具|任意互换|青春|豪华|旗舰|质保|DimOS/);
 });
 

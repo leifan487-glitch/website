@@ -32,7 +32,7 @@ test('All website source uses the corrected slogan and exact dimension value', a
   await walk('src');
   const dimensions = standardPublicSpecs.find(s => s.id === 'public-dimensions');
   assert.equal(dimensions.label, '尺寸');
-  assert.equal(dimensions.value + ' ' + dimensions.unit, '633 x 552 x 1300 mm');
+  assert.equal(dimensions.value + ' ' + dimensions.unit, '633 × 552 × 1400 mm'); // Owner 019.7F
 });
 test('Partners retain four official identities and show names alongside logos; core-tech CTA removed', async () => {
   const sections = await text('src/components/HomeSections.jsx');

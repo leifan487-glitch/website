@@ -53,7 +53,7 @@ test("Task 018.3 single price source and click-only media survive Owner tail rem
   assert.match(hero, /standardCommercial\.publicStartingPrice/);
   assert.doesNotMatch(hero, /0\.98/);
   const source = await read("src/components/StandardProductSections.jsx");
-  assert.match(source, /standardPublicSpecs, \{ publicMode: true \}/);
+  assert.match(source, /return <StandardPerformance \/>/); // 019.7 explicitly supersedes the historical parameter projection.
   assert.doesNotMatch(source, /to="\/support\/documents"/); // Owner 2026-09-16 removes the documents tail block.
   assert.doesNotMatch(source, /href=\{item.fileUrl\} download/); // 018.8B centralizes PDF actions.
   assert.equal((source.match(/to="\/inquiry"/g) || []).length, 0); // Independent route and navigation remain.

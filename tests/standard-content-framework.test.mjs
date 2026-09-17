@@ -32,7 +32,8 @@ test("Task 018.3 Standard page follows the complete product story with documents
   }
   assert.doesNotMatch(page, /<MantisIntro|<MantisProductDetail/);
   const ids = ["overview", "modular", "six-forms", "why-modular", "capability-system", "real-tasks", "development", "specifications", "questions"];
-  for (const id of ids) assert.match(sections, new RegExp(`id=\\"${id}\\"`));
+  const performance = await source("../src/components/StandardPerformance.jsx");
+  for (const id of ids) assert.match(id === "specifications" ? performance : sections, new RegExp(`id=\\"${id}\\"`));
   const renderOrder = ["ProductOverviewSection", "ModularArchitectureSection", "CapabilitySystemSection", "RealTasksSection", "DevelopmentSection", "SpecificationsSection", "StandardQaSection"];
   const renderBlock = sections.slice(sections.indexOf("export function StandardProductSections"));
   let cursor = -1;

@@ -1,0 +1,23 @@
+{
+  "task": "019.7F",
+  "parameterSource": "Owner-approved Performance PPT",
+  "ownerConfirmation": "PPT 为准，都可以放。",
+  "resolution": "RESOLVED BY OWNER — PPT BASELINE APPROVED",
+  "sourcePrecedence": "PPT overrides previous website baseline where conflict exists.",
+  "contentStatus": "VERIFIED",
+  "publicApproved": true,
+  "parameterHold": false,
+  "currentApprovedDimensions": "633 × 552 × 1400 mm",
+  "oldHeight": "1300 mm",
+  "oldHeightStatus": "LEGACY / SUPERSEDED VALUE",
+  "currentApprovedHeight": "1400 mm",
+  "currentHeightStatus": "CURRENT APPROVED PUBLIC BASELINE",
+  "approvedParameterIds": ["latency", "speed", "liftSpeed", "base", "length", "width", "height", "liftRange", "dof", "endurance", "upperArm", "forearm", "reach", "payload"],
+  "supersedesApprovalHoldIn": "internal/task0197-provenance.json",
+  "historicalRecordsPreserved": ["internal/task0197-provenance.json", "src/data/standard/specifications.js: standardSpecs SOURCE records", "docs/boss-review/TASK0197_PRODUCT_PERFORMANCE.md", "docs/boss-review/evidence/task0197/"],
+  "performanceDesign": "LOCKED — ChatGPT Visual Review accepted per Owner",
+  "stillNotApproved": ["Channel SKU", "Configuration matrix", "Warranty", "Pro", "Ultra", "Original channel manual PDF"],
+  "publicPdfCount": 4,
+  "inquiryEnabled": false,
+  "commitPushDeployAuthorized": false
+}

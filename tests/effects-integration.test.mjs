@@ -13,7 +13,7 @@ test("product page keeps the section rail and consolidates content without chang
   assert.doesNotMatch(home, /ProductSectionRail|EditorialSpotlightRow/);
   assert.match(sections, /CapabilitySystemSection/);
   assert.doesNotMatch(sections, /role="tablist"/);
-  assert.match(sections, /sp-specs__grid/);
+  assert.match(sections, /return <StandardPerformance \/>/); // 019.7 owner-approved native performance board.
   assert.doesNotMatch(sections, /StandardDocumentsSection|StandardInquirySection/);
 });
 

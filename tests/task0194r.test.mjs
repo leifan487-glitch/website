@@ -3,11 +3,14 @@ import assert from 'node:assert/strict';
 import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {reopened0194r} from './helpers/task0194r-scope.mjs';
+import {reopened0196} from './helpers/task0196-scope.mjs';
+import {added0197} from './helpers/task0197-scope.mjs';
 import {bwBrain} from '../src/data/bwBrain.js';
 import {documentResources} from '../src/data/resources/documents.js';
 import {alignedPlatforms} from '../src/data/alignment.js';
 import {standardPublicSpecs} from '../src/data/standard/specifications.js';
 import {beforeWormholeName} from './helpers/wormhole-name-scope.mjs';
+import {beforeParameterApproval} from './helpers/task0197f-scope.mjs';
 const bytes=f=>readFileSync(new URL('../'+f,import.meta.url));
 const text=f=>bytes(f).toString();
 const hash=b=>createHash('sha256').update(b).digest('hex');
@@ -18,17 +21,17 @@ function walk(dir){return readdirSync(new URL('../'+dir,import.meta.url),{withFi
 test('019.4R retains every baseline fact, asset, video, mobile composition and server byte outside seven authorized sources',()=>{
  assert.equal(scope.baseline,'9b3e8d32200a7db45ac421f98574bf77f198a21d');
  assert.deepEqual([...reopened0194r].sort(),scope.allowed.toSorted());
- for(const [f,h]of Object.entries(scope.files))if(!reopened0194r.has(f))assert.equal(hash(beforeWormholeName(f,bytes(f))),h,f);
+ for(const [f,h]of Object.entries(scope.files))if(!reopened0194r.has(f)&&!reopened0196.has(f))assert.equal(hash(beforeParameterApproval(f,beforeWormholeName(f,bytes(f)))),h,f);
  const added=[...walk('src'),...walk('public'),...walk('worker')].filter(f=>!(f in scope.files));
- assert.deepEqual(added.sort(),['src/boss-review.css','src/components/BrainRelationship.jsx','src/data/bwBrain.js',provenance.engineering.output].sort());
+ assert.deepEqual(added.sort(),['src/boss-review.css','src/data/bwBrain.js',provenance.engineering.output,...added0197].sort());
 });
-test('019.4R publishes only a source-backed Agent relationship without adding a fifth platform',()=>{
- assert.equal(alignedPlatforms.length,4);
- assert.deepEqual(alignedPlatforms.map(p=>p.id),['silkworm','quantum','wormhole','honeycomb']);
+test('019.6 moves the source-backed Agent into the five-entry IA without adding capability claims',()=>{
+ assert.equal(alignedPlatforms.length,5);
+ assert.deepEqual(alignedPlatforms.map(p=>p.id),['silkworm','quantum','bw-brain','wormhole','honeycomb']);
  assert.equal(bwBrain.name,'BW Brain');assert.equal(bwBrain.description,provenance.brain.publicCopy);
  assert.match(bwBrain.role,/Agent/);assert.equal(bwBrain.modelRole,'具身基础模型');
  assert.doesNotMatch(alignedPlatforms.find(p=>p.id==='wormhole').concepts.join(' '),/Agent|MCP/);
- for(const f of ['src/components/HomeSections.jsx','src/pages/TechnologyPage.jsx'])assert.match(text(f),/<BrainRelationship \/>/);
+ for(const f of ['src/components/HomeSections.jsx','src/pages/TechnologyPage.jsx'])assert.doesNotMatch(text(f),/BrainRelationship/);
  assert.doesNotMatch(text('src/components/HomeSections.jsx'),/查看技术体系/);
  assert.doesNotMatch(text('src/data/bwBrain.js'),/VLA\+|DRL|WAM|性能|自主|泛化|未来/);
 });
@@ -51,9 +54,9 @@ test('019.4R exposes exactly four unchanged approved PDFs and no manual/paramete
  for(const d of documentResources){assert.equal(d.publicApproved,true);assert.equal(hash(bytes('public'+d.fileUrl)),scope.files['public'+d.fileUrl]);}
  assert.deepEqual(provenance.manual.pagesActuallyReused,[]);assert.equal(provenance.manual.public,false);
  const dimension=standardPublicSpecs.find(s=>s.id==='public-dimensions');
- assert.equal(`${dimension.value} ${dimension.unit}`,'633 x 552 x 1300 mm');
+ assert.equal(`${dimension.value} ${dimension.unit}`,'633 × 552 × 1400 mm'); // Owner 019.7F
  assert.match(text('src/components/InquiryForm.jsx'),/if \(!inquiryEnabled\) return/);
- for(const f of ['src/data/bwBrain.js','src/components/BrainRelationship.jsx'])assert.doesNotMatch(text(f),/1400|质保|旗舰|豪华|入门王|渠道/);
+ for(const f of ['src/data/bwBrain.js','src/data/home.js'])assert.doesNotMatch(text(f),/1400|质保|旗舰|豪华|入门王|渠道/);
 });
 test('019.4R supporting typography never overrides the approved title or viewport image layout',()=>{
  const css=text('src/boss-review.css');

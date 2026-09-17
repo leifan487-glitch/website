@@ -1,0 +1,56 @@
+[
+  {
+    "file": "src/components/HomeSections.jsx",
+    "start": "export function HomeApplications",
+    "end": null,
+    "sha256": "5d9e16e91618f780beba63e98e9899c56a1ec7623e335d2d7dd7dc1012ef0c63"
+  },
+  {
+    "file": "src/components/StandardProductSections.jsx",
+    "start": "function Heading",
+    "end": "// Task 019.6",
+    "sha256": "59e9c5d08b229d5eeff9f283d4ee387b64aa553a40b9ef69f5b13d23df1ad5c6"
+  },
+  {
+    "file": "src/components/StandardProductSections.jsx",
+    "start": "function QaItem",
+    "end": null,
+    "sha256": "5133baaac2b2c56fcf82786c32149cd598c70bed20642340a6d4ecf6bcdfb56a"
+  },
+  {
+    "file": "src/pages/TechnologyPage.jsx",
+    "start": "      <section className=\"aligned-section aligned-tint\"",
+    "end": null,
+    "sha256": "11f9cb36a2f7092d81096caea79ef2f05a96859e2882c2e9aa33055c887a3f6c"
+  },
+  {
+    "file": "src/data/home.js",
+    "start": "// Official film frames",
+    "end": "// Chinese names",
+    "sha256": "26fa39c310d3970c6ff70fe34f8c618c9a742f69db5566ea99c0de68daaf0625"
+  },
+  {
+    "file": "src/data/home.js",
+    "start": "// Only an already approved",
+    "end": null,
+    "sha256": "ac32e612ffde24687e42f80c5bee89becd029bd1de01d1bdcf0d9b454999bb50"
+  },
+  {
+    "file": "src/boss-review.css",
+    "start": "/* Task 019.4R",
+    "end": "/* Task 019.6",
+    "sha256": "9afbee538c0e863d606dc4d1a1a565b12a9a0199de832728b48af4927ee142dd"
+  },
+  {
+    "file": "src/boss-review.css",
+    "start": "@media (min-width: 901px)",
+    "end": "@media (max-width: 767px)",
+    "sha256": "146a57d182412129e67083adaaf4ad0987e1cbe921d828e468f3d86328624d5a"
+  },
+  {
+    "file": "src/boss-review.css",
+    "start": "  .homepage-v2 .product-hero__positioning",
+    "end": "  .homepage-v2 .home-technology-preview__items",
+    "sha256": "7004e58e56fc407e75554efc50c12a37d8e95ef8d7c7f8530dbebbe65bcae2f1"
+  }
+]
