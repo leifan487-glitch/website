@@ -1,0 +1,14 @@
+{
+  "confirmedAt": "2026-09-18",
+  "ownerStatement": "可以，修改最后一个问题……优化完成后更新上传到官网吧",
+  "scope": "Accepted product refresh and four detail refinements, plus a stationary hover target fix for Explore Product Forms",
+  "deploymentAuthorized": true,
+  "supersedesLocalOnly": ["product-refresh-20260918-approval.json", "2026-09-18 product polish"],
+  "productionBranch": "main",
+  "productionUrl": "https://bluewormrobotics.pages.dev/",
+  "rawChannelPdfPublicApproved": false,
+  "publicPdfCount": 4,
+  "inquiryEnabled": false,
+  "proPublicApproved": false,
+  "ultraPublicApproved": false
+}

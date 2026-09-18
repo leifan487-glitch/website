@@ -4,6 +4,7 @@ import {readFileSync,readdirSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {standardPerformance} from '../src/data/standard/performance.js';
 import {added0197} from './helpers/task0197-scope.mjs';
+import {productRefreshAdded} from './helpers/product-refresh-scope.mjs';
 import {beforeParameterApproval} from './helpers/task0197f-scope.mjs';
 const bytes=f=>readFileSync(new URL('../'+f,import.meta.url));
 const text=f=>bytes(f).toString();
@@ -16,7 +17,7 @@ const walk=d=>readdirSync(new URL('../'+d,import.meta.url),{withFileTypes:true})
 test('019.7 changes only the parameter section and adds its bounded native implementation and official derivatives',()=>{
  for(const [f,h]of Object.entries(scope.files))if(f!=='src/components/StandardProductSections.jsx')assert.equal(hash(beforeParameterApproval(f,bytes(f))),h,f);
  const files=['src','public','worker'].flatMap(walk);
- assert.deepEqual(files.filter(f=>!(f in scope.files)).sort(),added0197.toSorted());
+ assert.deepEqual(files.filter(f=>!(f in scope.files)).sort(),[...added0197,...productRefreshAdded].sort());
  assert.deepEqual(Object.keys(scope.files).filter(f=>!files.includes(f)),[]);
  // Existing sibling sections are also protected by the retained 019.6 partial hashes.
  const source=text('src/components/StandardProductSections.jsx');

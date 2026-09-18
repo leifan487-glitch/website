@@ -58,7 +58,7 @@ test("Task 018.3 single price source and click-only media survive Owner tail rem
   assert.doesNotMatch(source, /href=\{item.fileUrl\} download/); // 018.8B centralizes PDF actions.
   assert.equal((source.match(/to="\/inquiry"/g) || []).length, 0); // Independent route and navigation remain.
   assert.doesNotMatch(source, /<video|autoPlay|homeLoop|<iframe/);
-  assert.match(source, /href=\{officialProductFilm.src\}/);
+  assert.match(await read("src/components/StandardBrochureSections.jsx"), /href=\{officialProductFilm.src\}/);
 });
 
 test("Task 018.3 scoped motion respects reduced motion and cleans up", async () => {

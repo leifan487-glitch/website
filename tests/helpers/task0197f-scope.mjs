@@ -1,6 +1,8 @@
 // Reverse only the exact Owner-approved public dimension/source edit when
 // comparing with historical snapshots. No snapshot hash is changed or waived.
+import { beforeProductRefresh } from './product-refresh-scope.mjs';
 export function beforeParameterApproval(file, bytes) {
+  bytes = beforeProductRefresh(file, bytes);
   if (file !== 'src/data/standard/specifications.js') return bytes;
   return Buffer.from(bytes.toString()
     .replaceAll('/* @__PURE__ */ spec(', 'spec(')

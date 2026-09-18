@@ -1,0 +1,19 @@
+{
+  "confirmedAt": "2026-09-18",
+  "ownerStatement": "可以，允许采用截图中的全部配置档位、参数和质保内容",
+  "contentStatus": "VERIFIED",
+  "publicApproved": true,
+  "scope": "Mantis Standard product subpage; native redesign based on six supplied screenshots",
+  "sourcePages": {"cover": 1, "forms": 3, "armAndBase": 4, "dual": 5, "body": 6, "development": 7},
+  "sourcePdf": "经验素材取地/新资料/渠道方产品手册大(1).pdf",
+  "configurationFamilies": ["单臂", "底盘", "双臂", "整机"],
+  "versionCount": 13,
+  "resolution": "Owner approval supersedes previous HOLD only for the supplied screenshot tiers, parameters and warranty. Historical source records, which also contain unapproved prices, stay internal.",
+  "interpretation": "A check means supported/equipped; X means unsupported/not equipped. 专项服务 is retained verbatim, not expanded into unconfirmed service promises. Module speed/endurance is not the whole-robot performance baseline.",
+  "performanceBaseline": "Owner-approved Performance PPT; 633 × 552 × 1400 mm; existing performance section unchanged",
+  "rawPdfPublicApproved": false,
+  "publicPdfCount": 4,
+  "proPublicApproved": false,
+  "ultraPublicApproved": false,
+  "deploymentAuthorized": false
+}

@@ -4,6 +4,7 @@ import {readFileSync,readdirSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {reopened0196} from './helpers/task0196-scope.mjs';
 import {added0197} from './helpers/task0197-scope.mjs';
+import {productRefreshAdded,beforeProductRefresh} from './helpers/product-refresh-scope.mjs';
 import {beforeParameterApproval} from './helpers/task0197f-scope.mjs';
 import {homeTechnologyPlatforms} from '../src/data/home.js';
 import {alignedPlatforms} from '../src/data/alignment.js';
@@ -22,11 +23,11 @@ test('019.6 limits runtime changes to seven owner-authorized files and removes o
  assert.equal(reopened0196.size,7);
  for(const [f,h]of Object.entries(scope.files))if(!reopened0196.has(f))assert.equal(hash(beforeParameterApproval(f,bytes(f))),h,f);
  const current=['src','public','worker'].flatMap(walk);
- assert.deepEqual(current.filter(f=>!(f in scope.files)).sort(),added0197.toSorted());
+ assert.deepEqual(current.filter(f=>!(f in scope.files)).sort(),[...added0197,...productRefreshAdded].sort());
  assert.deepEqual(Object.keys(scope.files).filter(f=>!current.includes(f)),['src/components/BrainRelationship.jsx']);
 });
 test('019.6 preserves locked sections inside reopened files, including six questions and Hero CSS',()=>{
- for(const {file,start,end,sha256}of sections){const source=text(file);const first=source.indexOf(start);assert.ok(first>=0,file);const last=end?source.indexOf(end,first):source.length;assert.ok(last>first,file);assert.equal(hash(source.slice(first,last)),sha256,file+' '+start);}
+ for(const {file,start,end,sha256}of sections){const source=beforeProductRefresh(file,bytes(file)).toString();const first=source.indexOf(start);assert.ok(first>=0,file);const last=end?source.indexOf(end,first):source.length;assert.ok(last>first,file);assert.equal(hash(source.slice(first,last)),sha256,file+' '+start);}
 });
 test('019.6 has one shared ordered five-peer IA and a temporary owner-approved Brain name',()=>{
  for(const list of [homeTechnologyPlatforms,alignedPlatforms]){

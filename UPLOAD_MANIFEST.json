@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "generatedOn": "2026-09-06",
-  "fileCount": 385,
-  "totalBytes": 154099110,
+  "fileCount": 397,
+  "totalBytes": 154336674,
   "files": [
     {
       "path": ".env.example",
@@ -31,8 +31,8 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 25171,
-      "sha256": "4c0691525ddac9af8e6807b5d5cdff3504f5bcb75affe91f0fe1db45377b7fe0"
+      "bytes": 25937,
+      "sha256": "a2b138de87e15615ea6b59b4678909397f6d7d852665bec4dbefb5d32b1a4784"
     },
     {
       "path": "DEPLOYMENT.md",
@@ -213,6 +213,26 @@
       "path": "internal/owner-feedback-20260916.json",
       "bytes": 14682,
       "sha256": "f3b4b8fd489c7419c647f636aca71246d54974c4c8bd421b564664aa0abc4299"
+    },
+    {
+      "path": "internal/product-polish-alpha-assets.json",
+      "bytes": 1820,
+      "sha256": "ea2e0105518577b8a581c1b9dfb27ee4f7d398503747a702be51f57145032092"
+    },
+    {
+      "path": "internal/product-refresh-20260918-approval.json",
+      "bytes": 1276,
+      "sha256": "0c1d36b749931cccf4c4036143eff85ca63fb51387cf52c147be91f853f4dd3a"
+    },
+    {
+      "path": "internal/product-refresh-20260918-baseline.json",
+      "bytes": 35299,
+      "sha256": "8d269cb4730b9a0f2223a990783a130aada604fcf86029cd5ea2738a64bf1119"
+    },
+    {
+      "path": "internal/product-release-20260918-approval.json",
+      "bytes": 635,
+      "sha256": "4dd1bf59f01fa94457d0354c35ead4d347defcbc37f8f19bceed0782f2887f46"
     },
     {
       "path": "internal/standard-media-provenance.mjs",
@@ -728,6 +748,21 @@
       "path": "public/media/mantis-standard/performance-v1/side.webp",
       "bytes": 44960,
       "sha256": "dea9ca8478489958f9596191eee03185a9471d897aca569360cb35f5d6b81b97"
+    },
+    {
+      "path": "public/media/mantis-standard/product-forms-alpha/dual.webp",
+      "bytes": 83740,
+      "sha256": "2986581981c4ae4ef75e0a71261af8bbac08da556549fca2bd3b0139ea7d44eb"
+    },
+    {
+      "path": "public/media/mantis-standard/product-forms-alpha/engineering.webp",
+      "bytes": 47490,
+      "sha256": "b31cf3f168b0a0d1f339c084096eb85ba7b4c8ddc5724c23abb7c9474a830b87"
+    },
+    {
+      "path": "public/media/mantis-standard/product-forms-alpha/inspection.webp",
+      "bytes": 35504,
+      "sha256": "c91087d8fe375ad5bb935b4a0a8a19eb5fe79ed070630dd38c4e062bf4e54e79"
     },
     {
       "path": "public/media/web-v2/applications-montage-v2-1080.mp4",
@@ -1281,13 +1316,13 @@
     },
     {
       "path": "src/components/ProductPageHeader.jsx",
-      "bytes": 1499,
-      "sha256": "673a14fbc12e90026eddac50a301c0ed096900cff9854d449216e74ed1ed1867"
+      "bytes": 1491,
+      "sha256": "eaaaf983c34430b4d29a47d07d321af20ad169c33bf017e1cd8fb84690229bf3"
     },
     {
       "path": "src/components/ProductSectionRail.jsx",
-      "bytes": 4575,
-      "sha256": "d931824c83293b6ab62dfe2f21594ac9c98407d9c11085f03d9c5a255222c179"
+      "bytes": 4527,
+      "sha256": "edbe183d8bf84a59c808340e6012eb52894044458f030291f7eb57c437ae0e17"
     },
     {
       "path": "src/components/RealWorld.jsx",
@@ -1303,6 +1338,11 @@
       "path": "src/components/SectionHeader.jsx",
       "bytes": 303,
       "sha256": "6e8c44eafc0ed5dd86d2cfea3c829f67142b8ea7dc9b79f8fc78d3cadbcbd14b"
+    },
+    {
+      "path": "src/components/StandardBrochureSections.jsx",
+      "bytes": 7802,
+      "sha256": "0c9a2e70e4194ea7c06a8280747d7823bc37423be1ebeb3e63cc1ff99418fdbe"
     },
     {
       "path": "src/components/StandardMediaPlayer.jsx",
@@ -1321,8 +1361,8 @@
     },
     {
       "path": "src/components/StandardProductSections.jsx",
-      "bytes": 10735,
-      "sha256": "2fc5907ea57fe43165221001f817a01f11754729670c550c9bb1630bdc527bfe"
+      "bytes": 6844,
+      "sha256": "1a5f7d3fddd4a75bacfbb2ad8b85265071de853a1ded7b373de655995f9d4461"
     },
     {
       "path": "src/components/SubpageMotion.jsx",
@@ -1343,6 +1383,11 @@
       "path": "src/components/navbar.css",
       "bytes": 3068,
       "sha256": "ab4cf165becf58b532ae27d339c53376f7dd5232966aa807506262be376a933f"
+    },
+    {
+      "path": "src/components/standard-brochure.css",
+      "bytes": 11845,
+      "sha256": "569b4601eb9083db66258fab508ff50ba5e18d84f2fb6a13998e65b333216d48"
     },
     {
       "path": "src/components/standard-performance.css",
@@ -1458,6 +1503,11 @@
       "path": "src/data/standard/applications.js",
       "bytes": 789,
       "sha256": "1c8c92b1119e87782c8a28cea4c2936b55e40d1e79813b220c665f96f9c8b4fd"
+    },
+    {
+      "path": "src/data/standard/brochureConfigurations.js",
+      "bytes": 5677,
+      "sha256": "ffb10274231cf9e726195d804b7609aaa445ca4dff1d701527f68965f8b7f2eb"
     },
     {
       "path": "src/data/standard/capabilities.js",
@@ -1686,13 +1736,13 @@
     },
     {
       "path": "tests/effects-integration.test.mjs",
-      "bytes": 2746,
-      "sha256": "0b4da22783d2b204c7720faff03760a0e3d1a8832bb62552ac01124c3c6c35e3"
+      "bytes": 2877,
+      "sha256": "b193f165038ee104d5869b5b73cdcc92228c3e69dced751e3ce7bd0e0a830160"
     },
     {
       "path": "tests/engineering-tail-20260916.test.mjs",
-      "bytes": 2050,
-      "sha256": "d9555d888145a62cbf38e71fd23b55db20027f23c418c125485215c96373dbf9"
+      "bytes": 2221,
+      "sha256": "243d96bb3fc57c427fcd679884850b63bdd4bebcd64989b37642a41ea04b6dec"
     },
     {
       "path": "tests/final-polish-20260916.test.mjs",
@@ -1713,6 +1763,11 @@
       "path": "tests/helpers/owner-feedback-scope.mjs",
       "bytes": 584,
       "sha256": "1c938bf4b2d2d7e92bb1a51c10d3e3501aa9da22b147cc84194f18904dc185be"
+    },
+    {
+      "path": "tests/helpers/product-refresh-scope.mjs",
+      "bytes": 1138,
+      "sha256": "a6b4f643d242617ecda1b1a4ebeee2582c99549e0ab13ed6dced3cdc0f0f1bde"
     },
     {
       "path": "tests/helpers/task0188b-scope.mjs",
@@ -1741,8 +1796,8 @@
     },
     {
       "path": "tests/helpers/task0197f-scope.mjs",
-      "bytes": 682,
-      "sha256": "bcc875e152b2e13b3690274c6a2179932b3ccb33b73431602cc4ca3518280afe"
+      "bytes": 795,
+      "sha256": "240f805d3028cd97f8be9030268af71a1a8dfbcdf0ea40176ef91c1166e6f78c"
     },
     {
       "path": "tests/helpers/video-range-scope.mjs",
@@ -1805,6 +1860,11 @@
       "sha256": "f1ef575afe89c9f14877a531c25c0814c86de07662f20aeafd1fb3ab3785863c"
     },
     {
+      "path": "tests/product-refresh-20260918.test.mjs",
+      "bytes": 7395,
+      "sha256": "cc83e2da17b3a1ce9def24ed4859404bfc5537c0f7abb347ab67698c34fa4647"
+    },
+    {
       "path": "tests/public-content-density-v1.test.mjs",
       "bytes": 3736,
       "sha256": "0d7defa9ca812ff517016d13d0203e48bc1b3202ff1738918215f14a6f80a2d7"
@@ -1821,8 +1881,8 @@
     },
     {
       "path": "tests/standard-content-framework.test.mjs",
-      "bytes": 8133,
-      "sha256": "28840df43b02f569e46d3e60b356e1727acad305297d047b2e7adda698b55c28"
+      "bytes": 8306,
+      "sha256": "22ea86936b217bd1ee084ef3ac7ef2bec3705a43be814f0dc07102f3ed37734e"
     },
     {
       "path": "tests/standard-media-public-v1.test.mjs",
@@ -1856,8 +1916,8 @@
     },
     {
       "path": "tests/task0183-product.test.mjs",
-      "bytes": 4852,
-      "sha256": "ae54a16bde8dda98c0d1af179835ed1cf4ba8ce8c01f8e151cfb6a82f252990e"
+      "bytes": 4903,
+      "sha256": "93f212e0bd3d7aa407a1a4344d2b37c47efb4cd4f31dbf14c35bbfbf70aa5691"
     },
     {
       "path": "tests/task0184-alignment.test.mjs",
@@ -1891,23 +1951,23 @@
     },
     {
       "path": "tests/task0194r.test.mjs",
-      "bytes": 5811,
-      "sha256": "c74c86a5abbd3f0e00e8337d9578895ae178133cb9910639b154042270bfdcbc"
+      "bytes": 5907,
+      "sha256": "d152dbfd3c2fc0a51aa8ae5eb3b57f679c7b0e1d5c6533034e3a673823385ae5"
     },
     {
       "path": "tests/task0196.test.mjs",
-      "bytes": 5049,
-      "sha256": "f73d28aab114d3a3298f60fece82e9f16e7de516e122e843dde04267c83b9560"
+      "bytes": 5206,
+      "sha256": "9233dccdb67a6a04f25f344858fb99ecaff6a69af86b789359746b398334c1ea"
     },
     {
       "path": "tests/task0197.test.mjs",
-      "bytes": 3455,
-      "sha256": "bc28fa99a5efc076aff3cf4136d5512e666e9b0d1069ce06cc8af080d04d83b7"
+      "bytes": 3552,
+      "sha256": "ac49cac021da79ccd3f31fa05f89fd24ab1d74986708507fd760b9b0147ed965"
     },
     {
       "path": "tests/task0197f.test.mjs",
-      "bytes": 3427,
-      "sha256": "621cd64804309fbc6cc4e6a492feb541bc93773eab530a03dc9ca2f9e812f53d"
+      "bytes": 3562,
+      "sha256": "b426932f1fbb4d263371426e34588b289e6a0bbd4c5562be59838e6752d8cec9"
     },
     {
       "path": "tests/task021-applications-montage.test.mjs",

@@ -1,0 +1,122 @@
+/* Product-page-only composition; the shared website and performance board stay unchanged. */
+.standard-page-v2 .brochure-hero .standard-product-hero__layout { min-height: 650px; grid-template-columns: .85fr 1.15fr; padding-block: 64px 0; gap: 12px; overflow: hidden; }
+.standard-page-v2 .brochure-hero h1 { font-size: clamp(48px, 6.3vw, 90px); font-weight: 650; letter-spacing: -.035em; }
+.standard-page-v2 .brochure-hero .standard-product-hero__copy { padding-bottom: 64px; }
+.standard-page-v2 .brochure-hero .standard-product-hero__visual { align-self: end; width: 100%; }
+.standard-page-v2 .brochure-hero .standard-product-hero__visual img { width: 100%; height: auto; max-height: 620px; object-fit: contain; object-position: bottom; }
+.standard-page-v2 .brochure-hero .sp-button { border-radius: 999px; background: #111; border-color: #111; color: #fff; transition: background-color 160ms ease-out; }
+/* Keep the hover hit area stationary; only the contained arrow moves. */
+.standard-page-v2 .brochure-hero .sp-button svg { pointer-events: none; transition: transform 160ms ease-out; }
+@media (hover: hover) and (pointer: fine) {
+  .standard-page-v2 .brochure-hero .sp-button:hover { background: #000; border-color: #000; }
+  .standard-page-v2 .brochure-hero .sp-button:hover svg { transform: translateY(3px); }
+}
+.standard-page-v2 .brochure-hero__links { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 28px; }
+.standard-page-v2 .brochure-overview { background: #edf3f5; }
+.standard-page-v2 .brochure-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.standard-page-v2 .brochure-intro h2 { font-size: clamp(32px, 3.7vw, 52px); line-height: 1.35; }
+.standard-page-v2 .brochure-intro > div { max-width: 60ch; }
+.standard-page-v2 .brochure-modular { background: #fff; color: #0a0b0c; --sp-muted: #555e63; }
+.standard-page-v2 .brochure-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 36px; }
+.standard-page-v2 .brochure-section-heading > p { margin: 0; max-width: 36ch; }
+.standard-page-v2 .brochure-choices { display: flex; border-bottom: 1px solid #cdd6da; gap: 8px 24px; }
+.standard-page-v2 .brochure-choices button { flex: 1; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #55636a; font: inherit; font-size: 16px; padding: 17px 4px; min-height: 48px; cursor: pointer; transition: color 180ms ease-out, border-color 180ms ease-out; white-space: nowrap; }
+.standard-page-v2 .brochure-choices button[aria-selected="true"] { color: #1e678a; border-bottom-color: #1e678a; font-weight: 600; }
+.standard-page-v2 .brochure-choices button:hover { color: #0b2838; background: #f2f6f8; }
+.standard-page-v2 .brochure-showcase { display: grid; grid-template-columns: minmax(0, 2fr) minmax(240px, .8fr); align-items: stretch; background: #f2f4f4; margin-top: 28px; }
+.standard-page-v2 .brochure-showcase figure { margin: 0; height: 430px; display: flex; align-items: center; justify-content: center; background: #fff; animation: brochure-arrive 420ms cubic-bezier(.16, 1, .3, 1); }
+.standard-page-v2 .brochure-showcase img { width: 100%; height: 100%; object-fit: contain; }
+.standard-page-v2 .brochure-showcase__single { padding: 28px 48px; }
+.standard-page-v2 .brochure-showcase__single img { max-width: 520px; }
+.standard-page-v2 .brochure-showcase__copy { display: flex; flex-direction: column; justify-content: center; padding: 36px 32px; background: #edf3f5; }
+.standard-page-v2 .brochure-showcase__copy h3 { font-size: 27px; text-wrap: balance; }
+.standard-page-v2 .brochure-showcase__copy a { display: flex; justify-content: space-between; gap: 20px; color: #1c6283; padding-block: 12px; margin-top: 20px; text-decoration: none; border-bottom: 1px solid #9bafb9; min-height: 44px; }
+.standard-page-v2 .brochure-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 32px; }
+.standard-page-v2 .brochure-principles p { font-size: 15px; margin: 0; }
+.standard-page-v2 .brochure-principles strong { display: block; color: #11191d; font-size: 18px; margin-bottom: 8px; font-weight: 600; }
+.standard-page-v2 .brochure-config { background: #f6f7f7; }
+.standard-page-v2 .brochure-config__intro { display: grid; grid-template-columns: 1fr 260px; align-items: center; gap: 64px; min-height: 210px; padding: 32px 0; }
+.standard-page-v2 .brochure-config__intro h3 { font-size: 28px; }
+.standard-page-v2 .brochure-config__intro p { max-width: 60ch; margin-bottom: 8px; }
+.standard-page-v2 .brochure-config__intro span { color: #59666d; font-size: 13px; }
+.standard-page-v2 .brochure-config__intro img { display: block; height: 170px; width: 100%; object-fit: contain; animation: brochure-arrive 350ms ease-out; }
+.standard-page-v2 .brochure-config__tools { display: flex; align-items: center; gap: 24px; margin-bottom: 20px; }
+.standard-page-v2 .brochure-version { display: none; }
+.standard-page-v2 .brochure-difference { display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 44px; cursor: pointer; }
+.standard-page-v2 .brochure-difference input { width: 18px; height: 18px; accent-color: #226e94; }
+.standard-page-v2 .brochure-legend { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 12px; color: #52636d; }
+.standard-page-v2 .brochure-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; line-height: 1.6; font-variant-numeric: tabular-nums; background: white; }
+.standard-page-v2 .brochure-table th, .standard-page-v2 .brochure-table td { padding: 15px 16px; border-bottom: 1px solid #e0e6e8; vertical-align: middle; overflow-wrap: break-word; }
+.standard-page-v2 .brochure-table thead { background: #143342; color: #fff; }
+.standard-page-v2 .brochure-table thead th { font-weight: 500; padding-block: 20px; }
+.standard-page-v2 .brochure-table th:first-child { width: 180px; text-align: left; }
+.standard-page-v2 .brochure-table tbody th { font-weight: 500; background: #eef2f3; color: #344851; }
+.standard-page-v2 .brochure-table td { text-align: center; color: #16252e; }
+.standard-page-v2 .brochure-value__part { display: inline-block; }
+.standard-page-v2 .brochure-choices button:focus-visible { outline: 2px solid #3899c6; outline-offset: 4px; }
+.standard-page-v2 .brochure-table tbody tr:hover td { background: #edf6fa; }
+.standard-page-v2 .brochure-check, .standard-page-v2 .brochure-no { display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; }
+.standard-page-v2 .brochure-check { color: #1c6c93; }
+.standard-page-v2 .brochure-no { color: #73838c; }
+.standard-page-v2 .brochure-config__note { font-size: 13px; line-height: 1.8; margin: 20px 0 0; max-width: 100ch; }
+.standard-page-v2 .brochure-sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@keyframes brochure-arrive { from { transform: translateY(8px); opacity: .65; } to { transform: none; opacity: 1; } }
+@media (max-width: 1024px) {
+  .standard-page-v2 .brochure-choices { gap: 8px; }
+  .standard-page-v2 .brochure-choices button { font-size: 14px; }
+  .standard-page-v2 .brochure-table th:first-child { width: 145px; }
+  .standard-page-v2 .brochure-table th, .standard-page-v2 .brochure-table td { padding: 12px 10px; font-size: 13px; }
+  .standard-page-v2 .brochure-showcase { grid-template-columns: 1.5fr 1fr; }
+  .standard-page-v2 .brochure-showcase figure { height: 350px; }
+  .standard-page-v2 .brochure-showcase__copy { padding: 28px 24px; }
+}
+@media (max-width: 767px) {
+  .standard-page-v2 .brochure-hero .standard-product-hero__layout { grid-template-columns: 1fr; min-height: 0; padding-top: 36px; gap: 28px; }
+  .standard-page-v2 .brochure-hero .standard-product-hero__copy { padding-bottom: 0; }
+  .standard-page-v2 .brochure-hero h1 { font-size: clamp(48px, 12vw, 70px); margin-bottom: 20px; }
+  .standard-page-v2 .brochure-hero .standard-product-hero__visual img { max-height: 360px; }
+  .standard-page-v2 .brochure-hero .standard-product-hero__definition { margin-bottom: 20px; }
+  .standard-page-v2 .brochure-hero__links { gap: 12px 20px; }
+  .standard-page-v2 .brochure-intro { grid-template-columns: 1fr; gap: 28px; }
+  .standard-page-v2 .brochure-section-heading { display: block; margin-bottom: 28px; }
+  .standard-page-v2 .brochure-section-heading > p { margin-top: 16px; }
+  .standard-page-v2 .brochure-forms .brochure-choices { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 6px; }
+  .standard-page-v2 .brochure-choices button { white-space: normal; padding: 12px 2px; }
+  .standard-page-v2 .brochure-showcase { display: flex; flex-direction: column; }
+  .standard-page-v2 .brochure-showcase figure { height: 280px; }
+  .standard-page-v2 .brochure-showcase__single { padding: 16px; }
+  .standard-page-v2 .brochure-showcase__copy { padding: 24px; }
+  .standard-page-v2 .brochure-showcase__copy h3 { font-size: 23px; }
+  .standard-page-v2 .brochure-showcase__copy a { margin-top: 8px; }
+  .standard-page-v2 .brochure-principles { grid-template-columns: 1fr; gap: 20px; }
+  .standard-page-v2 .brochure-principles strong { margin-bottom: 4px; }
+  .standard-page-v2 .brochure-config__intro { grid-template-columns: 1fr 100px; gap: 16px; padding-block: 28px; }
+  .standard-page-v2 .brochure-config__intro h3 { font-size: 25px; }
+  .standard-page-v2 .brochure-config__intro img { height: 140px; }
+  .standard-page-v2 .brochure-config__intro p { font-size: 14px; }
+  .standard-page-v2 .brochure-config__intro span { font-size: 12px; }
+  .standard-page-v2 .brochure-config__tools { flex-wrap: wrap; gap: 8px 24px; }
+  .standard-page-v2 .brochure-version { display: flex; flex-direction: column; gap: 8px; width: 100%; font-size: 14px; }
+  .standard-page-v2 .brochure-version select { width: 100%; min-height: 48px; color: #132f3e; background: #fff; border: 1px solid #a7b8c1; border-radius: 4px; padding: 10px 12px; font: inherit; }
+  .standard-page-v2 .brochure-version select:focus-visible { outline: 2px solid #236c8f; outline-offset: 3px; }
+  .standard-page-v2 .brochure-legend { width: 100%; margin: 0; }
+  .standard-page-v2 .brochure-table tr > [data-selected="false"] { display: none; }
+  .standard-page-v2 .brochure-table th:first-child { width: 40%; }
+  .standard-page-v2 .brochure-table th, .standard-page-v2 .brochure-table td { font-size: 14px; padding: 14px 12px; }
+}
+/* Tablet comparisons use the same version selector as mobile, rather than
+   compressing five configuration columns into fragmented technical values. */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .standard-page-v2 .brochure-config__tools { flex-wrap: wrap; }
+  .standard-page-v2 .brochure-version { display: flex; align-items: center; gap: 16px; width: 100%; font-size: 14px; }
+  .standard-page-v2 .brochure-version select { min-width: 260px; min-height: 48px; color: #132f3e; background: #fff; border: 1px solid #a7b8c1; border-radius: 4px; padding: 10px 12px; font: inherit; }
+  .standard-page-v2 .brochure-version select:focus-visible { outline: 2px solid #236c8f; outline-offset: 3px; }
+  .standard-page-v2 .brochure-table tr > [data-selected="false"] { display: none; }
+  .standard-page-v2 .brochure-table th:first-child { width: 34%; }
+  .standard-page-v2 .brochure-table th, .standard-page-v2 .brochure-table td { font-size: 15px; padding: 14px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .standard-page-v2 .brochure-showcase figure, .standard-page-v2 .brochure-config__intro img { animation: none; }
+  .standard-page-v2 .brochure-choices button, .standard-page-v2 .brochure-hero .sp-button, .standard-page-v2 .brochure-hero .sp-button svg { transition: none; transform: none; }
+  .standard-page-v2 .brochure-hero .sp-button:hover svg { transform: none; }
+}

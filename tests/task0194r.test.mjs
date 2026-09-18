@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {reopened0194r} from './helpers/task0194r-scope.mjs';
 import {reopened0196} from './helpers/task0196-scope.mjs';
 import {added0197} from './helpers/task0197-scope.mjs';
+import {productRefreshAdded} from './helpers/product-refresh-scope.mjs';
 import {bwBrain} from '../src/data/bwBrain.js';
 import {documentResources} from '../src/data/resources/documents.js';
 import {alignedPlatforms} from '../src/data/alignment.js';
@@ -23,7 +24,7 @@ test('019.4R retains every baseline fact, asset, video, mobile composition and s
  assert.deepEqual([...reopened0194r].sort(),scope.allowed.toSorted());
  for(const [f,h]of Object.entries(scope.files))if(!reopened0194r.has(f)&&!reopened0196.has(f))assert.equal(hash(beforeParameterApproval(f,beforeWormholeName(f,bytes(f)))),h,f);
  const added=[...walk('src'),...walk('public'),...walk('worker')].filter(f=>!(f in scope.files));
- assert.deepEqual(added.sort(),['src/boss-review.css','src/data/bwBrain.js',provenance.engineering.output,...added0197].sort());
+ assert.deepEqual(added.sort(),['src/boss-review.css','src/data/bwBrain.js',provenance.engineering.output,...added0197,...productRefreshAdded].sort());
 });
 test('019.6 moves the source-backed Agent into the five-entry IA without adding capability claims',()=>{
  assert.equal(alignedPlatforms.length,5);

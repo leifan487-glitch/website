@@ -3,16 +3,17 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { finalPolish } from './helpers/final-polish-scope.mjs';
+import { beforeProductRefresh } from './helpers/product-refresh-scope.mjs';
 const bytes=f=>readFile(new URL('../'+f,import.meta.url));
 const text=async f=>(await bytes(f)).toString();
-test('Owner removes only the last two product sections and matching rail anchors',async()=>{
+test('Owner tail removal and subsequent development removal leave only valid rail anchors',async()=>{
  const sections=await text('src/components/StandardProductSections.jsx');
  assert.doesNotMatch(sections,/StandardDocumentsSection|StandardInquirySection|product-documents|product-inquiry/);
  assert.match(sections,/<SpecificationsSection \/><StandardQaSection \/><\/>/);
  const rail=await text('src/components/ProductSectionRail.jsx');
- assert.equal((rail.match(/\{ id: /g)||[]).length,8);
+ assert.equal((rail.match(/\{ id: /g)||[]).length,7);
  assert.doesNotMatch(rail,/product-documents|product-inquiry/);
- const restored=rail.replace('  { id: "questions", label: "六个问题" },','  { id: "questions", label: "六个问题" },\n  { id: "product-documents", label: "资料与开发" },\n  { id: "product-inquiry", label: "采购/合作" },');
+ const restored=beforeProductRefresh('src/components/ProductSectionRail.jsx',Buffer.from(rail)).toString().replace('  { id: "questions", label: "六个问题" },','  { id: "questions", label: "六个问题" },\n  { id: "product-documents", label: "资料与开发" },\n  { id: "product-inquiry", label: "采购/合作" },');
  assert.equal(createHash('sha256').update(restored).digest('hex'),finalPolish.files['src/components/ProductSectionRail.jsx']);
  assert.match(await text('src/components/HomeSections.jsx'),/to="\/inquiry"/);
  assert.match(await text('src/App.jsx'),/path="\/inquiry"/);

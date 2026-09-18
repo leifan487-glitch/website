@@ -17,17 +17,18 @@ test("product page keeps the section rail and consolidates content without chang
   assert.doesNotMatch(sections, /StandardDocumentsSection|StandardInquirySection/);
 });
 
-test("product systems use visible structural information instead of hiding development in tabs", async () => {
+test("product systems retain anatomy and native forms while Owner removes the standalone development chapter", async () => {
   const intro = await source("../src/components/MantisIntro.jsx");
   const sections = await source("../src/components/StandardProductSections.jsx");
 
   assert.doesNotMatch(intro, /mantis-standard-a01790|<img/);
   assert.match(intro, /mantis-intro__inner/);
   assert.match(intro, /双臂移动操作机器人/);
-  assert.match(sections, /sp-modular__columns/);
+  const brochure = await source("../src/components/StandardBrochureSections.jsx");
+  assert.match(brochure, /brochure-principles/);
   assert.match(sections, /structures\.map/);
-  assert.match(sections, /sp-development__list/);
-  assert.match(sections, /standardDevelopmentPaths\.map/);
+  assert.doesNotMatch(brochure, /BrochureDevelopment|让开发，走向任务实践/);
+  assert.doesNotMatch(sections, /<DevelopmentSection/);
   assert.doesNotMatch(sections, /systemTabs|activeTab/);
   assert.doesNotMatch(sections, /模块化<br \/>设计|从本体<br \/>到任务/);
 });

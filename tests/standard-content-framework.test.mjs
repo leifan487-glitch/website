@@ -31,10 +31,11 @@ test("Task 018.3 Standard page follows the complete product story with documents
     assert.ok(page.indexOf(`<${component}`) > -1, `${component} missing`);
   }
   assert.doesNotMatch(page, /<MantisIntro|<MantisProductDetail/);
-  const ids = ["overview", "modular", "six-forms", "why-modular", "capability-system", "real-tasks", "development", "specifications", "questions"];
+  const ids = ["overview", "modular", "six-forms", "why-modular", "capability-system", "real-tasks", "specifications", "questions"];
   const performance = await source("../src/components/StandardPerformance.jsx");
-  for (const id of ids) assert.match(id === "specifications" ? performance : sections, new RegExp(`id=\\"${id}\\"`));
-  const renderOrder = ["ProductOverviewSection", "ModularArchitectureSection", "CapabilitySystemSection", "RealTasksSection", "DevelopmentSection", "SpecificationsSection", "StandardQaSection"];
+  const brochure = await source("../src/components/StandardBrochureSections.jsx");
+  for (const id of ids) assert.match(id === "specifications" ? performance : sections + brochure, new RegExp(`id=\\"${id}\\"`));
+  const renderOrder = ["ProductOverviewSection", "ModularArchitectureSection", "CapabilitySystemSection", "RealTasksSection", "SpecificationsSection", "StandardQaSection"];
   const renderBlock = sections.slice(sections.indexOf("export function StandardProductSections"));
   let cursor = -1;
   for (const component of renderOrder) {
@@ -120,12 +121,13 @@ test("Production Public visibility requires explicit approval and hides review b
   assert.match(internalStatus, /buildEnv\.MODE !== "production"/);
 });
 
-test("production bundle excludes internal configuration names, price and warranty", async () => {
+test("production excludes unapproved historical tiers and prices; Owner-approved screenshot tiers and warranty may appear", async () => {
   const dist = fileURLToPath(new URL("../dist/", import.meta.url));
   const distFiles = await files(dist);
   const textFiles = distFiles.filter((path) => [".js", ".css", ".html", ".json"].includes(extname(path)));
   const bundle = (await Promise.all(textFiles.map((path) => readFile(path, "utf8")))).join("\n");
-  assert.doesNotMatch(bundle, /丐版|幼年|胚胎体|究极体|孩子王|DIY王|导览王|科研王|王中王/);
-  assert.doesNotMatch(bundle, /9800|15800|99800|市场定价|质保期限/);
+  assert.doesNotMatch(bundle, /丐版|幼年|胚胎体|究极体|孩子王/);
+  assert.doesNotMatch(bundle, /9800|15800|99800|市场定价/);
+  for (const approved of ['DIY王','导览王','科研王','王中王','质保期限']) assert.ok(bundle.includes(approved));
   assert.doesNotMatch(bundle, /Mantis Pro|MANTIS PRO|hero-pro|p0000[1-5]/i);
 });

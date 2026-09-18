@@ -1,5 +1,11 @@
 # Prototype Instructions
 
+## 2026-09-18 Product refresh accepted and hover fix release
+
+- Owner accepted the product refresh and four detail corrections, then explicitly requested fixing the Explore Product Forms hover stutter and publishing the accepted updates.
+- Keep the black pill and approved content; stabilize its hit area, animate only the contained arrow, retain reduced-motion. Publish via existing main / Cloudflare Pages only after full tests/build/upload gates pass.
+- Screenshot-approved four families / thirteen configurations and warranty content are now authorized. The original channel PDF remains private; public PDFs remain four, Pro/Ultra hidden, Inquiry disabled. No DNS/server/Resend changes. This overrides earlier local-only restrictions for this accepted release.
+
 ## Task 019.8 — accepted release authorization
 
 - Owner confirms 019.7F ChatGPT Final Accept; publish the accepted 019.6/019.7/019.7F product and technology work via existing origin/main to bluewormrobotics Pages. Performance design and Owner-approved PPT values remain LOCKED; current height1400 mm supersedes historical1300 mm.

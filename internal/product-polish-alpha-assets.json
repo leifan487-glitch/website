@@ -1,0 +1,35 @@
+[
+  {
+    "name": "dual",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/双臂型材/PNG/01.png",
+    "sourceSha256": "39c73004f5bbc9d457997d128a3379b6d374ec8408a95c7ad67b1fa07976abd5",
+    "output": "public/media/mantis-standard/product-forms-alpha/dual.webp",
+    "outputSha256": "2986581981c4ae4ef75e0a71261af8bbac08da556549fca2bd3b0139ea7d44eb",
+    "width": 818,
+    "height": 1200,
+    "hasAlpha": true,
+    "operation": "Official existing alpha retained; empty alpha trim and proportional web delivery resize only. No background synthesis, inpainting, or robot changes."
+  },
+  {
+    "name": "inspection",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/巡检/PNG/01.png",
+    "sourceSha256": "ce27ee16aa09d3f625c2fc5eb18e4b89e9c678aaaccbaf4568c9a6203d8ffa55",
+    "output": "public/media/mantis-standard/product-forms-alpha/inspection.webp",
+    "outputSha256": "c91087d8fe375ad5bb935b4a0a8a19eb5fe79ed070630dd38c4e062bf4e54e79",
+    "width": 632,
+    "height": 1200,
+    "hasAlpha": true,
+    "operation": "Official existing alpha retained; empty alpha trim and proportional web delivery resize only. No background synthesis, inpainting, or robot changes."
+  },
+  {
+    "name": "engineering",
+    "source": "经验素材取地/蓝虫具身/标准版渲染/底盘加手臂/PNG/03.png",
+    "sourceSha256": "99249718eef88a8efc9ab14de51cb828dcfacb4335e3f244ef46530df16630aa",
+    "output": "public/media/mantis-standard/product-forms-alpha/engineering.webp",
+    "outputSha256": "b31cf3f168b0a0d1f339c084096eb85ba7b4c8ddc5724c23abb7c9474a830b87",
+    "width": 1000,
+    "height": 806,
+    "hasAlpha": true,
+    "operation": "Official existing alpha retained; empty alpha trim and proportional web delivery resize only. No background synthesis, inpainting, or robot changes."
+  }
+]

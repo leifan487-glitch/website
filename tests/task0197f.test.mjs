@@ -6,6 +6,7 @@ import {standardPublicSpecs,standardSpecs} from '../src/data/standard/specificat
 import {standardPerformance,standardPerformanceApproval} from '../src/data/standard/performance.js';
 import {selectStandardContent} from '../src/data/standard/visibility.js';
 import {beforeParameterApproval} from './helpers/task0197f-scope.mjs';
+import {productRefreshAdded} from './helpers/product-refresh-scope.mjs';
 const bytes=f=>readFileSync(new URL('../'+f,import.meta.url));
 const hash=b=>createHash('sha256').update(b).digest('hex');
 const baseline=JSON.parse(bytes('internal/task0197f-scope.json'));
@@ -15,8 +16,8 @@ const walk=d=>readdirSync(new URL('../'+d,import.meta.url),{withFileTypes:true})
 
 test('019.7F keeps every visual, media, route and server byte locked; only approved data may change',()=>{
  const runtime=['src','public','worker'].flatMap(walk);
- assert.deepEqual(runtime.toSorted(),Object.keys(baseline.files).filter(f=>/^(src|public|worker)\//.test(f)).sort());
- for(const f of runtime)if(f!=='src/data/standard/performance.js')assert.equal(hash(beforeParameterApproval(f,bytes(f))),baseline.files[f],f);
+ assert.deepEqual(runtime.toSorted(),[...Object.keys(baseline.files).filter(f=>/^(src|public|worker)\//.test(f)),...productRefreshAdded].sort());
+ for(const f of runtime)if(f!=='src/data/standard/performance.js'&&!productRefreshAdded.includes(f))assert.equal(hash(beforeParameterApproval(f,bytes(f))),baseline.files[f],f);
  for(const f of ['internal/task0197-provenance.json','internal/task0197-assets.json'])assert.equal(hash(bytes(f)),baseline.files[f],f);
 });
 

@@ -6,7 +6,6 @@ const productSections = [
   { id: "modular", label: "模块与形态" },
   { id: "capability-system", label: "产品结构" },
   { id: "real-tasks", label: "任务记录" },
-  { id: "development", label: "开发路径" },
   { id: "specifications", label: "核心参数" },
   { id: "questions", label: "六个问题" },
 ];

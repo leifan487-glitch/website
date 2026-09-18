@@ -1,64 +1,23 @@
 import { useId, useState } from "react";
-import { ArrowUpRight, Minus, Plus } from "@phosphor-icons/react";
+import { Minus, Plus } from "@phosphor-icons/react";
 import { EditorialHeading } from "./EditorialHeading.jsx";
 import { StandardMediaPlayer } from "./StandardMediaPlayer.jsx";
-import { officialProductFilm } from "../data/standard/officialFilm.js";
 import { getStandardMediaByUsage, selectStandardContent, standardQa } from "../data/standard/index.js";
 import { StandardPerformance } from "./StandardPerformance.jsx";
-import { standardForms, standardModularValues, standardHardware, standardDevelopmentPaths } from "../data/standard/story.js";
+import { standardHardware } from "../data/standard/story.js";
+
+import { BrochureOverview, BrochureForms, ConfigurationExplorer } from "./StandardBrochureSections.jsx";
 
 function Heading({ title, intro, id, dark = false }) {
   return <EditorialHeading className="sp-heading" title={title} intro={intro} titleId={id} tone={dark ? "dark" : "light"} />;
 }
 
 export function ProductOverviewSection() {
-  return (
-    <section className="sp-section sp-overview" id="overview" aria-labelledby="overview-title" data-standard-reveal>
-      <div className="page-shell sp-overview__layout">
-        <figure><img src="/assets/nav-standard-a01781.webp" alt="Mantis Standard 完整机器人形态" width="349" height="760" loading="lazy" decoding="async" /></figure>
-        <div>
-          <Heading title="什么是 Mantis Standard" id="overview-title" />
-          <p className="sp-lead">Mantis Standard 是一个模块化机器人平台。机器人可根据任务需求组合不同形态，并围绕统一的软件与智能体系进行开发和使用。</p>
-          <p>从机械臂、轮式底盘到双臂与完整形态，按任务需要组合配置。</p>
-          <a className="sp-text-link" href={officialProductFilm.src} target="_blank" rel="noopener noreferrer" aria-label="观看官方产品影片（新窗口）">观看官方产品影片<ArrowUpRight size={18} aria-hidden="true" /></a>
-        </div>
-      </div>
-    </section>
-  );
+  return <section className="sp-section brochure-overview" id="overview" aria-labelledby="overview-title"><BrochureOverview /></section>;
 }
 
 export function ModularArchitectureSection() {
-  return (
-    <section className="sp-section sp-modular" id="modular" aria-labelledby="modular-title" data-standard-reveal>
-      <div className="page-shell">
-        <Heading title="一脑多型，真模块化" intro="统一的软件体系，可组合的机器人结构。" id="modular-title" dark />
-        <div className="sp-modular__columns">
-          <article>
-            <h3>一脑多型</h3>
-            <p className="sp-lead">同一套智能与软件体系，<br />服务不同机器人形态。</p>
-            <p>形态随任务改变，开发仍围绕统一的软件体系展开。从仿真、控制接口到数据与模型，连接不同形态的开发与使用。</p>
-            <p>这里的“一脑”指软件与智能体系；具体主控和开发支持根据配置与方案确定。</p>
-          </article>
-          <article>
-            <h3>真模块化</h3>
-            <p className="sp-lead">从可组合模块出发，<br />构成任务需要的形态。</p>
-            <p>本体、双臂、轮式底盘、升降结构、视觉模块与末端执行器，围绕快速组合设计。模块可根据任务进行重新组合。</p>
-            <p>机器人形态与模块选择围绕实际需要确定，不以完整整机作为每一项任务的唯一形式。</p>
-          </article>
-        </div>
-        <div className="sp-module-relations" id="six-forms">
-          <h3>模块与形态</h3>
-          <dl>{[
-            { title: "操作单元", ids: ["arm", "dual"] },
-            { title: "移动与操作", ids: ["chassis", "engineering"] },
-            { title: "巡检与完整形态", ids: ["inspection", "complete"] },
-          ].map(group => <div key={group.title}><dt>{group.title}</dt><dd>{group.ids.map(id => <p key={id}>{standardForms.find(form => form.id === id).paragraphs[0]}</p>)}</dd></div>)}</dl>
-          <p className="sp-note" id="why-modular">{standardModularValues[2].description}</p>
-          <p className="sp-note">影片展示的是具体任务例子；实际使用需结合任务条件、配置与开发方案。</p>
-        </div>
-      </div>
-    </section>
-  );
+  return <><section className="sp-section brochure-modular" id="modular" aria-labelledby="modular-title"><BrochureForms /></section><ConfigurationExplorer /></>;
 }
 
 export function CapabilitySystemSection() {
@@ -117,22 +76,6 @@ export function RealTasksSection() {
   );
 }
 
-export function DevelopmentSection() {
-  return (
-    <section className="sp-section sp-development" id="development" aria-labelledby="development-title" data-standard-reveal>
-      <div className="page-shell">
-        <Heading title="开发 Mantis Standard" intro="仿真、控制、数据与模型、操作验证，按配置与开发方案选用。" id="development-title" />
-        <ol className="sp-development__list">{standardDevelopmentPaths.map((item, index) => <li key={item.id}>
-          <div><span className="sp-index">{String(index + 1).padStart(2, "0")}</span><h3>{item.title}</h3></div>
-          <ul aria-label={item.title + "相关工具"}>{item.tools.map(tool => <li key={tool}>{tool}</li>)}</ul>
-          <p>{item.description}</p>
-        </li>)}</ol>
-        <p className="sp-note">开发工具与流程按实际配置、软硬件环境及开发方案选择，不表示所有设备均默认配备。</p>
-      </div>
-    </section>
-  );
-}
-
 // Task 019.6's four-row presentation is superseded by the owner's Task 019.7.
 export function SpecificationsSection() {
   return <StandardPerformance />;
@@ -168,5 +111,5 @@ export function StandardQaSection() {
 }
 
 export function StandardProductSections() {
-  return <><ProductOverviewSection /><ModularArchitectureSection /><CapabilitySystemSection /><RealTasksSection /><DevelopmentSection /><SpecificationsSection /><StandardQaSection /></>;
+  return <><ProductOverviewSection /><ModularArchitectureSection /><CapabilitySystemSection /><RealTasksSection /><SpecificationsSection /><StandardQaSection /></>;
 }
